@@ -1,0 +1,38 @@
+=============================
+🛠️ MINISHELL EXECUTION FLOW
+=============================
+
+1. readline()
+2. add_history()
+3. Check if line is empty or only spaces
+4. 🧱 Lexing → split into tokens (words, operators, quoted strings)
+5. 🔧 Parsing → group tokens into structured commands
+6. 💥 Expanding → replace $VARIABLES and wildcards (*)
+7. ▶️ Execution → run built-ins, handle pipes/redirections, fork execve
+8. 🧹 Cleanup → free memory, prepare for next loop
+
+-----------------------------
+🧪 LEXING STAGE – BREAKDOWN
+-----------------------------
+
+1️⃣ Divide input line into tokens
+    - Detect words, redirections, pipes, quotes
+    - Split only on spaces OUTSIDE quotes
+
+2️⃣ Handle quotes
+    - Group anything inside '...' or "..."
+    - Preserve spacing inside quotes
+    - Raise syntax error if quote is unclosed
+
+3️⃣ Classify each token
+    - Words        → commands, arguments
+    - Operators    → |, >, >>, <, <<
+    - Quoted text  → treated as one word
+    - Whitespace outside quotes → ignored
+
+4 making a linked list of tokens
+    - every node hase a token
+    - its value
+    - its type
+    - pointer to the next token
+
