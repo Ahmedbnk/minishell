@@ -20,10 +20,7 @@ int main()
         line = readline(">>>> ");
         if(line && *line)
             add_history(line);
-        else if(*line == '\0')
-            return 0;
-        if(!check_error(line))
-                readline(">");
+        check_error(line);
         // divide_cmdl(line);
         printf("%s\n", line);
         

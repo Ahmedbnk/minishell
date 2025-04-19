@@ -15,9 +15,6 @@ int check_unclosed_quotes(char *str)
             double_quote = !double_quote;
         i++;
     }
-    
-    // printf("single %d\n", single_quote);
-    // printf("double %d\n", double_quote);
     return (single_quote || double_quote);
 }
 
@@ -25,7 +22,10 @@ int check_error(char *str)
 {
     if(check_unclosed_quotes(str))
     {
-        printf("unclosed quote\n");
+        while(1)
+        {
+            readline("> ");
+        }
         return 0;
     }
     return 1;
