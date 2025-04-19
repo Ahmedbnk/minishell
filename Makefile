@@ -1,28 +1,34 @@
 NAME = minishell
 
-CC = cc -g
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g
 
-FLAGS = -Wall -Wextra -Werror
-SRC = main.c
+SRCS = main.c check_input_error.c
+OBJS = $(SRCS:.c=.o)
 
-OPJ = $(SRC:.c=.o)
+LIBFT = Libft/libft.a
+READLINE = -lreadline
 
-RDLINE = -lreadline
+all: $(LIBFT) $(NAME)
 
-all: $(NAME)
+$(LIBFT):
+	make -C Libft
 
-$(NAME): $(OPJ)
-	$(CC) $(FLAGS) $(OPJ) $(RDLINE) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(READLINE) -o $(NAME)
 
-.o:.c
-	$(SRC) $(CC) $(FLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -Ilibft -c $< -o $@
 
 clean:
-	rm -f $(OPJ)
+	$(MAKE) -C Libft clean
+	rm -f $(OBJS) 
 
-fclean:
-	rm -f $(OPJ) $(NAME)
+fclean: clean
+	$(MAKE) -C Libft fclean
+	rm -f $(NAME)
+
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re
