@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include    "./Libft/libft.h" 
 
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -28,13 +29,16 @@ typedef struct s_token
     struct s_token *next;
 } t_token;
 
-size_t ft_strlen(char *str);
-char	*ft_strdup(char *str);
+// size_t ft_strlen(char *str);
+// char	*ft_strdup(char *str);
 t_token	*add_node(t_token **list, t_token *node);
 t_token	*creat_node(char *str);
 
 //errors
 // int check_unclosed_q(char *str);
 int check_error(char *str);
+
+void sigint_handler (int signo);
+void handle_signals();
 
 #endif
