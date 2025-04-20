@@ -37,11 +37,11 @@ static void	*ft_freesplit(char **a)
 	return (NULL);
 }
 
-void split_helper(char **splitted, char *s, int i, int k)
+static void split_helper(char **splitted, char *s, int i, int k)
 {
   int start;
-  start = 0;
 
+  start = 0;
 	while (s[i])
 	{
 		while (is_space(s[i]))
