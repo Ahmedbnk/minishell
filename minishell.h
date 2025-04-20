@@ -40,5 +40,5 @@ int check_error(char *str);
 
 void sigint_handler (int signo);
 void handle_signals();
-
+int is_between_quotes(char *line, int index);
 #endif
