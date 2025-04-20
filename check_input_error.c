@@ -18,14 +18,6 @@ int check_unclosed_quotes(char *str)
     return (single_quote || double_quote);
 }
 
-// int is_s
-// int check_syntax(char *str)
-// {
-//     int i;
-//     i = 0;
-
-// }
-
 int check_error(char *str)
 {
     if(check_unclosed_quotes(str))

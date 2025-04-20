@@ -1,33 +1,6 @@
 
 #include "minishell.h"
 
-size_t ft_strlen(char *str)
-{
-    size_t i = 0;
-    while(str[i])
-        i++;
-    return i;
-}
-
-char	*ft_strdup(char *str)
-{
-	int i;
-    char *cpy;
-
-	if (!str)
-		return (NULL);
-	i = 0;
-    cpy = malloc((ft_strlen(str) + 1));
-    if(!cpy)
-        return NULL;
-    while(str[i])
-    {
-        cpy[i] = str[i];
-        i++;
-    }
-    cpy[i] = '\0';
-    return cpy;
-}
 
 t_token	*creat_node(char *str)
 {
