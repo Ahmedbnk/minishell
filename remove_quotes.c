@@ -26,11 +26,10 @@ void remove_quotes(char **line)
 {
   char *parsed_quote_line = malloc(ft_strlen(*line) + 1);
   if (!parsed_quote_line)
-    return 1;
+    return ;
 
-  remove_quotes_helper(line, &parsed_quote_line);
+  remove_quotes_helper(*line, &parsed_quote_line);
+  free(*line);
   *line = parsed_quote_line;
-  free(parsed_quote_line);
-  return 0;
 }
 

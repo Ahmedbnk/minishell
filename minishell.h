@@ -42,4 +42,5 @@ void sigint_handler (int signo);
 void handle_signals();
 int is_between_quotes(char *line, int index);
 int is_space(char c);
+void remove_quotes(char **line);
 #endif
