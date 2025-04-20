@@ -3,7 +3,8 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
-SRCS = main.c check_input_error.c handle_signals.c is_between_quotes.c
+SRCS = main.c check_input_error.c handle_signals.c is_between_quotes.c \
+	is_space.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = Libft/libft.a
