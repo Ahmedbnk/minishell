@@ -14,13 +14,17 @@
 #define single_q 39
 #define double_q 34
 
-// #define T_COMMAND,     1   // Command type
-// #define T_ARGUMENT     2   // Argument type
-// #define T_REDIRECTION  3   // Redirection operator type (e.g., >, <)
-// #define T_PIPE         4   // Pipe operator type (|)
-// #define T_QUOTE        9   // Quote type (' or ")
-// #define T_PARENTHESIS 10   // Parentheses type (())
-// #define T_COMMENT     11   // Comment type (#)
+typedef enum e_token_type
+{
+    TOKEN_WORD,        // for regular words
+    TOKEN_PIPE,        // |
+    TOKEN_REDIR_IN,    // <
+    TOKEN_REDIR_OUT,   // >
+    TOKEN_REDIR_APPEND,// >>
+    TOKEN_HEREDOC,     // <<
+    TOKEN_EOF
+    // add more as needed
+}   token_t;
 
 typedef struct s_token
 {
