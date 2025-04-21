@@ -16,14 +16,12 @@
 
 typedef enum e_token_type
 {
-    TOKEN_WORD,        // for regular words
-    TOKEN_PIPE,        // |
-    TOKEN_REDIR_IN,    // <
-    TOKEN_REDIR_OUT,   // >
-    TOKEN_REDIR_APPEND,// >>
-    TOKEN_HEREDOC,     // <<
-    TOKEN_EOF
-    // add more as needed
+    TOKEN_WORD,        //  0 for regular words
+    TOKEN_PIPE,        // | 1
+    TOKEN_REDIR_IN,    // < 2
+    TOKEN_REDIR_OUT,   // > 3
+    TOKEN_REDIR_APPEND,// >> 4
+    TOKEN_HEREDOC,     // << 5
 }   token_t;
 
 typedef struct s_token
@@ -46,5 +44,7 @@ void sigint_handler (int signo);
 void handle_signals();
 int is_between_quotes(char *line, int index);
 int is_space(char c);
+int are_they_equal(const char *str1, const char *str2);
 void remove_quotes(char **line);
+
 #endif
