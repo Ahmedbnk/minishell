@@ -75,14 +75,14 @@ int tcheck_data_error(t_token *data)
   return 0;
 }
 
-int main()
-{
-  t_token data[4];
-  char *str[] = {"f", "|" , "7", NULL};
-  get_data(data, str);
-  tcheck_data_error(data);
-  //printf("%d\n", ptr[0].type);
-  printf("%d\n", data[1].type);
-  printf("%d\n", data[2].type);
-  printf("\nend.\n");
-}
+//int main()
+//{
+//  t_token data[4];
+//  char *str[] = {"f", "|" , "7", NULL};
+//  get_data(data, str);
+//  tcheck_data_error(data);
+//  //printf("%d\n", ptr[0].type);
+//  printf("%d\n", data[1].type);
+//  printf("%d\n", data[2].type);
+//  printf("\nend.\n");
+//}

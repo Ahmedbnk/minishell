@@ -5,6 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS = main.c check_input_error.c handle_signals.c is_between_quotes.c \
 	is_space.c customized_split.c remove_quotes.c are_they_equal.c make_token.c \
+	expand_if_possible.c should_i_expand.c 
 
 OBJS = $(SRCS:.c=.o)
 

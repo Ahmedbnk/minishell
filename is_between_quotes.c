@@ -15,7 +15,7 @@ int is_between_quotes(char *line, int index)
         line[i] == quote)
       quote = 0;
     if(i == index)
-      return(!!quote);
+      return(quote);
     i ++;
   }
   return(0);

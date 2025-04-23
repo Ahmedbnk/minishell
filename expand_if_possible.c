@@ -1,3 +1,4 @@
+#include "minishell.h"
 void expand_if_possible(char **string)
 {
   int i = 0;
@@ -6,9 +7,23 @@ void expand_if_possible(char **string)
   {
     if(str[i] == '$' && should_i_expand(str, i))
     {
-      expand(string, &i);
-      str = *string;
+      printf("expand %s at the index %d \n" ,str, i);
+      return;
+    }
+    else
+  {
+      printf("we will not expand it\n");
+      return;
+
     }
     i++;
   }
 }
+
+  #include <stdio.h>
+  int	main(void)
+  {
+    char *line = readline(">>> :");
+    expand_if_possible(&line);
+    return (0);
+  }
