@@ -4,7 +4,8 @@ int should_i_expand(char *str, int index)
 {
   char quote = 0;
   quote = is_between_quotes(str, index);
-  if(quote == single_q)
+  if(quote == single_q || str[index + 1] == '\0'
+    || str[index + 1] == single_q || str[index + 1] == double_q )
     return 0;
   else
     return 1;
