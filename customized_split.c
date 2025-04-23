@@ -73,15 +73,15 @@ char	**customized_split(char const *s)
   split_helper(splitted, (char *)s, i, k);
 	return (splitted);
 }
-//  #include <stdio.h>
-//  int	main(void)
-//  {
-//    char *line = readline(">>> :");
-//    char **splitted = customized_split(line);
-//    for(int i = 0; splitted[i];i++)
-//    {
-//      remove_quotes(&splitted[i]);
-//      printf("%s\n", splitted[i]);
-//    }
-//    return (0);
-//  }
+  #include <stdio.h>
+  int	main(void)
+  {
+    char *line = readline(">>> :");
+    char **splitted = customized_split(line);
+    for(int i = 0; splitted[i];i++)
+    {
+      remove_quotes(&splitted[i]);
+      printf("%s\n", splitted[i]);
+    }
+    return (0);
+  }

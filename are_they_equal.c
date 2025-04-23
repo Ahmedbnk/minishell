@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 int are_they_equal(const char *str1, const char *str2)

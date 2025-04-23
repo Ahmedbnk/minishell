@@ -46,5 +46,7 @@ int is_between_quotes(char *line, int index);
 int is_space(char c);
 int are_they_equal(const char *str1, const char *str2);
 void remove_quotes(char **line);
+int is_between_double_quotes(char *line, int index);
+int is_between_single_quotes(char *line, int index);
 
 #endif
