@@ -48,5 +48,5 @@ int are_they_equal(const char *str1, const char *str2);
 void remove_quotes(char **line);
 int is_between_double_quotes(char *line, int index);
 int is_between_single_quotes(char *line, int index);
-
+t_token    *get_data(t_token *data, char **spliteed);
 #endif
