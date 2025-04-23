@@ -1,4 +1,8 @@
 #include "minishell.h"
+
+void expand(char **string, int index)
+{  
+}
 void expand_if_possible(char **string)
 {
   int i = 0;
@@ -7,12 +11,11 @@ void expand_if_possible(char **string)
   {
     if(str[i] == '$' && should_i_expand(str, i))
     {
-      printf("expand %s at the index %d \n" ,str, i);
+      expand(string, i);
       return;
     }
     i++;
   }
-  printf("we will not expand it\n");
 }
 
   #include <stdio.h>
