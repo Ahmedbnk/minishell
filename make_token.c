@@ -43,8 +43,8 @@ int tcheck_redirections(t_token *data)
       return 1;
     else if(data[i].type == TOKEN_REDIR_IN && data[i+1].type != TOKEN_WORD)
       return 1;
-    else if(data[i].type == TOKEN_REDIR_APPEND && data[i+1].type != TOKEN_WORD)
-      return 1;
+    //else if(data[i].type == TOKEN_REDIR_APPEND && data[i+1].type != TOKEN_WORD)
+    // return 1;
     else if(data[i].type == TOKEN_HEREDOC && data[i+1].type != TOKEN_WORD)
       return 1;
     i++;
@@ -60,7 +60,7 @@ int tcheck_pipe_character(t_token *data)
   {
     if(data[i].type == TOKEN_PIPE && i  == 0)
       return 1;
-    if(data[i].type == TOKEN_PIPE && (data[i-1].type != TOKEN_WORD && data[i+1].type != TOKEN_WORD) && i > 0)
+    if(data[i].type == TOKEN_PIPE && (data[i-1].type != TOKEN_WORD || data[i+1].type != TOKEN_WORD) && i > 0)
       return 1;
     i++;
   }
@@ -78,7 +78,7 @@ int tcheck_data_error(t_token *data)
 int main()
 {
   t_token data[4];
-  char *str[] = {"f", "|" , "7", NULL};
+  char *str[] = {"a", "|" , "", NULL};
   get_data(data, str);
   tcheck_data_error(data);
   //printf("%d\n", ptr[0].type);
