@@ -10,14 +10,9 @@ void expand_if_possible(char **string)
       printf("expand %s at the index %d \n" ,str, i);
       return;
     }
-    else
-  {
-      printf("we will not expand it\n");
-      return;
-
-    }
     i++;
   }
+  printf("we will not expand it\n");
 }
 
   #include <stdio.h>
