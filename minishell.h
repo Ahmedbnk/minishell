@@ -50,4 +50,5 @@ t_token    *get_data(t_token *data, char **spliteed);
 
 void expand_if_possible(char **string);
 int should_i_expand(char *str, int index);
+int is_expend_seperator(char c);
 #endif
