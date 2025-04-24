@@ -1,5 +1,17 @@
 #include "minishell.h"
 
+int find_separator_index(char *str)
+{
+  int i;
+  i = 0;
+  while(str[i])
+  {
+    if(is_separator_index(str[i]))
+      return 1;
+    i++;
+  }
+  return(0);
+}
 void expand(char **string, char **expanded_string, int index)
 {  
   char *str;
@@ -16,7 +28,7 @@ void expand_if_possible(char **string)
   {
     if(str[i] == '$' && should_i_expand(str, i))
     {
-      expand(string, &expanded_string, i);
+      expand(string, &expanded_string, &i);
       return;
     }
     i++;
