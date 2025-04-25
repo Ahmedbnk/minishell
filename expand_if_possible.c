@@ -1,34 +1,44 @@
 #include "minishell.h"
 
-int find_separator_index(char *str)
+char *find_separator_index(char *str)
 {
   int i;
   i = 0;
   while(str[i])
   {
     if(is_separator_index(str[i]))
-      return 1;
+      return &str[i];
     i++;
   }
   return(0);
 }
-void expand(char **string, char **expanded_string, int index)
-{  
-  char *str;
-  int expantion_end;
-  expantion_end = 0;
-  str = ft_substr(*string, 0, index);
+//char *get_env_value(const char *var_name)
+//{
+//    char *value = getenv(var_name);
+//    if (!value)
+//        return strdup("");
+//    return strdup(value);
+//}
+//
+
+char *expand(char *str)
+{
+  int i = 0;
+  while(str[i])
+  {
+    i++;
+  }
 }
+
 void expand_if_possible(char **string)
 {
   int i = 0;
   char *str = *string;
-  char *expanded_string;
   while(str[i])
   {
     if(str[i] == '$' && should_i_expand(str, i))
     {
-      expand(string, &expanded_string, &i);
+      char *string = expand(str);
       return;
     }
     i++;
@@ -38,7 +48,10 @@ void expand_if_possible(char **string)
   #include <stdio.h>
   int	main(void)
   {
+  while(1)
+  {
     char *line = readline(">>> :");
     expand_if_possible(&line);
-    return (0);
+  }
+  return (0);
   }
