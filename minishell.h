@@ -52,4 +52,6 @@ void expand_if_possible(char **string);
 int should_i_expand(char *str, int index);
 int is_expand_separator(char c);
 char	*ft_strldup(const char *str, int len);
+char *expand(char *str);
+char *dup_befor_dollar(char *str, int *index);
 #endif

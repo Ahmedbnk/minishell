@@ -1,17 +1,17 @@
 #include "minishell.h"
 
-char *find_separator_index(char *str)
-{
-  int i;
-  i = 0;
-  while(str[i])
-  {
-    if(is_separator_index(str[i]))
-      return &str[i];
-    i++;
-  }
-  return(0);
-}
+//char *find_separator_index(char *str)
+//{
+//  int i;
+//  i = 0;
+//  while(str[i])
+//  {
+//    if(is_separator_index(str[i]))
+//      return &str[i];
+//    i++;
+//  }
+//  return(0);
+//}
 //char *get_env_value(const char *var_name)
 //{
 //    char *value = getenv(var_name);
@@ -21,15 +21,6 @@ char *find_separator_index(char *str)
 //}
 //
 
-char *expand(char *str)
-{
-  int i = 0;
-  while(str[i])
-  {
-    i++;
-  }
-}
-
 void expand_if_possible(char **string)
 {
   int i = 0;
@@ -38,7 +29,8 @@ void expand_if_possible(char **string)
   {
     if(str[i] == '$' && should_i_expand(str, i))
     {
-      char *string = expand(str);
+      printf("%s\n", dup_befor_dollar(str, &i));
+  //    char *string = expand(str);
       return;
     }
     i++;

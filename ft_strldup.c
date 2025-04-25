@@ -1,3 +1,5 @@
+#include "minishell.h"
+
 char	*ft_strldup(const char *str, int len)
 {
 	char	*string_clone;
