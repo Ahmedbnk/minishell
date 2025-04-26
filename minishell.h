@@ -14,6 +14,14 @@
 #define single_q 39
 #define double_q 34
 
+typedef struct s_expand
+{
+	char	*befor_dollar;
+	char	*to_expand;
+	char	*after_expand;
+	int		last_one;
+}			t_expand;
+
 typedef enum e_token_type
 {
     TOKEN_WORD,        //  0 for regular words
