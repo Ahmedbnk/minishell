@@ -2,9 +2,13 @@
 
 char *dup_befor_dollar(char *str, int *index)
 {
+  int i;
+
+  i = 0;
   char *string;
-  while(str[*index] && (str[*index] != '$' || !should_i_expand(str, *index)))
-    (*index) ++;
-  string = ft_strldup(str, *index);
+  while(str[i] && (str[i] != '$' || !should_i_expand(str, i)))
+    i++;
+  string = ft_strldup(str, i);
+  index += i;
   return string;
 }
