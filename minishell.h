@@ -51,4 +51,7 @@ t_token    *get_data(t_token *data, char **spliteed);
 void expand_if_possible(char **string);
 int should_i_expand(char *str, int index);
 int is_expend_seperator(char c);
+char	**split_for_expantion(char const *s);
+void	*ft_freesplit(char **a);
+char	*custom_join(char const *s1, char const *s2);
 #endif

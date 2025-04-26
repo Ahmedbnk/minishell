@@ -24,7 +24,7 @@ static int	ft_w_counter(char const *s)
 	return (counter);
 }
 
-static void	*ft_freesplit(char **a)
+void	*ft_freesplit(char **a)
 {
 	int	i;
 
@@ -73,7 +73,8 @@ char	**customized_split(char const *s)
   split_helper(splitted, (char *)s, i, k);
 	return (splitted);
 }
-//  #include <stdio.h>
+  #include <stdio.h>
+
 //  int	main(void)
 //  {
 //    char *line = readline(">>> :");
