@@ -12,14 +12,14 @@
 //  }
 //  return(0);
 //}
-//char *get_env_value(const char *var_name)
-//{
-//    char *value = getenv(var_name);
-//    if (!value)
-//        return strdup("");
-//    return strdup(value);
-//}
-//
+char *get_env_value(const char *var_name)
+{
+    char *value = getenv(var_name);
+    if (!value)
+        return strdup("");
+    return strdup(value);
+}
+
 
 void expand_if_possible(char **string)
 {
@@ -29,8 +29,8 @@ void expand_if_possible(char **string)
   {
     if(str[i] == '$' && should_i_expand(str, i))
     {
-      printf("%s\n", dup_befor_dollar(str, &i));
-  //    char *string = expand(str);
+      char *string = expand(str);
+      printf("the string is %s\n", string);
       return;
     }
     i++;

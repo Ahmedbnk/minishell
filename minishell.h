@@ -54,4 +54,6 @@ int is_expand_separator(char c);
 char	*ft_strldup(const char *str, int len);
 char *expand(char *str);
 char *dup_befor_dollar(char *str, int *index);
+char *what_to_expand(char *str, int *index);
+char *get_env_value(const char *var_name);
 #endif

@@ -1,8 +1,6 @@
-
 #include "minishell.h"
 
-
-int is_expend_seperator(char c)
+int is_expand_separator(char c)
 {
   if(!ft_isalnum(c) && c != '_')
     return 1;
