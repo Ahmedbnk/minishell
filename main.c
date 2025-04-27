@@ -18,7 +18,6 @@
       return(1);
     splitted = customized_split(line);
     char *tmp;
-    printf("splited of 0 is %s\n", *splitted);
     while(splitted[i])
     {
       tmp = splitted[i];

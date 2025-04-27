@@ -65,4 +65,8 @@ void				allocat_and_init(t_expand **expand_list,
 void				free_expand_list(t_expand *expand_list,
 						int how_much_to_expand);
 char				*new_str_after_expand(t_expand *data, int num_of_expantion);
+
+void	*ft_malloc(size_t size);
+void	free_memory_and_exit(void *lst);
+void	*get_garbage_pointer(void);
 #endif
