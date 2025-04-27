@@ -1,12 +1,12 @@
 
 //#include "minishell.h"
 //
-//int main()
+// int main()
 //{
 //  char *line;
 //  while(1)
 //  {
 //    line = readline("$ ");
 //  }
-//  return 0;
+//  return (0);
 //}

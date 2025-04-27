@@ -41,7 +41,7 @@ char	*custom_join(char const *s1, char const *s2)
 	return (a);
 }
 
-//char	*custom_join(char const *s1, char const *s2)
+// char	*custom_join(char const *s1, char const *s2)
 //{
 //	char	*a;
 //	int		i;
@@ -50,9 +50,9 @@ char	*custom_join(char const *s1, char const *s2)
 //	if (!s1 && !s2)
 //		return (NULL);
 //  else if (!s1)
-//    return (char *)s2;
+//    return ((char *)s2);
 //  else if(!s2)
-//    return (char *)s1;
+//    return ((char *)s1);
 //	a = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * (sizeof(char)));
 //	if (!a)
 //		return (NULL);

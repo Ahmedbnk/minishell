@@ -37,18 +37,18 @@ void	*ft_freesplit(char **a)
 	return (NULL);
 }
 
-static void split_helper(char **splitted, char *s, int i, int k)
+static void	split_helper(char **splitted, char *s, int i, int k)
 {
-  int start;
+	int	start;
 
-  start = 0;
+	start = 0;
 	while (s[i])
 	{
 		while (is_space(s[i]))
 			i++;
 		start = i;
-		while (s[i] && (!is_space(s[i])
-          || (is_space(s[i]) && is_between_quotes(s, i))))
+		while (s[i] && (!is_space(s[i]) || (is_space(s[i])
+					&& is_between_quotes(s, i))))
 			i++;
 		if (i > start)
 			splitted[k++] = ft_substr(s, start, i - start);
@@ -60,9 +60,9 @@ static void split_helper(char **splitted, char *s, int i, int k)
 char	**customized_split(char const *s)
 {
 	char	**splitted;
+	int		i;
+	int		k;
 
-	int i;
-  int k;
 	if (!s)
 		return (NULL);
 	splitted = malloc((ft_w_counter(s) + 1) * sizeof(char *));
@@ -70,10 +70,10 @@ char	**customized_split(char const *s)
 		return (NULL);
 	i = 0;
 	k = 0;
-  split_helper(splitted, (char *)s, i, k);
+	split_helper(splitted, (char *)s, i, k);
 	return (splitted);
 }
-  #include <stdio.h>
+#include <stdio.h>
 
 //  int	main(void)
 //  {

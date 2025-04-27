@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-//void remove_quotes(char *line, char **parsed_quote_line)
+// void remove_quotes(char *line, char **parsed_quote_line)
 //{
 //  int i = 0;
 //  int j = 0;
@@ -23,22 +23,20 @@
 //  (*parsed_quote_line)[j] = '\0';
 //}
 
-
 // int main()
 // {
 //   char *line = readline(">>> :");
 //   char *parsed_quote_line = malloc(ft_strlen(line) + 1);
 //   if (!parsed_quote_line)
-//     return 1;
+//     return (1);
 
 // //  remove_spaces(line, &parsed_quote_line);
 // //  remove_quotes(line, &parsed_quote_line);
 // //  printf("the parsed line is %s \n", parsed_quote_line);
 
 //   //free(line);
-//  // free(parsed_quote_line); 
+//  // free(parsed_quote_line);
 //  int x = is_between_quotes(line, 5);
 //  printf("%d\n", x);
-//   return 0;
+//   return (0);
 // }
-

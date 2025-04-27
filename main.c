@@ -1,5 +1,6 @@
 #include "minishell.h"
-//int main()
+
+// int main()
 //{
 //   char *line;
 //
@@ -10,12 +11,12 @@
 //       if(line && *line)
 //           add_history(line);
 //       if(line == NULL)
-//           return 0;
+//           return (0);
 //        // printf("%d\n", are_they_equal("hh", "hh"));
 //    //    check_error(line);
 //   }
-//   return 0;
+//   return (0);
 //}
-//some errors messages 
+// some errors messages
 //  syntax error near unexpected token `|'
 // syntax error near unexpected token `newline'
