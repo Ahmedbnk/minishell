@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 int	how_many_dallar_to_expand(char *str)
@@ -69,7 +68,7 @@ void	string_after_expand(t_expand *data, int index, char *str, int *offset)
 		data[index].after_expand = ft_substr(str, start, end - start);
 }
 
-char	*outline(char *str)
+char	*expand_if_possible(char *str)
 {
 	int			i;
 	int			offset;
@@ -80,6 +79,8 @@ char	*outline(char *str)
 	i = 0;
 	offset = 0;
 	num_of_expantion = how_many_dallar_to_expand(str);
+  if(num_of_expantion == 0)
+    return (ft_strdup(str));
 	allocat_and_init(&list, num_of_expantion);
 	while (i < num_of_expantion)
 	{
@@ -91,23 +92,4 @@ char	*outline(char *str)
 	new_str = new_str_after_expand(list, num_of_expantion);
 	free_expand_list(list, num_of_expantion);
 	return (new_str);
-}
-
-int	main(void)
-{
-	char	*line;
-	char	*result;
-
-
-  while(1)
-  {
-	  line = readline("$: ");
-	 if (line)
-	   add_history(line);
-	result = outline(line);
-    if(result)
-	    printf("%s\n", result);
-	free(result);
-  }
-	return (0);
 }

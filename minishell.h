@@ -51,7 +51,8 @@ int					are_they_equal(const char *str1, const char *str2);
 void				remove_quotes(char **line);
 t_token				*get_data(t_token *data, char **spliteed);
 
-void				expand_if_possible(char **string);
+char	**customized_split(char const *s);
+char        *expand_if_possible(char *string);
 int					should_i_expand(char *str, int index);
 int					is_expand_separator(char c);
 char				**split_for_expantion(char const *s);
