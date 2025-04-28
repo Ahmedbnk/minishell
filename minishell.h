@@ -56,17 +56,8 @@ char        *expand_if_possible(char *string);
 int					should_i_expand(char *str, int index);
 int					is_expand_separator(char c);
 char				**split_for_expantion(char const *s);
-void				*ft_freesplit(char **a);
 char				*custom_join(char const *s1, char const *s2);
 
-void				allocat_and_init(t_expand **expand_list,
-						int how_much_to_expand);
-
-void				free_expand_list(t_expand *expand_list,
-						int how_much_to_expand);
+void	allocat_and_init(t_expand **expand_list, int how_much_to_expand);
 char				*new_str_after_expand(t_expand *data, int num_of_expantion);
-
-void	*ft_malloc(size_t size);
-void	free_memory_and_exit(void *lst);
-void	*get_garbage_pointer(void);
 #endif

@@ -11,12 +11,10 @@ char	*expnad_and_join_node(t_expand data)
 	{
 		path = ft_strdup(getenv((data.to_expand) + 1));
 		the_joined_node = custom_join(data.befor_dollar, path);
-		free(path);
 	}
 	if (data.last_one)
 	{
 		rest = custom_join(the_joined_node, data.after_expand);
-		free(the_joined_node);
 		return (rest);
 	}
 	return (the_joined_node);
@@ -37,10 +35,8 @@ char	*new_str_after_expand(t_expand *data, int num_of_expantion)
 			data[i].last_one = 1;
 		expanded = expnad_and_join_node(data[i]);
 		if (!expanded)
-			return ((free(new_after_expand), NULL));
+			return (NULL);
 		joined = custom_join(new_after_expand, expanded);
-		free(new_after_expand);
-		free(expanded);
 		new_after_expand = joined;
 		if (!new_after_expand)
 			return (NULL);

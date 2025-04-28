@@ -1,28 +1,26 @@
 #include "minishell.h"
 
- int main()
+int main()
 {
   int i = 0;
   char *line;
   char **splitted;
+  t_list **to_free = get_garbage_pointer();
 
-   while(1)
-   {
+  while(1)
+  {
     handle_signals();
     line = readline(">>>> ");
     if(line && *line)
       add_history(line);
     if(line == NULL)
-      return (0);
+      return((free_memory_and_exit(*to_free),1));
     if(check_error(line))
-      return(1);
+      return((free_memory_and_exit(*to_free),1));
     splitted = customized_split(line);
-    char *tmp;
     while(splitted[i])
     {
-      tmp = splitted[i];
       splitted[i] = expand_if_possible(splitted[i]);
-      free(tmp);
       i++;
     }
     i = 0;
@@ -37,7 +35,7 @@
       printf("%s\n", splitted[i]);
       i++;
     }
-
-   }
-   return (0);
+  }
+  free_memory_and_exit(*to_free);
+  return (0);
 }

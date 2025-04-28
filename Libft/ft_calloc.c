@@ -18,9 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char	*arr;
 
 	total_size = nmemb * size;
-	arr = malloc(total_size);
-	if (!arr)
-		return (NULL);
+	arr = ft_malloc(total_size);
 	ft_memset(arr, 0, total_size);
 	return (arr);
 }

@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "libft.h"
 
 void	*get_garbage_pointer(void)
 {
@@ -31,16 +31,12 @@ void	*ft_malloc(size_t size)
 	garbage_list = get_garbage_pointer();
 	pointer = malloc(size);
 	if (!pointer)
-	{
 		free_memory_and_exit(*garbage_list);
-		return (NULL);
-	}
-	new_node = ft_lstnew(pointer);
+	new_node = garbage_collection_lstnew(pointer);
 	if (!new_node)
 	{
 		free(pointer);
 		free_memory_and_exit(*garbage_list);
-		return (NULL);
 	}
 	ft_lstadd_back(garbage_list, new_node);
 	return (pointer);

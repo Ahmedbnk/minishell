@@ -1,11 +1,8 @@
 #include "minishell.h"
 
 void	allocat_expand_list(t_expand **expand_list, int how_much_to_expand)
-
 {
-	*expand_list = malloc(how_much_to_expand * sizeof(t_expand));
-	if (!*expand_list)
-		return ;
+	*expand_list = ft_malloc(how_much_to_expand * sizeof(t_expand));
 }
 
 void	init_expand_list(t_expand *expand_list, int how_much_to_expand)

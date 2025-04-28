@@ -90,6 +90,5 @@ char	*expand_if_possible(char *str)
 		i++;
 	}
 	new_str = new_str_after_expand(list, num_of_expantion);
-	free_expand_list(list, num_of_expantion);
 	return (new_str);
 }

@@ -38,19 +38,6 @@ static int	ft_w_counter(char const *s, char c)
 	return (counter);
 }
 
-static void	*ft_freesplit(char **a)
-{
-	int	i;
-
-	i = 0;
-	if (!a)
-		return (NULL);
-	while (a[i])
-		free(a[i++]);
-	free(a);
-	return (NULL);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**splitted;
@@ -58,9 +45,7 @@ char	**ft_split(char const *s, char c)
 	int (i), (k), (start);
 	if (!s)
 		return (NULL);
-	splitted = malloc((ft_w_counter(s, c) + 1) * sizeof(char *));
-	if (!splitted)
-		return (NULL);
+	splitted = ft_malloc((ft_w_counter(s, c) + 1) * sizeof(char *));
 	i = 0;
 	k = 0;
 	while (s[i])
@@ -72,8 +57,6 @@ char	**ft_split(char const *s, char c)
 			i++;
 		if (i > start)
 			splitted[k++] = ft_substr(s, start, i - start);
-		if (!splitted)
-			ft_freesplit(splitted);
 	}
 	splitted[k] = NULL;
 	return (splitted);

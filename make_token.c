@@ -19,15 +19,15 @@ token_t	get_token_type(const char *str)
 		return (TOKEN_WORD);
 }
 
-t_token	*get_data(t_token *data, char **splitted)
+t_token	*get_data(t_token *data, char **spliteed)
 {
 	int	i;
 
 	i = 0;
-	while (splitted[i])
+	while (spliteed[i])
 	{
-		data[i].type = get_token_type(splitted[i]);
-		data[i].word = splitted[i];
+		data[i].type = get_token_type(spliteed[i]);
+		data[i].word = spliteed[i];
 		// printf("%s\n", data[i].word );
 		i++;
 	}

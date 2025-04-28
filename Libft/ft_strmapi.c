@@ -22,9 +22,7 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 		return (NULL);
 	i = 0;
 	a_len = ft_strlen(s);
-	new_a = malloc(a_len + 1);
-	if (!new_a)
-		return (NULL);
+	new_a = ft_malloc(a_len + 1);
 	while (i < a_len)
 	{
 		new_a[i] = f(i, s[i]);
