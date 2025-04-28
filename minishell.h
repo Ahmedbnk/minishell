@@ -48,7 +48,6 @@ void				handle_signals(void);
 int					is_between_quotes(char *line, int index);
 int					is_space(char c);
 int					are_they_equal(const char *str1, const char *str2);
-void				remove_quotes(char **line);
 t_token				*get_data(t_token *data, char **spliteed);
 
 char	**customized_split(char const *s);
@@ -60,4 +59,5 @@ char				*custom_join(char const *s1, char const *s2);
 
 void	allocat_and_init(t_expand **expand_list, int how_much_to_expand);
 char				*new_str_after_expand(t_expand *data, int num_of_expantion);
+void remove_quotes_from_args(char **splitted);
 #endif

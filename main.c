@@ -23,12 +23,7 @@ int main()
       splitted[i] = expand_if_possible(splitted[i]);
       i++;
     }
-    i = 0;
-    while(splitted[i])
-    {
-      remove_quotes(&splitted[i]);
-      i++;
-    }
+    remove_quotes_from_args(splitted);
     i = 0;
     while(splitted[i])
     {

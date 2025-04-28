@@ -26,11 +26,23 @@ static void	remove_quotes_helper(char *line, char **parsed_quote_line)
 	(*parsed_quote_line)[j] = '\0';
 }
 
-void	remove_quotes(char **line)
+static void	remove_quotes(char **line)
 {
-	char	*parsed_quote_line;
+	char	*line_without_quotes;
 
-	parsed_quote_line = ft_malloc(ft_strlen(*line) + 1);
-	remove_quotes_helper(*line, &parsed_quote_line);
-	*line = parsed_quote_line;
+	line_without_quotes = ft_malloc(ft_strlen(*line) + 1);
+	remove_quotes_helper(*line, &line_without_quotes);
+	*line = line_without_quotes;
+}
+
+void remove_quotes_from_args(char **splitted)
+{
+  int i;
+
+  i = 0;
+  while(splitted[i])
+  {
+    remove_quotes(&splitted[i]);
+    i++;
+  }
 }
