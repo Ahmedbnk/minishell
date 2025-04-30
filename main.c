@@ -2,13 +2,14 @@
 
 int main()
 {
-  int i = 0;
+  int i;
   char *line;
   char **splitted;
   t_list **to_free = get_garbage_pointer();
 
   while(1)
   {
+    i = 0;
     handle_signals();
     line = readline(">>>> ");
     if(line && *line)
