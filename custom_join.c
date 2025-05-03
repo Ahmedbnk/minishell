@@ -66,3 +66,4 @@ char	*custom_join(char const *s1, char const *s2)
 //	a[i] = '\0';
 //	return (a);
 //}
+
