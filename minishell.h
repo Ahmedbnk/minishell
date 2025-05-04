@@ -61,4 +61,6 @@ char				*custom_join(char const *s1, char const *s2);
 void	allocat_and_init(t_expand **expand_list, int how_much_to_expand);
 char				*new_str_after_expand(t_expand *data, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
+char	**split_with_operators(char **splitted);
+void print_splitted(char **splitted);
 #endif

@@ -45,7 +45,7 @@ void	string_to_expand(t_expand *data, int index, char *str, int *offset)
 	{
 		if (str[*offset] == '$' && start == (*offset))
 			(*offset)++;
-		if (!ft_isalnum(str[(*offset)]) || (str[*offset] == '$'
+		if (!ft_isalnum(str[*offset]) || (str[*offset] == '$'
 				&& should_i_expand(str, *offset)))
 			break ;
 		(*offset)++;

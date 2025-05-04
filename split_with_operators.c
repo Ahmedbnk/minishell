@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	is_operator(char *str, int i)
+static int	is_operator(char *str, int i)
 {
 	if (is_between_quotes(str, i))
 		return (0);
@@ -12,7 +12,7 @@ int	is_operator(char *str, int i)
 	return (0);
 }
 
-int	does_string_has_operators(char *str)
+static int	does_string_has_operators(char *str)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int	does_string_has_operators(char *str)
 	return (0);
 }
 
-int	calculate_all_symboles_operators(char **splitted)
+static int	calculate_all_symboles_operators(char **splitted)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ int	calculate_all_symboles_operators(char **splitted)
 	return (number);
 }
 
-void	split_string_with_operators(char **container, char *str, int *j_ptr)
+static void	split_string_with_operators(char **container, char *str, int *j_ptr)
 {
 	int	i;
 	int	start;
@@ -90,7 +90,7 @@ char	**split_with_operators(char **splitted)
 	j = 0;
 	while (splitted[i])
 		i++;
-	container = ft_malloc(sizeof(char *) * (i + len + 1));
+	container = ft_malloc(sizeof(char *) * ((i + 2 * len) + 1));
 	i = 0;
 	j = 0;
 	while (splitted[i])
@@ -103,21 +103,4 @@ char	**split_with_operators(char **splitted)
 	}
 	container[j] = NULL;
 	return (container);
-}
-int	main(void)
-{
-	int		i;
-	char	*input[] = {"test'|hd'hdh", "dhdd", "hdhd< <<hdhdh", "'not|split'",
-			"\"also>not\"", NULL};
-	char	**result;
-
-	i = 0;
-	result = split_with_operators(input);
-
-	while (result[i])
-	{
-		printf("%s\n", result[i]);
-		i++;
-	}
-	return (0);
 }
