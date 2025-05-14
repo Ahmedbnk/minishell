@@ -53,7 +53,7 @@ t_data *make_token(char **arr)
   int len;
   t_data *list;
 
-  len = two_d_lenth(arr);
+  len = len_of_two_d_array(arr);
   list = ft_malloc(len * sizeof(t_data));
   fill_the_list(list, arr);
   if(check_syntax_error(list, len))

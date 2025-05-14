@@ -61,6 +61,6 @@ char				*new_str_after_expand(t_expand *data, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
 char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
-int two_d_lenth(char **str);
 t_data *make_token(char **arr);
+int len_of_two_d_array(char **str);
 #endif

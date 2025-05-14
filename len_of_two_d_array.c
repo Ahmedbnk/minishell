@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-int two_d_lenth(char **str)
+int len_of_two_d_array(char **str)
 {
   int counter;
   counter = 0;
