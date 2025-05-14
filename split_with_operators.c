@@ -75,7 +75,7 @@ static void	split_string_with_operators(char **container, char *str, int *j_ptr)
 			i++;
 	}
   if(start != i)
-	  container[j++] = ft_substr(str, start, i - start);
+    container[j++] = ft_substr(str, start, i - start);
 	*j_ptr = j;
 }
 
