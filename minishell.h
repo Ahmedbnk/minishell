@@ -23,23 +23,22 @@ typedef struct s_expand
 
 typedef enum e_token_type
 {
-	TOKEN_WORD,         //  0 for regular words
-	TOKEN_PIPE,         // | 1
-	TOKEN_REDIR_IN,     // < 2
-	TOKEN_REDIR_OUT,    // > 3
-	TOKEN_REDIR_APPEND, // >> 4
-	TOKEN_HEREDOC,      // << 5
+	WORD,         //  0 for regular words
+	PIPE,         // | 1
+	REDIR_IN,     // < 2
+	REDIR_OUT,    // > 3
+	REDIR_APPEND, // >> 4
+	HEREDOC,      // << 5
 }					token_t;
 
 typedef struct s_token
 {
 	int				type;
 	char			*word;
-	struct s_token	*next;
-}					t_token;
+}					t_data;
 
-t_token				*add_node(t_token **list, t_token *node);
-t_token				*creat_node(char *str);
+//t_token				*add_node(t_token **list, t_token *node);
+//t_token				*creat_node(char *str);
 
 int					check_error(char *str);
 
@@ -48,7 +47,6 @@ void				handle_signals(void);
 int					is_between_quotes(char *line, int index);
 int					is_space(char c);
 int					are_they_equal(const char *str1, const char *str2);
-t_token				*get_data(t_token *data, char **spliteed);
 
 char	**customized_split(char const *s);
 char        *expand_if_possible(char *string);
@@ -63,4 +61,6 @@ char				*new_str_after_expand(t_expand *data, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
 char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
+int two_d_lenth(char **str);
+t_data *make_token(char **arr);
 #endif

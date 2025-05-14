@@ -25,8 +25,11 @@ int main()
       splitted[i] = expand_if_possible(splitted[i]);
       i++;
     }
-    remove_quotes_from_args(splitted);
-    print_splitted(splitted);
+    if(make_token(splitted))
+    {
+      remove_quotes_from_args(splitted);
+      print_splitted(splitted);
+    }
   }
   free_memory_and_exit(*to_free);
   return (0);

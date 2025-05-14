@@ -4,92 +4,72 @@
 token_t	get_token_type(const char *str)
 {
 	if (are_they_equal(str, "|"))
-		return (TOKEN_PIPE);
+		return (PIPE);
 	else if (are_they_equal(str, "<"))
-		return (TOKEN_REDIR_IN);
+		return (REDIR_IN);
 	else if (are_they_equal(str, ">"))
-		return (TOKEN_REDIR_OUT);
+		return (REDIR_OUT);
 	else if (are_they_equal(str, ">>"))
-		return (TOKEN_REDIR_APPEND);
+		return (REDIR_APPEND);
 	else if (are_they_equal(str, "<<"))
-		return (TOKEN_HEREDOC);
-	// else if (are_they_equal((const char *)str, ""))
-	//     return (TOKEN_EOF);
+		return (HEREDOC);
 	else
-		return (TOKEN_WORD);
+		return (WORD);
 }
 
-t_token	*get_data(t_token *data, char **spliteed)
+void fill_the_list(t_data * list, char **arr)
 {
-	int	i;
-
-	i = 0;
-	while (spliteed[i])
-	{
-		data[i].type = get_token_type(spliteed[i]);
-		data[i].word = spliteed[i];
-		// printf("%s\n", data[i].word );
-		i++;
-	}
-	return (data);
+  int i;
+  i = 0;
+  while(arr[i])
+  {
+    list[i].type = get_token_type(arr[i]);
+    list[i].word = ft_strdup(arr[i]);
+    i++;
+  }
 }
 
-int	tcheck_redirections(t_token *data)
-{
-	int	i;
 
-	i = 0;
-	while (i < 3)
-	{
-		if (data[i].type == TOKEN_REDIR_OUT && data[i + 1].type != TOKEN_WORD)
-			return (1);
-		else if (data[i].type == TOKEN_REDIR_IN && data[i
-			+ 1].type != TOKEN_WORD)
-			return (1);
-		else if (data[i].type == TOKEN_REDIR_APPEND && data[i
-			+ 1].type != TOKEN_WORD)
-			return (1);
-		else if (data[i].type == TOKEN_HEREDOC && data[i
-			+ 1].type != TOKEN_WORD)
-			return (1);
-		i++;
-	}
-	return (0);
+int check_syntax_error(t_data *data, int len)
+{
+  int i; i = 0;
+  while(i < len)
+  { 
+    if(data[i].type == PIPE && (i == 0 || len - 1 == i))
+      return((printf("error near | \n"), 1));
+    else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type == PIPE)
+      return((printf("error near | \n"), 1));
+    else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type != WORD)
+      return((printf("error near new line \n"), 1));
+    else if (data[i].type != PIPE && data[i].type != WORD && len -1 == i)
+      return((printf("error near new line \n"), 1));
+    i++;
+  }
+  return 0;
 }
 
-int	tcheck_pipe_character(t_token *data)
+t_data *make_token(char **arr)
 {
-	int	i;
+  int len;
+  t_data *list;
 
-	i = 0;
-	while (i < 3)
-	{
-		if (data[i].type == TOKEN_PIPE && i == 0)
-			return (1);
-		if (data[i].type == TOKEN_PIPE && (data[i - 1].type != TOKEN_WORD
-				&& data[i + 1].type != TOKEN_WORD) && i > 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-int	tcheck_data_error(t_token *data)
-{
-	if (tcheck_pipe_character(data) || tcheck_redirections(data))
-	{
-		return ((printf("syntax error near unexpected token `newline'\n"), 1));
-	}
-	return (0);
+  len = two_d_lenth(arr);
+  list = ft_malloc(len * sizeof(t_data));
+  fill_the_list(list, arr);
+  if(check_syntax_error(list, len))
+    return NULL;
+  return list;
 }
 
 // int main()
-//{
-//  t_token data[4];
-//  char *str[] = {"f", "|" , "7", NULL};
-//  get_data(data, str);
-//  tcheck_data_error(data);
-//  //printf("%d\n", ptr[0].type);
-//  printf("%d\n", data[1].type);
-//  printf("%d\n", data[2].type);
-//  printf("\nend.\n");
-//}
+// {
+//   char *av[] = {"f", ">"  , "f", "eh", "|", NULL};
+    
+//   for(int i = 0; i < tow_d_lenth(av); i++)
+//   {
+//     printf("%s : ", ptr[i].word);
+//     printf("%d\n", ptr[i].type);
+//   }
+//
+//   return 0;
+// }
