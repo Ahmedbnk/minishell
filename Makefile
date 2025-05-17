@@ -1,24 +1,37 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
-
-SRCS = main.c check_input_error.c handle_signals.c is_between_quotes.c \
-			 is_space.c customized_split.c  remove_quotes_from_args.c are_they_equal.c \
-			 make_token.c expand_if_possible.c should_i_expand.c is_expand_separator.c \
-			 custom_join.c manage_expand_list_mem.c new_string_after_expand.c \
-			 split_with_operators.c print_splitted.c len_of_two_d_array.c \
-			 parse_tokenized.c
+CFLAGS = -Wall -Wextra -Werror -g -Iinclude 
+SRCS = main.c \
+	src/env/copy_env.c \
+	src/env/allocate_and_init_expand_list.c \
+	src/expansion/expand_if_possible.c \
+	src/utils/custom_join.c \
+	src/expansion/should_i_expand.c \
+	src/expansion/is_expand_separator.c \
+	src/expansion/new_string_after_expand.c \
+	src/parser/check_input_error.c \
+	src/parser/remove_quotes_from_args.c \
+	src/parser/split_with_operators.c \
+	src/parser/make_token.c \
+	src/parser/parse_tokenized.c \
+	src/parser/is_between_quotes.c \
+	src/parser/customized_split.c \
+	src/utils/is_space.c \
+	src/utils/are_they_equal.c \
+	src/utils/len_of_two_d_array.c \
+	src/utils/print_splitted.c \
+	src/signals/handle_signals.c
 
 OBJS = $(SRCS:.c=.o)
 
-LIBFT = Libft/libft.a
+LIBFT = libft/libft.a
 READLINE =-lreadline
 
 all: $(LIBFT) $(NAME)
 
 $(LIBFT):
-	make -C Libft
+	make -C libft
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(READLINE) -o $(NAME)
@@ -27,11 +40,11 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -Ilibft -c $< -o $@
 
 clean:
-	$(MAKE) -C Libft clean
+	$(MAKE) -C libft clean
 	rm -f $(OBJS) 
 
 fclean: clean
-	$(MAKE) -C Libft fclean
+	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 
 
