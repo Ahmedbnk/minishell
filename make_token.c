@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-token_t	get_token_type(const char *str)
+t_token	get_token_type(const char *str)
 {
 	if (are_they_equal(str, "|"))
 		return (PIPE);
@@ -27,6 +27,7 @@ void fill_the_list(t_data * list, char **arr)
     list[i].word = ft_strdup(arr[i]);
     i++;
   }
+  arr[i] = NULL;
 }
 
 
@@ -54,7 +55,7 @@ t_data *make_token(char **arr)
   t_data *list;
 
   len = len_of_two_d_array(arr);
-  list = ft_malloc(len * sizeof(t_data));
+  list = ft_malloc((len  + 1)* sizeof(t_data));
   fill_the_list(list, arr);
   if(check_syntax_error(list, len))
     return NULL;

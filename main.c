@@ -6,6 +6,7 @@ int main()
   char *line;
   char **splitted;
   t_list **to_free = get_garbage_pointer();
+  t_data *tokenized;
 
   while(1)
   {
@@ -25,11 +26,13 @@ int main()
       splitted[i] = expand_if_possible(splitted[i]);
       i++;
     }
-    if(make_token(splitted))
+    tokenized = make_token(splitted);
+    if(tokenized)
     {
       remove_quotes_from_args(splitted);
-      print_splitted(splitted);
+     // print_splitted(splitted);
     }
+    parse_tokenized(tokenized);
   }
   free_memory_and_exit(*to_free);
   return (0);

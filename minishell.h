@@ -29,9 +29,9 @@ typedef enum e_token_type
 	REDIR_OUT,    // > 3
 	REDIR_APPEND, // >> 4
 	HEREDOC,      // << 5
-}					token_t;
+}					t_token;
 
-typedef struct s_token
+typedef struct s_data
 {
 	int				type;
 	char			*word;
@@ -63,4 +63,5 @@ char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
 t_data *make_token(char **arr);
 int len_of_two_d_array(char **str);
+void parse_tokenized(t_data *tokenized);
 #endif

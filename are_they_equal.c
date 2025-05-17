@@ -13,7 +13,7 @@ int	are_they_equal(const char *str1, const char *str2)
 	}
 	return (1);
 }
-// token_t get_token_type(const char *str) {
+// t_token get_token_type(const char *str) {
 //     if (are_they_equal((char *)str, "|"))
 //         return (TOKEN_PIPE);
 //     else if (are_they_equal((char *)str, "<"))
