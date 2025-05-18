@@ -74,9 +74,12 @@ void parse_and_expand(char *line, char ***splitted)
   *splitted = customized_split(line);
   *splitted = split_with_operators(*splitted);
   expand_input(*splitted);
-  if(make_token(*splitted))
+
+  t_data *tokenized = make_token(*splitted);
+  if(tokenized)
   {
     remove_quotes_from_args(*splitted);
-    print_splitted(*splitted);
+    parse_tokenized(tokenized);
+    //print_splitted(*splitted);
   }
 }

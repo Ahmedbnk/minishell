@@ -1,88 +1,59 @@
 #include "minishell.h"
 
-t_data *get_cmd_end(t_data *start)
+void skip_command(t_data **tokenized_address)
 {
-  while(start)
+  t_data *tokenized;
+
+  tokenized = *tokenized_address;
+  while(tokenized && tokenized->word !=NULL && tokenized->type != PIPE)
+    tokenized ++;
+
+  *tokenized_address = tokenized;
+}
+
+void print_command(t_data *tokenized)
+{
+  if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
   {
-    if(start && start->type == PIPE)
-      return (start);
-    start ++;
+    printf("you are trying to print | or NULL word or tokenized is a NULL pointer \n");
+    exit(1);
   }
-  return start;
-}
-
-char *get_infile_value(t_data *cmd_start, t_data *cmd_end)
-{
-  char *str;
-  while(cmd_start != cmd_end)
+  while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
-    if(cmd_start->type ==REDIR_IN)
-      str = (cmd_start + 1) -> word;
-    cmd_start ++;
+    printf("%s", tokenized -> word);
+    tokenized ++;
   }
-  return NULL;
+  printf("\n");
 }
 
-char *get_outfile_value(t_data *cmd_start, t_data *cmd_end)
+void process_command(t_data *tokenized)
 {
-  char *str = NULL;
-  while(cmd_start != cmd_end)
+  int fd;
+
+  if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
   {
-    if(cmd_start->type ==REDIR_OUT || cmd_start->type == REDIR_APPEND)
-      str = (cmd_start + 1) -> word;
-    cmd_start ++;
+    printf("you are trying to process | or NULL word or tokenized is a NULL pointer \n");
+    exit(1);
   }
-  return str;
-}
-
- char **get_command_and_argumets_helper(t_data *pointer)
-{
-  char **command_and_arguments = ft_malloc(10000);
-  int i = 0;
-  while(pointer && pointer -> type != PIPE)
+  while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
-    command_and_arguments[i] = pointer ->word;
-    pointer ++;
-    i++;
+    if(tokenized -> word ==HEREDOC)
+      create_heredoc(&fd);
+    tokenized ++;
   }
-  return command_and_arguments;
-}
-
-char **get_command_and_argumets(t_data *cmd_start, t_data *cmd_end)
-{
-  t_data *command_word_pointer;
-  if(cmd_start->type == REDIR_IN)
-    while(--cmd_end)
-    {
-      if(cmd_end->type == REDIR_IN)
-        command_word_pointer = (cmd_end + 1);
-    }
-  else
-    command_word_pointer = cmd_start;
-  char **command_and_arguments = get_command_and_argumets_helper(command_word_pointer);
-  print_splitted(command_and_arguments);
-  return command_and_arguments;
-}
-
-void collect_cmd_info(t_data *cmd_start, t_data *cmd_end)
-{
-  char **command_and_arguments;
-  char *in_file = NULL;
-  char *out_file = NULL;
-
-  in_file = get_infile_value(cmd_start, cmd_end);
-  out_file = get_outfile_value(cmd_start, cmd_end);
-  command_and_arguments = get_command_and_argumets(cmd_start, cmd_end);
+  printf("\n");
 }
 
 void parse_tokenized(t_data *tokenized)
 {
-  t_data *cmd_start = tokenized;
-  t_data *cmd_end = get_cmd_end(cmd_start);
-  while(cmd_start)
+  while(tokenized && tokenized -> word != NULL)
   {
-    collect_cmd_info(cmd_start, cmd_end);
-    cmd_start =cmd_end;
-    cmd_end = get_cmd_end(cmd_start);
+    // print_command(tokenized);
+    process_command(tokenized);
+    skip_command(&tokenized);
+    if(tokenized -> word == NULL)
+      return;
+    else if(tokenized -> type == PIPE)
+        tokenized ++;
   }
 }
