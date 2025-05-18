@@ -14,37 +14,42 @@ SRCS = main.c \
 	src/parser/remove_quotes_from_args.c \
 	src/parser/split_with_operators.c \
 	src/parser/make_token.c \
-	src/parser/parse_tokenized.c \
 	src/parser/is_between_quotes.c \
 	src/parser/customized_split.c \
 	src/utils/is_space.c \
 	src/utils/are_they_equal.c \
 	src/utils/len_of_two_d_array.c \
 	src/utils/print_splitted.c \
-	src/signals/handle_signals.c
+	src/signals/handle_signals.c\
+	src/utils/ft_isalnum.c\
+	src/utils/ft_memcpy.c\
+	src/utils/ft_split.c\
+	src/utils/ft_strdup.c\
+	src/utils/ft_strjoin.c\
+	src/utils/ft_strlen.c\
+	src/utils/ft_substr.c\
+	src/utils/garbage_collection_lstnew.c\
+	src/utils/garbage_collector.c\
+	src/utils/ft_lstnew.c\
+	src/utils/ft_lstadd_back.c\
+	src/parser/parse_tokenized.c 
 
 OBJS = $(SRCS:.c=.o)
 
-LIBFT = libft/libft.a
 READLINE =-lreadline
 
-all: $(LIBFT) $(NAME)
-
-$(LIBFT):
-	make -C libft
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(READLINE) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(READLINE) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Ilibft -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(MAKE) -C libft clean
 	rm -f $(OBJS) 
 
 fclean: clean
-	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 
 

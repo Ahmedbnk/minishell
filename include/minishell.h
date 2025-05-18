@@ -1,8 +1,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-//j# include "../lib/libft.h"
-# include "../libft/libft.h"
 # include <fcntl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -13,6 +11,7 @@
 
 # define single_q 39
 # define double_q 34
+#define BUFFER_SIZE 40
 
 typedef struct s_expand
 {
@@ -37,6 +36,13 @@ typedef struct s_data
 	int				type;
 	char			*word;
 }					t_data;
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
 
 //t_token				*add_node(t_token **list, t_token *node);
 //t_token				*creat_node(char *str);
@@ -65,4 +71,22 @@ void print_splitted(char **splitted);
 t_data *make_token(char **arr);
 int len_of_two_d_array(char **str);
 void parse_tokenized(t_data *tokenized);
+
+
+
+int					ft_isalnum(int c);
+size_t				ft_strlen(const char *s);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_strjoin(const char *s1, const char *s2);
+char				*ft_strdup(const char *s);
+
+t_list				*ft_lstnew(void *content);
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void	*get_garbage_pointer(void);
+void	free_memory_and_exit(void *lst);
+void	*ft_malloc(size_t size);
+t_list	*garbage_collection_lstnew(void *content);
+char	*get_next_line(int fd);
+
 #endif

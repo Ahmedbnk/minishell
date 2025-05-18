@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "minishell.h"
 
 void	*get_garbage_pointer(void)
 {
