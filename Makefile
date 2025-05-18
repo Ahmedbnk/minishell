@@ -32,7 +32,8 @@ SRCS = main.c \
 	src/utils/garbage_collector.c\
 	src/utils/ft_lstnew.c\
 	src/utils/ft_lstadd_back.c\
-	src/parser/parse_tokenized.c 
+	src/parser/parse_tokenized.c\
+	src/parser/create_heredoc.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -22,8 +22,7 @@ int main(int ac , char **av, char **env)
       return((free_memory_and_exit(*to_free),1));
     if(check_error(line))
       return((free_memory_and_exit(*to_free),1));
-    //parse_and_expand(line , &splitted);
-
+    parse_and_expand(line , &splitted);
   }
   free_memory_and_exit(*to_free);
   return (0);
@@ -69,7 +68,7 @@ void parse_and_expand(char *line, char ***splitted)
   if(tokenized)
   {
     remove_quotes_from_args(*splitted);
-    //parse_tokenized(tokenized);
+    parse_tokenized(tokenized);
     //print_splitted(*splitted);
   }
 }
