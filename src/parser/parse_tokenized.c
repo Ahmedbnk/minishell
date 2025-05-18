@@ -41,7 +41,6 @@ void process_command(t_data *tokenized)
       create_heredoc(&fd, (tokenized + 1) -> word);
     tokenized ++;
   }
-  printf("\n");
 }
 
 void parse_tokenized(t_data *tokenized)
