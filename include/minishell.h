@@ -90,4 +90,5 @@ void	*ft_malloc(size_t size);
 t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
 void create_heredoc(char *str);
+void print_file(char *str);
 #endif

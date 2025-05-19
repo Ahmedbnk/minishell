@@ -36,6 +36,7 @@ SRCS = main.c \
 	src/utils/ft_lstadd_back.c\
 	src/parser/parse_tokenized.c\
 	src/parser/create_heredoc.c\
+	src/utils/print_file.c\
 
 OBJS = $(SRCS:.c=.o)
 

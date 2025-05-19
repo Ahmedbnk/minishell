@@ -47,6 +47,8 @@ void parse_tokenized(t_data *tokenized)
   {
     // print_command(tokenized);
     process_command(tokenized);
+    printf("command : ");
+    print_file("tmp");
     skip_command(&tokenized);
     if(tokenized -> word == NULL)
       return;
