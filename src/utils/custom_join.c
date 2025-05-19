@@ -1,20 +1,20 @@
 
 #include "minishell.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+void ft_strcpy(char *dst, const char *src)
 {
 	int	i;
 
 	i = 0;
 	if (!dst || !src)
-		return (dst);
+		return;
 	while (src[i])
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (dst);
+	return;
 }
 
 char	*custom_join(char const *s1, char const *s2)
@@ -33,7 +33,7 @@ char	*custom_join(char const *s1, char const *s2)
 	if (s1)
 		ft_strcpy(a, s1);
 	else
-		a[0] = '\0';
+	  a[0] = '\0';
 	if (s2)
 		ft_strcpy(a + len1, s2);
 	return (a);

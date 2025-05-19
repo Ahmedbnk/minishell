@@ -69,6 +69,5 @@ void parse_and_expand(char *line, char ***splitted)
   {
     remove_quotes_from_args(*splitted);
     parse_tokenized(tokenized);
-    //print_splitted(*splitted);
   }
 }

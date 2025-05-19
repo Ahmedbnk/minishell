@@ -28,8 +28,6 @@ void print_command(t_data *tokenized)
 
 void process_command(t_data *tokenized)
 {
-  int fd;
-
   if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
   {
     printf("you are trying to process | or NULL word or tokenized is a NULL pointer \n");
@@ -38,7 +36,7 @@ void process_command(t_data *tokenized)
   while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
     if(tokenized -> type == HEREDOC)
-      create_heredoc(&fd, (tokenized + 1) -> word);
+      create_heredoc((tokenized + 1) -> word);
     tokenized ++;
   }
 }

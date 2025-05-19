@@ -80,6 +80,7 @@ void				*ft_memcpy(void *dest, const void *src, size_t n);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(const char *s1, const char *s2);
 char				*ft_strdup(const char *s);
+char	*ft_strchr(const char *s, int c);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -88,6 +89,5 @@ void	free_memory_and_exit(void *lst);
 void	*ft_malloc(size_t size);
 t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
-void create_heredoc(int *fd, char *str);
-
+void create_heredoc(char *str);
 #endif

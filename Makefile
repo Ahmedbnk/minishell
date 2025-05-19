@@ -20,6 +20,8 @@ SRCS = main.c \
 	src/utils/are_they_equal.c \
 	src/utils/len_of_two_d_array.c \
 	src/utils/print_splitted.c \
+	src/utils/ft_strchr.c \
+	src/utils/get_next_line.c \
 	src/signals/handle_signals.c\
 	src/utils/ft_isalnum.c\
 	src/utils/ft_memcpy.c\
@@ -33,7 +35,7 @@ SRCS = main.c \
 	src/utils/ft_lstnew.c\
 	src/utils/ft_lstadd_back.c\
 	src/parser/parse_tokenized.c\
-	src/parser/create_heredoc.c
+	src/parser/create_heredoc.c\
 
 OBJS = $(SRCS:.c=.o)
 
