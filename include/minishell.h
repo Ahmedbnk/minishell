@@ -56,7 +56,8 @@ int					is_space(char c);
 int					are_they_equal(const char *str1, const char *str2);
 
 char	**customized_split(char const *s);
-char        *expand_if_possible(char *string);
+//char        *expand_if_possible(char *string);
+char	*expand_if_possible(char *str, int g);
 int					should_i_expand(char *str, int index);
 int					is_expand_separator(char c);
 char				**split_for_expantion(char const *s);

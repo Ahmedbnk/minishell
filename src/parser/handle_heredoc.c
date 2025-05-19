@@ -11,6 +11,8 @@ void handle_heredoc(char *str)
   while(1)
   {
     buffer = readline("> ");
+    buffer = expand_if_possible(buffer, 1);
+
     if(buffer == NULL)
     {
       printf("bash: warning: here-document at line 1 delimited by end-of-file (wanted `%s') ",str);

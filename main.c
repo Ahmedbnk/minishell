@@ -53,7 +53,7 @@ void expand_input(char **input)
   i = 0;
   while(input[i])
   {
-    input[i] = expand_if_possible(input[i]);
+    input[i] = expand_if_possible(input[i], 0);
     i++;
   }
 }
@@ -68,6 +68,7 @@ void parse_and_expand(char *line, char ***splitted)
   if(tokenized)
   {
     remove_quotes_from_args(*splitted);
+//    print_splitted(*splitted);
     parse_tokenized(tokenized);
   }
 }

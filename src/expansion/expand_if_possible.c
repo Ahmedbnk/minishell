@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+int g;
+
 int	how_many_dallar_to_expand(char *str)
 {
 	int	i;
@@ -9,7 +11,7 @@ int	how_many_dallar_to_expand(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$' && should_i_expand(str, i) && ft_isalnum(str[i + 1]))
+		if (str[i] == '$' && (g || should_i_expand(str, i)) && ft_isalnum(str[i + 1]))
 			counter++;
 		i++;
 	}
@@ -25,7 +27,7 @@ void	string_before_dollar(t_expand *data, int index, char *str, int *offset)
 	flag = *offset;
 	while (str[*offset])
 	{
-		if (str[*offset] == '$' && should_i_expand(str, *offset)
+		if (str[*offset] == '$' && (g || should_i_expand(str, *offset))
 			&& ft_isalnum(str[(*offset) + 1]))
 			break ;
 		(*offset)++;
@@ -46,7 +48,7 @@ void	string_to_expand(t_expand *data, int index, char *str, int *offset)
 		if (str[*offset] == '$' && start == (*offset))
 			(*offset)++;
 		if (!ft_isalnum(str[*offset]) || (str[*offset] == '$'
-				&& should_i_expand(str, *offset)))
+				&& (g || should_i_expand(str, *offset))))
 			break ;
 		(*offset)++;
 	}
@@ -68,7 +70,7 @@ void	string_after_expand(t_expand *data, int index, char *str, int *offset)
 		data[index].after_expand = ft_substr(str, start, end - start);
 }
 
-char	*expand_if_possible(char *str)
+char	*expand_if_possible(char *str , int heredoc_flag)
 {
 	int			i;
 	int			offset;
@@ -76,6 +78,7 @@ char	*expand_if_possible(char *str)
 	char		*new_str;
 	t_expand	*list;
 
+  g = heredoc_flag;
 	i = 0;
 	offset = 0;
 	num_of_expantion = how_many_dallar_to_expand(str);
