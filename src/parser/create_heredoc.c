@@ -13,6 +13,11 @@ void create_heredoc(char *str)
   while(1)
   {
     buffer = readline("> ");
+    if(buffer == NULL)
+    {
+      printf("bash: warning: here-document at line 1 delimited by end-of-file (wanted `%s') ",str);
+      return;
+    }
     if(are_they_equal(str, buffer))
       break;
     write(fd,buffer,ft_strlen(buffer));
