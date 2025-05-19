@@ -35,8 +35,10 @@ SRCS = main.c \
 	src/utils/ft_lstnew.c\
 	src/utils/ft_lstadd_back.c\
 	src/parser/parse_tokenized.c\
-	src/parser/create_heredoc.c\
+	src/parser/handle_heredoc.c\
 	src/utils/print_file.c\
+	src/parser/handle_redir_in.c\
+	src/utils/read_file.c\
 
 OBJS = $(SRCS:.c=.o)
 

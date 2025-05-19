@@ -89,6 +89,8 @@ void	free_memory_and_exit(void *lst);
 void	*ft_malloc(size_t size);
 t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
-void create_heredoc(char *str);
+void handle_heredoc(char *str);
 void print_file(char *str);
+void handle_redir_in(char *str);
+char *read_file(char *file_name);
 #endif

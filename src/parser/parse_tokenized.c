@@ -36,7 +36,9 @@ void process_command(t_data *tokenized)
   while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
     if(tokenized -> type == HEREDOC)
-      create_heredoc((tokenized + 1) -> word);
+      handle_heredoc((tokenized + 1) -> word);
+    else if(tokenized ->type == REDIR_IN)
+      handle_redir_in((tokenized + 1) -> word);
     tokenized ++;
   }
 }
@@ -45,10 +47,7 @@ void parse_tokenized(t_data *tokenized)
 {
   while(tokenized && tokenized -> word != NULL)
   {
-    // print_command(tokenized);
     process_command(tokenized);
-    printf("command : ");
-    print_file("tmp");
     skip_command(&tokenized);
     if(tokenized -> word == NULL)
       return;

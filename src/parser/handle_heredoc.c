@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void create_heredoc(char *str)
+void handle_heredoc(char *str)
 {
   int fd;
   char *buffer;
@@ -23,5 +23,5 @@ void create_heredoc(char *str)
   }
   close(fd);
   //print_file("tmp");
-   unlink("tmp");
+   //unlink("tmp");
 }
