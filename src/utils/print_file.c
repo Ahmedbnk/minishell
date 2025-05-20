@@ -1,4 +1,5 @@
 #include "minishell.h"
+
 void print_file(char *str)
 {
   char *buffer;

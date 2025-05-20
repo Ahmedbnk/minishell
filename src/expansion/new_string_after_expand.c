@@ -14,7 +14,7 @@ char	*expnad_and_join_node(t_expand data)
 	}
 	if (data.last_one)
 	{
-		rest = custom_join(the_joined_node, data.after_expand);
+		rest = custom_join(the_joined_node, data.after_dollar);
 		return (rest);
 	}
 	return (the_joined_node);

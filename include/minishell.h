@@ -17,7 +17,7 @@ typedef struct s_expand
 {
 	char			*befor_dollar;
 	char			*to_expand;
-	char			*after_expand;
+	char			*after_dollar;
 	int				last_one;
 }					t_expand;
 

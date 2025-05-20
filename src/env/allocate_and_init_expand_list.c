@@ -14,7 +14,7 @@ static void	init_expand_list(t_expand *expand_list, int how_much_to_expand)
 	{
 		expand_list[i].befor_dollar = NULL;
 		expand_list[i].to_expand = NULL;
-		expand_list[i].after_expand = NULL;
+		expand_list[i].after_dollar = NULL;
 		expand_list[i].last_one = 0;
 		i++;
 	}

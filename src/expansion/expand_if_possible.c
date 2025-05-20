@@ -55,7 +55,7 @@ void	string_to_expand(t_expand *data, int index, char *str, int *offset)
 	data[index].to_expand = ft_substr(str, start, *offset - start);
 }
 
-void	string_after_expand(t_expand *data, int index, char *str, int *offset)
+void	string_after_dollar(t_expand *data, int index, char *str, int *offset)
 {
 	int	start;
 	int	end;
@@ -67,7 +67,7 @@ void	string_after_expand(t_expand *data, int index, char *str, int *offset)
 	while (str[end])
 		end++;
 	if (end > start)
-		data[index].after_expand = ft_substr(str, start, end - start);
+		data[index].after_dollar = ft_substr(str, start, end - start);
 }
 
 char	*expand_if_possible(char *str , int heredoc_flag)
@@ -89,7 +89,7 @@ char	*expand_if_possible(char *str , int heredoc_flag)
 	{
 		string_before_dollar(list, i, str, &offset);
 		string_to_expand(list, i, str, &offset);
-		string_after_expand(list, i, str, &offset);
+		string_after_dollar(list, i, str, &offset);
 		i++;
 	}
 	new_str = new_str_after_expand(list, num_of_expantion);
