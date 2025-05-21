@@ -3,7 +3,7 @@
 void unused_vars(int ac, char **av, char **env);
 char *ft_readline(void);
 void expand_input(char **input);
-void parse_and_expand(char *line, char ***splitted);
+void parse_and_expand(char *line, char ***splitted, char **env);
 
 int main(int ac, char **av, char **env) {
 
@@ -23,7 +23,7 @@ int main(int ac, char **av, char **env) {
     {
       if (check_error(line))
         return ((free_memory_and_exit(*to_free), 1));
-      parse_and_expand(line, &splitted);
+      parse_and_expand(line, &splitted, env);
     }
     else
       wait(NULL);
@@ -57,7 +57,7 @@ void expand_input(char **input) {
   }
 }
 
-void parse_and_expand(char *line, char ***splitted)
+void parse_and_expand(char *line, char ***splitted, char **env)
 {
   *splitted = customized_split(line);
   *splitted = split_with_operators(*splitted);
@@ -67,6 +67,6 @@ void parse_and_expand(char *line, char ***splitted)
   if (tokenized) {
     remove_quotes_from_args(*splitted);
     //print_splitted(*splitted);
-    parse_tokenized(tokenized);
+    parse_tokenized(tokenized, env);
   }
 }

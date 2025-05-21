@@ -9,6 +9,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 # define single_q 39
 # define double_q 34
@@ -72,7 +73,7 @@ char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
 t_data *make_token(char **arr);
 int len_of_two_d_array(char **str);
-void parse_tokenized(t_data *tokenized);
+void parse_tokenized(t_data *tokenized, char **env);
 
 
 
@@ -83,6 +84,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(const char *s1, const char *s2);
 char				*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
+char	**ft_split(char const *s, char c);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -97,4 +99,6 @@ void handle_redir_in(char *str);
 char *read_file(char *file_name);
 void handle_redir_out(char *str);
 void handle_append(char *str);
+char **get_cmd_and_its_args(t_data *arr_of_stracts);
+void execute_command(char *cmd , char **av, char **env);
 #endif

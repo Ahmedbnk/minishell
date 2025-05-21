@@ -26,13 +26,14 @@ void print_command(t_data *tokenized)
   printf("\n");
 }
 
-void process_command(t_data *tokenized)
+void process_command(t_data *tokenized, char **env)
 {
     if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
     {
       printf("you are trying to process | or NULL word or tokenized is a NULL pointer \n");
       exit(1);
     }
+	char ** command_and_args = get_cmd_and_its_args(tokenized);
     while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
     {
       if(tokenized -> type == HEREDOC)
@@ -47,17 +48,18 @@ void process_command(t_data *tokenized)
       open("tmp", O_CREAT| O_RDWR , 0777);
       tokenized ++;
     }
-    unlink("tmp");
+	 execute_command(*command_and_args, command_and_args, env);
+	unlink("tmp");
 }
 
-void parse_tokenized(t_data *tokenized)
+void parse_tokenized(t_data *tokenized, char **env)
 {
   while(tokenized && tokenized -> word != NULL)
   {
     int rc = fork();
     if(rc == 0)
     {
-      process_command(tokenized);
+      process_command(tokenized, env);
       exit(1);
     }
     else
