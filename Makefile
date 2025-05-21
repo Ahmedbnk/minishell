@@ -39,7 +39,7 @@ SRCS = main.c \
 	src/utils/print_file.c\
 	src/parser/handle_redir_in.c\
 	src/utils/read_file.c\
-
+	src/parser/handle_redir_out.c\
 OBJS = $(SRCS:.c=.o)
 
 READLINE =-lreadline

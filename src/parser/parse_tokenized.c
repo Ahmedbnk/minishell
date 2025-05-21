@@ -42,6 +42,8 @@ void process_command(t_data *tokenized)
         handle_heredoc((tokenized + 1) -> word);
       else if(tokenized ->type == REDIR_IN)
         handle_redir_in((tokenized + 1) -> word);
+      else if(tokenized ->type == REDIR_OUT)
+        handle_redir_out((tokenized + 1) -> word);
       tokenized ++;
     }
     if(tokenized->type == HEREDOC || tokenized->type == REDIR_IN)
