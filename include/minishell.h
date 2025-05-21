@@ -9,6 +9,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 # define single_q 39
 # define double_q 34
@@ -20,6 +21,7 @@ typedef struct s_expand
 	char			*to_expand;
 	char			*after_dollar;
 	int				last_one;
+	int				heredoc_flag;
 }					t_expand;
 
 typedef enum e_token_type
@@ -65,14 +67,14 @@ char				**split_for_expantion(char const *s);
 char				*custom_join(char const *s1, char const *s2);
 
 
-void	allocat_and_init(t_expand **expand_list, int how_much_to_expand);
+void	allocat_and_init(t_expand **expand_list, int how_much_to_expand, int heredoc_flag);
 char				*new_str_after_expand(t_expand *data, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
 char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
 t_data *make_token(char **arr);
 int len_of_two_d_array(char **str);
-void parse_tokenized(t_data *tokenized);
+void parse_tokenized(t_data *tokenized, char **env);
 
 
 
@@ -83,6 +85,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(const char *s1, const char *s2);
 char				*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
+char	**ft_split(char const *s, char c);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_back(t_list **lst, t_list *new);
@@ -95,4 +98,8 @@ void handle_heredoc(char *str);
 void print_file(char *str);
 void handle_redir_in(char *str);
 char *read_file(char *file_name);
+void handle_redir_out(char *str);
+void handle_append(char *str);
+char **get_cmd_and_its_args(t_data *arr_of_stracts);
+void execute_command(char *cmd , char **av, char **env);
 #endif

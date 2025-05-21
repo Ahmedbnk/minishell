@@ -5,6 +5,7 @@ void handle_heredoc(char *str)
   int fd;
   char *buffer;
 
+	printf("the delimiter is %s\n", str);
   buffer = NULL;
   
   fd = open("tmp", O_CREAT | O_RDWR | O_TRUNC, 0777);
@@ -12,6 +13,7 @@ void handle_heredoc(char *str)
   {
     buffer = readline("> ");
     buffer = expand_if_possible(buffer, 1);
+	printf("buffer : %s\n", buffer);
 
     if(buffer == NULL)
     {

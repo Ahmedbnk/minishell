@@ -39,6 +39,9 @@ SRCS = main.c \
 	src/utils/print_file.c\
 	src/parser/handle_redir_in.c\
 	src/utils/read_file.c\
+	src/parser/handle_redir_out.c\
+	src/parser/handle_append.c \
+	src/execution/execute_command.c
 
 OBJS = $(SRCS:.c=.o)
 
