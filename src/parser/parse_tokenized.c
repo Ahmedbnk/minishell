@@ -28,19 +28,28 @@ void print_command(t_data *tokenized)
 
 void process_command(t_data *tokenized)
 {
-  if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
+  int rc = fork();
+  if(rc == 0)
   {
-    printf("you are trying to process | or NULL word or tokenized is a NULL pointer \n");
-    exit(1);
+    if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
+    {
+      printf("you are trying to process | or NULL word or tokenized is a NULL pointer \n");
+      exit(1);
+    }
+    while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
+    {
+      if(tokenized -> type == HEREDOC)
+        handle_heredoc((tokenized + 1) -> word);
+      else if(tokenized ->type == REDIR_IN)
+        handle_redir_in((tokenized + 1) -> word);
+      tokenized ++;
+    }
+    if(tokenized->type == HEREDOC || tokenized->type == REDIR_IN)
+      print_file("tmp");
+    unlink("tmp");
   }
-  while(tokenized && tokenized->word != NULL && tokenized->type != PIPE)
-  {
-    if(tokenized -> type == HEREDOC)
-      handle_heredoc((tokenized + 1) -> word);
-    else if(tokenized ->type == REDIR_IN)
-      handle_redir_in((tokenized + 1) -> word);
-    tokenized ++;
-  }
+  else
+    wait(NULL);
 }
 
 void parse_tokenized(t_data *tokenized)

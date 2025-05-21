@@ -27,7 +27,7 @@ void fill_the_list(t_data * list, char **arr)
     list[i].word = ft_strdup(arr[i]);
     i++;
   }
-  list[i].word = NULL;
+    list[i].word = ft_strdup(arr[i]);
 }
 
 
@@ -58,7 +58,7 @@ t_data *make_token(char **arr)
   list = ft_malloc((len  + 1)* sizeof(t_data));
   fill_the_list(list, arr);
   if(check_syntax_error(list, len))
-    return NULL;
+    exit(1);
   return list;
 }
 

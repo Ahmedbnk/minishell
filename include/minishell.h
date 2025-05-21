@@ -8,6 +8,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <sys/wait.h>
 
 # define single_q 39
 # define double_q 34

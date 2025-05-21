@@ -24,6 +24,4 @@ void handle_heredoc(char *str)
     write(fd,"\n", 1);
   }
   close(fd);
-  //print_file("tmp");
-   //unlink("tmp");
 }

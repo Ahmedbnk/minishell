@@ -51,6 +51,7 @@ static char	*creat_line(char **rest)
 	return (line);
 }
 
+
 char	*get_next_line(int fd)
 {
 	static char	*rest;

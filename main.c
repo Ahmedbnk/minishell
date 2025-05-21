@@ -18,9 +18,15 @@ int main(int ac, char **av, char **env) {
     line = ft_readline();
     if (line == NULL)
       return ((free_memory_and_exit(*to_free), 1));
-    if (check_error(line))
-      return ((free_memory_and_exit(*to_free), 1));
-    parse_and_expand(line, &splitted);
+    int rc = fork();
+    if(rc == 0)
+    {
+      if (check_error(line))
+        return ((free_memory_and_exit(*to_free), 1));
+      parse_and_expand(line, &splitted);
+    }
+    else
+      wait(NULL);
   }
   free_memory_and_exit(*to_free);
   return (0);
@@ -51,7 +57,8 @@ void expand_input(char **input) {
   }
 }
 
-void parse_and_expand(char *line, char ***splitted) {
+void parse_and_expand(char *line, char ***splitted)
+{
   *splitted = customized_split(line);
   *splitted = split_with_operators(*splitted);
   expand_input(*splitted);
@@ -59,7 +66,7 @@ void parse_and_expand(char *line, char ***splitted) {
   t_data *tokenized = make_token(*splitted);
   if (tokenized) {
     remove_quotes_from_args(*splitted);
-    //    print_splitted(*splitted);
+    //print_splitted(*splitted);
     parse_tokenized(tokenized);
   }
 }

@@ -12,8 +12,8 @@ char *read_file(char *file_name)
   fd = open(file_name, O_RDWR , 0777);
   if(fd < 0)
   {
-    printf("No such file or directory\n");
-    return NULL;
+    printf("No such file or directory \n");
+    exit(1);
   }
   small_buffer = get_next_line(fd);
   while(small_buffer)
