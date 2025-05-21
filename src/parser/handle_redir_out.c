@@ -1,3 +1,5 @@
+#include "minishell.h"
+
 void handle_redir_out(char *str)
 {
   close(1);

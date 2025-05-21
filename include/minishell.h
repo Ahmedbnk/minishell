@@ -96,4 +96,5 @@ void print_file(char *str);
 void handle_redir_in(char *str);
 char *read_file(char *file_name);
 void handle_redir_out(char *str);
+void handle_append(char *str);
 #endif
