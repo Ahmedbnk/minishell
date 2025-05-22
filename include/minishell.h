@@ -102,4 +102,6 @@ void handle_redir_out(char *str);
 void handle_append(char *str);
 char **get_cmd_and_its_args(t_data *arr_of_stracts);
 void execute_command(char *cmd , char **av, char **env);
+void	remove_quotes(char **line);
+
 #endif

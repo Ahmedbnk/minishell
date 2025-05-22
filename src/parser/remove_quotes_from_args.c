@@ -26,7 +26,7 @@ static void	remove_quotes_helper(char *line, char **parsed_quote_line)
 	(*parsed_quote_line)[j] = '\0';
 }
 
-static void	remove_quotes(char **line)
+void	remove_quotes(char **line)
 {
 	char	*line_without_quotes;
 
