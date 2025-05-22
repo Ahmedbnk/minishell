@@ -52,7 +52,9 @@ void expand_input(char **input) {
   int i;
   i = 0;
   while (input[i]) {
-		if(i > 0 && !are_they_equal(input[i-1], "<<"))
+		if(are_they_equal(input[i], "<<"))
+			i++;
+		else
 			input[i] = expand_if_possible(input[i], 0);
     i++;
   }
