@@ -48,6 +48,7 @@ void process_command(t_data *tokenized, char **env)
       open("tmp", O_CREAT| O_RDWR , 0777);
       tokenized ++;
     }
+	//printf("hhhhhh\n");
 	 execute_command(*command_and_args, command_and_args, env);
 	unlink("tmp");
 }

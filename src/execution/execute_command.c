@@ -5,14 +5,19 @@ int check_after_geting_bath( char *cmd, char **path)
 	int i;
 	char *cmd_with_slash;
 
+	char *ptr;
 	i = 0;
 	cmd_with_slash = ft_strjoin("/", cmd);
 	while(path[i])
 	{
-		if(access((ft_strjoin(path[i] ,cmd_with_slash)), F_OK) == 0)
+		if(access((ptr = ft_strjoin(path[i] ,cmd_with_slash)), F_OK) == 0)
 		{
 			if(access((ft_strjoin(path[i] ,cmd_with_slash)), X_OK) == 0)
+			{
+				printf("%s\n", ptr);
 				return 1;
+				//exit((printf("hhhhh\n"), 1));
+			}
 			else
 				exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
 		}
@@ -45,9 +50,9 @@ int  check_command_status(char *cmd, char **env)
 	{
 		if(check_the_access(cmd))
 			return 1;
+	}
 		else if(check_after_geting_bath(cmd , env))
 			return 1;
-	}
 	return 0;
 }
 
@@ -62,12 +67,13 @@ char **get_path()
 void execute_command(char *cmd , char **av, char **env)
 {
 
-	(void ) env;
 	
 	if(check_command_status(cmd, get_path()))
 	{
+		for(int i = 0; env[i]; i++)
+			printf("%s\n", env[i]);
 		execve(cmd , av, env);
-		exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+		//exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
 	}
 }
 
