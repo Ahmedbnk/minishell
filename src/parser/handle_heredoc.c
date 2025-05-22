@@ -5,23 +5,23 @@ void handle_heredoc(char *str)
   int fd;
   char *buffer;
 
-	printf("the delimiter is %s\n", str);
+  remove_quotes(&str);
   buffer = NULL;
   
   fd = open("tmp", O_CREAT | O_RDWR | O_TRUNC, 0777);
   while(1)
   {
     buffer = readline("> ");
-    buffer = expand_if_possible(buffer, 1);
-	printf("buffer : %s\n", buffer);
+    if(are_they_equal(str, buffer))
+      break;
+    else
+      buffer = expand_if_possible(buffer, 1);
 
     if(buffer == NULL)
     {
       printf("bash: warning: here-document at line 1 delimited by end-of-file (wanted `%s') ",str);
       return;
     }
-    if(are_they_equal(str, buffer))
-      break;
     write(fd,buffer,ft_strlen(buffer));
     write(fd,"\n", 1);
   }
