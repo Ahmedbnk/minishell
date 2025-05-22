@@ -64,17 +64,6 @@ void execute_command(char *cmd , char **av, char **env)
 		check_after_geting_bath(cmd ,av , path , env);
 }
 
-// void get_the_command_data(char **main_env)
-// {
-// 	char	**env_copy;
-// 	char	**cmd_and_args;
-//
-// 	env_copy = copy_env(main_env);
-// 	cmd_and_args = get_cmd_and_its_args();
-// 	execute_command( , , env_copy);
-//
-// }
-
 
 char **get_cmd_and_its_args(t_data *arr_of_stracts)
 {
@@ -92,8 +81,6 @@ char **get_cmd_and_its_args(t_data *arr_of_stracts)
 		{
 
 			cmd_and_args[j] = ft_strdup(arr_of_stracts[i].word);
-			// printf("the command and agrs %s\n", cmd_and_args[j]);
-			// printf("the command and agrs %s\n", arr_of_stracts[i].word);
 		j++;
 	}
 		else

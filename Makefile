@@ -27,6 +27,7 @@ SRCS = main.c \
 	src/utils/ft_memcpy.c\
 	src/utils/ft_split.c\
 	src/utils/ft_strdup.c\
+	src/utils/ft_itoa.c\
 	src/utils/ft_strjoin.c\
 	src/utils/ft_strlen.c\
 	src/utils/ft_substr.c\

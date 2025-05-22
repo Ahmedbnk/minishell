@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void handle_heredoc(char *str)
+void handle_heredoc(char *str, char *tmp_file_name)
 {
   int fd;
   char *buffer;
@@ -8,7 +8,7 @@ void handle_heredoc(char *str)
   remove_quotes(&str);
   buffer = NULL;
   
-  fd = open("tmp", O_CREAT | O_RDWR | O_TRUNC, 0777);
+  fd = open(tmp_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
   while(1)
   {
     buffer = readline("> ");
