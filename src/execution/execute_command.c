@@ -1,22 +1,23 @@
 #include "minishell.h"
 
-int check_after_geting_bath( char *cmd, char **path)
+void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 {
 	int i;
 	char *cmd_with_slash;
 
-	char *ptr;
+	char *cmd_with_its_path;
 	i = 0;
 	cmd_with_slash = ft_strjoin("/", cmd);
 	while(path[i])
 	{
-		if(access((ptr = ft_strjoin(path[i] ,cmd_with_slash)), F_OK) == 0)
+		cmd_with_its_path = ft_strjoin(path[i] ,cmd_with_slash);
+		//printf("%s\n", cmd_with_its_path);
+		if(access(cmd_with_its_path, F_OK) == 0)
 		{
-			if(access((ft_strjoin(path[i] ,cmd_with_slash)), X_OK) == 0)
+			if(access(cmd_with_its_path, X_OK) == 0)
 			{
-				printf("%s\n", ptr);
-				return 1;
-				//exit((printf("hhhhh\n"), 1));
+				execve(cmd_with_its_path , av, env);
+				exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
 			}
 			else
 				exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
@@ -24,37 +25,25 @@ int check_after_geting_bath( char *cmd, char **path)
 		i++;
 	}
 	exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
-	return 0;
 }
 
 
-int  check_the_access(char *cmd)
+void  check_the_access(char *cmd, char **av, char **env)
 {
 	if (access(cmd, F_OK) == 0)
 	{
 		if(access(cmd, X_OK) == 0)
-			return 1;
+		{
+			execve(cmd , av, env);
+			exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+		}
 		else
 			exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
 	}
 	else
 		exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
-	return 0;
 }
 
-int  check_command_status(char *cmd, char **env)
-{
-	if(!cmd)
-		return 0;
-	if(*cmd == '/')
-	{
-		if(check_the_access(cmd))
-			return 1;
-	}
-		else if(check_after_geting_bath(cmd , env))
-			return 1;
-	return 0;
-}
 
 char **get_path()
 {
@@ -66,15 +55,13 @@ char **get_path()
 
 void execute_command(char *cmd , char **av, char **env)
 {
-
-	
-	if(check_command_status(cmd, get_path()))
-	{
-		for(int i = 0; env[i]; i++)
-			printf("%s\n", env[i]);
-		execve(cmd , av, env);
-		//exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
-	}
+	if(!cmd)
+		return;
+	char **path = get_path();
+	if(*cmd == '/')
+		check_the_access(cmd, av, env);
+	else
+		check_after_geting_bath(cmd ,av , path , env);
 }
 
 // void get_the_command_data(char **main_env)
@@ -102,7 +89,13 @@ char **get_cmd_and_its_args(t_data *arr_of_stracts)
 		if(arr_of_stracts[i].type == REDIR_IN || arr_of_stracts[i].type == HEREDOC)
 			i++;
 		else if(arr_of_stracts[i].type == WORD)
-			cmd_and_args[j++] = ft_strdup(arr_of_stracts[i].word);
+		{
+
+			cmd_and_args[j] = ft_strdup(arr_of_stracts[i].word);
+			// printf("the command and agrs %s\n", cmd_and_args[j]);
+			// printf("the command and agrs %s\n", arr_of_stracts[i].word);
+		j++;
+	}
 		else
 			break;
 		i++;
