@@ -90,7 +90,7 @@ char	*ft_itoa(int n);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_back(t_list **lst, t_list *new);
-void	*get_garbage_pointer(void);
+t_list	**get_garbage_pointer(void);
 void	free_memory_and_exit(t_list *lst);
 void	*ft_malloc(size_t size);
 t_list	*garbage_collection_lstnew(void *content);
