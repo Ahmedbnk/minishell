@@ -25,9 +25,8 @@ int main(int ac, char **av, char **env) {
     }
     else
       wait(NULL);
-  }
     free(line);
-  	free_memory_and_exit(*get_garbage_pointer());
+  }
   	return (0);
 }
 

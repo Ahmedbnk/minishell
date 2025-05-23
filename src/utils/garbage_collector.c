@@ -20,6 +20,7 @@ void	free_memory_and_exit(t_list *lst)
 		free(lst);
 		lst = next_node;
 	}
+  exit(1);
 }
 
 void	*ft_malloc(size_t size)
