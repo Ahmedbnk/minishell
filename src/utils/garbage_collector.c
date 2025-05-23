@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-void	*get_garbage_pointer(void)
+t_list	**get_garbage_pointer(void)
 {
 	static t_list	*garbage_list = NULL;
 
 	return (&garbage_list);
 }
 
-void	free_memory_and_exit(void *lst)
+void	free_memory_and_exit(t_list *lst)
 {
 	t_list	*next_node;
 

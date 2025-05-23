@@ -26,7 +26,7 @@ int main(int ac, char **av, char **env) {
     else
       wait(NULL);
   }
-  	free_memory_and_exit(get_garbage_pointer());
+  	free_memory_and_exit(*(get_garbage_pointer()));
   	return (0);
 }
 
@@ -48,12 +48,12 @@ char *ft_readline(void) {
 		add_history(line);
 	if (line == NULL)
 	{
-  		free_memory_and_exit(get_garbage_pointer());
+  		free_memory_and_exit(*get_garbage_pointer());
 		return NULL;
 	}
 	if (check_error(line))
 	{
-  		free_memory_and_exit(get_garbage_pointer());
+  		free_memory_and_exit(*get_garbage_pointer());
 		return NULL;
 	}
 	 return line;
