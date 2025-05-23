@@ -15,19 +15,22 @@ int main(int ac, char **av, char **env) {
   unused_vars(ac, av, env);
   while (1) {
     line = ft_readline();
-	if(!line)
-		return 0;
+    if(!line)
+      return 0;
     int rc = fork();
     if(rc == 0)
     {
+      if (check_error(line))
+        free_memory_and_exit(*get_garbage_pointer());
+
       handle_signals_in_child();
       parse_and_expand(line, &splitted, env);
     }
     else
-      wait(NULL);
+    wait(NULL);
     free(line);
   }
-  	return (0);
+  return (0);
 }
 
 void unused_vars(int ac, char **av, char **env)
@@ -52,13 +55,7 @@ char *ft_readline(void) {
     free_memory_and_exit(*get_garbage_pointer());
     return NULL;
 	}
-	if (check_error(line))
-	{
-    free(line);
-    free_memory_and_exit(*get_garbage_pointer());
-    return NULL;
-	}
-	 return line;
+ return line;
 }
 
 void expand_input(char **input) {
