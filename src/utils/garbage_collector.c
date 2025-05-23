@@ -12,7 +12,7 @@ void	free_memory_and_exit(t_list *lst)
 	t_list	*next_node;
 
 	if (!lst)
-		return ;
+    exit(1);
 	while (lst != NULL)
 	{
 		next_node = ((t_list *)lst)->next;

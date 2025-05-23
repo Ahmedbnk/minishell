@@ -22,12 +22,11 @@ int main(int ac, char **av, char **env) {
     {
       if (check_error(line))
         free_memory_and_exit(*get_garbage_pointer());
-
       handle_signals_in_child();
       parse_and_expand(line, &splitted, env);
     }
     else
-    wait(NULL);
+      wait(NULL);
     free(line);
   }
   return (0);
