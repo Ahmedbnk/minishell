@@ -105,4 +105,5 @@ char **get_cmd_and_its_args(t_data *arr_of_stracts);
 void execute_command(char *cmd , char **av, char **env);
 void	remove_quotes(char **line);
 
+void	handle_signals_in_child(void);
 #endif

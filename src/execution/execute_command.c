@@ -4,14 +4,13 @@ void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 {
 	int i;
 	char *cmd_with_slash;
-
 	char *cmd_with_its_path;
+
 	i = 0;
 	cmd_with_slash = ft_strjoin("/", cmd);
 	while(path[i])
 	{
 		cmd_with_its_path = ft_strjoin(path[i] ,cmd_with_slash);
-		//printf("%s\n", cmd_with_its_path);
 		if(access(cmd_with_its_path, F_OK) == 0)
 		{
 			if(access(cmd_with_its_path, X_OK) == 0)
@@ -47,9 +46,11 @@ void  check_the_access(char *cmd, char **av, char **env)
 
 char **get_path()
 {
-	char *path;
+	char	*path;
+	char	**splited;
+
 	path = getenv("PATH");
-	char **splited = ft_split(path , ':');
+	splited = ft_split(path , ':');
 	return splited;
 }
 
@@ -64,12 +65,27 @@ void execute_command(char *cmd , char **av, char **env)
 		check_after_geting_bath(cmd ,av , path , env);
 }
 
+int how_many_strcut_in_the_array(t_data *arr_of_stracts)
+{
+	int number_of_structs;
+
+	number_of_structs = 0;
+	while(arr_of_stracts->word != NULL )
+	{
+
+		number_of_structs++;
+		arr_of_stracts++;
+	}
+	return  number_of_structs;
+}
 
 char **get_cmd_and_its_args(t_data *arr_of_stracts)
 {
 	int i;
 	int j;
-	char **cmd_and_args = ft_malloc(1000);
+	char **cmd_and_args;
+
+	cmd_and_args = ft_malloc( how_many_strcut_in_the_array(arr_of_stracts)* sizeof(t_data ) + 1);
 
 	i = 0;
 	j = 0;
@@ -87,5 +103,6 @@ char **get_cmd_and_its_args(t_data *arr_of_stracts)
 			break;
 		i++;
 	}
+	cmd_and_args[j] = NULL;
 	return cmd_and_args;
 }

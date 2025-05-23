@@ -10,26 +10,24 @@ int main(int ac, char **av, char **env) {
   char *line;
   char **splitted;
   splitted = NULL;
-  t_list **to_free = get_garbage_pointer();
+  //t_list **to_free = get_garbage_pointer();
 
   unused_vars(ac, av, env);
   while (1) {
-    handle_signals();
     line = ft_readline();
-    if (line == NULL)
-      return ((free_memory_and_exit(*to_free), 1));
+	if(!line)
+		return 0;
     int rc = fork();
     if(rc == 0)
     {
-      if (check_error(line))
-        return ((free_memory_and_exit(*to_free), 1));
-      parse_and_expand(line, &splitted, env);
+		handle_signals_in_child();
+     	parse_and_expand(line, &splitted, env);
     }
     else
       wait(NULL);
   }
-  free_memory_and_exit(*to_free);
-  return (0);
+  	free_memory_and_exit(get_garbage_pointer());
+  	return (0);
 }
 
 void unused_vars(int ac, char **av, char **env)
@@ -41,11 +39,24 @@ void unused_vars(int ac, char **av, char **env)
 
 char *ft_readline(void) {
 
-  char *line;
-  line = readline(">>>> ");
-  if (line && *line)
-    add_history(line);
-  return line;
+	char *line;
+
+	handle_signals();
+
+	line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
+	if (line && *line)
+		add_history(line);
+	if (line == NULL)
+	{
+  		free_memory_and_exit(get_garbage_pointer());
+		return NULL;
+	}
+	if (check_error(line))
+	{
+  		free_memory_and_exit(get_garbage_pointer());
+		return NULL;
+	}
+	 return line;
 }
 
 void expand_input(char **input) {
@@ -69,7 +80,6 @@ void parse_and_expand(char *line, char ***splitted, char **env)
   t_data *tokenized = make_token(*splitted);
   if (tokenized) {
     remove_quotes_from_args(*splitted);
-    //print_splitted(*splitted);
     parse_tokenized(tokenized, env);
   }
 }
