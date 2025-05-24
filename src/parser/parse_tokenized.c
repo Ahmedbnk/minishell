@@ -71,10 +71,10 @@ void process_command(t_data *tokenized, char **env)
         handle_redir_out((tokenized + 1) -> word);
       else if(tokenized ->type == REDIR_APPEND)
         handle_append((tokenized + 1) -> word);
-//      close (0);
-      open(tmp_file_name, O_CREAT| O_RDWR , 0644);
       tokenized ++;
     }
+   close(0);
+   open(tmp_file_name, O_CREAT| O_RDWR , 0644);
 	 execute_command(*command_and_args, command_and_args, env);
    unlink(tmp_file_name);
 }
