@@ -12,7 +12,12 @@ void handle_heredoc(char *str, char *tmp_file_name)
   while(1)
   {
     buffer = readline("> ");
-    if(are_they_equal(str, buffer))
+    if(buffer == NULL)
+    {
+      printf("warning: here-document delimited by end-of-file (wanted `%s')\n", str);
+      break;
+    }
+    else if(are_they_equal(str, buffer))
       break;
     else
       buffer = expand_if_possible(buffer, 1);
