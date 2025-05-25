@@ -24,6 +24,7 @@ int main(int ac, char **av, char **env) {
         free_memory_and_exit(*get_garbage_pointer());
       handle_signals_in_child();
       parse_and_expand(line, &splitted, env);
+      exit(0);
     }
     else
       wait(NULL);

@@ -90,10 +90,12 @@ void parse_tokenized(t_data *tokenized, char **env)
       exit(1);
     }
     else
-    wait(NULL);
+      wait(NULL);
     skip_command(&tokenized);
     if(tokenized -> word == NULL)
+    {
       return;
+    }
     else if(tokenized -> type == PIPE)
       tokenized ++;
   }
