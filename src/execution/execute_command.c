@@ -91,7 +91,8 @@ char **get_cmd_and_its_args(t_data *arr_of_stracts)
 	j = 0;
 	while(arr_of_stracts[i].word != NULL)
 	{
-		if(arr_of_stracts[i].type == REDIR_IN || arr_of_stracts[i].type == HEREDOC)
+		if(arr_of_stracts[i].type == REDIR_IN || arr_of_stracts[i].type == HEREDOC || 
+		arr_of_stracts[i].type == REDIR_OUT || arr_of_stracts[i].type == REDIR_APPEND)
 			i++;
 		else if(arr_of_stracts[i].type == WORD)
 		{
