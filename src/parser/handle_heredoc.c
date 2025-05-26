@@ -5,6 +5,8 @@ void handle_heredoc(char *str, char *tmp_file_name)
   int fd;
   char *buffer;
 
+  if(*str == '$' && (*(str + 1) == single_q || *(str + 1) == double_q))
+    str ++;
   remove_quotes(&str);
   buffer = NULL;
   
