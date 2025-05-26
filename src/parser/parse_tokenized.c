@@ -51,8 +51,10 @@ char *generate_random_name()
 void process_command(t_data *tokenized, char **env)
 {
   char *tmp_file_name;
+  char *file_name;
 
     tmp_file_name = generate_random_name();
+    file_name = 0;
     tmp_file_name = ft_strjoin("/tmp/heredoc_", tmp_file_name);
 
     if(!tokenized || tokenized->word == NULL || tokenized->type == PIPE)
@@ -68,11 +70,16 @@ void process_command(t_data *tokenized, char **env)
       else if(tokenized ->type == REDIR_IN)
         handle_redir_in((tokenized + 1) -> word, tmp_file_name);
       else if(tokenized ->type == REDIR_OUT)
-        handle_redir_out((tokenized + 1) -> word);
+        handle_redir_out((tokenized + 1) -> word, &file_name);
       else if(tokenized ->type == REDIR_APPEND)
-        handle_append((tokenized + 1) -> word);
+        handle_append((tokenized + 1) -> word, &file_name);
       tokenized ++;
     }
+  if(file_name)
+  {
+    close(1);
+    open(file_name, O_CREAT| O_RDWR , 0644);
+  }
    close(0);
    open(tmp_file_name, O_CREAT| O_RDWR , 0644);
 	 execute_command(*command_and_args, command_and_args, env);
