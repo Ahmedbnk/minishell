@@ -84,7 +84,6 @@ void	process_command(t_data *tokenized, char **env)
   unlink(in_file_name);
 }
 
-ls | cat
 void	parse_tokenized(t_data *tokenized, char **env)
 {
   int		pipe_fd[2];
