@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void unused_vars(int ac, char **av, char **env);
+void unused_vars(int ac, char **av);
 char *ft_readline(void);
 void expand_input(char **input);
 void parse_and_expand(char *line, char ***splitted, char **env);
@@ -11,16 +11,16 @@ int main(int ac, char **av, char **env) {
   char **splitted;
   splitted = NULL;
 
-  unused_vars(ac, av, env);
+  unused_vars(ac, av);
   while (1) {
     line = ft_readline();
     if(!line)
-      return 0;
+      continue;
     int rc = fork();
     if(rc == 0)
     {
       if (check_error(line))
-        free_memory_and_exit(*get_garbage_pointer());
+        free_memory(*get_garbage_pointer());
       handle_signals_in_child();
       parse_and_expand(line, &splitted, env);
       exit(0);
@@ -32,11 +32,10 @@ int main(int ac, char **av, char **env) {
   return (0);
 }
 
-void unused_vars(int ac, char **av, char **env)
+void unused_vars(int ac, char **av)
 {
   (void)ac;
   (void)av;
-  (void)env;
 }
 
 char *ft_readline(void) {
@@ -51,7 +50,7 @@ char *ft_readline(void) {
 	if (line == NULL)
 	{
     free(line);
-    free_memory_and_exit(*get_garbage_pointer());
+    free_memory(*get_garbage_pointer());
     return NULL;
 	}
  return line;

@@ -7,12 +7,12 @@ t_list	**get_garbage_pointer(void)
 	return (&garbage_list);
 }
 
-void	free_memory_and_exit(t_list *lst)
+void	free_memory(t_list *lst)
 {
 	t_list	*next_node;
 
 	if (!lst)
-    exit(1);
+    return;
 	while (lst != NULL)
 	{
 		next_node = ((t_list *)lst)->next;
@@ -20,7 +20,6 @@ void	free_memory_and_exit(t_list *lst)
 		free(lst);
 		lst = next_node;
 	}
-    exit(1);
 }
 
 void	*ft_malloc(size_t size)
@@ -32,12 +31,12 @@ void	*ft_malloc(size_t size)
 	garbage_list = get_garbage_pointer();
 	pointer = malloc(size);
 	if (!pointer)
-		free_memory_and_exit(*garbage_list);
+		free_memory(*garbage_list);
 	new_node = garbage_collection_lstnew(pointer);
 	if (!new_node)
 	{
 		free(pointer);
-		free_memory_and_exit(*garbage_list);
+		free_memory(*garbage_list);
 	}
 	ft_lstadd_back(garbage_list, new_node);
 	return (pointer);
