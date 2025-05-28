@@ -10,7 +10,6 @@ int main(int ac, char **av, char **env) {
   char *line;
   char **splitted;
   splitted = NULL;
-  //t_list **to_free = get_garbage_pointer();
 
   unused_vars(ac, av, env);
   while (1) {

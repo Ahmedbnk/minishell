@@ -95,9 +95,9 @@ void	free_memory_and_exit(t_list *lst);
 void	*ft_malloc(size_t size);
 t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
-void handle_heredoc(char *str, char *tmp_file_name);
+void handle_heredoc(char *str, char **in_file_name);
 void print_file(char *str);
-void handle_redir_in(char *str, char *tmp_file_name);
+void handle_redir_in(char *str, char **in_file_name);
 char *read_file(char *file_name);
 void handle_redir_out(char *str, char **file_name);
 void handle_append(char *str, char **file_name);
@@ -106,4 +106,5 @@ void execute_command(char *cmd , char **av, char **env);
 void	remove_quotes(char **line);
 
 void	handle_signals_in_child(void);
+char	*generate_random_name(void);
 #endif

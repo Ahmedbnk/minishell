@@ -119,18 +119,18 @@ ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f	typeref:typename:int
 ft_w_counter	src/parser/customized_split.c	/^static int	ft_w_counter(char const *s)$/;"	f	typeref:typename:int	file:
 ft_w_counter	src/utils/ft_split.c	/^static int	ft_w_counter(char const *s, char c)$/;"	f	typeref:typename:int	file:
 garbage_collection_lstnew	src/utils/garbage_collection_lstnew.c	/^t_list	*garbage_collection_lstnew(void *content)$/;"	f	typeref:typename:t_list *
-generate_random_name	src/parser/parse_tokenized.c	/^char *generate_random_name()$/;"	f	typeref:typename:char *
-generate_random_number	src/parser/parse_tokenized.c	/^int generate_random_number()$/;"	f	typeref:typename:int
+generate_random_name	src/parser/parse_tokenized.c	/^char	*generate_random_name(void)$/;"	f	typeref:typename:char *
+generate_random_number	src/parser/parse_tokenized.c	/^int	generate_random_number(void)$/;"	f	typeref:typename:int
 get_cmd_and_its_args	src/execution/execute_command.c	/^char **get_cmd_and_its_args(t_data *arr_of_stracts)$/;"	f	typeref:typename:char **
 get_garbage_pointer	src/utils/garbage_collector.c	/^t_list	**get_garbage_pointer(void)$/;"	f	typeref:typename:t_list **
 get_next_line	src/utils/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
 get_path	src/execution/execute_command.c	/^char **get_path()$/;"	f	typeref:typename:char **
 get_token_type	src/parser/make_token.c	/^t_token	get_token_type(const char *str)$/;"	f	typeref:typename:t_token
-handle_append	src/parser/handle_append.c	/^void handle_append(char *str)$/;"	f	typeref:typename:void
+handle_append	src/parser/handle_append.c	/^void handle_append(char *str, char **file_name)$/;"	f	typeref:typename:void
 handle_failure_and_eof	src/utils/get_next_line.c	/^static char	*handle_failure_and_eof(char *rest, ssize_t readed_bytes)$/;"	f	typeref:typename:char *	file:
 handle_heredoc	src/parser/handle_heredoc.c	/^void handle_heredoc(char *str, char *tmp_file_name)$/;"	f	typeref:typename:void
 handle_redir_in	src/parser/handle_redir_in.c	/^void handle_redir_in(char *str, char *tmp_file_name)$/;"	f	typeref:typename:void
-handle_redir_out	src/parser/handle_redir_out.c	/^void handle_redir_out(char *str)$/;"	f	typeref:typename:void
+handle_redir_out	src/parser/handle_redir_out.c	/^void handle_redir_out(char *str, char **file_name)$/;"	f	typeref:typename:void
 handle_signals	src/signals/handle_signals.c	/^void	handle_signals(void)$/;"	f	typeref:typename:void
 handle_signals_in_child	src/signals/handle_signals.c	/^void	handle_signals_in_child(void)$/;"	f	typeref:typename:void
 heredoc_flag	include/minishell.h	/^	int				heredoc_flag;$/;"	m	struct:s_expand	typeref:typename:int
@@ -151,11 +151,11 @@ n_counter	src/utils/ft_itoa.c	/^static int	n_counter(int n)$/;"	f	typeref:typena
 new_str_after_expand	src/expansion/new_string_after_expand.c	/^char	*new_str_after_expand(t_expand *data, int num_of_expantion)$/;"	f	typeref:typename:char *
 next	include/minishell.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 parse_and_expand	main.c	/^void parse_and_expand(char *line, char ***splitted, char **env)$/;"	f	typeref:typename:void
-parse_tokenized	src/parser/parse_tokenized.c	/^void parse_tokenized(t_data *tokenized, char **env)$/;"	f	typeref:typename:void
-print_command	src/parser/parse_tokenized.c	/^void print_command(t_data *tokenized)$/;"	f	typeref:typename:void
+parse_tokenized	src/parser/parse_tokenized.c	/^void	parse_tokenized(t_data *tokenized, char **env)$/;"	f	typeref:typename:void
+print_command	src/parser/parse_tokenized.c	/^void	print_command(t_data *tokenized)$/;"	f	typeref:typename:void
 print_file	src/utils/print_file.c	/^void print_file(char *str)$/;"	f	typeref:typename:void
 print_splitted	src/utils/print_splitted.c	/^void print_splitted(char **splitted)$/;"	f	typeref:typename:void
-process_command	src/parser/parse_tokenized.c	/^void process_command(t_data *tokenized, char **env)$/;"	f	typeref:typename:void
+process_command	src/parser/parse_tokenized.c	/^void	process_command(t_data *tokenized, char **env)$/;"	f	typeref:typename:void
 re	Makefile	/^re: fclean all$/;"	t
 re	libft/Makefile	/^re: fclean all$/;"	t
 read_file	src/parser/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *
@@ -170,7 +170,7 @@ should_i_expand	src/expansion/should_i_expand.c	/^int	should_i_expand(char *str,
 sigint_handler	src/signals/handle_signals.c	/^void	sigint_handler(int signo)$/;"	f	typeref:typename:void
 sigint_handler_in_child	src/signals/handle_signals.c	/^void	sigint_handler_in_child(int signo)$/;"	f	typeref:typename:void
 single_q	include/minishell.h	/^# define single_q /;"	d
-skip_command	src/parser/parse_tokenized.c	/^void skip_command(t_data **tokenized_address)$/;"	f	typeref:typename:void
+skip_command	src/parser/parse_tokenized.c	/^void	skip_command(t_data **tokenized_address)$/;"	f	typeref:typename:void
 split_helper	src/parser/customized_split.c	/^static void	split_helper(char **splitted, char *s, int i, int k)$/;"	f	typeref:typename:void	file:
 split_string_with_operators	src/parser/split_with_operators.c	/^static void	split_string_with_operators(char **container, char *str, int *j_ptr)$/;"	f	typeref:typename:void	file:
 split_with_operators	src/parser/split_with_operators.c	/^char	**split_with_operators(char **splitted)$/;"	f	typeref:typename:char **
