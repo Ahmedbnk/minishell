@@ -42,7 +42,12 @@ SRCS = main.c \
 	src/utils/read_file.c\
 	src/parser/handle_redir_out.c\
 	src/parser/handle_append.c \
-	src/execution/execute_command.c
+	src/execution/execute_command.c\
+	src/built_in/echo.c\
+	src/built_in/pwd.c\
+	src/built_in/env.c\
+	src/built_in/check_built_in_command.c
+
 
 OBJS = $(SRCS:.c=.o)
 

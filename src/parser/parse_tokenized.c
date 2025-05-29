@@ -80,6 +80,7 @@ void	process_command(t_data *tokenized, char **env)
     dup2(fd_in, STDIN_FILENO);
     close(fd_in);
   }
+  check_built_in_command(command_and_args, env);
   execute_command(command_and_args[0], command_and_args, env);
   unlink(in_file_name);
 }

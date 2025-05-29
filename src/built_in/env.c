@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void env(char **env)
+void print_env(char **env)
 {
     if(!env || !*env)
         return;

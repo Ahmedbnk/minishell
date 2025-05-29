@@ -107,4 +107,10 @@ void	remove_quotes(char **line);
 
 void	handle_signals_in_child(void);
 char	*generate_random_name(void);
+
+char ** copy_env(char **env);
+void print_env(char **env);
+void echo(char **args);
+void pwd();
+void check_built_in_command(char **cmd_and_args, char **env);
 #endif

@@ -22,7 +22,7 @@ int main(int ac, char **av, char **env) {
       if (check_error(line))
         free_memory(*get_garbage_pointer());
       handle_signals_in_child();
-      parse_and_expand(line, &splitted, env);
+      parse_and_expand(line, &splitted, copy_env(env));
       exit(0);
     }
     else
@@ -51,6 +51,7 @@ char *ft_readline(void) {
 	{
     free(line);
     free_memory(*get_garbage_pointer());
+    exit(0);
     return NULL;
 	}
  return line;

@@ -7,6 +7,7 @@ void echo(char **args)
 
     i = 0;
     flag = 0;
+    args++;
     if(are_they_equal(*args, "-n"))
     {
         args++;
