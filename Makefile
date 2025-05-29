@@ -46,7 +46,10 @@ SRCS = main.c \
 	src/built_in/echo.c\
 	src/built_in/pwd.c\
 	src/built_in/env.c\
-	src/built_in/check_built_in_command.c
+	src/built_in/ft_strncmp.c\
+	src/built_in/check_built_in_command.c\
+	src/built_in/cd.c\
+
 
 
 OBJS = $(SRCS:.c=.o)

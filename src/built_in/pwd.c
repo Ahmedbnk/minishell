@@ -2,14 +2,15 @@
 
 #define  SIZE 4096
 
-void pwd()
+char *pwd()
 {
-    char buffer[SIZE];
+    char *buffer;
 
+    buffer = ft_malloc(SIZE);
     if ((getcwd(buffer, SIZE) == NULL))
     {
        printf("%s\n", strerror(errno));
-       return;
+       return NULL;
     }
-    printf("%s\n", buffer);
+    return buffer;
 }

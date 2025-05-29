@@ -111,6 +111,8 @@ char	*generate_random_name(void);
 char ** copy_env(char **env);
 void print_env(char **env);
 void echo(char **args);
-void pwd();
+char *pwd();
 void check_built_in_command(char **cmd_and_args, char **env);
+int	ft_strncmp(const char *big, const char *little, size_t n);
+void cd(char *path, char **env);
 #endif
