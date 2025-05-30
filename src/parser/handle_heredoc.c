@@ -1,42 +1,42 @@
 #include "minishell.h"
 
-void handle_heredoc(char *str, char **in_file_name)
+// void handle_heredoc(t_data *tokenized , char **in_file_name)
+// {
+//   *in_file_name = tokenized -> heredoc_file_name;
+// }
+//
+void create_heredoc(t_data *tokenized)
 {
   int fd;
-  char *buffer;
+  char *file_name = ft_strjoin("/tmp/", generate_random_name());
+  char *str = NULL; 
+  char *buffer = NULL; 
 
+  tokenized->heredoc_file_name = (tokenized + 1) -> word;
   while(1)
   {
-    *in_file_name = ft_strjoin("/tmp/", generate_random_name());
-    fd = open(*in_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-    close(fd);
-  }
-  if(*str == '$' && (*(str + 1) == single_q || *(str + 1) == double_q))
-    str ++;
-  remove_quotes(&str);
-  buffer = NULL;
-  
-  fd = open(*in_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-  while(1)
-  {
-    buffer = readline("> ");
-    if(buffer == NULL)
+    str = readline(">>>");
+    if(str == NULL)
     {
       print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", str);
       break;
     }
-    else if(are_they_equal(str, buffer))
-      break;
-    else
-      buffer = expand_if_possible(buffer, 1);
-
-    if(buffer == NULL)
-    {
-      print_error("bash: warning: here-document at line 1 delimited by end-of-file (wanted `%s') ",str);
-      return;
-    }
-    write(fd,buffer,ft_strlen(buffer));
-    write(fd,"\n", 1);
+    if(are_they_equal(str, tokenized->heredoc_file_name))
+       break;
+    buffer = ft_strjoin(buffer, str);
   }
+  fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+  write(fd,buffer,ft_strlen(buffer));
+  write(fd,"\n", 1);
   close(fd);
+}
+
+void create_all_heredocs(t_data *tokenized)
+{
+  while(tokenized && tokenized -> word)
+  {
+    if(tokenized -> type == HEREDOC)
+      create_heredoc(tokenized);
+    tokenized ++;
+  }
 }

@@ -59,7 +59,7 @@ void	process_command(t_data *tokenized, char **env)
   while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
     if (tokenized->type == HEREDOC)
-      handle_heredoc((tokenized + 1)->word, &in_file_name);
+      in_file_name = tokenized->heredoc_file_name;
     else if (tokenized->type == REDIR_IN)
       handle_redir_in((tokenized + 1)->word, &in_file_name);
     else if (tokenized->type == REDIR_OUT)
@@ -80,43 +80,49 @@ void	process_command(t_data *tokenized, char **env)
     dup2(fd_in, STDIN_FILENO);
     close(fd_in);
   }
-  check_built_in_command(command_and_args, env);
   execute_command(command_and_args[0], command_and_args, env);
   unlink(in_file_name);
 }
 
-void	parse_tokenized(t_data *tokenized, char **env)
+void parse_tokenized(t_data *tokenized, char **env)
 {
-  int		pipe_fd[2];
-  t_data	*start;
-  int		rc;
+    int p[2];
+    int prev;
+    t_data *start;
 
-  while (tokenized && tokenized->word != NULL)
-  {
-    start = tokenized;
-    skip_command(&tokenized);
-    if (tokenized && tokenized->type == PIPE)
-      pipe(pipe_fd);
-    rc = fork();
-    if (rc == 0)
+    prev = -1;
+    while (tokenized && tokenized->word)
     {
-      if (tokenized && tokenized->type == PIPE)
-      {
-        close(pipe_fd[0]);
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[1]);
-      }
-      process_command(start, env);
-      exit(0);
+        start = tokenized;
+        skip_command(&tokenized);
+        if (tokenized && tokenized->type == PIPE)
+            pipe(p);
+        if (fork() == 0)
+        {
+            if (prev != -1)
+            {
+                dup2(prev, 0);
+                close(prev);
+            }
+            if (tokenized && tokenized->type == PIPE)
+            {
+                close(p[0]);
+                dup2(p[1], 1);
+                close(p[1]);
+            }
+            process_command(start, env);
+            exit(0);
+        }
+        if (prev != -1)
+            close(prev);
+        if (tokenized && tokenized->type == PIPE)
+        {
+            close(p[1]);
+            prev = p[0];
+            tokenized++;
+        }
     }
-    if (tokenized && tokenized->type == PIPE)
-    {
-      close(pipe_fd[1]);
-      dup2(pipe_fd[0], STDIN_FILENO);
-      close(pipe_fd[0]);
-      tokenized ++;
-    }
-  }
-  while (wait(NULL) < 0)
-    ;
+    if (prev != -1)
+        close(prev);
+    while (wait(NULL) > 0);
 }

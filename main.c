@@ -1,9 +1,49 @@
 #include "minishell.h"
 
-void unused_vars(int ac, char **av);
-char *ft_readline(void);
-void expand_input(char **input);
-void parse_and_expand(char *line, char ***splitted, char **env);
+void expand_input(char **input) {
+  int i;
+  i = 0;
+  while (input[i]) {
+		if(are_they_equal(input[i], "<<"))
+			i++;
+		else
+			input[i] = expand_if_possible(input[i], 0);
+    i++;
+  }
+}
+
+void parse_and_expand(char *line, char ***splitted, char **env)
+{
+
+  *splitted = customized_split(line);
+  *splitted = split_with_operators(*splitted);
+  expand_input(*splitted);
+
+  t_data *tokenized = make_token(*splitted);
+  if (tokenized) {
+    remove_quotes_from_args(*splitted);
+    create_all_heredocs(tokenized);
+    parse_tokenized(tokenized, env);
+  }
+}
+
+char *ft_readline(void) {
+
+	char *line;
+	handle_signals();
+
+	line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
+	if (line && *line)
+		add_history(line);
+	if (line == NULL)
+	{
+    free(line);
+    free_memory(*get_garbage_pointer());
+    exit(0);
+    return NULL;
+	}
+ return line;
+}
 
 int main(int ac, char **av, char **env) {
 
@@ -12,7 +52,8 @@ int main(int ac, char **av, char **env) {
   splitted = NULL;
   char **env_cpy = copy_env(env);
 
-  unused_vars(ac, av);
+  (void)ac;
+  (void)av;
   while (1) {
     line = ft_readline();
     if(!line)
@@ -33,52 +74,3 @@ int main(int ac, char **av, char **env) {
   return (0);
 }
 
-void unused_vars(int ac, char **av)
-{
-  (void)ac;
-  (void)av;
-}
-
-char *ft_readline(void) {
-
-	char *line;
-
-	handle_signals();
-
-	line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
-	if (line && *line)
-		add_history(line);
-	if (line == NULL)
-	{
-    free(line);
-    free_memory(*get_garbage_pointer());
-    exit(0);
-    return NULL;
-	}
- return line;
-}
-
-void expand_input(char **input) {
-  int i;
-  i = 0;
-  while (input[i]) {
-		if(are_they_equal(input[i], "<<"))
-			i++;
-		else
-			input[i] = expand_if_possible(input[i], 0);
-    i++;
-  }
-}
-
-void parse_and_expand(char *line, char ***splitted, char **env)
-{
-  *splitted = customized_split(line);
-  *splitted = split_with_operators(*splitted);
-  expand_input(*splitted);
-
-  t_data *tokenized = make_token(*splitted);
-  if (tokenized) {
-    remove_quotes_from_args(*splitted);
-    parse_tokenized(tokenized, env);
-  }
-}

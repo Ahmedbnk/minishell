@@ -38,6 +38,7 @@ typedef struct s_data
 {
 	int				type;
 	char			*word;
+  char      *heredoc_file_name;
 }					t_data;
 
 typedef struct s_list
@@ -95,7 +96,7 @@ void	free_memory(t_list *lst);
 void	*ft_malloc(size_t size);
 t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
-void handle_heredoc(char *str, char **in_file_name);
+void handle_heredoc(t_data *tokenized, char **in_file_name);
 void print_file(char *str);
 void handle_redir_in(char *str, char **in_file_name);
 char *read_file(char *file_name);
@@ -116,4 +117,5 @@ void check_built_in_command(char **cmd_and_args, char **env);
 int	ft_strncmp(const char *big, const char *little, size_t n);
 void cd(char *path, char **env);
 int	print_error(const char *str, ...);
+void create_all_heredocs(t_data *tokenized);
 #endif
