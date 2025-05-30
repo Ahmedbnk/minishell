@@ -10,6 +10,7 @@ int main(int ac, char **av, char **env) {
   char *line;
   char **splitted;
   splitted = NULL;
+  char **env_cpy = copy_env(env);
 
   unused_vars(ac, av);
   while (1) {
@@ -22,7 +23,7 @@ int main(int ac, char **av, char **env) {
       if (check_error(line))
         free_memory(*get_garbage_pointer());
       handle_signals_in_child();
-      parse_and_expand(line, &splitted, copy_env(env));
+      parse_and_expand(line, &splitted, env_cpy);
       exit(0);
     }
     else

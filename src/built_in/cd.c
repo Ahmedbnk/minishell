@@ -21,14 +21,12 @@ void cd(char *path, char **env)
 
     old_dir = pwd();
 
+    printf("old_dir %s\n", old_dir);
     if(chdir(path) == 0)
     {
         new_dir = pwd();
         update_env_dir(env, old_dir, new_dir);
     }
     else
-    {
-        printf("failed\n");
-    	exit((printf("%s\n" , strerror(errno)), 1));
-    }
+    	printf("%s\n" , strerror(errno));
 }
