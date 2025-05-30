@@ -37,13 +37,13 @@ int check_syntax_error(t_data *data, int len)
   while(i < len)
   { 
     if(data[i].type == PIPE && (i == 0 || len - 1 == i))
-      return((printf("error near | \n"), 1));
+      return((print_error("error near | \n"), 1));
     else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type == PIPE)
-      return((printf("error near | \n"), 1));
+      return((print_error("error near | \n"), 1));
     else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type != WORD)
-      return((printf("error near new line \n"), 1));
+      return((print_error("error near new line \n"), 1));
     else if (data[i].type != PIPE && data[i].type != WORD && len -1 == i)
-      return((printf("error near new line \n"), 1));
+      return((print_error("error near new line \n"), 1));
     i++;
   }
   return 0;
@@ -68,8 +68,8 @@ t_data *make_token(char **arr)
     
 //   for(int i = 0; i < tow_d_lenth(av); i++)
 //   {
-//     printf("%s : ", ptr[i].word);
-//     printf("%d\n", ptr[i].type);
+//     print_error("%s : ", ptr[i].word);
+//     print_error("%d\n", ptr[i].type);
 //   }
 //
 //   return 0;

@@ -115,4 +115,5 @@ char *pwd();
 void check_built_in_command(char **cmd_and_args, char **env);
 int	ft_strncmp(const char *big, const char *little, size_t n);
 void cd(char *path, char **env);
+int	print_error(const char *str, ...);
 #endif

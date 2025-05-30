@@ -22,7 +22,7 @@ void handle_heredoc(char *str, char **in_file_name)
     buffer = readline("> ");
     if(buffer == NULL)
     {
-      printf("warning: here-document delimited by end-of-file (wanted `%s')\n", str);
+      print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", str);
       break;
     }
     else if(are_they_equal(str, buffer))
@@ -32,7 +32,7 @@ void handle_heredoc(char *str, char **in_file_name)
 
     if(buffer == NULL)
     {
-      printf("bash: warning: here-document at line 1 delimited by end-of-file (wanted `%s') ",str);
+      print_error("bash: warning: here-document at line 1 delimited by end-of-file (wanted `%s') ",str);
       return;
     }
     write(fd,buffer,ft_strlen(buffer));

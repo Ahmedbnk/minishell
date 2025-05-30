@@ -16,14 +16,14 @@ void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 			if(access(cmd_with_its_path, X_OK) == 0)
 			{
 				execve(cmd_with_its_path , av, env);
-				exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+				exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 			}
 			else
-				exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+				exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 		}
 		i++;
 	}
-	exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+	exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 }
 
 
@@ -34,13 +34,13 @@ void  check_the_access(char *cmd, char **av, char **env)
 		if(access(cmd, X_OK) == 0)
 		{
 			execve(cmd , av, env);
-			exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+			exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 		}
 		else
-			exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+			exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 	}
 	else
-		exit((printf("%s: %s\n", cmd, strerror(errno)), 1));
+		exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 }
 
 
