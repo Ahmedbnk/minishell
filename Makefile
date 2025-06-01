@@ -50,7 +50,12 @@ SRCS = main.c \
 	src/built_in/ft_strncmp.c\
 	src/built_in/check_built_in_command.c\
 	src/built_in/cd.c\
-
+	src/built_in/export.c\
+	src/built_in/ft_isalpha.c\
+	src/built_in/ft_isdigit.c\
+	src/built_in/ft_strcmp.c\
+	src/built_in/ist_valid_env_var.c\
+	src/built_in/unset.c\
 
 
 OBJS = $(SRCS:.c=.o)

@@ -113,9 +113,21 @@ char	*generate_random_name(void);
 char ** copy_env(char **env);
 void print_env(char **env);
 void echo(char **args);
+int	ft_strncmp(const char *big, const char *little, size_t n);
 char *pwd();
 void check_built_in_command(char **cmd_and_args, char **env);
-int	ft_strncmp(const char *big, const char *little, size_t n);
+void print_env(char **env);
+void export(char ***env, char **to_export);
+int is_it_key_value(char *str);
+int is_valid_var(char *str);
+int compare_env_var(char *var1, char *var2);
+int	ft_isalpha(int c);
+int	ft_isdigit(int c);
+int	ft_strcmp(char *s1, char *s2);
+
+
+
+//int	ft_strncmp(const char *big, const char *little, size_t n);
 void cd(char *path, char **env);
 int	print_error(const char *str, ...);
 void create_all_heredocs(t_data *tokenized);
