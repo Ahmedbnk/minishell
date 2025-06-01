@@ -71,13 +71,13 @@ void	process_command(t_data *tokenized, char **env)
   if (file_name)
   {
     fd_out = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-    dup2(fd_out, STDOUT_FILENO);
+    dup2(fd_out, 1);
     close(fd_out);
   }
   if(in_file_name)
   {
     fd_in = open(in_file_name, O_CREAT | O_RDONLY, 0644);
-    dup2(fd_in, STDIN_FILENO);
+    dup2(fd_in, 0);
     close(fd_in);
   }
   execute_command(command_and_args[0], command_and_args, env);
@@ -86,43 +86,44 @@ void	process_command(t_data *tokenized, char **env)
 
 void parse_tokenized(t_data *tokenized, char **env)
 {
-    int p[2];
-    int prev;
-    t_data *start;
+  int arr[2];
+  int previous_read_end;
+  t_data *start;
 
-    prev = -1;
-    while (tokenized && tokenized->word)
+  previous_read_end = -1;
+  while (tokenized && tokenized->word)
+  {
+    start = tokenized;
+    skip_command(&tokenized);
+    if (tokenized && tokenized->type == PIPE)
+      pipe(arr);
+    if (fork() == 0)
     {
-        start = tokenized;
-        skip_command(&tokenized);
-        if (tokenized && tokenized->type == PIPE)
-            pipe(p);
-        if (fork() == 0)
-        {
-            if (prev != -1)
-            {
-                dup2(prev, 0);
-                close(prev);
-            }
-            if (tokenized && tokenized->type == PIPE)
-            {
-                close(p[0]);
-                dup2(p[1], 1);
-                close(p[1]);
-            }
-            process_command(start, env);
-            exit(0);
-        }
-        if (prev != -1)
-            close(prev);
-        if (tokenized && tokenized->type == PIPE)
-        {
-            close(p[1]);
-            prev = p[0];
-            tokenized++;
-        }
+      if (previous_read_end != -1)
+      {
+        dup2(previous_read_end, 0);
+        close(previous_read_end);
+      }
+      if (tokenized && tokenized->type == PIPE)
+      {
+        close(previous_read_end);
+        close(arr[0]);
+        dup2(arr[1], 1);
+        close(arr[1]);
+      }
+      process_command(start, env);
+      exit(0);
     }
-    if (prev != -1)
-        close(prev);
-    while (wait(NULL) > 0);
+    if (previous_read_end != -1)
+      close(previous_read_end);
+    if (tokenized && tokenized->type == PIPE)
+    {
+      close(arr[1]);
+      previous_read_end =arr[0];
+      tokenized++;
+    }
+  }
+  if (previous_read_end != -1)
+    close(previous_read_end);
+  while (wait(NULL) > 0);
 }

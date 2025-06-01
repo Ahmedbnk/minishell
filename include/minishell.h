@@ -39,6 +39,7 @@ typedef struct s_data
 	int				type;
 	char			*word;
   char      *heredoc_file_name;
+  char      *delimiter;
 }					t_data;
 
 typedef struct s_list

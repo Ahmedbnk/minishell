@@ -27,7 +27,8 @@ void fill_the_list(t_data * list, char **arr)
     list[i].word = ft_strdup(arr[i]);
     i++;
   }
-    list[i].word = ft_strdup(arr[i]);
+    list[i].word = 0;
+    list[i].type = -1;
 }
 
 

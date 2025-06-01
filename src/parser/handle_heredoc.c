@@ -1,18 +1,36 @@
 #include "minishell.h"
 
-// void handle_heredoc(t_data *tokenized , char **in_file_name)
-// {
-//   *in_file_name = tokenized -> heredoc_file_name;
-// }
-//
+char *remake_delimeter(char *str)
+{
+  char *returned_str = malloc(ft_strlen(str) + 1);
+
+  int i = 0;
+  int j = 0;
+  while(str[i])
+  {
+    if(str[i] == '$' && str[i + 1] == '$')
+    {
+      returned_str[j++] = str[i++];
+      returned_str[j++] = str[i++];
+    }
+    else if(str[i] == '$' && (str[i + 1] == single_q || str[i + 1] == double_q) && !is_between_quotes(str, i))
+      i ++;
+    else
+      returned_str[j++] = str[i++];
+  }
+  returned_str[i] = '\0';
+  remove_quotes(&returned_str);
+  return returned_str;
+}
+
 void create_heredoc(t_data *tokenized)
 {
   int fd;
-  char *file_name = ft_strjoin("/tmp/", generate_random_name());
   char *str = NULL; 
   char *buffer = NULL; 
 
-  tokenized->heredoc_file_name = (tokenized + 1) -> word;
+  tokenized->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
+  tokenized->delimiter = remake_delimeter((tokenized + 1) -> word);
   while(1)
   {
     str = readline(">>>");
@@ -21,11 +39,11 @@ void create_heredoc(t_data *tokenized)
       print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", str);
       break;
     }
-    if(are_they_equal(str, tokenized->heredoc_file_name))
+    if(are_they_equal(str, tokenized->delimiter))
        break;
     buffer = ft_strjoin(buffer, str);
   }
-  fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+  fd = open(tokenized->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
   write(fd,buffer,ft_strlen(buffer));
   write(fd,"\n", 1);
   close(fd);
