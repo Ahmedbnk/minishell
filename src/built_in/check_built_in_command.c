@@ -1,17 +1,19 @@
 #include "minishell.h"
 
-// void check_built_in_command(char **cmd_and_args, char **env)
-// {
-    // if(are_they_equal(*cmd_and_args, "pwd"))
-    //     exit((printf("%s\n",pwd()), 0));
-    // else if(are_they_equal(*cmd_and_args, "env"))
-    //     exit((print_env(env), 0));
-    // else if(are_they_equal(*cmd_and_args, "echo"))
-    //     exit((echo(cmd_and_args), 0));
+void check_built_in_command(char **env, char **cmd_and_args)
+{ 
+    if(are_they_equal(*cmd_and_args, "pwd"))
+      pwd();
+    else if(are_they_equal(*cmd_and_args, "env"))
+      print_env(env);
+    else if(are_they_equal(*cmd_and_args, "echo"))
+      echo(cmd_and_args+1);
     // else if(are_they_equal(*cmd_and_args, "cd"))
-    //     exit((cd(*(cmd_and_args + 1), env), 0));
+    //   cd(env, cmd_and_args+1);
     // else if(are_they_equal(*cmd_and_args, "export"))
-    //     exit((cd(*(cmd_and_args + 1), env), 0));
+    //   export(env, cmd_and_args +1);
     // else if(are_they_equal(*cmd_and_args, "unset"))
-    // exit((cd(*(cmd_and_args + 1), env), 0));
-// }
+    //   unset(env, cmd_and_args +1);
+
+    printf("%s\n", "its a bult in");
+}

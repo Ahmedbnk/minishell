@@ -14,7 +14,7 @@ void update_env_dir(char **env, char *old_dir, char *new_dir)
     }
 }
 
-void cd(char *path, char **env)
+void cd(char **env, char *path)
 {
     char *old_dir;
     char *new_dir;

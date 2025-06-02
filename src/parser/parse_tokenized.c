@@ -84,7 +84,7 @@ void	process_command(t_data *tokenized, char **env)
   unlink(in_file_name);
 }
 
-void parse_tokenized(t_data *tokenized, char **env)
+void execute_command_line(t_data *tokenized, char **env)
 {
   int arr[2];
   int previous_read_end;

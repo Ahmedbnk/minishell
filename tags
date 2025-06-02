@@ -43,9 +43,9 @@ allocat_expand_list	src/env/allocate_and_init_expand_list.c	/^static void	alloca
 are_they_equal	src/utils/are_they_equal.c	/^int	are_they_equal(const char *str1, const char *str2)$/;"	f	typeref:typename:int
 befor_dollar	include/minishell.h	/^	char			*befor_dollar;$/;"	m	struct:s_expand	typeref:typename:char *
 calculate_all_symboles_operators	src/parser/split_with_operators.c	/^static int	calculate_all_symboles_operators(char **splitted)$/;"	f	typeref:typename:int	file:
-cd	src/built_in/cd.c	/^void cd(char *path, char **env)$/;"	f	typeref:typename:void
+cd	src/built_in/cd.c	/^void cd(char **env, char *path)$/;"	f	typeref:typename:void
 check_after_geting_bath	src/execution/execute_command.c	/^void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)$/;"	f	typeref:typename:void
-check_built_in_command	src/built_in/check_built_in_command.c	/^void check_built_in_command(char **cmd_and_args, char **env)$/;"	f	typeref:typename:void
+check_built_in_command	src/built_in/check_built_in_command.c	/^void check_built_in_command(char **env, char **cmd_and_args)$/;"	f	typeref:typename:void
 check_error	src/parser/check_input_error.c	/^int	check_error(char *str)$/;"	f	typeref:typename:int
 check_syntax_error	src/parser/make_token.c	/^int check_syntax_error(t_data *data, int len)$/;"	f	typeref:typename:int
 check_the_access	src/execution/execute_command.c	/^void  check_the_access(char *cmd, char **av, char **env)$/;"	f	typeref:typename:void
@@ -67,6 +67,7 @@ double_q	include/minishell.h	/^# define double_q /;"	d
 e_token_type	include/minishell.h	/^typedef enum e_token_type$/;"	g
 echo	src/built_in/echo.c	/^void echo(char **args)$/;"	f	typeref:typename:void
 execute_command	src/execution/execute_command.c	/^void execute_command(char *cmd , char **av, char **env)$/;"	f	typeref:typename:void
+execute_command_line	src/parser/parse_tokenized.c	/^void execute_command_line(t_data *tokenized, char **env)$/;"	f	typeref:typename:void
 expand_if_possible	src/expansion/expand_if_possible.c	/^char	*expand_if_possible(char *str , int heredoc_flag)$/;"	f	typeref:typename:char *
 expand_input	main.c	/^void expand_input(char **input) {$/;"	f	typeref:typename:void
 expnad_and_join_node	src/expansion/new_string_after_expand.c	/^char	*expnad_and_join_node(t_expand data)$/;"	f	typeref:typename:char *
@@ -173,7 +174,6 @@ n_counter	src/utils/ft_itoa.c	/^static int	n_counter(int n)$/;"	f	typeref:typena
 new_str_after_expand	src/expansion/new_string_after_expand.c	/^char	*new_str_after_expand(t_expand *data, int num_of_expantion)$/;"	f	typeref:typename:char *
 next	include/minishell.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 parse_and_expand	main.c	/^void parse_and_expand(char *line, char ***splitted, char **env)$/;"	f	typeref:typename:void
-parse_tokenized	src/parser/parse_tokenized.c	/^void parse_tokenized(t_data *tokenized, char **env)$/;"	f	typeref:typename:void
 print_command	src/parser/parse_tokenized.c	/^void	print_command(t_data *tokenized)$/;"	f	typeref:typename:void
 print_env	src/built_in/env.c	/^void print_env(char **env)$/;"	f	typeref:typename:void
 print_error	src/utils/print_error.c	/^int	print_error(const char *str, ...)$/;"	f	typeref:typename:int
@@ -211,5 +211,6 @@ t_list	include/minishell.h	/^}					t_list;$/;"	t	typeref:struct:s_list
 t_token	include/minishell.h	/^}					t_token;$/;"	t	typeref:enum:e_token_type
 to_expand	include/minishell.h	/^	char			*to_expand;$/;"	m	struct:s_expand	typeref:typename:char *
 type	include/minishell.h	/^	int				type;$/;"	m	struct:s_data	typeref:typename:int
+unset	src/built_in/unset.c	/^void unset(char ***env, char **vars)$/;"	f	typeref:typename:void
 update_env_dir	src/built_in/cd.c	/^void update_env_dir(char **env, char *old_dir, char *new_dir)$/;"	f	typeref:typename:void
 word	include/minishell.h	/^	char			*word;$/;"	m	struct:s_data	typeref:typename:char *

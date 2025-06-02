@@ -48,6 +48,13 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_mini_data
+{
+  char **env_cpy;
+  char *line;
+  char **splitted;
+  t_data *tokenized;
+}t_shell_block;
 
 //t_token				*add_node(t_token **list, t_token *node);
 //t_token				*creat_node(char *str);
@@ -76,8 +83,7 @@ char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
 t_data *make_token(char **arr);
 int len_of_two_d_array(char **str);
-void parse_tokenized(t_data *tokenized, char **env);
-
+void execute_command_line(t_data *tokenized, char **env);
 
 
 int					ft_isalnum(int c);
@@ -115,7 +121,7 @@ void print_env(char **env);
 void echo(char **args);
 int	ft_strncmp(const char *big, const char *little, size_t n);
 char *pwd();
-void check_built_in_command(char **cmd_and_args, char **env);
+void check_built_in_command(char **env, char **cmd_and_args);
 void print_env(char **env);
 void export(char ***env, char **to_export);
 int is_it_key_value(char *str);
@@ -128,7 +134,7 @@ int	ft_strcmp(char *s1, char *s2);
 
 
 //int	ft_strncmp(const char *big, const char *little, size_t n);
-void cd(char *path, char **env);
+void cd(char **env, char *path);
 int	print_error(const char *str, ...);
 void create_all_heredocs(t_data *tokenized);
 #endif
