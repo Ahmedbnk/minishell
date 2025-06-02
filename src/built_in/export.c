@@ -12,7 +12,7 @@ static int find_and_update_var(char **env, char *var)
     {
         if (compare_env_var(env[i], var))
         {
-            env[i] = strdup(var);
+            env[i] = ft_strdup(var);
             return 1;
         }
         i++;
@@ -23,16 +23,16 @@ static int find_and_update_var(char **env, char *var)
 static char **add_var_to_env(char **env , char *var)
 {
     char **new_env;
-    new_env = malloc((len_of_two_d_array(env)+ 2) * sizeof(char *));
+    new_env = ft_malloc((len_of_two_d_array(env)+ 2) * sizeof(char *));
     int i;
     i = 0;
     while(*env)
     {
-        new_env[i] = strdup(*env);
+        new_env[i] = ft_strdup(*env);
         i++;
         env++;
     }
-    new_env[i++] = strdup(var);
+    new_env[i++] = ft_strdup(var);
     new_env[i] = NULL;
     return new_env;
 }
@@ -80,7 +80,7 @@ void export(char ***env, char **to_export)
         sort_env(*env);
         return ;
     }
-    while(*to_export != NULL)
+    while(*to_export)
     {
         if(!is_valid_var(*to_export) || !is_it_key_value(*to_export) )
             ;
