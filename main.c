@@ -1,9 +1,39 @@
 #include "minishell.h"
 
+char *remove_dollar_if_quotes_after_it(char *str)
+{
+  char *returned_string = ft_malloc(ft_strlen(str));
+  int i = 0;
+  int j = 0;
+  while(str[i])
+  {
+    if(str[i] == '$' && !is_between_quotes(str, i) 
+      && (str[i + 1] == single_q || str[i + 1] == double_q))
+      i++;
+    else
+      returned_string[j++] = str[i++];
+  }
+  returned_string[j] = '\0';
+  remove_quotes(&returned_string);
+  return returned_string;
+}
+
+char **handle_dollar_with_quotes(char **splitted)
+{
+  int i = 0;
+  while(splitted[i])
+  {
+    splitted[i] = remove_dollar_if_quotes_after_it(splitted[i]);
+    i++;
+  }
+  return splitted;
+}
+
 void expand_input(char **input) {
   int i;
   i = 0;
-  while (input[i]) {
+  while (input[i])
+  {
     if(are_they_equal(input[i], "<<"))
       i++;
     else
@@ -17,6 +47,7 @@ void parse_line(t_shell_control_block *shell)
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
   expand_input(shell->splitted);
+  shell->splitted = handle_dollar_with_quotes(shell->splitted);
   shell->tokenized = make_token(shell->splitted);
 
 }
