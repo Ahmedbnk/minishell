@@ -39,6 +39,7 @@ void create_heredoc(t_data *tokenized)
       print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", str);
       break;
     }
+    str = expand_if_possible(str, 1);
     if(are_they_equal(str, tokenized->delimiter))
        break;
     buffer = ft_strjoin(buffer, str);
