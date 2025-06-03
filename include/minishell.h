@@ -54,7 +54,8 @@ typedef struct s_shell_control_block
   char *line;
   char **splitted;
   t_data *tokenized;
-  char **cmd_and_args;
+  char *cmd;
+  char **cmd_args;
 
 }t_shell_control_block;
 
@@ -112,7 +113,7 @@ char *read_file(char *file_name);
 void handle_redir_out(char *str, char **file_name);
 void handle_append(char *str, char **file_name);
 char **get_cmd_and_its_args(t_shell_control_block *shell);
-void execute_command(char *cmd , char **av, char **env);
+void execute_command(t_shell_control_block *shell);
 void	remove_quotes(char **line);
 
 void	handle_signals_in_child(void);

@@ -54,15 +54,15 @@ char **get_path()
 	return splited;
 }
 
-void execute_command(char *cmd , char **av, char **env)
+void execute_command(t_shell_control_block *shell)
 {
-	if(!cmd)
+	if(!shell->cmd)
 		return;
 	char **path = get_path();
-	if(*cmd == '/')
-		check_the_access(cmd, av, env);
+	if(*shell->cmd == '/')
+		check_the_access(shell->cmd, shell->cmd_args, shell->env_cpy);
 	else
-		check_after_geting_bath(cmd ,av , path , env);
+		check_after_geting_bath(shell->cmd ,shell->cmd_args , path , shell->env_cpy);
 }
 
 int how_many_strcut_in_the_array(t_data *arr_of_stracts)
@@ -82,28 +82,35 @@ int how_many_strcut_in_the_array(t_data *arr_of_stracts)
 //char **get_cmd_and_its_args(t_data *arr_of_stracts)
 char **get_cmd_and_its_args(t_shell_control_block *shell)
 {
-	int i;
-	int j;
+    int i;
+    int j;
 
-	shell->cmd_and_args = ft_malloc( how_many_strcut_in_the_array(shell->tokenized)* sizeof(t_data ));
+    shell->cmd_args = ft_malloc( how_many_strcut_in_the_array(shell->tokenized)* sizeof(t_data ));
 
-	i = 0;
-	j = 0;
-	while(shell->tokenized[i].word != NULL)
-	{
-		if(shell->tokenized[i].type == REDIR_IN || shell->tokenized[i].type == HEREDOC || 
-		shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
-			i++;
-		else if(shell->tokenized[i].type == WORD)
-		{
-
-			cmd_and_args[j] = ft_strdup(shell->tokenized[i].word);
-		j++;
-	}
-		else
-			break;
-		i++;
-	}
-	cmd_and_args[j] = NULL;
-	return cmd_and_args;
+    i = 0;
+    j = 0;
+    while(shell->tokenized[i].word != NULL)
+    {
+        if(shell->tokenized[i].type == REDIR_IN || shell->tokenized[i].type == HEREDOC || 
+          shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
+          i++;
+        else if(shell->tokenized[i].type == WORD)
+        {
+        if(!shell->cmd)
+          shell->cmd = ft_strdup(shell->tokenized[i].word);
+        shell->cmd_args[j] = ft_strdup(shell->tokenized[i].word);
+          j++;
+        }
+        else
+          break;
+        i++;
+    }
+  shell->cmd_args[j] = NULL;
+  // printf("%s\n", shell->cmd);
+  // for (int i = 0; shell->cmd_args[i]; i++) 
+  //   printf("%s\n", shell->cmd_args[i]);
+  //
+  // exit(1);
+  //
+  return shell->cmd_args;
 }
