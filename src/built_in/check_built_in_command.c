@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void check_built_in_command(char **env, char **cmd_and_args)
+void execute_built_in(char **env, char **cmd_and_args)
 { 
     if(are_they_equal(*cmd_and_args, "pwd"))
       pwd();

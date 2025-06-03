@@ -59,19 +59,6 @@ t_data *make_token(char **arr)
   list = ft_malloc((len  + 1)* sizeof(t_data));
   fill_the_list(list, arr);
   if(check_syntax_error(list, len))
-    exit(1);
+    return NULL;
   return list;
 }
-
-// int main()
-// {
-//   char *av[] = {"f", ">"  , "f", "eh", "|", NULL};
-    
-//   for(int i = 0; i < tow_d_lenth(av); i++)
-//   {
-//     print_error("%s : ", ptr[i].word);
-//     print_error("%d\n", ptr[i].type);
-//   }
-//
-//   return 0;
-// }

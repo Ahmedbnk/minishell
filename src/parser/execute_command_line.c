@@ -45,7 +45,7 @@ void	print_command(t_data *tokenized)
   printf("\n");
 }
 
-void	process_command(t_data *tokenized, char **env)
+void	process_command(t_data *tokenized, t_shell_control_block *shell)
 {
   char	*in_file_name;
   char	*file_name;
@@ -55,7 +55,7 @@ void	process_command(t_data *tokenized, char **env)
 
   in_file_name = NULL;
   file_name = NULL;
-  command_and_args = get_cmd_and_its_args(tokenized);
+  command_and_args = get_cmd_and_its_args(shell);
   while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
     if (tokenized->type == HEREDOC)
@@ -80,22 +80,22 @@ void	process_command(t_data *tokenized, char **env)
     dup2(fd_in, 0);
     close(fd_in);
   }
-  execute_command(command_and_args[0], command_and_args, env);
+  execute_command(shell);
   unlink(in_file_name);
 }
 
-void execute_command_line(t_data *tokenized, char **env)
+void execute_command_line(t_shell_control_block *shell)
 {
   int arr[2];
   int previous_read_end;
   t_data *start;
 
   previous_read_end = -1;
-  while (tokenized && tokenized->word)
+  while (shell->tokenized && shell->tokenized->word)
   {
-    start = tokenized;
-    skip_command(&tokenized);
-    if (tokenized && tokenized->type == PIPE)
+    start = shell->tokenized;
+    skip_command(&shell->tokenized);
+    if (shell->tokenized && shell->tokenized->type == PIPE)
       pipe(arr);
     if (fork() == 0)
     {
@@ -104,23 +104,23 @@ void execute_command_line(t_data *tokenized, char **env)
         dup2(previous_read_end, 0);
         close(previous_read_end);
       }
-      if (tokenized && tokenized->type == PIPE)
+      if (shell->tokenized && shell->tokenized->type == PIPE)
       {
         close(previous_read_end);
         close(arr[0]);
         dup2(arr[1], 1);
         close(arr[1]);
       }
-      process_command(start, env);
+      process_command(start, shell->env_cpy);
       exit(0);
     }
     if (previous_read_end != -1)
       close(previous_read_end);
-    if (tokenized && tokenized->type == PIPE)
+    if (shell->tokenized && shell->tokenized->type == PIPE)
     {
       close(arr[1]);
       previous_read_end =arr[0];
-      tokenized++;
+      shell->tokenized++;
     }
   }
   if (previous_read_end != -1)

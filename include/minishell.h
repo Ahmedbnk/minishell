@@ -48,13 +48,15 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct s_mini_data
+typedef struct s_shell_control_block
 {
   char **env_cpy;
   char *line;
   char **splitted;
   t_data *tokenized;
-}t_shell_block;
+  char **cmd_and_args;
+
+}t_shell_control_block;
 
 //t_token				*add_node(t_token **list, t_token *node);
 //t_token				*creat_node(char *str);
@@ -83,7 +85,7 @@ char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
 t_data *make_token(char **arr);
 int len_of_two_d_array(char **str);
-void execute_command_line(t_data *tokenized, char **env);
+void execute_command_line(t_shell_control_block *shell);
 
 
 int					ft_isalnum(int c);
@@ -109,7 +111,7 @@ void handle_redir_in(char *str, char **in_file_name);
 char *read_file(char *file_name);
 void handle_redir_out(char *str, char **file_name);
 void handle_append(char *str, char **file_name);
-char **get_cmd_and_its_args(t_data *arr_of_stracts);
+char **get_cmd_and_its_args(t_shell_control_block *shell);
 void execute_command(char *cmd , char **av, char **env);
 void	remove_quotes(char **line);
 
@@ -121,7 +123,7 @@ void print_env(char **env);
 void echo(char **args);
 int	ft_strncmp(const char *big, const char *little, size_t n);
 char *pwd();
-void check_built_in_command(char **env, char **cmd_and_args);
+void execute_built_in(char **env, char **cmd_and_args);
 void print_env(char **env);
 void export(char ***env, char **to_export);
 int is_it_key_value(char *str);

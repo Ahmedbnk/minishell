@@ -79,25 +79,25 @@ int how_many_strcut_in_the_array(t_data *arr_of_stracts)
 	return  number_of_structs;
 }
 
-char **get_cmd_and_its_args(t_data *arr_of_stracts)
+//char **get_cmd_and_its_args(t_data *arr_of_stracts)
+char **get_cmd_and_its_args(t_shell_control_block *shell)
 {
 	int i;
 	int j;
-	char **cmd_and_args;
 
-	cmd_and_args = ft_malloc( how_many_strcut_in_the_array(arr_of_stracts)* sizeof(t_data ) + 1);
+	shell->cmd_and_args = ft_malloc( how_many_strcut_in_the_array(shell->tokenized)* sizeof(t_data ));
 
 	i = 0;
 	j = 0;
-	while(arr_of_stracts[i].word != NULL)
+	while(shell->tokenized[i].word != NULL)
 	{
-		if(arr_of_stracts[i].type == REDIR_IN || arr_of_stracts[i].type == HEREDOC || 
-		arr_of_stracts[i].type == REDIR_OUT || arr_of_stracts[i].type == REDIR_APPEND)
+		if(shell->tokenized[i].type == REDIR_IN || shell->tokenized[i].type == HEREDOC || 
+		shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
 			i++;
-		else if(arr_of_stracts[i].type == WORD)
+		else if(shell->tokenized[i].type == WORD)
 		{
 
-			cmd_and_args[j] = ft_strdup(arr_of_stracts[i].word);
+			cmd_and_args[j] = ft_strdup(shell->tokenized[i].word);
 		j++;
 	}
 		else

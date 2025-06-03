@@ -12,61 +12,65 @@ void expand_input(char **input) {
   }
 }
 
-void parse_line(t_shell_block *shell_block)
+void parse_line(t_shell_control_block *shell)
 {
+  shell->splitted = customized_split(shell->line);
+  shell->splitted = split_with_operators(shell->splitted);
+  expand_input(shell->splitted);
+  shell->tokenized = make_token(shell->splitted);
+}
 
-  shell_block->splitted = customized_split(shell_block->line);
-  shell_block->splitted = split_with_operators(shell_block->splitted);
-  expand_input(shell_block->splitted);
-
-  shell_block->tokenized = make_token(shell_block->splitted);
-  if (shell_block->tokenized) {
-    remove_quotes_from_args(shell_block->splitted);
-    create_all_heredocs(shell_block->tokenized);
-    execute_command_line(shell_block->tokenized,shell_block->env_cpy);
+void execute_line(t_shell_control_block *shell)
+{
+  if (shell->tokenized) {
+    create_all_heredocs(shell->tokenized);
+//    execute_built_in(shell);
+    execute_command_line(shell);
   }
 }
 
-char *ft_readline(t_shell_block *shell_block) {
+char *ft_readline(t_shell_control_block *shell) {
 
 
-  shell_block->line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
-  if (shell_block->line && *shell_block->line)
+  shell->line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
+  if (shell->line && *shell->line)
 
-    add_history(shell_block->line);
-  if (shell_block->line == NULL)
+    add_history(shell->line);
+  if (shell->line == NULL)
   {
-    free(shell_block->line);
+    free(shell->line);
     free_memory(*get_garbage_pointer());
     exit(0);
     return NULL;
   }
-  if (check_error(shell_block->line ))
+  if (check_error(shell->line ))
     return NULL;
-  return shell_block->line;
+  return shell->line;
 }
 
-void ft_init_shell_block(t_shell_block *shell_block, int ac, char **av)
+void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
 {
   (void) ac;
   (void) av;
-  shell_block->env_cpy = NULL;
-  shell_block->line = NULL;
-  shell_block->splitted = NULL;
+  shell->env_cpy = NULL;
+  shell->line = NULL;
+  shell->splitted = NULL;
+  shell->cmd_and_args = NULL;
 }
 
 int main(int ac, char **av, char **env)
 { 
-  t_shell_block shell_block;
+  t_shell_control_block shell;
 
-  ft_init_shell_block(&shell_block, ac, av);
-  shell_block.env_cpy = copy_env(env);
+  ft_init_shell_block(&shell, ac, av);
+  shell.env_cpy = copy_env(env);
 
  while (1) {
     handle_signals();
-    if(!ft_readline(&shell_block))
+    if(!ft_readline(&shell))
       continue;
-    parse_line(&shell_block);
+    parse_line(&shell);
+    execute_line(&shell);
   }
   return (0);
 }
