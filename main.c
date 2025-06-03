@@ -12,7 +12,7 @@ void expand_input(char **input) {
   }
 }
 
-void parse_and_expand(t_shell_block *shell_block)
+void parse_line(t_shell_block *shell_block)
 {
 
   shell_block->splitted = customized_split(shell_block->line);
@@ -27,48 +27,46 @@ void parse_and_expand(t_shell_block *shell_block)
   }
 }
 
-char *ft_readline(void) {
+char *ft_readline(t_shell_block *shell_block) {
 
-  char *line;
-  handle_signals();
 
-  line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
-  if (line && *line)
-    add_history(line);
-  if (line == NULL)
+  shell_block->line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
+  if (shell_block->line && *shell_block->line)
+
+    add_history(shell_block->line);
+  if (shell_block->line == NULL)
   {
-    free(line);
+    free(shell_block->line);
     free_memory(*get_garbage_pointer());
     exit(0);
     return NULL;
   }
-  return line;
+  if (check_error(shell_block->line ))
+    return NULL;
+  return shell_block->line;
 }
 
-void ft_init_shell_block(t_shell_block *shell_block)
+void ft_init_shell_block(t_shell_block *shell_block, int ac, char **av)
 {
+  (void) ac;
+  (void) av;
   shell_block->env_cpy = NULL;
   shell_block->line = NULL;
   shell_block->splitted = NULL;
 }
-int main(int ac, char **av, char **env) {
 
+int main(int ac, char **av, char **env)
+{ 
   t_shell_block shell_block;
 
-  ft_init_shell_block(&shell_block);
-
+  ft_init_shell_block(&shell_block, ac, av);
   shell_block.env_cpy = copy_env(env);
 
-  (void)ac;
-  (void)av;
-  while (1) {
-    shell_block.line  = ft_readline();
-    if(!shell_block.line )
+ while (1) {
+    handle_signals();
+    if(!ft_readline(&shell_block))
       continue;
-    if (check_error(shell_block.line ))
-      free_memory(*get_garbage_pointer());
-    parse_and_expand(&shell_block);
-    free(shell_block.line);
+    parse_line(&shell_block);
   }
   return (0);
 }
