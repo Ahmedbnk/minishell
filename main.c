@@ -73,7 +73,7 @@ char *ft_readline(t_shell_control_block *shell) {
   if (shell->line == NULL)
   {
     free(shell->line);
-    free_memory(*get_garbage_pointer());
+    free_memory(get_garbage_pointer());
     exit(0);
     return NULL;
   }
@@ -106,6 +106,8 @@ int main(int ac, char **av, char **env)
       continue;
     parse_line(&shell);
     execute_line(&shell);
+    free_memory(get_garbage_pointer());
+    free(shell.line);
   }
   return (0);
 }
