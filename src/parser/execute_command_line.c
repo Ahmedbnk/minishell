@@ -53,7 +53,7 @@ void	process_command(t_data *tokenized, t_shell_control_block *shell)
   int		fd_in;
   in_file_name = NULL;
   file_name = NULL;
-   get_cmd_and_its_args(shell);
+  get_cmd_and_its_args(shell);
   while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
     if (tokenized->type == HEREDOC)

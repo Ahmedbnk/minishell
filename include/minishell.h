@@ -54,8 +54,7 @@ typedef struct s_shell_control_block
   char *line;
   char **splitted;
   t_data *tokenized;
-  char *cmd;
-  char **cmd_args;
+  char **cmd_and_args;
 
 }t_shell_control_block;
 
@@ -124,7 +123,7 @@ void print_env(char **env);
 void echo(char **args);
 int	ft_strncmp(const char *big, const char *little, size_t n);
 char *pwd();
-void execute_built_in(char **env, char **cmd_and_args);
+int execute_built_in(t_shell_control_block *shell);
 void print_env(char **env);
 void export(char ***env, char **to_export);
 int is_it_key_value(char *str);
@@ -137,7 +136,7 @@ int	ft_strcmp(char *s1, char *s2);
 
 
 //int	ft_strncmp(const char *big, const char *little, size_t n);
-void cd(char **env, char *path);
+void cd(char **env, char **path);
 int	print_error(const char *str, ...);
 void create_all_heredocs(t_data *tokenized);
 #endif

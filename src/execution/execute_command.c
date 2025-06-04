@@ -56,13 +56,13 @@ char **get_path()
 
 void execute_command(t_shell_control_block *shell)
 {
-	if(!shell->cmd)
+	if(!*shell->cmd_and_args)
 		return;
 	char **path = get_path();
-	if(*shell->cmd == '/')
-		check_the_access(shell->cmd, shell->cmd_args, shell->env_cpy);
+	if(**shell->cmd_and_args == '/')
+		check_the_access(*shell->cmd_and_args, shell->cmd_and_args, shell->env_cpy);
 	else
-		check_after_geting_bath(shell->cmd ,shell->cmd_args , path , shell->env_cpy);
+		check_after_geting_bath(*shell->cmd_and_args ,shell->cmd_and_args , path , shell->env_cpy);
 }
 
 int how_many_strcut_in_the_array(t_data *arr_of_stracts)
@@ -85,7 +85,7 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
     int i;
     int j;
 
-    shell->cmd_args = ft_malloc( how_many_strcut_in_the_array(shell->tokenized)* sizeof(t_data ));
+    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenized)+1)* sizeof(t_data ));
 
     i = 0;
     j = 0;
@@ -95,22 +95,11 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
           shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
           i++;
         else if(shell->tokenized[i].type == WORD)
-        {
-        if(!shell->cmd)
-          shell->cmd = ft_strdup(shell->tokenized[i].word);
-        shell->cmd_args[j] = ft_strdup(shell->tokenized[i].word);
-          j++;
-        }
+        	shell->cmd_and_args[j++] = ft_strdup(shell->tokenized[i].word);
         else
           break;
         i++;
     }
-  shell->cmd_args[j] = NULL;
-  // printf("%s\n", shell->cmd);
-  // for (int i = 0; shell->cmd_args[i]; i++) 
-  //   printf("%s\n", shell->cmd_args[i]);
-  //
-  // exit(1);
-  //
-  return shell->cmd_args;
+	shell->cmd_and_args[j] = NULL;
+  return shell->cmd_and_args;
 }

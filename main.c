@@ -59,7 +59,12 @@ void execute_line(t_shell_control_block *shell)
   if (shell->tokenized)
   {
     create_all_heredocs(shell->tokenized);
-     execute_command_line(shell);
+    get_cmd_and_its_args(shell);
+    if(!execute_built_in(shell))
+    {
+      printf("from ex execute_built_in %s\n", "not built ink");
+      execute_command_line(shell);
+    }
   }
 }
 
@@ -89,8 +94,7 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->env_cpy = NULL;
   shell->line = NULL;
   shell->splitted = NULL;
-  shell->cmd= NULL;
-  shell->cmd_args= NULL;
+  shell->cmd_and_args= NULL;
 }
 
 int main(int ac, char **av, char **env)
@@ -106,7 +110,7 @@ int main(int ac, char **av, char **env)
       continue;
     parse_line(&shell);
     execute_line(&shell);
-    free_memory(get_garbage_pointer());
+    //free_memory(get_garbage_pointer());
     free(shell.line);
   }
   return (0);

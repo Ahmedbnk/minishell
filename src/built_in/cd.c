@@ -14,15 +14,15 @@ void update_env_dir(char **env, char *old_dir, char *new_dir)
     }
 }
 
-void cd(char **env, char *path)
+void cd(char **env, char **path)
 {
     char *old_dir;
     char *new_dir;
 
+    if(are_they_equal(*path, "cd"))
+        path++;
     old_dir = pwd();
-
-    printf("old_dir %s\n", old_dir);
-    if(chdir(path) == 0)
+    if(chdir(*path) == 0)
     {
         new_dir = pwd();
         update_env_dir(env, old_dir, new_dir);
