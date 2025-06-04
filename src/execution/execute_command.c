@@ -86,7 +86,7 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
     int i;
     int j;
 
-    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenized)+1)* sizeof(t_data ));
+    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenized)+1)* sizeof(t_data ),1);
 
     i = 0;
     j = 0;
@@ -96,7 +96,7 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
           shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
           i++;
         else if(shell->tokenized[i].type == WORD)
-        	shell->cmd_and_args[j++] = ft_strdup(shell->tokenized[i].word);
+        	shell->cmd_and_args[j++] = ft_strdup(shell->tokenized[i].word, 1);
         else
           break;
         i++;

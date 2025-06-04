@@ -81,7 +81,7 @@ char	*expand_if_possible(char *str , int heredoc_flag)
 	offset = 0;
 	num_of_expantion = how_many_dallar_to_expand(str, heredoc_flag);
   if(num_of_expantion == 0)
-    return (ft_strdup(str));
+    return (ft_strdup(str,1));
 	allocat_and_init(&list, num_of_expantion, heredoc_flag);
 	while (i < num_of_expantion)
 	{

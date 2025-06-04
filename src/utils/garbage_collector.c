@@ -3,12 +3,11 @@
 t_list	**get_garbage_pointer(int flag)
 {
 	static t_list	*garbage_list = NULL;
-	static t_list	*garbage_list_XX = NULL;
+	static t_list	*env_colloctor = NULL;
 
 	if(flag)
 		return (&garbage_list);
-	if(!flag)
-		return (&garbage_list_XX);
+	return (&env_colloctor);
 }
 
 void	free_memory(t_list **list_pointer)
@@ -39,7 +38,7 @@ void	*ft_malloc(size_t size, int falg)
 	pointer = malloc(size);
 	if (!pointer)
 		free_memory(garbage_list);
-	new_node = garbage_collection_lstnew(pointer);
+	new_node = garbage_collection_lstnew(pointer, falg);
 	if (!new_node)
 	{
 		free(pointer);

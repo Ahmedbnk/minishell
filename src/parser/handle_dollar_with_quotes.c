@@ -2,7 +2,7 @@
 
 char *remove_dollar_if_quotes_after_it(char *str)
 {
-  char *returned_string = ft_malloc(ft_strlen(str)+2);
+  char *returned_string = ft_malloc(ft_strlen(str)+2, 1);
   int i = 0;
   int j = 0;
   while(str[i])

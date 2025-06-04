@@ -29,7 +29,7 @@ char	*custom_join(char const *s1, char const *s2)
 		len1 = ft_strlen(s1);
 	if (s2)
 		len2 = ft_strlen(s2);
-	a = ft_malloc(len1 + len2 + 1);
+	a = ft_malloc(len1 + len2 + 1, 1);
 	if (s1)
 		ft_strcpy(a, s1);
 	else

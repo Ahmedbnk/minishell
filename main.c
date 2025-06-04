@@ -2,7 +2,7 @@
 
 char *remove_dollar_if_quotes_after_it(char *str)
 {
-  char *returned_string = ft_malloc(ft_strlen(str));
+  char *returned_string = ft_malloc(ft_strlen(str), 1);
   int i = 0;
   int j = 0;
   while(str[i])
@@ -77,7 +77,8 @@ char *ft_readline(t_shell_control_block *shell) {
   if (shell->line == NULL)
   {
     free(shell->line);
-    free_memory(get_garbage_pointer());
+    free_memory(get_garbage_pointer(1));
+    free_memory(get_garbage_pointer(0));
     exit(0);
     return NULL;
   }
@@ -109,7 +110,7 @@ int main(int ac, char **av, char **env)
       continue;
     parse_line(&shell);
     execute_line(&shell);
-    free_memory(get_garbage_pointer());
+    free_memory(get_garbage_pointer(1));
     free(shell.line);
   }
   return (0);
