@@ -6,6 +6,8 @@ void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 	char *cmd_with_slash;
 	char *cmd_with_its_path;
 
+	if(!path)
+		return;
 	i = 0;
 	cmd_with_slash = ft_strjoin("/", cmd);
 	while(path[i])
@@ -19,11 +21,11 @@ void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 				exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
 			}
 			else
-				exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
+				exit((print_error("%s: Permition denied\n", cmd), 1));
 		}
 		i++;
 	}
-	exit((print_error("%s: %s\n", cmd, strerror(errno)), 1));
+	exit((print_error("%s: command not found\n", cmd), 1));
 }
 
 
@@ -79,7 +81,6 @@ int how_many_strcut_in_the_array(t_data *arr_of_stracts)
 	return  number_of_structs;
 }
 
-//char **get_cmd_and_its_args(t_data *arr_of_stracts)
 char **get_cmd_and_its_args(t_shell_control_block *shell)
 {
     int i;

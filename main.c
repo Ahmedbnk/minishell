@@ -62,7 +62,6 @@ void execute_line(t_shell_control_block *shell)
     get_cmd_and_its_args(shell);
     if(!execute_built_in(shell))
     {
-      printf("from ex execute_built_in %s\n", "not built ink");
       execute_command_line(shell);
     }
   }
@@ -110,7 +109,7 @@ int main(int ac, char **av, char **env)
       continue;
     parse_line(&shell);
     execute_line(&shell);
-    //free_memory(get_garbage_pointer());
+    free_memory(get_garbage_pointer());
     free(shell.line);
   }
   return (0);

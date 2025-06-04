@@ -58,8 +58,6 @@ typedef struct s_shell_control_block
 
 }t_shell_control_block;
 
-//t_token				*add_node(t_token **list, t_token *node);
-//t_token				*creat_node(char *str);
 
 int					check_error(char *str);
 
@@ -139,4 +137,5 @@ int	ft_strcmp(char *s1, char *s2);
 void cd(char **env, char **path);
 int	print_error(const char *str, ...);
 void create_all_heredocs(t_data *tokenized);
+void unset(char ***env, char **vars);
 #endif
