@@ -2,7 +2,7 @@
 
 char *remake_delimeter(char *str)
 {
-  char *returned_str = malloc(ft_strlen(str) + 1);
+  char *returned_str = ft_malloc(ft_strlen(str) + 1, 1);
 
   int i = 0;
   int j = 0;
@@ -18,7 +18,7 @@ char *remake_delimeter(char *str)
     else
       returned_str[j++] = str[i++];
   }
-  returned_str[i] = '\0';
+  returned_str[j] = '\0';
   remove_quotes(&returned_str);
   return returned_str;
 }

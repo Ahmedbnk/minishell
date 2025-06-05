@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/nkasimi/minishell/	//
+!_TAG_PROC_CWD	/home/abenkrar/Desktop/minishell/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -151,7 +151,6 @@ get_next_line	src/utils/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	type
 get_path	src/execution/execute_command.c	/^char **get_path()$/;"	f	typeref:typename:char **
 get_token_type	src/parser/make_token.c	/^t_token	get_token_type(const char *str)$/;"	f	typeref:typename:t_token
 handle_append	src/parser/handle_append.c	/^void handle_append(char *str, char **file_name)$/;"	f	typeref:typename:void
-handle_dollar_with_quotes	main.c	/^char **handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
 handle_dollar_with_quotes	src/parser/handle_dollar_with_quotes.c	/^char **handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
 handle_failure_and_eof	src/utils/get_next_line.c	/^static char	*handle_failure_and_eof(char *rest, ssize_t readed_bytes)$/;"	f	typeref:typename:char *	file:
 handle_redir_in	src/parser/handle_redir_in.c	/^void handle_redir_in(char *str, char **in_file_name)$/;"	f	typeref:typename:void
@@ -170,11 +169,13 @@ is_it_key_value	src/built_in/ist_valid_env_var.c	/^int is_it_key_value(char *str
 is_operator	src/parser/split_with_operators.c	/^static int	is_operator(char *str, int i)$/;"	f	typeref:typename:int	file:
 is_space	src/utils/is_space.c	/^int	is_space(char c)$/;"	f	typeref:typename:int
 is_the_var_in_env	src/built_in/unset.c	/^int is_the_var_in_env(char **env, char *var)$/;"	f	typeref:typename:int
+is_there_a_pipe	main.c	/^int is_there_a_pipe(t_shell_control_block *shell)$/;"	f	typeref:typename:int
 is_valid_var	src/built_in/ist_valid_env_var.c	/^int is_valid_var(char *str)$/;"	f	typeref:typename:int
 last_one	include/minishell.h	/^	int				last_one;$/;"	m	struct:s_expand	typeref:typename:int
 len_of_two_d_array	src/utils/len_of_two_d_array.c	/^int len_of_two_d_array(char **str)$/;"	f	typeref:typename:int
 line	include/minishell.h	/^  char *line;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 main	main.c	/^int main(int ac, char **av, char **env)$/;"	f	typeref:typename:int
+main	test.c	/^int main()$/;"	f	typeref:typename:int
 make_token	src/parser/make_token.c	/^t_data *make_token(char **arr)$/;"	f	typeref:typename:t_data *
 n_counter	libft/ft_itoa.c	/^static int	n_counter(int n)$/;"	f	typeref:typename:int	file:
 n_counter	src/utils/ft_itoa.c	/^static int	n_counter(int n)$/;"	f	typeref:typename:int	file:
@@ -193,7 +194,6 @@ re	libft/Makefile	/^re: fclean all$/;"	t
 read_file	src/parser/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *
 read_file	src/utils/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *
 remake_delimeter	src/parser/handle_heredoc.c	/^char *remake_delimeter(char *str)$/;"	f	typeref:typename:char *
-remove_dollar_if_quotes_after_it	main.c	/^char *remove_dollar_if_quotes_after_it(char *str)$/;"	f	typeref:typename:char *
 remove_dollar_if_quotes_after_it	src/parser/handle_dollar_with_quotes.c	/^char *remove_dollar_if_quotes_after_it(char *str)$/;"	f	typeref:typename:char *
 remove_quotes	src/parser/remove_quotes_from_args.c	/^void	remove_quotes(char **line)$/;"	f	typeref:typename:void
 remove_quotes_from_args	src/parser/remove_quotes_from_args.c	/^void remove_quotes_from_args(char **splitted)$/;"	f	typeref:typename:void
