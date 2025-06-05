@@ -77,7 +77,8 @@ void	process_command(t_data *tokenized, t_shell_control_block *shell)
     dup2(fd_in, 0);
     close(fd_in);
   }
-  execute_command(shell);
+  if(!execute_built_in(shell))
+    execute_command(shell);
   unlink(in_file_name);
 }
 

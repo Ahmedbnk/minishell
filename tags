@@ -43,16 +43,15 @@ allocat_expand_list	src/env/allocate_and_init_expand_list.c	/^static void	alloca
 are_they_equal	src/utils/are_they_equal.c	/^int	are_they_equal(const char *str1, const char *str2)$/;"	f	typeref:typename:int
 befor_dollar	include/minishell.h	/^	char			*befor_dollar;$/;"	m	struct:s_expand	typeref:typename:char *
 calculate_all_symboles_operators	src/parser/split_with_operators.c	/^static int	calculate_all_symboles_operators(char **splitted)$/;"	f	typeref:typename:int	file:
-cd	src/built_in/cd.c	/^void cd(char **env, char *path)$/;"	f	typeref:typename:void
-check_after_geting_bath	src/execution/execute_command.c	/^void  check_after_geting_bath( char *cmd, char **args, char **path, char **env)$/;"	f	typeref:typename:void
+cd	src/built_in/cd.c	/^void cd(char **env, char **path)$/;"	f	typeref:typename:void
+check_after_geting_bath	src/execution/execute_command.c	/^void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)$/;"	f	typeref:typename:void
 check_error	src/parser/check_input_error.c	/^int	check_error(char *str)$/;"	f	typeref:typename:int
 check_syntax_error	src/parser/make_token.c	/^int check_syntax_error(t_data *data, int len)$/;"	f	typeref:typename:int
-check_the_access	src/execution/execute_command.c	/^void  check_the_access(char *cmd, char **args, char **env)$/;"	f	typeref:typename:void
+check_the_access	src/execution/execute_command.c	/^void  check_the_access(char *cmd, char **av, char **env)$/;"	f	typeref:typename:void
 check_unclosed_quotes	src/parser/check_input_error.c	/^int	check_unclosed_quotes(char *str)$/;"	f	typeref:typename:int
 clean	Makefile	/^clean:$/;"	t
 clean	libft/Makefile	/^clean:$/;"	t
-cmd	include/minishell.h	/^  char *cmd;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
-cmd_args	include/minishell.h	/^  char **cmd_args;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
+cmd_and_args	include/minishell.h	/^  char **cmd_and_args;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
 compare_env_var	src/built_in/ist_valid_env_var.c	/^int compare_env_var(char *var1, char *var2)$/;"	f	typeref:typename:int
 content	include/minishell.h	/^	void			*content;$/;"	m	struct:s_list	typeref:typename:void *
 copy_env	src/env/copy_env.c	/^char ** copy_env(char **env)$/;"	f	typeref:typename:char **
@@ -68,7 +67,7 @@ double_q	include/minishell.h	/^# define double_q /;"	d
 e_token_type	include/minishell.h	/^typedef enum e_token_type$/;"	g
 echo	src/built_in/echo.c	/^void echo(char **args)$/;"	f	typeref:typename:void
 env_cpy	include/minishell.h	/^  char **env_cpy;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
-execute_built_in	src/built_in/check_built_in_command.c	/^void execute_built_in(char **env, char **cmd_and_args)$/;"	f	typeref:typename:void
+execute_built_in	src/built_in/check_built_in_command.c	/^int  execute_built_in(t_shell_control_block *shell)$/;"	f	typeref:typename:int
 execute_command	src/execution/execute_command.c	/^void execute_command(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 execute_command_line	src/parser/execute_command_line.c	/^void execute_command_line(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 execute_line	main.c	/^void execute_line(t_shell_control_block *shell)$/;"	f	typeref:typename:void
@@ -83,7 +82,7 @@ fill_n_str	src/utils/ft_itoa.c	/^static void	fill_n_str(char *str, int n)$/;"	f	
 fill_the_list	src/parser/make_token.c	/^void fill_the_list(t_data * list, char **arr)$/;"	f	typeref:typename:void
 find_and_update_var	src/built_in/export.c	/^static int find_and_update_var(char **env, char *var)$/;"	f	typeref:typename:int	file:
 format_specifier	src/utils/print_error.c	/^void	format_specifier(va_list arguements, char specifier, int *counter)$/;"	f	typeref:typename:void
-free_memory	src/utils/garbage_collector.c	/^void	free_memory(t_list *lst)$/;"	f	typeref:typename:void
+free_memory	src/utils/garbage_collector.c	/^void	free_memory(t_list **list_pointer)$/;"	f	typeref:typename:void
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f	typeref:typename:int
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f	typeref:typename:void
 ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f	typeref:typename:void *
@@ -107,7 +106,7 @@ ft_lstlast	libft/ft_lstlast_bonus.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f	type
 ft_lstmap	libft/ft_lstmap_bonus.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f	typeref:typename:t_list *
 ft_lstnew	src/utils/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f	typeref:typename:t_list *
 ft_lstsize	libft/ft_lstsize_bonus.c	/^int	ft_lstsize(t_list *lst)$/;"	f	typeref:typename:int
-ft_malloc	src/utils/garbage_collector.c	/^void	*ft_malloc(size_t size)$/;"	f	typeref:typename:void *
+ft_malloc	src/utils/garbage_collector.c	/^void	*ft_malloc(size_t size, int falg)$/;"	f	typeref:typename:void *
 ft_memchr	libft/ft_memchr.c	/^void	*ft_memchr(void *s, int c, size_t n)$/;"	f	typeref:typename:void *
 ft_memcmp	libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f	typeref:typename:int
 ft_memcpy	src/utils/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f	typeref:typename:void *
@@ -126,7 +125,7 @@ ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typere
 ft_strchr	src/utils/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typeref:typename:char *
 ft_strcmp	src/built_in/ft_strcmp.c	/^int	ft_strcmp(char *s1, char *s2)$/;"	f	typeref:typename:int
 ft_strcpy	src/utils/custom_join.c	/^void ft_strcpy(char *dst, const char *src)$/;"	f	typeref:typename:void
-ft_strdup	src/utils/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f	typeref:typename:char *
+ft_strdup	src/utils/ft_strdup.c	/^char	*ft_strdup(const char *s, int flag)$/;"	f	typeref:typename:char *
 ft_striteri	libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char *))$/;"	f	typeref:typename:void
 ft_strjoin	src/utils/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
 ft_strlcat	libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f	typeref:typename:size_t
@@ -143,15 +142,17 @@ ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f	typeref:typename:int
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f	typeref:typename:int
 ft_w_counter	src/parser/customized_split.c	/^static int	ft_w_counter(char const *s)$/;"	f	typeref:typename:int	file:
 ft_w_counter	src/utils/ft_split.c	/^static int	ft_w_counter(char const *s, char c)$/;"	f	typeref:typename:int	file:
-garbage_collection_lstnew	src/utils/garbage_collection_lstnew.c	/^t_list	*garbage_collection_lstnew(void *content)$/;"	f	typeref:typename:t_list *
+garbage_collection_lstnew	src/utils/garbage_collection_lstnew.c	/^t_list	*garbage_collection_lstnew(void *content, int flag)$/;"	f	typeref:typename:t_list *
 generate_random_name	src/parser/execute_command_line.c	/^char	*generate_random_name(void)$/;"	f	typeref:typename:char *
 generate_random_number	src/parser/execute_command_line.c	/^int	generate_random_number(void)$/;"	f	typeref:typename:int
 get_cmd_and_its_args	src/execution/execute_command.c	/^char **get_cmd_and_its_args(t_shell_control_block *shell)$/;"	f	typeref:typename:char **
-get_garbage_pointer	src/utils/garbage_collector.c	/^t_list	**get_garbage_pointer(void)$/;"	f	typeref:typename:t_list **
+get_garbage_pointer	src/utils/garbage_collector.c	/^t_list	**get_garbage_pointer(int flag)$/;"	f	typeref:typename:t_list **
 get_next_line	src/utils/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
 get_path	src/execution/execute_command.c	/^char **get_path()$/;"	f	typeref:typename:char **
 get_token_type	src/parser/make_token.c	/^t_token	get_token_type(const char *str)$/;"	f	typeref:typename:t_token
 handle_append	src/parser/handle_append.c	/^void handle_append(char *str, char **file_name)$/;"	f	typeref:typename:void
+handle_dollar_with_quotes	main.c	/^char **handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
+handle_dollar_with_quotes	src/parser/handle_dollar_with_quotes.c	/^char **handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
 handle_failure_and_eof	src/utils/get_next_line.c	/^static char	*handle_failure_and_eof(char *rest, ssize_t readed_bytes)$/;"	f	typeref:typename:char *	file:
 handle_redir_in	src/parser/handle_redir_in.c	/^void handle_redir_in(char *str, char **in_file_name)$/;"	f	typeref:typename:void
 handle_redir_out	src/parser/handle_redir_out.c	/^void handle_redir_out(char *str, char **file_name)$/;"	f	typeref:typename:void
@@ -192,6 +193,8 @@ re	libft/Makefile	/^re: fclean all$/;"	t
 read_file	src/parser/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *
 read_file	src/utils/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *
 remake_delimeter	src/parser/handle_heredoc.c	/^char *remake_delimeter(char *str)$/;"	f	typeref:typename:char *
+remove_dollar_if_quotes_after_it	main.c	/^char *remove_dollar_if_quotes_after_it(char *str)$/;"	f	typeref:typename:char *
+remove_dollar_if_quotes_after_it	src/parser/handle_dollar_with_quotes.c	/^char *remove_dollar_if_quotes_after_it(char *str)$/;"	f	typeref:typename:char *
 remove_quotes	src/parser/remove_quotes_from_args.c	/^void	remove_quotes(char **line)$/;"	f	typeref:typename:void
 remove_quotes_from_args	src/parser/remove_quotes_from_args.c	/^void remove_quotes_from_args(char **splitted)$/;"	f	typeref:typename:void
 remove_quotes_helper	src/parser/remove_quotes_from_args.c	/^static void	remove_quotes_helper(char *line, char **parsed_quote_line)$/;"	f	typeref:typename:void	file:

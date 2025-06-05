@@ -54,16 +54,29 @@ void parse_line(t_shell_control_block *shell)
   shell->tokenized = make_token(shell->splitted);
 }
 
+int is_there_a_pipe(t_shell_control_block *shell)
+{
+  t_data *ptr;
+
+  ptr = shell->tokenized;
+  while(ptr->word != NULL)
+  {
+    if(ptr->type == PIPE)
+      return 1;
+    ptr++;
+  }
+  return 0;
+}
+
 void execute_line(t_shell_control_block *shell)
 {
   if (shell->tokenized)
   {
     create_all_heredocs(shell->tokenized);
     get_cmd_and_its_args(shell);
-    if(!execute_built_in(shell))
-    {
+    if(!is_there_a_pipe(shell) && execute_built_in(shell));
+    else
       execute_command_line(shell);
-    }
   }
 }
 
@@ -103,8 +116,8 @@ int main(int ac, char **av, char **env)
 
   ft_init_shell_block(&shell, ac, av);
   shell.env_cpy = copy_env(env);
-
  while (1) {
+
     handle_signals();
     if(!ft_readline(&shell))
       continue;
