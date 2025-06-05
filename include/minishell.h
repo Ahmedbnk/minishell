@@ -134,6 +134,7 @@ int	ft_isdigit(int c);
 int	ft_strcmp(char *s1, char *s2);
 
 
+char **handle_dollar_with_quotes(char **splitted);
 
 //int	ft_strncmp(const char *big, const char *little, size_t n);
 void cd(char **env, char **path);

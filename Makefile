@@ -56,7 +56,7 @@ SRCS = main.c \
 	src/built_in/ft_strcmp.c\
 	src/built_in/ist_valid_env_var.c\
 	src/built_in/unset.c\
-
+	src/parser/handle_dollar_with_quotes.c\
 
 OBJS = $(SRCS:.c=.o)
 
