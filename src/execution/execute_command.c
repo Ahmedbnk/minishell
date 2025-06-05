@@ -92,14 +92,19 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
     j = 0;
     while(shell->tokenized[i].word != NULL)
     {
+      if(shell->tokenized[i].word[0] == '\0')
+        i++;
+      else
+      {
         if(shell->tokenized[i].type == REDIR_IN || shell->tokenized[i].type == HEREDOC || 
           shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
           i++;
         else if(shell->tokenized[i].type == WORD)
-        	shell->cmd_and_args[j++] = ft_strdup(shell->tokenized[i].word, 1);
+          shell->cmd_and_args[j++] = ft_strdup(shell->tokenized[i].word, 1);
         else
           break;
         i++;
+      }
     }
 	shell->cmd_and_args[j] = NULL;
   return shell->cmd_and_args;
