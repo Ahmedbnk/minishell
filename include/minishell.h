@@ -55,6 +55,13 @@ typedef struct s_shell_control_block
   char **splitted;
   t_data *tokenized;
   char **cmd_and_args;
+  int arr[2];
+  int previous_read_end;
+  t_data *line_pointer;
+  char	*in_file_name;
+  char	*file_name;
+  int		fd_out;
+  int		fd_in;
 
 }t_shell_control_block;
 
