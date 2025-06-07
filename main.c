@@ -19,7 +19,7 @@ void parse_line(t_shell_control_block *shell)
   shell->splitted = split_with_operators(shell->splitted);
   expand_input(shell->splitted);
   shell->splitted = handle_dollar_with_quotes(shell->splitted);
-  shell->tokenized = make_token(shell->splitted);
+  shell->tokenized = make_token(shell);
 }
 
 int is_there_a_pipe(t_shell_control_block *shell)
@@ -63,7 +63,7 @@ char *ft_readline(t_shell_control_block *shell) {
     exit(0);
     return NULL;
   }
-  if (check_error(shell->line ))
+  if (check_error(shell))
     return NULL;
   return shell->line;
 }
@@ -76,6 +76,7 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->line = NULL;
   shell->splitted = NULL;
   shell->cmd_and_args= NULL;
+  shell->exit_status= 0;
 }
 
 int main(int ac, char **av, char **env)
@@ -91,6 +92,7 @@ int main(int ac, char **av, char **env)
       continue;
     parse_line(&shell);
     execute_line(&shell);
+    printf("the exit status is %d\n", shell.exit_status);
     free_memory(get_garbage_pointer(1));
     free(shell.line);
   }

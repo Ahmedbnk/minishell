@@ -50,15 +50,20 @@ int check_syntax_error(t_data *data, int len)
   return 0;
 }
 
-t_data *make_token(char **arr)
+t_data *make_token(t_shell_control_block *shell)
 {
   int len;
   t_data *list;
+  char **arr;
 
+  arr = shell->splitted;
   len = len_of_two_d_array(arr);
   list = ft_malloc((len  + 1)* sizeof(t_data), 1);
   fill_the_list(list, arr);
   if(check_syntax_error(list, len))
+  {
+    shell->exit_status = 2;
     return NULL;
+  }
   return list;
 }

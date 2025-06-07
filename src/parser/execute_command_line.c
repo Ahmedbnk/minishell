@@ -86,7 +86,8 @@ void	process_command(t_shell_control_block *shell)
 
 void execute_command_line_helper(t_shell_control_block *shell)
 {
-  if (fork() == 0)
+  int p_id = fork();
+  if (p_id == 0)
   {
     if (shell->previous_read_end != -1)
     {
@@ -103,9 +104,13 @@ void execute_command_line_helper(t_shell_control_block *shell)
     process_command(shell);
     exit(0);
   }
+  else
+    shell->last_child_pid = p_id;
 }
+
 void execute_command_line(t_shell_control_block *shell)
 {
+  int status;
   shell->line_pointer = shell->tokenized;
   shell->previous_read_end = -1;
   while (shell->line_pointer && shell->line_pointer->word)
@@ -126,5 +131,13 @@ void execute_command_line(t_shell_control_block *shell)
   }
   if (shell->previous_read_end != -1)
     close(shell->previous_read_end);
+
+  waitpid(shell->last_child_pid, &status, 0);
+  if (WIFEXITED(status))
+    shell->exit_status = WEXITSTATUS(status);
+  else if(WIFSIGNALED(status))
+    shell->exit_status =  128 + WTERMSIG(status);
+  else if(WIFSTOPPED(status))
+    shell->exit_status = WSTOPSIG(status);
   while (wait(NULL) > 0);
 }

@@ -62,11 +62,13 @@ typedef struct s_shell_control_block
   char	*file_name;
   int		fd_out;
   int		fd_in;
+  int last_child_pid;
+  int exit_status;
 
 }t_shell_control_block;
 
 
-int					check_error(char *str);
+int					check_error(t_shell_control_block *shell);
 
 void				sigint_handler(int signo);
 void				handle_signals(void);
@@ -88,7 +90,7 @@ char				*new_str_after_expand(t_expand *data, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
 char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
-t_data *make_token(char **arr);
+t_data *make_token(t_shell_control_block *shell);
 int len_of_two_d_array(char **str);
 void execute_command_line(t_shell_control_block *shell);
 
