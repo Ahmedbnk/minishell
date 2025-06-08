@@ -150,4 +150,6 @@ void cd(char **env, char **path);
 int	print_error(const char *str, ...);
 void create_all_heredocs(t_data *tokenized);
 void unset(char ***env, char **vars);
+
+void print_exit_signal_message(int exit_status);
 #endif
