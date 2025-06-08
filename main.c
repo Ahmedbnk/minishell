@@ -92,7 +92,6 @@ int main(int ac, char **av, char **env)
       continue;
     parse_line(&shell);
     execute_line(&shell);
-    printf("the exit status is %d\n", shell.exit_status);
     free_memory(get_garbage_pointer(1));
     free(shell.line);
   }
