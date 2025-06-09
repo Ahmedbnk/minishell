@@ -29,8 +29,8 @@ WORD	include/minishell.h	/^	WORD,         \/\/  0 for regular words$/;"	e	enum:e
 add_var_to_env	src/built_in/export.c	/^static char **add_var_to_env(char **env , char *var)$/;"	f	typeref:typename:char **	file:
 after_dollar	include/minishell.h	/^	char			*after_dollar;$/;"	m	struct:s_expand	typeref:typename:char *
 all	Makefile	/^all: $(NAME)$/;"	t
-allocat_and_init	src/env/allocate_and_init_expand_list.c	/^void	allocat_and_init(t_expand **expand_list, int how_much_to_expand, int heredoc_flag)$/;"	f	typeref:typename:void
-allocat_expand_list	src/env/allocate_and_init_expand_list.c	/^static void	allocat_expand_list(t_expand **expand_list, int how_much_to_expand)$/;"	f	typeref:typename:void	file:
+allocat_and_init	src/env/allocate_and_init_arr_of_structs_list.c	/^void	allocat_and_init(t_arr_of_structs **expand_list, int how_much_to_expand, int heredoc_flag)$/;"	f	typeref:typename:void
+allocat_arr_of_structs_list	src/env/allocate_and_init_arr_of_structs_list.c	/^static void	allocat_arr_of_structs_list(t_arr_of_structs **expand_list, int how_much_to_expand)$/;"	f	typeref:typename:void	file:
 are_they_equal	src/utils/are_they_equal.c	/^int	are_they_equal(const char *str1, const char *str2)$/;"	f	typeref:typename:int
 arr	include/minishell.h	/^  int arr[2];$/;"	m	struct:s_shell_control_block	typeref:typename:int[2]
 befor_dollar	include/minishell.h	/^	char			*befor_dollar;$/;"	m	struct:s_expand	typeref:typename:char *
@@ -38,7 +38,7 @@ calculate_all_symboles_operators	src/parser/split_with_operators.c	/^static int	
 cd	src/built_in/cd.c	/^void cd(char **env, char **path)$/;"	f	typeref:typename:void
 check_after_geting_bath	src/execution/execute_command.c	/^void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)$/;"	f	typeref:typename:void
 check_error	src/parser/check_input_error.c	/^int	check_error(t_shell_control_block *shell)$/;"	f	typeref:typename:int
-check_syntax_error	src/parser/make_token.c	/^int check_syntax_error(t_data *data, int len)$/;"	f	typeref:typename:int
+check_syntax_error	src/parser/make_token.c	/^int check_syntax_error(t_token *data, int len)$/;"	f	typeref:typename:int
 check_the_access	src/execution/execute_command.c	/^void  check_the_access(char *cmd, char **av, char **env)$/;"	f	typeref:typename:void
 check_unclosed_quotes	src/parser/check_input_error.c	/^int	check_unclosed_quotes(char *str)$/;"	f	typeref:typename:int
 clean	Makefile	/^clean:$/;"	t
@@ -48,8 +48,8 @@ content	include/minishell.h	/^	void			*content;$/;"	m	struct:s_list	typeref:type
 copy_env	src/env/copy_env.c	/^char ** copy_env(char **env)$/;"	f	typeref:typename:char **
 creat_line	src/utils/get_next_line.c	/^static char	*creat_line(char **rest)$/;"	f	typeref:typename:char *	file:
 creat_rest	src/utils/get_next_line.c	/^static char	*creat_rest(int fd, char *rest)$/;"	f	typeref:typename:char *	file:
-create_all_heredocs	src/parser/handle_heredoc.c	/^void create_all_heredocs(t_data *tokenized)$/;"	f	typeref:typename:void
-create_heredoc	src/parser/handle_heredoc.c	/^void create_heredoc(t_data *tokenized)$/;"	f	typeref:typename:void
+create_all_heredocs	src/parser/handle_heredoc.c	/^void create_all_heredocs(t_token *tokenized)$/;"	f	typeref:typename:void
+create_heredoc	src/parser/handle_heredoc.c	/^void create_heredoc(t_token *tokenized)$/;"	f	typeref:typename:void
 custom_join	src/utils/custom_join.c	/^char	*custom_join(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
 customized_split	src/parser/customized_split.c	/^char	**customized_split(char const *s)$/;"	f	typeref:typename:char **
 delimiter	include/minishell.h	/^  char      *delimiter;$/;"	m	struct:s_data	typeref:typename:char *
@@ -66,14 +66,14 @@ execute_line	main.c	/^void execute_line(t_shell_control_block *shell)$/;"	f	type
 exit_status	include/minishell.h	/^  int exit_status;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 expand_if_possible	src/expansion/expand_if_possible.c	/^char	*expand_if_possible(char *str , int heredoc_flag)$/;"	f	typeref:typename:char *
 expand_input	main.c	/^void expand_input(char **input) {$/;"	f	typeref:typename:void
-expnad_and_join_node	src/expansion/new_string_after_expand.c	/^char	*expnad_and_join_node(t_expand data)$/;"	f	typeref:typename:char *
+expnad_and_join_node	src/expansion/new_string_after_expand.c	/^char	*expnad_and_join_node(t_arr_of_structs data)$/;"	f	typeref:typename:char *
 export	src/built_in/export.c	/^void export(char ***env, char **to_export)$/;"	f	typeref:typename:void
 fclean	Makefile	/^fclean: clean$/;"	t
 fd_in	include/minishell.h	/^  int		fd_in;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 fd_out	include/minishell.h	/^  int		fd_out;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 file_name	include/minishell.h	/^  char	*file_name;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 fill_n_str	src/utils/ft_itoa.c	/^static void	fill_n_str(char *str, int n)$/;"	f	typeref:typename:void	file:
-fill_the_list	src/parser/make_token.c	/^void fill_the_list(t_data * list, char **arr)$/;"	f	typeref:typename:void
+fill_the_list	src/parser/make_token.c	/^void fill_the_list(t_token * list, char **arr)$/;"	f	typeref:typename:void
 find_and_update_var	src/built_in/export.c	/^static int find_and_update_var(char **env, char *var)$/;"	f	typeref:typename:int	file:
 format_specifier	src/utils/print_error.c	/^void	format_specifier(va_list arguements, char specifier, int *counter)$/;"	f	typeref:typename:void
 free_memory	src/utils/garbage_collector.c	/^void	free_memory(t_list **list_pointer)$/;"	f	typeref:typename:void
@@ -108,7 +108,7 @@ get_cmd_and_its_args	src/execution/execute_command.c	/^char **get_cmd_and_its_ar
 get_garbage_pointer	src/utils/garbage_collector.c	/^t_list	**get_garbage_pointer(int flag)$/;"	f	typeref:typename:t_list **
 get_next_line	src/utils/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
 get_path	src/execution/execute_command.c	/^char **get_path()$/;"	f	typeref:typename:char **
-get_token_type	src/parser/make_token.c	/^t_token	get_token_type(const char *str)$/;"	f	typeref:typename:t_token
+get_type_type	src/parser/make_token.c	/^t_type	get_type_type(const char *str)$/;"	f	typeref:typename:t_type
 handle_all_redir	src/parser/execute_command_line.c	/^void handle_all_redir(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 handle_append	src/parser/handle_append.c	/^void handle_append(char *str, char **file_name)$/;"	f	typeref:typename:void
 handle_dollar_with_quotes	src/parser/handle_dollar_with_quotes.c	/^char **handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
@@ -120,9 +120,9 @@ handle_signals_in_child	src/signals/handle_signals.c	/^void	handle_signals_in_ch
 heredoc_file_name	include/minishell.h	/^  char      *heredoc_file_name;$/;"	m	struct:s_data	typeref:typename:char *
 heredoc_flag	include/minishell.h	/^	int				heredoc_flag;$/;"	m	struct:s_expand	typeref:typename:int
 how_many_dallar_to_expand	src/expansion/expand_if_possible.c	/^int	how_many_dallar_to_expand(char *str, int heredoc_flag)$/;"	f	typeref:typename:int
-how_many_strcut_in_the_array	src/execution/execute_command.c	/^int how_many_strcut_in_the_array(t_data *arr_of_stracts)$/;"	f	typeref:typename:int
+how_many_strcut_in_the_array	src/execution/execute_command.c	/^int how_many_strcut_in_the_array(t_token *arr_of_stracts)$/;"	f	typeref:typename:int
 in_file_name	include/minishell.h	/^  char	*in_file_name;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
-init_expand_list	src/env/allocate_and_init_expand_list.c	/^static void	init_expand_list(t_expand *expand_list, int how_much_to_expand, int heredoc_flag)$/;"	f	typeref:typename:void	file:
+init_arr_of_structs_list	src/env/allocate_and_init_arr_of_structs_list.c	/^static void	init_arr_of_structs_list(t_arr_of_structs *expand_list, int how_much_to_expand, int heredoc_flag)$/;"	f	typeref:typename:void	file:
 is_between_quotes	src/parser/is_between_quotes.c	/^int	is_between_quotes(char *line, int index)$/;"	f	typeref:typename:int
 is_expand_separator	src/expansion/is_expand_separator.c	/^int	is_expand_separator(char c)$/;"	f	typeref:typename:int
 is_expend_seperator	src/expansion/is_expand_separator_fix.c	/^int	is_expend_seperator(char c)$/;"	f	typeref:typename:int
@@ -135,15 +135,15 @@ is_valid_var	src/built_in/ist_valid_env_var.c	/^int is_valid_var(char *str)$/;"	
 last_one	include/minishell.h	/^	int				last_one;$/;"	m	struct:s_expand	typeref:typename:int
 len_of_two_d_array	src/utils/len_of_two_d_array.c	/^int len_of_two_d_array(char **str)$/;"	f	typeref:typename:int
 line	include/minishell.h	/^  char *line;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
-line_pointer	include/minishell.h	/^  t_data *line_pointer;$/;"	m	struct:s_shell_control_block	typeref:typename:t_data *
+line_pointer	include/minishell.h	/^  t_token *line_pointer;$/;"	m	struct:s_shell_control_block	typeref:typename:t_token *
 main	main.c	/^int main(int ac, char **av, char **env)$/;"	f	typeref:typename:int
-make_token	src/parser/make_token.c	/^t_data *make_token(char **arr)$/;"	f	typeref:typename:t_data *
+make_token	src/parser/make_token.c	/^t_token *make_token(char **arr)$/;"	f	typeref:typename:t_token *
 n_counter	src/utils/ft_itoa.c	/^static int	n_counter(int n)$/;"	f	typeref:typename:int	file:
-new_str_after_expand	src/expansion/new_string_after_expand.c	/^char	*new_str_after_expand(t_expand *data, int num_of_expantion)$/;"	f	typeref:typename:char *
+new_str_after_expand	src/expansion/new_string_after_expand.c	/^char	*new_str_after_expand(t_arr_of_structs *data, int num_of_expantion)$/;"	f	typeref:typename:char *
 next	include/minishell.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 parse_line	main.c	/^void parse_line(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 previous_read_end	include/minishell.h	/^  int previous_read_end;$/;"	m	struct:s_shell_control_block	typeref:typename:int
-print_command	src/parser/execute_command_line.c	/^void	print_command(t_data *tokenized)$/;"	f	typeref:typename:void
+print_command	src/parser/execute_command_line.c	/^void	print_command(t_token *tokenized)$/;"	f	typeref:typename:void
 print_env	src/built_in/env.c	/^void print_env(char **env)$/;"	f	typeref:typename:void
 print_error	src/utils/print_error.c	/^int	print_error(const char *str, ...)$/;"	f	typeref:typename:int
 print_file	src/utils/print_file.c	/^void print_file(char *str)$/;"	f	typeref:typename:void
@@ -167,22 +167,22 @@ should_i_expand	src/expansion/should_i_expand.c	/^int	should_i_expand(char *str,
 sigint_handler	src/signals/handle_signals.c	/^void	sigint_handler(int signo)$/;"	f	typeref:typename:void
 sigint_handler_in_child	src/signals/handle_signals.c	/^void	sigint_handler_in_child(int signo)$/;"	f	typeref:typename:void
 single_q	include/minishell.h	/^# define single_q /;"	d
-skip_command	src/parser/execute_command_line.c	/^void	skip_command(t_data **tokenized_address)$/;"	f	typeref:typename:void
+skip_command	src/parser/execute_command_line.c	/^void	skip_command(t_token **tokenized_address)$/;"	f	typeref:typename:void
 sort_env	src/built_in/export.c	/^ static void sort_env(char **env)$/;"	f	typeref:typename:void	file:
 split_helper	src/parser/customized_split.c	/^static void	split_helper(char **splitted, char *s, int i, int k)$/;"	f	typeref:typename:void	file:
 split_string_with_operators	src/parser/split_with_operators.c	/^static void	split_string_with_operators(char **container, char *str, int *j_ptr)$/;"	f	typeref:typename:void	file:
 split_with_operators	src/parser/split_with_operators.c	/^char	**split_with_operators(char **splitted)$/;"	f	typeref:typename:char **
 splitted	include/minishell.h	/^  char **splitted;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
-string_after_dollar	src/expansion/expand_if_possible.c	/^void	string_after_dollar(t_expand *data, int index, char *str, int *offset)$/;"	f	typeref:typename:void
-string_before_dollar	src/expansion/expand_if_possible.c	/^void	string_before_dollar(t_expand *data, int index, char *str, int *offset)$/;"	f	typeref:typename:void
-string_to_expand	src/expansion/expand_if_possible.c	/^void	string_to_expand(t_expand *data, int index, char *str, int *offset)$/;"	f	typeref:typename:void
-t_data	include/minishell.h	/^}					t_data;$/;"	t	typeref:struct:s_data
-t_expand	include/minishell.h	/^}					t_expand;$/;"	t	typeref:struct:s_expand
+string_after_dollar	src/expansion/expand_if_possible.c	/^void	string_after_dollar(t_arr_of_structs *data, int index, char *str, int *offset)$/;"	f	typeref:typename:void
+string_before_dollar	src/expansion/expand_if_possible.c	/^void	string_before_dollar(t_arr_of_structs *data, int index, char *str, int *offset)$/;"	f	typeref:typename:void
+string_to_expand	src/expansion/expand_if_possible.c	/^void	string_to_expand(t_arr_of_structs *data, int index, char *str, int *offset)$/;"	f	typeref:typename:void
+t_token	include/minishell.h	/^}					t_token;$/;"	t	typeref:struct:s_data
+t_arr_of_structs	include/minishell.h	/^}					t_arr_of_structs;$/;"	t	typeref:struct:s_expand
 t_list	include/minishell.h	/^}					t_list;$/;"	t	typeref:struct:s_list
 t_shell_control_block	include/minishell.h	/^}t_shell_control_block;$/;"	t	typeref:struct:s_shell_control_block
-t_token	include/minishell.h	/^}					t_token;$/;"	t	typeref:enum:e_token_type
+t_type	include/minishell.h	/^}					t_type;$/;"	t	typeref:enum:e_token_type
 to_expand	include/minishell.h	/^	char			*to_expand;$/;"	m	struct:s_expand	typeref:typename:char *
-tokenized	include/minishell.h	/^  t_data *tokenized;$/;"	m	struct:s_shell_control_block	typeref:typename:t_data *
+tokenized	include/minishell.h	/^  t_token *tokenized;$/;"	m	struct:s_shell_control_block	typeref:typename:t_token *
 type	include/minishell.h	/^	int				type;$/;"	m	struct:s_data	typeref:typename:int
 unset	src/built_in/unset.c	/^void unset(char ***env, char **vars)$/;"	f	typeref:typename:void
 update_env_dir	src/built_in/cd.c	/^void update_env_dir(char **env, char *old_dir, char *new_dir)$/;"	f	typeref:typename:void

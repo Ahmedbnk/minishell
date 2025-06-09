@@ -15,16 +15,8 @@
 # define double_q 34
 #define BUFFER_SIZE 40
 
-typedef struct s_expand
-{
-	char			*befor_dollar;
-	char			*to_expand;
-	char			*after_dollar;
-	int				last_one;
-	int				heredoc_flag;
-}					t_expand;
 
-typedef enum e_token_type
+typedef enum e_type
 {
 	WORD,         //  0 for regular words
 	PIPE,         // | 1
@@ -32,15 +24,15 @@ typedef enum e_token_type
 	REDIR_OUT,    // > 3
 	REDIR_APPEND, // >> 4
 	HEREDOC,      // << 5
-}					t_token;
+}					t_type;
 
-typedef struct s_data
+typedef struct s_token
 {
 	int				type;
 	char			*word;
   char      *heredoc_file_name;
   char      *delimiter;
-}					t_data;
+}					t_token;
 
 typedef struct s_list
 {
@@ -48,21 +40,34 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct  s_expand
+{
+	char			*befor_dollar;
+	char			*to_expand;
+	char			*after_dollar;
+	int				last_one;
+	int				heredoc_flag;
+
+}t_expand;
+
 typedef struct s_shell_control_block
 {
   char **env_cpy;
   char *line;
   char **splitted;
-  t_data *tokenized;
+  t_token *tokenized;
   char **cmd_and_args;
+  t_expand *expand_arr;
+
   int arr[2];
   int previous_read_end;
-  t_data *line_pointer;
+  t_token *line_pointer;
   char	*in_file_name;
   char	*file_name;
   int		fd_out;
   int		fd_in;
   int last_child_pid;
+  int status;
   int exit_status;
 
 }t_shell_control_block;
@@ -78,19 +83,21 @@ int					are_they_equal(const char *str1, const char *str2);
 
 char	**customized_split(char const *s);
 //char        *expand_if_possible(char *string);
-char	*expand_if_possible(char *str, int g);
+char	*expand_if_possible(t_shell_control_block *s, char *str, int heredoc_flag);
 int					should_i_expand(char *str, int index);
 int					is_expand_separator(char c);
 char				**split_for_expantion(char const *s);
 char				*custom_join(char const *s1, char const *s2);
 
 
+// void	allocat_and_init(t_arr_of_structs **expand_list, int how_much_to_expand, int heredoc_flag);
 void	allocat_and_init(t_expand **expand_list, int how_much_to_expand, int heredoc_flag);
-char				*new_str_after_expand(t_expand *data, int num_of_expantion);
+// char				*new_str_after_expand(t_arr_of_structs *data, int num_of_expantion);
+char	*new_str_after_expand(t_shell_control_block *s, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
 char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
-t_data *make_token(t_shell_control_block *shell);
+t_token *make_token(t_shell_control_block *shell);
 int len_of_two_d_array(char **str);
 void execute_command_line(t_shell_control_block *shell);
 
@@ -114,7 +121,7 @@ void	free_memory(t_list **lst);
 t_list	*garbage_collection_lstnew(void *content, int flag);
 // t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
-void handle_heredoc(t_data *tokenized, char **in_file_name);
+void handle_heredoc(t_token *tokenized, char **in_file_name);
 void print_file(char *str);
 void handle_redir_in(char *str, char **in_file_name);
 char *read_file(char *file_name);
@@ -148,8 +155,9 @@ char **handle_dollar_with_quotes(char **splitted);
 //int	ft_strncmp(const char *big, const char *little, size_t n);
 void cd(char **env, char **path);
 int	print_error(const char *str, ...);
-void create_all_heredocs(t_data *tokenized);
+void create_all_heredocs(t_shell_control_block *shell);
 void unset(char ***env, char **vars);
 
 void print_exit_signal_message(int exit_status);
+char *get_env_var(t_shell_control_block *shell , t_expand data);
 #endif

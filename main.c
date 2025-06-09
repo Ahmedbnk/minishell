@@ -1,14 +1,16 @@
 #include "minishell.h"
 
-void expand_input(char **input) {
+void expand(t_shell_control_block *shell) 
+{
+
   int i;
   i = 0;
-  while (input[i])
+  while (shell->splitted[i])
   {
-    if(are_they_equal(input[i], "<<"))
+    if(are_they_equal(shell->splitted[i], "<<"))
       i++;
     else
-      input[i] = expand_if_possible(input[i], 0);
+      shell->splitted[i] = expand_if_possible(shell, shell->splitted[i], 0);
     i++;
   }
 }
@@ -17,14 +19,14 @@ void parse_line(t_shell_control_block *shell)
 {
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
-  expand_input(shell->splitted);
+  expand(shell);
   shell->splitted = handle_dollar_with_quotes(shell->splitted);
   shell->tokenized = make_token(shell);
 }
 
 int is_there_a_pipe(t_shell_control_block *shell)
 {
-  t_data *ptr;
+  t_token *ptr;
 
   ptr = shell->tokenized;
   while(ptr->word != NULL)
@@ -40,7 +42,7 @@ void execute_line(t_shell_control_block *shell)
 {
   if (shell->tokenized)
   {
-    create_all_heredocs(shell->tokenized);
+    create_all_heredocs(shell);
     get_cmd_and_its_args(shell);
     if(!is_there_a_pipe(shell) && execute_built_in(shell));
     else

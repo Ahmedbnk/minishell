@@ -67,7 +67,7 @@ void execute_command(t_shell_control_block *shell)
 		check_after_geting_bath(*shell->cmd_and_args ,shell->cmd_and_args , path , shell->env_cpy);
 }
 
-int how_many_strcut_in_the_array(t_data *arr_of_stracts)
+int how_many_strcut_in_the_array(t_token *arr_of_stracts)
 {
 	int number_of_structs;
 
@@ -86,7 +86,7 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
     int i;
     int j;
 
-    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenized)+1)* sizeof(t_data ),1);
+    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenized)+1)* sizeof(t_token ),1);
 
     i = 0;
     j = 0;

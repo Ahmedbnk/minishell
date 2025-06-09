@@ -25,9 +25,9 @@ char	*generate_random_name(void)
 
 
 
-void	skip_command(t_data **tokenized_address)
+void	skip_command(t_token **tokenized_address)
 {
-  t_data	*tokenized;
+  t_token	*tokenized;
 
   tokenized = *tokenized_address;
   while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
@@ -35,7 +35,7 @@ void	skip_command(t_data **tokenized_address)
   *tokenized_address = tokenized;
 }
 
-void	print_command(t_data *tokenized)
+void	print_command(t_token *tokenized)
 {
   while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
   {
@@ -111,6 +111,8 @@ void execute_command_line_helper(t_shell_control_block *shell)
 void execute_command_line(t_shell_control_block *shell)
 {
   int status;
+
+  status = 0;
   shell->line_pointer = shell->tokenized;
   shell->previous_read_end = -1;
   while (shell->line_pointer && shell->line_pointer->word)
