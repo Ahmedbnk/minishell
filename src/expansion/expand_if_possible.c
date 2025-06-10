@@ -45,7 +45,12 @@ void	string_to_expand(t_expand *data, char *str, int *offset)
 	{
 		if (str[*offset] == '$' && start == (*offset))
 			(*offset)++;
-		if (!ft_isalnum(str[*offset]) || (str[*offset] == '$'
+    if(str[*offset] == '?' && str[(*offset) - 1] == '$')
+    {
+      (*offset) ++;
+      break;
+    }
+    else if (!ft_isalnum(str[*offset]) || (str[*offset] == '$'
 				&& (data->heredoc_flag || should_i_expand(str, *offset))))
 			break ;
 		(*offset)++;
