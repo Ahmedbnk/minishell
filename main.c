@@ -50,10 +50,9 @@ void execute_line(t_shell_control_block *shell)
   }
 }
 
-char *ft_readline(t_shell_control_block *shell) {
-
-
-  shell->line = readline("\001\033[1;31m\002⚡ Undefined Behavior ⚡ » \001\033[0m\002");
+char *ft_readline(t_shell_control_block *shell)
+{
+  shell->line = readline("\001\033[1;31m\002 Undefined Behavior :\001\033[0m\002");
   if (shell->line && *shell->line)
 
     add_history(shell->line);

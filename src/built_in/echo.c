@@ -31,10 +31,12 @@ void echo(char **args)
     while(*args)
     {
       if(!is_it_a_valide_minus_n_flag(*args) || first_argument_flag == 0)
-          printf("%s", *args);
-      if(*(args + 1) != NULL)
+      {
+        printf("%s", *args);
+        if(*(args + 1) != NULL)
           printf(" ");
-        args++;
+      }
+      args++;
     }
     if(!first_argument_flag)
          printf("\n");
