@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 char	*expnad_and_join_node(t_shell_control_block *s, t_expand data)

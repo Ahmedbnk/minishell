@@ -133,7 +133,6 @@ void execute_command_line(t_shell_control_block *shell)
   }
   if (shell->previous_read_end != -1)
     close(shell->previous_read_end);
-
   waitpid(shell->last_child_pid, &status, 0);
   if (WIFEXITED(status))
     shell->exit_status = WEXITSTATUS(status);
