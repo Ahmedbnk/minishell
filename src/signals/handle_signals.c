@@ -31,7 +31,6 @@ void	handle_signals(void)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
-
 	signal(SIGQUIT, SIG_IGN);
 }
 

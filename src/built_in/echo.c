@@ -5,6 +5,8 @@ static int is_it_a_valide_minus_n_flag(char *str)
   int i;
 
   i = 0;
+  if(!str)
+    return 0;
   if(str[i] != '-')
     return 0;
   i++;

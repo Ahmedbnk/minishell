@@ -63,11 +63,10 @@ static void third_range(int exit_status)
     printf("Power failure\n");
   else if (exit_status == 31)
     printf("Bad system call (core dumped)\n");
-  else if(exit_status == 32 || exit_status == 32)
+  else if(exit_status == 32 || exit_status == 33)
     printf("Unknown signal %d\n", exit_status);
-  else
-    printf("Real-time signal %d\n", exit_status - 34);
-
+  else if(exit_status >= 34 && exit_status <= 64)
+      printf("Real-time signal %d\n", exit_status - 34);
 }
 
 void print_exit_signal_message(int exit_status)

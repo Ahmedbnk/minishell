@@ -140,7 +140,8 @@ void execute_command_line(t_shell_control_block *shell)
     shell->exit_status =  128 + WTERMSIG(status);
   else if(WIFSTOPPED(status))
     shell->exit_status = WSTOPSIG(status);
+  while (wait(NULL) > 0)
+    ;
   if(shell->exit_status > 128)
     print_exit_signal_message(shell->exit_status);
-  while (wait(NULL) > 0);
 }
