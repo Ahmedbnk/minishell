@@ -24,7 +24,6 @@ char *get_env_var(t_shell_control_block *shell , t_expand data)
   i = 0;
   while(ptr[i])
   {
-    
     if(compare_env_var(ptr[i], (data.to_expand)+1))
     {
       get_start_and_end(ptr[i], &start, &end);
