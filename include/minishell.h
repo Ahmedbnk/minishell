@@ -74,9 +74,8 @@ typedef struct s_shell_control_block
 
 
 int					check_error(t_shell_control_block *shell);
-
-void				sigint_handler(int signo);
-void				handle_signals(void);
+void				handle_signals(int flag);
+void child_signal_handler();
 int					is_between_quotes(char *line, int index);
 int					is_space(char c);
 int					are_they_equal(const char *str1, const char *str2);

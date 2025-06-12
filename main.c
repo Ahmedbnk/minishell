@@ -15,11 +15,73 @@ void expand(t_shell_control_block *shell)
   }
 }
 
+int count_lsit_size(t_list *list)
+{
+  int size;
+  int i;
+  char **array;
+  size = 0;
+  while(list)
+  {
+    array = (char **)(list->content);
+    i = 0;
+    while(array[i])
+    {
+      size ++;
+      i++;
+    }
+    list = list->next;
+  }
+  return size;
+}
+
+char **creat_new_splitted(t_list *list)
+{
+  char **new_splitted;
+  char **array;
+
+  int i;
+  int j;
+  j = 0;
+  new_splitted = ft_malloc((count_lsit_size(list)+1) * sizeof(char *), 1);
+  while(list)
+  {
+    array = (char **)list->content;
+    i = 0;
+    while(array[i])
+    {
+      new_splitted[j] = array[i];
+      j++;
+      i++;
+    }
+    list = list->next;
+  }
+  new_splitted[j] = NULL;
+  return new_splitted;
+}
+char **split_after_expantion(char **str)
+{
+  int i;
+  char **ptr;
+  t_list *node;
+  t_list *list;
+  list =NULL;
+  i = 0;
+  while(str[i])
+  {
+    ptr = customized_split(str[i]);
+    node = ft_lstnew(ptr);
+    ft_lstadd_back(&list, node);
+    i++;
+  }
+  return (creat_new_splitted(list));
+}
 void parse_line(t_shell_control_block *shell)
 {
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
   expand(shell);
+  shell->splitted = split_after_expantion(shell->splitted);
   shell->splitted = handle_dollar_with_quotes(shell->splitted);
   shell->tokenized = make_token(shell);
 }
@@ -87,8 +149,7 @@ int main(int ac, char **av, char **env)
   ft_init_shell_block(&shell, ac, av);
   shell.env_cpy = copy_env(env);
  while (1) {
-
-    handle_signals();
+    handle_signals(0);
     if(!ft_readline(&shell))
       continue;
     parse_line(&shell);

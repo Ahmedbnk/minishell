@@ -86,9 +86,11 @@ void	process_command(t_shell_control_block *shell)
 
 void execute_command_line_helper(t_shell_control_block *shell)
 {
+  handle_signals(1);
   int p_id = fork();
   if (p_id == 0)
   {
+    child_signal_handler();
     if (shell->previous_read_end != -1)
     {
       dup2(shell->previous_read_end, 0);
