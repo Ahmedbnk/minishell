@@ -139,6 +139,7 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->line = NULL;
   shell->splitted = NULL;
   shell->cmd_and_args= NULL;
+  shell->env_of_export = NULL;
   shell->exit_status= 0;
 }
 
@@ -147,6 +148,7 @@ int main(int ac, char **av, char **env)
   t_shell_control_block shell;
 
   ft_init_shell_block(&shell, ac, av);
+  shell.env_of_export = copy_env(env);
   shell.env_cpy = copy_env(env);
  while (1) {
     handle_signals(0);

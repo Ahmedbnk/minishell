@@ -14,6 +14,7 @@
 # define single_q 39
 # define double_q 34
 #define BUFFER_SIZE 40
+#define PROTECT 14
 
 
 typedef enum e_type
@@ -53,6 +54,7 @@ typedef struct  s_expand
 typedef struct s_shell_control_block
 {
   char **env_cpy;
+  char **  env_of_export;; 
   char *line;
   char **splitted;
   t_token *tokenized;
@@ -140,7 +142,6 @@ int	ft_strncmp(const char *big, const char *little, size_t n);
 char *pwd();
 int execute_built_in(t_shell_control_block *shell);
 void print_env(char **env);
-void export(char ***env, char **to_export);
 int is_it_key_value(char *str);
 int is_valid_var(char *str);
 int compare_env_var(char *var1, char *var2);
@@ -159,4 +160,6 @@ void unset(char ***env, char **vars);
 
 void print_exit_signal_message(int exit_status);
 char *get_env_var(t_shell_control_block *shell , t_expand data);
+void remove_var_from_env(char ***env , char *var);
+void export(t_shell_control_block *s, char **to_export);
 #endif

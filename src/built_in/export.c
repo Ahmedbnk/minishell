@@ -37,17 +37,7 @@ static char **add_var_to_env(char **env , char *var)
     return new_env;
 }
 
-// void print_env(char **env)
-// {
-//     int i;
-//     i = 0;
-//     while(env[i])
-//     {
-//         printf("declare -x ");
-//         printf("%s\n", env[i]);
-//         i++;
-//     }
-// }
+
 
  static void sort_env(char **env)
 {
@@ -70,35 +60,31 @@ static char **add_var_to_env(char **env , char *var)
             }
 			i++;
 		}
+    remove_var_from_env(&env, "_");
         print_env(env);
 }
 
-void export(char ***env, char **to_export)
+void export(t_shell_control_block *s, char **to_export)
 {
     if(!to_export || !*to_export)
     {
-        sort_env(*env);
+        sort_env(s->env_of_export);
         return ;
     }
     while(*to_export)
     {
-        if(!is_valid_var(*to_export) || !is_it_key_value(*to_export) )
-            ;
-        else if (find_and_update_var(*env, *to_export))
-        ;
+        if(!is_valid_var(*to_export));
         else
-            *env = add_var_to_env(*env , *to_export);
+        {
+        if (find_and_update_var(s->env_of_export, *to_export));
+        else
+            s->env_of_export = add_var_to_env(s->env_of_export , *to_export);
+        if(!is_it_key_value(*to_export))
+            ;
+        else if (find_and_update_var(s->env_cpy, *to_export));
+        else
+            s->env_cpy = add_var_to_env(s->env_cpy , *to_export);
+        }
         to_export++;
     }
 }
-
-// int main(int ac, char **av, char **env)
-// {
-//     (void )  ac;
-//     (void ) av;
-//     char *avs[] = {NULL};
-//     char **ptr = copy_env(env);
-//     export(&ptr, avs);
-// 	return 0;
-// }
-

@@ -12,7 +12,7 @@ int  execute_built_in(t_shell_control_block *shell)
     else if(are_they_equal(*shell->cmd_and_args, "cd"))
       return ((cd(shell->env_cpy, shell->cmd_and_args), 1));
     else if(are_they_equal(*shell->cmd_and_args, "export"))
-      return((export(&shell->env_cpy, shell->cmd_and_args +1),1));
+      return((export(shell, shell->cmd_and_args +1),1));
     else if(are_they_equal(*shell->cmd_and_args, "unset"))
       return((unset(&shell->env_cpy, shell->cmd_and_args +1),1));
   return 0;
