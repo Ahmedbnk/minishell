@@ -76,10 +76,12 @@ char **split_after_expantion(char **str)
   }
   return (creat_new_splitted(list));
 }
+
 void parse_line(t_shell_control_block *shell)
 {
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
+  get_files_name(shell);
   expand(shell);
   shell->splitted = split_after_expantion(shell->splitted);
   shell->splitted = handle_dollar_with_quotes(shell->splitted);
@@ -138,6 +140,7 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->env_cpy = NULL;
   shell->line = NULL;
   shell->splitted = NULL;
+  shell->file_name_lst = NULL;
   shell->cmd_and_args= NULL;
   shell->env_of_export = NULL;
   shell->exit_status= 0;

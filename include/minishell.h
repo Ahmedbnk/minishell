@@ -15,7 +15,10 @@
 # define double_q 34
 #define BUFFER_SIZE 40
 #define PROTECT 14
-
+#define VALID_NAME 0
+#define AMBIGUOUS 1
+#define  NOT_NEW_START 0
+#define NEW_START 1
 
 typedef enum e_type
 {
@@ -51,12 +54,21 @@ typedef struct  s_expand
 
 }t_expand;
 
+typedef struct s_name_lst 
+{
+    char *file_name;
+    int valid_or_not;
+    int new_start;
+	struct  s_name_lst	*next;
+}					t_name_lst;
+
 typedef struct s_shell_control_block
 {
   char **env_cpy;
   char **  env_of_export;; 
   char *line;
   char **splitted;
+  t_name_lst *file_name_lst;
   t_token *tokenized;
   char **cmd_and_args;
   t_expand *expand_arr;
@@ -162,4 +174,6 @@ void print_exit_signal_message(int exit_status);
 char *get_env_var(t_shell_control_block *shell , t_expand data);
 void remove_var_from_env(char ***env , char *var);
 void export(t_shell_control_block *s, char **to_export);
+void get_files_name(t_shell_control_block *s);
+int	how_many_dallar_to_expand(char *str, int heredoc_flag);
 #endif
