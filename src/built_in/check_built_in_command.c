@@ -1,8 +1,7 @@
 #include "minishell.h"
 
-// void execute_built_in(char **env, char **cmd_and_args)
-int  execute_built_in(t_shell_control_block *shell)
-{ 
+int execute_built_in_command(t_shell_control_block *shell)
+{
     if(are_they_equal(*shell->cmd_and_args, "pwd"))
       return ((printf("%s\n",pwd()), 1));
     else if(are_they_equal(*shell->cmd_and_args, "env"))
@@ -18,3 +17,54 @@ int  execute_built_in(t_shell_control_block *shell)
   return 0;
 }
 
+int  execute_built_in(t_shell_control_block *shell, int state)
+{ 
+  if (state == 1)
+  {
+    int original_stdin = dup(0);
+    int original_stdout = dup(1);
+    t_token *original_tokenized = shell->tokenized;
+    shell->in_file_name = NULL;
+    shell->file_name = NULL;
+    while (shell->tokenized && shell->tokenized->word != NULL && shell->tokenized->type != PIPE)
+    {
+      if(shell->file_name_lst && shell->file_name_lst->valid == 0)
+      {
+        printf("ambig\n");
+        break;
+      }
+      if (shell->tokenized->type == HEREDOC)
+        shell->in_file_name = shell->tokenized->heredoc_file_name;
+      else if (shell->tokenized->type == REDIR_IN)
+        handle_redir_in((shell->tokenized + 1)->word, &(shell->in_file_name));
+      else if (shell->tokenized->type == REDIR_OUT)
+        handle_redir_out((shell->tokenized + 1)->word, &(shell->file_name));
+      else if (shell->tokenized->type == REDIR_APPEND)
+        handle_append((shell->tokenized + 1)->word, &(shell->file_name));
+      shell->tokenized++;
+      if(shell->file_name_lst)
+        shell->file_name_lst = shell->file_name_lst->next;
+    }
+    shell->tokenized = original_tokenized;
+    if (shell->file_name)
+    {
+      shell->fd_out = open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+      dup2(shell->fd_out, 1);
+      close(shell->fd_out);
+    }
+    if(shell->in_file_name)
+    {
+      shell->fd_in = open(shell->in_file_name, O_RDONLY);
+      dup2(shell->fd_in, 0);
+      close(shell->fd_in);
+    }
+    int result = execute_built_in_command(shell);
+    dup2(original_stdin, 0);
+    dup2(original_stdout, 1);
+    close(original_stdin);
+    close(original_stdout);
+    return result;
+  }
+  else
+  return execute_built_in_command(shell);
+}

@@ -8,7 +8,7 @@ t_name_lst	*new_file_name(void *name_of_file, int is_valid, int is_it_new_start)
 	if (!node)
 		return (NULL);
 	node->file_name = name_of_file;
-	node->valid_or_not = is_valid;
+	node->valid = is_valid;
 	node->new_start = is_it_new_start;
 	node->next = NULL;
 	return (node);
@@ -68,7 +68,7 @@ static void	handle_expansion_result(t_shell_control_block *sh,
 		if (is_there_a_space_in_file_name(get_env_var(sh, sh->expand_arr[i])) 
 			|| !*str)
 		{
-			ptr->valid_or_not = AMBIGUOUS;
+			ptr->valid = AMBIGUOUS;
 			break ;
 		}
 		ptr->file_name = str;
@@ -95,7 +95,7 @@ void	prepare_lst(t_shell_control_block *sh)
 		str = expand_if_possible(sh, ptr->file_name, 0);
 		if (!str)
 		{
-			ptr->valid_or_not = AMBIGUOUS;
+			ptr->valid = AMBIGUOUS;
 			ptr = ptr->next;
 			continue ;
 		}
@@ -149,14 +149,14 @@ static void	debug_print_node(t_name_lst *lst)
 	if (lst->file_name)
 	{
 		printf("------>%s\n", (char *)lst->file_name);
-		printf("------>%d\n", lst->valid_or_not);
+		printf("------>%d\n", lst->valid);
 		printf("------>%d\n", lst->new_start);
 		printf("***********************>\n");
 	}
 	else
 	{
 		printf("------>%s\n", (char *)lst->file_name);
-		printf("------>%d\n", lst->valid_or_not);
+		printf("------>%d\n", lst->valid);
 		printf("------>%d\n", lst->new_start);
 	}
 }

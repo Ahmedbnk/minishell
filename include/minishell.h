@@ -11,6 +11,8 @@
 #include <sys/wait.h>
 #include <errno.h>
 
+#define parent 1
+#define child 2
 # define single_q 39
 # define double_q 34
 #define BUFFER_SIZE 40
@@ -57,7 +59,7 @@ typedef struct  s_expand
 typedef struct s_name_lst 
 {
     char *file_name;
-    int valid_or_not;
+    int valid;
     int new_start;
 	struct  s_name_lst	*next;
 }					t_name_lst;
@@ -152,7 +154,7 @@ void print_env(char **env);
 void echo(char **args);
 int	ft_strncmp(const char *big, const char *little, size_t n);
 char *pwd();
-int execute_built_in(t_shell_control_block *shell);
+int  execute_built_in(t_shell_control_block *shell, int state);
 void print_env(char **env);
 int is_it_key_value(char *str);
 int is_valid_var(char *str);
