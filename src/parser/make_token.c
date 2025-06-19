@@ -41,10 +41,10 @@ int check_syntax_error(t_token *data, int len)
       return((print_error("error near | \n"), 1));
     else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type == PIPE)
       return((print_error("error near | \n"), 1));
-    else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type != WORD)
-      return((print_error("error near new line \n"), 1));
-    else if (data[i].type != PIPE && data[i].type != WORD && len -1 == i)
-      return((print_error("error near new line \n"), 1));
+    // else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type != WORD)
+    //   return((print_error("error near new line \n"), 1));
+    // else if (data[i].type != PIPE && data[i].type != WORD && len -1 == i)
+    //   return((print_error("error near new line \n"), 1));
     i++;
   }
   return 0;

@@ -146,19 +146,10 @@ static void	parse_tokens(t_shell_control_block *sh)
 
 static void	debug_print_node(t_name_lst *lst)
 {
-	if (lst->file_name)
-	{
-		printf("------>%s\n", (char *)lst->file_name);
-		printf("------>%d\n", lst->valid);
-		printf("------>%d\n", lst->new_start);
+		printf("------> file name is %s\n", (char *)lst->file_name);
+		printf("------> valid is %d\n", lst->valid);
+		printf("------> is new start is %d\n", lst->new_start);
 		printf("***********************>\n");
-	}
-	else
-	{
-		printf("------>%s\n", (char *)lst->file_name);
-		printf("------>%d\n", lst->valid);
-		printf("------>%d\n", lst->new_start);
-	}
 }
 
 static void	debug_print_list(t_shell_control_block *sh)

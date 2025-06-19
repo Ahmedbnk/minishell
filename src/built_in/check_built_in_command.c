@@ -16,6 +16,12 @@ int execute_built_in_command(t_shell_control_block *shell)
       return((unset(&shell->env_cpy, shell->cmd_and_args +1),1));
   return 0;
 }
+static int is_redirection(int element)
+{
+  if(element == REDIR_OUT || element == REDIR_IN || element ==REDIR_APPEND)
+    return 1;
+  return 0;
+}
 
 int  execute_built_in(t_shell_control_block *shell, int state)
 { 
@@ -28,10 +34,16 @@ int  execute_built_in(t_shell_control_block *shell, int state)
     shell->file_name = NULL;
     while (shell->tokenized && shell->tokenized->word != NULL && shell->tokenized->type != PIPE)
     {
-      if(shell->file_name_lst && shell->file_name_lst->valid == 0)
+      if(is_redirection(shell->tokenized->type))
       {
-        printf("ambig\n");
-        break;
+        printf("the file name is  %s\n",shell->file_name_lst->file_name);
+        if(shell->file_name_lst->valid == AMBIGUOUS)
+        {
+          printf("ambig\n");
+          shell->exit_status = 1;
+          return 1;
+        }
+        shell->file_name_lst = shell->file_name_lst->next;
       }
       if (shell->tokenized->type == HEREDOC)
         shell->in_file_name = shell->tokenized->heredoc_file_name;
@@ -42,8 +54,6 @@ int  execute_built_in(t_shell_control_block *shell, int state)
       else if (shell->tokenized->type == REDIR_APPEND)
         handle_append((shell->tokenized + 1)->word, &(shell->file_name));
       shell->tokenized++;
-      if(shell->file_name_lst)
-        shell->file_name_lst = shell->file_name_lst->next;
     }
     shell->tokenized = original_tokenized;
     if (shell->file_name)
