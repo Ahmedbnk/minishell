@@ -70,11 +70,11 @@ typedef struct s_shell_control_block
   char **  env_of_export;; 
   char *line;
   char **splitted;
+  t_list *lst;
   t_name_lst *file_name_lst;
   t_token *tokenized;
   char **cmd_and_args;
   t_expand *expand_arr;
-
   int arr[2];
   int previous_read_end;
   t_token *line_pointer;
@@ -179,4 +179,7 @@ void remove_var_from_env(char ***env , char *var);
 void export(t_shell_control_block *s, char **to_export);
 void get_files_name(t_shell_control_block *s);
 int	how_many_dallar_to_expand(char *str, int heredoc_flag);
+
+void	rm_quotes_from_one_str(char **line);
+void	 rm_quotes_from_multi_str(char **line, char *quote);
 #endif

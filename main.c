@@ -1,90 +1,98 @@
 #include "minishell.h"
 
-void expand(t_shell_control_block *shell) 
+int ft_lstsize(t_list *list)
 {
+  t_list *ptr;
+  int size;
+  if(!list)
+    return 0;
+  size = 0;
+  ptr = list;
+  while (ptr)
+  {
+      size ++;
+    ptr = ptr->next;
+  }
+  return size;
+}
 
+
+void split_after_expantion(t_shell_control_block *sh, char *str)
+{
+  int i;
+  char **ptr;
+  t_list *node;
+  i = 0;
+    ptr = customized_split(str);
+    while (ptr[i])
+    {
+      node = ft_lstnew(ptr[i]);
+      ft_lstadd_back(&sh->lst, node);
+      i++;
+    }
+  }
+
+void expand_and_split(t_shell_control_block *shell) 
+{
   int i;
   i = 0;
+  char *ptr;
+  shell->lst = NULL;
   while (shell->splitted[i])
   {
     if(are_they_equal(shell->splitted[i], "<<"))
       i++;
     else
-      shell->splitted[i] = expand_if_possible(shell, shell->splitted[i], 0);
+    {
+      ptr = expand_if_possible(shell, shell->splitted[i], 0);
+      if (are_they_equal(shell->splitted[i], ptr))
+      {
+        static int j = 0;
+        rm_quotes_from_one_str(&shell->splitted[i]);
+        printf("test1\n");
+        if(j != 0)
+        {
+          printf("content %s\n", (char *)(shell->lst->content));
+        }
+        printf("test2\n");
+        ft_lstadd_back(&shell->lst, ft_lstnew(shell->splitted[i]));
+        j++;
+      }
+      else
+      {
+        split_after_expantion(shell, ptr);
+      }
+    }
     i++;
   }
 }
 
-int count_lsit_size(t_list *list)
+char **update_splitted(t_shell_control_block *shell)
 {
-  int size;
+  char **the_updated_splitted;
+  t_list *ptr;
+  int len;
   int i;
-  char **array;
-  size = 0;
-  while(list)
-  {
-    array = (char **)(list->content);
-    i = 0;
-    while(array[i])
-    {
-      size ++;
-      i++;
-    }
-    list = list->next;
-  }
-  return size;
-}
-
-char **creat_new_splitted(t_list *list)
-{
-  char **new_splitted;
-  char **array;
-
-  int i;
-  int j;
-  j = 0;
-  new_splitted = ft_malloc((count_lsit_size(list)+1) * sizeof(char *), 1);
-  while(list)
-  {
-    array = (char **)list->content;
-    i = 0;
-    while(array[i])
-    {
-      new_splitted[j] = array[i];
-      j++;
-      i++;
-    }
-    list = list->next;
-  }
-  new_splitted[j] = NULL;
-  return new_splitted;
-}
-char **split_after_expantion(char **str)
-{
-  int i;
-  char **ptr;
-  t_list *node;
-  t_list *list;
-  list =NULL;
+  len = ft_lstsize(shell->lst);
+  the_updated_splitted = ft_malloc((len +1) *sizeof(char *), 1);
+  ptr = shell->lst;
   i = 0;
-  while(str[i])
+  while (ptr)
   {
-    ptr = customized_split(str[i]);
-    node = ft_lstnew(ptr);
-    ft_lstadd_back(&list, node);
+    the_updated_splitted[i] = (char *)ptr->content;
     i++;
+    ptr = ptr->next;
   }
-  return (creat_new_splitted(list));
+  return the_updated_splitted;
 }
-
 void parse_line(t_shell_control_block *shell)
 {
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
   get_files_name(shell);
-  expand(shell);
-  //shell->splitted = split_after_expantion(shell->splitted);
-  //shell->splitted = handle_dollar_with_quotes(shell->splitted);
+  expand_and_split(shell);
+  shell->splitted = update_splitted(shell);
+  // shell->splitted = handle_dollar_with_quotes(shell->splitted);
   shell->tokenized = make_token(shell);
 }
 
@@ -141,6 +149,7 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->line = NULL;
   shell->splitted = NULL;
   shell->file_name_lst = NULL;
+  shell->lst = NULL;
   shell->cmd_and_args= NULL;
   shell->env_of_export = NULL;
   shell->exit_status= 0;

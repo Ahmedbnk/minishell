@@ -50,7 +50,7 @@ char	**customized_split(char const *s)
   //lmouchkil kan hna
   if(*s == '\0')
   {
-    splitted = malloc(2 *sizeof(char *));
+    splitted = ft_malloc(2 *sizeof(char *),1);
     splitted[0] = ft_strdup("", 1);
     splitted[1] = NULL;
     return splitted;
