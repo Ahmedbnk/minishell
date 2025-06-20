@@ -17,17 +17,21 @@ int ft_lstsize(t_list *list)
 }
 
 
-void split_after_expantion(t_shell_control_block *sh, char *str)
+void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)
 {
   int i;
   char **ptr;
-  t_list *node;
   i = 0;
+	// printf("s%s\n", str);
+  if(*old_str == single_q || *old_str == double_q)
+  {
+      ft_lstadd_back(&sh->lst, ft_lstnew(str));
+      return;
+  }
     ptr = customized_split(str);
     while (ptr[i])
     {
-      node = ft_lstnew(ptr[i]);
-      ft_lstadd_back(&sh->lst, node);
+      ft_lstadd_back(&sh->lst, ft_lstnew(ptr[i]));
       i++;
     }
   }
@@ -47,21 +51,11 @@ void expand_and_split(t_shell_control_block *shell)
       ptr = expand_if_possible(shell, shell->splitted[i], 0);
       if (are_they_equal(shell->splitted[i], ptr))
       {
-        static int j = 0;
-        rm_quotes_from_one_str(&shell->splitted[i]);
-        printf("test1\n");
-        if(j != 0)
-        {
-          printf("content %s\n", (char *)(shell->lst->content));
-        }
-        printf("test2\n");
-        ft_lstadd_back(&shell->lst, ft_lstnew(shell->splitted[i]));
-        j++;
+        rm_quotes_from_one_str(&ptr);
+        ft_lstadd_back(&shell->lst, ft_lstnew(ptr));
       }
       else
-      {
-        split_after_expantion(shell, ptr);
-      }
+        split_after_expantion(shell, ptr, shell->splitted[i]);
     }
     i++;
   }
@@ -79,10 +73,10 @@ char **update_splitted(t_shell_control_block *shell)
   i = 0;
   while (ptr)
   {
-    the_updated_splitted[i] = (char *)ptr->content;
-    i++;
+    the_updated_splitted[i++] = (char *)ptr->content;
     ptr = ptr->next;
   }
+  the_updated_splitted[i] = NULL;
   return the_updated_splitted;
 }
 void parse_line(t_shell_control_block *shell)
@@ -92,7 +86,8 @@ void parse_line(t_shell_control_block *shell)
   get_files_name(shell);
   expand_and_split(shell);
   shell->splitted = update_splitted(shell);
-  // shell->splitted = handle_dollar_with_quotes(shell->splitted);
+  for (int i = 0; shell->splitted[i]; i++)
+    printf("->>%s\n", shell->splitted[i]);
   shell->tokenized = make_token(shell);
 }
 

@@ -40,7 +40,7 @@ int  execute_built_in(t_shell_control_block *shell, int state)
         if(shell->file_name_lst->valid == AMBIGUOUS)
         {
           printf("ambig\n");
-          shell->exit_status = 1;
+          // shell->exit_status = 1;
           return 1;
         }
         shell->file_name_lst = shell->file_name_lst->next;
