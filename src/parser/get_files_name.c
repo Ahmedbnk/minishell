@@ -59,7 +59,7 @@ static void	handle_expansion_result(t_shell_control_block *sh,
 
 	if (are_they_equal(ptr->file_name, str))
 	{
-		remove_quotes(&ptr->file_name);
+		// remove_quotes(&ptr->file_name);
 		return ;
 	}
 	i = 0;
@@ -72,7 +72,7 @@ static void	handle_expansion_result(t_shell_control_block *sh,
 			break ;
 		}
 		ptr->file_name = str;
-		remove_quotes(&ptr->file_name);
+		// remove_quotes(&ptr->file_name);
 		i++;
 	}
 }

@@ -83,8 +83,8 @@ void parse_line(t_shell_control_block *shell)
   shell->splitted = split_with_operators(shell->splitted);
   get_files_name(shell);
   expand(shell);
-  shell->splitted = split_after_expantion(shell->splitted);
-  shell->splitted = handle_dollar_with_quotes(shell->splitted);
+  //shell->splitted = split_after_expantion(shell->splitted);
+  //shell->splitted = handle_dollar_with_quotes(shell->splitted);
   shell->tokenized = make_token(shell);
 }
 

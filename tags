@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/abenkrar/Desktop/minishell/	//
+!_TAG_PROC_CWD	/home/nkasimi/minishell/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -152,6 +152,7 @@ is_it_a_valide_minus_n_flag	src/built_in/echo.c	/^static int is_it_a_valide_minu
 is_it_key_value	src/built_in/ist_valid_env_var.c	/^int is_it_key_value(char *str)$/;"	f	typeref:typename:int
 is_operator	src/parser/split_with_operators.c	/^static int	is_operator(char *str, int i)$/;"	f	typeref:typename:int	file:
 is_quote	src/expansion/ft_get_env_var.c	/^int is_quote(char c)$/;"	f	typeref:typename:int
+is_redirection	src/built_in/check_built_in_command.c	/^static int is_redirection(int element)$/;"	f	typeref:typename:int	file:
 is_redirection	src/parser/get_files_name.c	/^int	is_redirection(char *str)$/;"	f	typeref:typename:int
 is_space	src/utils/is_space.c	/^int	is_space(char c)$/;"	f	typeref:typename:int
 is_the_var_in_env	src/built_in/unset.c	/^int is_the_var_in_env(char **env, char *var)$/;"	f	typeref:typename:int
@@ -187,6 +188,7 @@ process_pipe_token	src/parser/get_files_name.c	/^static void	process_pipe_token(
 process_redirection_token	src/parser/get_files_name.c	/^static void	process_redirection_token(t_shell_control_block *sh, char **ptr)$/;"	f	typeref:typename:void	file:
 protect_str	src/expansion/ft_get_env_var.c	/^char *protect_str(char *str)$/;"	f	typeref:typename:char *
 pwd	src/built_in/pwd.c	/^char *pwd()$/;"	f	typeref:typename:char *
+r_q	src/expansion/expand_if_possible.c	/^void r_q(t_shell_control_block *sh, int size)$/;"	f	typeref:typename:void
 re	Makefile	/^re: fclean all$/;"	t
 read_file	src/parser/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *
 read_file	src/utils/read_file.c	/^char *read_file(char *file_name)$/;"	f	typeref:typename:char *

@@ -110,6 +110,7 @@ void	allocat_and_init(t_expand **expand_list, int how_much_to_expand, int heredo
 // char				*new_str_after_expand(t_arr_of_structs *data, int num_of_expantion);
 char	*new_str_after_expand(t_shell_control_block *s, int num_of_expantion);
 void remove_quotes_from_args(char **splitted);
+void	remove_quotes(char **line, char *quote);
 char	**split_with_operators(char **splitted);
 void print_splitted(char **splitted);
 t_token *make_token(t_shell_control_block *shell);
@@ -144,7 +145,7 @@ void handle_redir_out(char *str, char **file_name);
 void handle_append(char *str, char **file_name);
 char **get_cmd_and_its_args(t_shell_control_block *shell);
 void execute_command(t_shell_control_block *shell);
-void	remove_quotes(char **line);
+// void	remove_quotes(char **line);
 
 void	handle_signals_in_child(void);
 char	*generate_random_name(void);
