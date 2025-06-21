@@ -30,7 +30,7 @@ void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)
     ft_lstadd_back(&sh->lst, ft_lstnew(ptr[i]));
     i++;
   }
-  }
+}
 
 void expand_and_split(t_shell_control_block *shell) 
 {
@@ -78,10 +78,10 @@ char **update_splitted(t_shell_control_block *shell)
   the_updated_splitted[i] = NULL;
   return the_updated_splitted;
 }
+
 void parse_line(t_shell_control_block *shell)
 {
   shell->porotect_var = generate_random_name();
-  printf("-->lock:%s\n", shell->porotect_var);
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
   get_files_name(shell);

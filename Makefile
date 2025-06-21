@@ -64,6 +64,7 @@ SRCS = main.c \
 	src/main_tools/generate_random_name.c\
 	src/main_tools/is_quote.c\
 	src/main_tools/is_protected.c\
+	src/utils/is_all_spaces.c\
 
 
 OBJS = $(SRCS:.c=.o)

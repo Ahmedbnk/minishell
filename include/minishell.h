@@ -189,4 +189,5 @@ char *expand_outside_dollar(t_shell_control_block *scb, char *str);
 int is_quote(char c);
 int is_protected(t_shell_control_block *sh, char *str, int index);
 void rm_quotes_from_one_str(t_shell_control_block *sh, char **line);
+int is_all_spaces(const char *str);
 #endif
