@@ -1,22 +1,5 @@
 #include "minishell.h"
 
-int ft_lstsize(t_list *list)
-{
-  t_list *ptr;
-  int size;
-  if(!list)
-    return 0;
-  size = 0;
-  ptr = list;
-  while (ptr)
-  {
-      size ++;
-    ptr = ptr->next;
-  }
-  return size;
-}
-
-
 void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)
 {
   int i;
@@ -89,19 +72,6 @@ void parse_line(t_shell_control_block *shell)
   shell->splitted = update_splitted(shell);
   shell->tokenized = make_token(shell);
 }
-int is_there_a_pipe(t_shell_control_block *shell)
-{
-  t_token *ptr;
-
-  ptr = shell->tokenized;
-  while(ptr->word != NULL)
-  {
-    if(ptr->type == PIPE)
-      return 1;
-    ptr++;
-  }
-  return 0;
-}
 
 void execute_line(t_shell_control_block *shell)
 {
@@ -147,6 +117,7 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->env_of_export = NULL;
   shell->exit_status= 0;
 }
+
 int main(int ac, char **av, char **env)
 { 
   t_shell_control_block shell;

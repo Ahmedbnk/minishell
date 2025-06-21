@@ -190,4 +190,6 @@ int is_quote(char c);
 int is_protected(t_shell_control_block *sh, char *str, int index);
 void rm_quotes_from_one_str(t_shell_control_block *sh, char **line);
 int is_all_spaces(const char *str);
+int ft_lstsize(t_list *list);
+int is_there_a_pipe(t_shell_control_block *shell);
 #endif

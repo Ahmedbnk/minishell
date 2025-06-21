@@ -61,10 +61,12 @@ SRCS = main.c \
 	src/execution/print_exit_signal_message.c\
 	src/expansion/ft_get_env_var.c\
 	src/expansion/expand_outside_dollars.c\
-	src/main_tools/generate_random_name.c\
-	src/main_tools/is_quote.c\
-	src/main_tools/is_protected.c\
+	src/utils/generate_random_name.c\
+	src/utils/is_quote.c\
+	src/utils/is_protected.c\
 	src/utils/is_all_spaces.c\
+	src/utils/ft_lstsize.c\
+	src/utils/it_there_a_pipe.c\
 
 
 OBJS = $(SRCS:.c=.o)
