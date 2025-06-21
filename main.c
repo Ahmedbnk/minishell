@@ -81,6 +81,7 @@ char **update_splitted(t_shell_control_block *shell)
 void parse_line(t_shell_control_block *shell)
 {
   shell->porotect_var = generate_random_name();
+  printf("-->lock:%s\n", shell->porotect_var);
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
   get_files_name(shell);

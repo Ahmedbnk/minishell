@@ -18,8 +18,8 @@ static void	rm_quotes_from_one_str_helper(t_shell_control_block *sh, char *line,
 			quote = 0;
 		else
 			(*parsed_quote_line)[j++] = line[i];
-		if(is_protected(sh, line, i))
-			i = (i +ft_strlen(sh->porotect_var))-1;
+		if(is_quote(line[i]) && is_protected(sh, line, i))
+			i = (i +ft_strlen(sh->porotect_var));
 		i++;
 	}
 	(*parsed_quote_line)[j] = '\0';
