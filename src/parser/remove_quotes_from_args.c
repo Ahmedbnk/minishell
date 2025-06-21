@@ -1,28 +1,9 @@
 #include "minishell.h"
 
-static void	rm_quotes_from_multi_str_helper(char *line, char **parsed_quote_line,char *quote)
+static void	rm_quotes_from_one_str_helper(t_shell_control_block *sh, char *line, char **parsed_quote_line)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (line[i])
-	{
-		if((line[i] == single_q || line[i] == double_q) && *quote ==0)
-			*quote = line[i];
-		else if ((line[i] == single_q || line[i] == double_q)
-			&& *quote == line[i])
-			quote = 0;
-		else 
-			(*parsed_quote_line)[j++] = line[i];
-		i++;
-	}
-	(*parsed_quote_line)[j] = '\0';
-}
-static void	rm_quotes_from_one_str_helper(char *line, char **parsed_quote_line)
-{
-	int		i;
+	(void)sh;
+	int i;
 	int		j;
 	char	quote;
 
@@ -31,32 +12,24 @@ static void	rm_quotes_from_one_str_helper(char *line, char **parsed_quote_line)
 	quote = 0;
 	while (line[i])
 	{
-		if((line[i] == single_q || line[i] == double_q) && quote == 0)
+		if (is_quote(line[i]) && quote == 0 && !is_protected(sh, line, i))
 			quote = line[i];
-		else if ((line[i] == single_q || line[i] == double_q)
-			&& quote == line[i])
+		else if (is_quote(line[i]) && quote == line[i])
 			quote = 0;
-		else 
+		else
 			(*parsed_quote_line)[j++] = line[i];
+		if(is_protected(sh, line, i))
+			i = (i +ft_strlen(sh->porotect_var))-1;
 		i++;
 	}
 	(*parsed_quote_line)[j] = '\0';
 }
 
-void	 rm_quotes_from_multi_str(char **line, char *quote)
+void	rm_quotes_from_one_str(t_shell_control_block *sh, char **line)
 {
 	char	*line_without_quotes;
 
 	line_without_quotes = ft_malloc(ft_strlen(*line) + 1, 1);
-	rm_quotes_from_multi_str_helper(*line, &line_without_quotes, quote);
-	*line = line_without_quotes;
-}
-
-void	rm_quotes_from_one_str(char **line)
-{
-	char	*line_without_quotes;
-
-	line_without_quotes = ft_malloc(ft_strlen(*line) + 1, 1);
-	rm_quotes_from_one_str_helper(*line, &line_without_quotes);
+	rm_quotes_from_one_str_helper(sh, *line, &line_without_quotes);
 	*line = line_without_quotes;
 }

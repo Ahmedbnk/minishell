@@ -70,6 +70,7 @@ typedef struct s_shell_control_block
   char **  env_of_export;; 
   char *line;
   char **splitted;
+  char *porotect_var;
   t_list *lst;
   t_name_lst *file_name_lst;
   t_token *tokenized;
@@ -180,6 +181,12 @@ void export(t_shell_control_block *s, char **to_export);
 void get_files_name(t_shell_control_block *s);
 int	how_many_dallar_to_expand(char *str, int heredoc_flag);
 
-void	rm_quotes_from_one_str(char **line);
+// void	rm_quotes_from_one_str(char **line);
 void	 rm_quotes_from_multi_str(char **line, char *quote);
+// char *expand_outside_dollar(t_shell_control_block *s, char *str, int heredoc_flag);
+char *generate_random_name(void);
+char *expand_outside_dollar(t_shell_control_block *scb, char *str);
+int is_quote(char c);
+int is_protected(t_shell_control_block *sh, char *str, int index);
+void rm_quotes_from_one_str(t_shell_control_block *sh, char **line);
 #endif

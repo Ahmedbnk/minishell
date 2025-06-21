@@ -60,6 +60,11 @@ SRCS = main.c \
 	src/parser/handle_dollar_with_quotes.c\
 	src/execution/print_exit_signal_message.c\
 	src/expansion/ft_get_env_var.c\
+	src/expansion/expand_outside_dollars.c\
+	src/main_tools/generate_random_name.c\
+	src/main_tools/is_quote.c\
+	src/main_tools/is_protected.c\
+
 
 OBJS = $(SRCS:.c=.o)
 

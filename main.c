@@ -22,18 +22,14 @@ void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)
   int i;
   char **ptr;
   i = 0;
-	// printf("s%s\n", str);
-  if(*old_str == single_q || *old_str == double_q)
+  (void)old_str;
+  ptr = customized_split(str);
+  while (ptr[i])
   {
-      ft_lstadd_back(&sh->lst, ft_lstnew(str));
-      return;
+    rm_quotes_from_one_str(sh, &ptr[i]);
+    ft_lstadd_back(&sh->lst, ft_lstnew(ptr[i]));
+    i++;
   }
-    ptr = customized_split(str);
-    while (ptr[i])
-    {
-      ft_lstadd_back(&sh->lst, ft_lstnew(ptr[i]));
-      i++;
-    }
   }
 
 void expand_and_split(t_shell_control_block *shell) 
@@ -45,13 +41,16 @@ void expand_and_split(t_shell_control_block *shell)
   while (shell->splitted[i])
   {
     if(are_they_equal(shell->splitted[i], "<<"))
-      i++;
+    {
+        ft_lstadd_back(&shell->lst, ft_lstnew(shell->splitted[i++]));
+        ft_lstadd_back(&shell->lst, ft_lstnew(shell->splitted[i]));
+    }
     else
     {
       ptr = expand_if_possible(shell, shell->splitted[i], 0);
       if (are_they_equal(shell->splitted[i], ptr))
       {
-        rm_quotes_from_one_str(&ptr);
+        rm_quotes_from_one_str(shell, &ptr);
         ft_lstadd_back(&shell->lst, ft_lstnew(ptr));
       }
       else
@@ -81,16 +80,14 @@ char **update_splitted(t_shell_control_block *shell)
 }
 void parse_line(t_shell_control_block *shell)
 {
+  shell->porotect_var = generate_random_name();
   shell->splitted = customized_split(shell->line);
   shell->splitted = split_with_operators(shell->splitted);
   get_files_name(shell);
   expand_and_split(shell);
   shell->splitted = update_splitted(shell);
-  for (int i = 0; shell->splitted[i]; i++)
-    printf("->>%s\n", shell->splitted[i]);
   shell->tokenized = make_token(shell);
 }
-
 int is_there_a_pipe(t_shell_control_block *shell)
 {
   t_token *ptr;
@@ -149,7 +146,6 @@ void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
   shell->env_of_export = NULL;
   shell->exit_status= 0;
 }
-
 int main(int ac, char **av, char **env)
 { 
   t_shell_control_block shell;
@@ -158,9 +154,9 @@ int main(int ac, char **av, char **env)
   shell.env_of_export = copy_env(env);
   shell.env_cpy = copy_env(env);
  while (1) {
-    handle_signals(0);
-    if(!ft_readline(&shell))
-      continue;
+   handle_signals(0);
+   if (!ft_readline(&shell))
+     continue;
     parse_line(&shell);
     execute_line(&shell);
     free_memory(get_garbage_pointer(1));
