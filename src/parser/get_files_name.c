@@ -17,20 +17,17 @@ int	is_there_a_space_outside_q(char *str)
 		return (0);
 	int i;
 	i = 0;
-	int flag;
-	flag = 0;
+	int status;
+	status = 0;
 	if(!is_there_a_char(str))
-	{
-		printf("yes only space -->\n");
 		return 1;
-	}
 	while (str[i])
 	{
-		if(!is_space(str[i]) && (flag ==0 || flag==2 ))
-			flag++;
-		else if (is_space(str[i]) && !is_between_quotes(str, i) && flag)
-			flag++;
-		if(flag == 3)
+		if(!is_space(str[i]) && (status ==0 || status==2 ))
+			status++;
+		else if (is_space(str[i]) && status == 1)
+			status++;
+		if(status == 3)
 			return (1);
 		i++;
 	}
@@ -45,10 +42,10 @@ t_name_lst *ptr, char *str)
 		return ;
 	if (is_there_a_space_outside_q(str))
 	{
-			ptr->status = AMBIGUOUS;
+		p(str);
+		ptr->status = AMBIGUOUS;
 	}
 	ptr->file_name = str;
-	//rm_quotes_from_one_str(sh, &ptr->file_name);
 }
 
 void	prepare_lst(t_shell_control_block *sh)
@@ -61,11 +58,6 @@ void	prepare_lst(t_shell_control_block *sh)
 	ptr = sh->file_name_lst;
 	while (ptr)
 	{
-		if (!ptr->file_name)
-		{
-			ptr = ptr->next;
-			continue ;
-		}
 		str = expand_if_possible(sh, ptr->file_name, 0);
 		if (!str || !*str)
 		{

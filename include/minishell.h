@@ -194,4 +194,5 @@ int is_dollar(char c);
 int	is_redirection(char *str);
 t_name_lst	*new_file_name(void *name_of_file, int status);
 void	add_back_file_name(t_name_lst **lst, t_name_lst *new);
+void p(char *str);
 #endif
