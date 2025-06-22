@@ -1,11 +1,39 @@
 #include "minishell.h"
 
+int is_it_valid_dollar(char *str)
+{
+  int i;
+
+  if(!str)
+    return 0;
+  i = 0;
+  while (str[i])
+  {
+    if(is_dollar(str[i]) && !is_between_quotes(str, i) && str[i + 1] && !ft_isalnum(str[i + 1]))
+      return 0;
+    i++;
+  }
+  return 1;
+}
+
+int is_there_invalid_expantion(t_shell_control_block *sh, char *str, char *old_str)
+{
+  if(!is_it_valid_dollar(old_str))
+  {
+    rm_quotes_from_one_str(sh, &str);
+    ft_lstadd_back(&sh->lst, ft_lstnew(str));
+    return 1;
+  }
+  return 0;
+}
+
 void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)
 {
   int i;
   char **ptr;
   i = 0;
-  (void)old_str;
+  if(is_there_invalid_expantion(sh, str, old_str))
+    return;
   ptr = customized_split(str);
   while (ptr[i])
   {
@@ -42,6 +70,7 @@ void expand_and_split(t_shell_control_block *shell)
     i++;
   }
 }
+
 
 char **update_splitted(t_shell_control_block *shell)
 {

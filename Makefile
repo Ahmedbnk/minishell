@@ -67,6 +67,11 @@ SRCS = main.c \
 	src/utils/is_all_spaces.c\
 	src/utils/ft_lstsize.c\
 	src/utils/it_there_a_pipe.c\
+	src/utils/is_dollar.c\
+	src/utils/is_redirection.c\
+	src/utils/lst_file_name_func.c\
+
+
 
 
 OBJS = $(SRCS:.c=.o)

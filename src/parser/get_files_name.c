@@ -1,80 +1,54 @@
 #include "minishell.h"
 
-t_name_lst	*new_file_name(void *name_of_file, int is_valid, int is_it_new_start)
+int is_there_a_char(char *str)
 {
-	t_name_lst	*node;
-
-	node = ft_malloc(sizeof(t_name_lst), 1);
-	if (!node)
-		return (NULL);
-	node->file_name = name_of_file;
-	node->valid = is_valid;
-	node->new_start = is_it_new_start;
-	node->next = NULL;
-	return (node);
-}
-
-void	add_back_file_name(t_name_lst **lst, t_name_lst *new)
-{
-	t_name_lst	*c_node;
-
-	if (!lst || !new)
-		return ;
-	if (!*lst)
+	while(*str)
 	{
-		*lst = new;
-		return ;
+		if(is_space(*str))
+			str++;
+		else
+			return 1;
 	}
-	c_node = *lst;
-	while (c_node->next)
-		c_node = c_node->next;
-	c_node->next = new;
+	return 0;
 }
-
-int	is_redirection(char *str)
+int	is_there_a_space_outside_q(char *str)
 {
 	if (!str)
 		return (0);
-	return (are_they_equal(str, ">") || are_they_equal(str, "<") || 
-		are_they_equal(str, ">>"));
-}
-
-int	is_there_a_space_in_file_name(char *str)
-{
-	if (!str)
-		return (0);
-	while (*str)
+	int i;
+	i = 0;
+	int flag;
+	flag = 0;
+	if(!is_there_a_char(str))
 	{
-		if (is_space(*str))
+		printf("yes only space -->\n");
+		return 1;
+	}
+	while (str[i])
+	{
+		if(!is_space(str[i]) && (flag ==0 || flag==2 ))
+			flag++;
+		else if (is_space(str[i]) && !is_between_quotes(str, i) && flag)
+			flag++;
+		if(flag == 3)
 			return (1);
-		str++;
+		i++;
 	}
 	return (0);
 }
 
 static void	handle_expansion_result(t_shell_control_block *sh, 
-	t_name_lst *ptr, char *str)
+t_name_lst *ptr, char *str)
 {
-	int	i;
-
+	(void)sh;
 	if (are_they_equal(ptr->file_name, str))
-	{
-		// remove_quotes(&ptr->file_name);
 		return ;
-	}
-	i = 0;
-	while (i < how_many_dallar_to_expand(ptr->file_name, 0))
+	if (is_there_a_space_outside_q(str))
 	{
-		if (is_there_a_space_in_file_name(get_env_var(sh, sh->expand_arr[i])) 
-			|| !*str)
-		{
-			ptr->valid = AMBIGUOUS;
-			break ;
-		}
-		ptr->file_name = str;
-		// remove_quotes(&ptr->file_name);
-		i++;
+			ptr->status = AMBIGUOUS;
 	}
+	ptr->file_name = str;
+	//rm_quotes_from_one_str(sh, &ptr->file_name);
 }
 
 void	prepare_lst(t_shell_control_block *sh)
@@ -93,9 +67,9 @@ void	prepare_lst(t_shell_control_block *sh)
 			continue ;
 		}
 		str = expand_if_possible(sh, ptr->file_name, 0);
-		if (!str)
+		if (!str || !*str)
 		{
-			ptr->valid = AMBIGUOUS;
+			ptr->status = AMBIGUOUS;
 			ptr = ptr->next;
 			continue ;
 		}
@@ -110,7 +84,7 @@ static void	process_redirection_token(t_shell_control_block *sh, char **ptr)
 
 	if (!*(ptr + 1))
 		return ;
-	new_node = new_file_name(*(ptr + 1), VALID_NAME, NOT_NEW_START);
+	new_node = new_file_name(*(ptr + 1), VALID);
 	if (new_node)
 		add_back_file_name(&(sh->file_name_lst), new_node);
 }
@@ -119,7 +93,7 @@ static void	process_pipe_token(t_shell_control_block *sh)
 {
 	t_name_lst	*new_node;
 
-	new_node = new_file_name("|", VALID_NAME, NEW_START);
+	new_node = new_file_name("|", NEW_START);
 	if (new_node)
 		add_back_file_name(&(sh->file_name_lst), new_node);
 }
@@ -144,27 +118,27 @@ static void	parse_tokens(t_shell_control_block *sh)
 	}
 }
 
-static void	debug_print_node(t_name_lst *lst)
-{
-		printf("------> file name is %s\n", (char *)lst->file_name);
-		printf("------> valid is %d\n", lst->valid);
-		printf("------> is new start is %d\n", lst->new_start);
-		printf("***********************>\n");
-}
+// static void	debug_print_node(t_name_lst *lst)
+// {
+// 		printf("------> file name is %s\n", (char *)lst->file_name);
+// 		printf("------> valid is %d\n", lst->valid);
+// 		printf("------> is new start is %d\n", lst->new_start);
+// 		printf("***********************>\n");
+// }
 
-static void	debug_print_list(t_shell_control_block *sh)
-{
-	t_name_lst	*lst;
+// static void	debug_print_list(t_shell_control_block *sh)
+// {
+// 	t_name_lst	*lst;
 
-	if (!sh || !sh->file_name_lst)
-		return ;
-	lst = sh->file_name_lst;
-	while (lst)
-	{
-		debug_print_node(lst);
-		lst = lst->next;
-	}
-}
+// 	if (!sh || !sh->file_name_lst)
+// 		return ;
+// 	lst = sh->file_name_lst;
+// 	while (lst)
+// 	{
+// 		debug_print_node(lst);
+// 		lst = lst->next;
+// 	}
+// }
 
 void	get_files_name(t_shell_control_block *sh)
 {
@@ -173,5 +147,5 @@ void	get_files_name(t_shell_control_block *sh)
 	sh->file_name_lst = NULL;
 	parse_tokens(sh);
 	prepare_lst(sh);
-	debug_print_list(sh);
+	// debug_print_list(sh);
 }

@@ -17,10 +17,9 @@
 # define double_q 34
 #define BUFFER_SIZE 40
 #define PROTECT 14
-#define VALID_NAME 0
+#define VALID 0
 #define AMBIGUOUS 1
-#define  NOT_NEW_START 0
-#define NEW_START 1
+#define NEW_START 2 
 
 typedef enum e_type
 {
@@ -59,8 +58,7 @@ typedef struct  s_expand
 typedef struct s_name_lst 
 {
     char *file_name;
-    int valid;
-    int new_start;
+    int status;
 	struct  s_name_lst	*next;
 }					t_name_lst;
 
@@ -192,4 +190,8 @@ void rm_quotes_from_one_str(t_shell_control_block *sh, char **line);
 int is_all_spaces(const char *str);
 int ft_lstsize(t_list *list);
 int is_there_a_pipe(t_shell_control_block *shell);
+int is_dollar(char c);
+int	is_redirection(char *str);
+t_name_lst	*new_file_name(void *name_of_file, int status);
+void	add_back_file_name(t_name_lst **lst, t_name_lst *new);
 #endif

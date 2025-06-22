@@ -16,7 +16,7 @@ int execute_built_in_command(t_shell_control_block *shell)
       return((unset(&shell->env_cpy, shell->cmd_and_args +1),1));
   return 0;
 }
-static int is_redirection(int element)
+static int is_redirection_element(int element)
 {
   if(element == REDIR_OUT || element == REDIR_IN || element ==REDIR_APPEND)
     return 1;
@@ -34,10 +34,10 @@ int  execute_built_in(t_shell_control_block *shell, int state)
     shell->file_name = NULL;
     while (shell->tokenized && shell->tokenized->word != NULL && shell->tokenized->type != PIPE)
     {
-      if(is_redirection(shell->tokenized->type))
+      if(is_redirection_element(shell->tokenized->type))
       {
         printf("the file name is  %s\n",shell->file_name_lst->file_name);
-        if(shell->file_name_lst->valid == AMBIGUOUS)
+        if(shell->file_name_lst->status == AMBIGUOUS)
         {
           printf("ambig\n");
           // shell->exit_status = 1;
