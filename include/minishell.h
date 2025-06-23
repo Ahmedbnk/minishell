@@ -82,8 +82,11 @@ typedef struct s_shell_control_block
   int		fd_out;
   int		fd_in;
   int last_child_pid;
-  int status;
+  //int status;
+  int wait_status;
   int exit_status;
+  int original_stdin;
+  int original_stdout;
 
 }t_shell_control_block;
 
@@ -199,4 +202,5 @@ void	add_token_to_lst(t_token **lst, t_token *new);
 t_type	get_token_type(const char *str);
 void s(char *str);
 int check_syntax_error(t_shell_control_block *sh);
+void process_redirection_tokens(t_shell_control_block *shell);
 #endif

@@ -11,6 +11,7 @@ int is_there_a_char(char *str)
 	}
 	return 0;
 }
+
 int	is_there_a_space_outside_q(char *str)
 {
 	if (!str)

@@ -22,7 +22,6 @@ char *remake_delimeter(char *str)
       returned_str[j++] = str[i++];
   }
   returned_str[j] = '\0';
-  // remove_quotes(&returned_str);
   return returned_str;
 }
 
@@ -33,13 +32,13 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   char *buffer = NULL;
 
   tokenze->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
-  tokenze->delimiter = remake_delimeter((tokenze + 1) -> word);
+  tokenze->delimiter = remake_delimeter((tokenze ->next) -> word);
   while(1)
   {
     str = readline(">");
     if(str == NULL)
-    {
       print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
+    {
       break;
     }
     str = expand_if_possible(s, str, 1);

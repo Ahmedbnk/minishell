@@ -103,13 +103,6 @@ void parse_line(t_shell_control_block *sh)
   sh->splitted = split_with_operators(sh->splitted);
   get_files_name(sh);
   expand_and_split(sh);
-  t_token *ptr = sh->tokenze;
-  while(ptr)
-  {
-	  s(ptr->word);
-	  s(ft_itoa(ptr->type));
-	  ptr = ptr->next;
-  }
   check_syntax_error(sh);
 }
 

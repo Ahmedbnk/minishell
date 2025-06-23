@@ -72,11 +72,10 @@ int how_many_strcut_in_the_array(t_token *arr_of_stracts)
 	int number_of_structs;
 
 	number_of_structs = 0;
-	while(arr_of_stracts->word != NULL )
+	while(arr_of_stracts!= NULL )
 	{
-
 		number_of_structs++;
-		arr_of_stracts++;
+		arr_of_stracts = arr_of_stracts-> next;
 	}
 	return  number_of_structs;
 }
@@ -84,7 +83,6 @@ int how_many_strcut_in_the_array(t_token *arr_of_stracts)
 char **get_cmd_and_its_args(t_shell_control_block *shell)
 {
     int i;
-//i can count the number of words, that is the correct size
     shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenze)+1)* sizeof(t_token ),1);
     i = 0;
 	t_token *ptr;
