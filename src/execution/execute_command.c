@@ -84,28 +84,27 @@ int how_many_strcut_in_the_array(t_token *arr_of_stracts)
 char **get_cmd_and_its_args(t_shell_control_block *shell)
 {
     int i;
-    int j;
-
-    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenized)+1)* sizeof(t_token ),1);
-
+//i can count the number of words, that is the correct size
+    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenze)+1)* sizeof(t_token ),1);
     i = 0;
-    j = 0;
-    while(shell->tokenized[i].word != NULL)
-    {
-      if(shell->tokenized[i].word[0] == '\0')
-        i++;
-      else
-      {
-        if(shell->tokenized[i].type == REDIR_IN || shell->tokenized[i].type == HEREDOC || 
-          shell->tokenized[i].type == REDIR_OUT || shell->tokenized[i].type == REDIR_APPEND)
-          i++;
-        else if(shell->tokenized[i].type == WORD)
-          shell->cmd_and_args[j++] = ft_strdup(shell->tokenized[i].word, 1);
-        else
-          break;
-        i++;
-      }
-    }
-	shell->cmd_and_args[j] = NULL;
+	t_token *ptr;
+	ptr = shell->tokenze;
+	while (ptr) {
+		if (ptr->word[0] == '\0')
+			ptr = ptr->next;
+		else {
+			if (ptr->type == REDIR_IN ||
+				ptr->type == HEREDOC ||
+				ptr->type == REDIR_OUT ||
+				ptr->type == REDIR_APPEND)
+				ptr = ptr->next;
+			else if (ptr->type == WORD)
+				shell->cmd_and_args[i++] = ft_strdup(ptr->word, 1);
+			else
+				break;
+			ptr = ptr->next;
+		}
+	}
+	shell->cmd_and_args[i] = NULL;
   return shell->cmd_and_args;
 }

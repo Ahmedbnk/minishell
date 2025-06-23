@@ -58,7 +58,7 @@ count_number_of_qute	src/expansion/ft_get_env_var.c	/^int count_number_of_qute(c
 creat_line	src/utils/get_next_line.c	/^static char	*creat_line(char **rest)$/;"	f	typeref:typename:char *	file:
 creat_rest	src/utils/get_next_line.c	/^static char	*creat_rest(int fd, char *rest)$/;"	f	typeref:typename:char *	file:
 create_all_heredocs	src/parser/handle_heredoc.c	/^void create_all_heredocs(t_shell_control_block *shell)$/;"	f	typeref:typename:void
-create_heredoc	src/parser/handle_heredoc.c	/^void create_heredoc(t_shell_control_block *s ,t_token *tokenized)$/;"	f	typeref:typename:void
+create_heredoc	src/parser/handle_heredoc.c	/^void create_heredoc(t_shell_control_block *s ,t_token *tokenze)$/;"	f	typeref:typename:void
 custom_join	src/utils/custom_join.c	/^char	*custom_join(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
 customized_split	src/parser/customized_split.c	/^char	**customized_split(char const *s)$/;"	f	typeref:typename:char **
 debug_print_list	src/parser/get_files_name.c	/^static void	debug_print_list(t_shell_control_block *sh)$/;"	f	typeref:typename:void	file:
@@ -179,7 +179,7 @@ parse_tokens	src/parser/get_files_name.c	/^static void	parse_tokens(t_shell_cont
 porotect_var	include/minishell.h	/^  char *porotect_var;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 prepare_lst	src/parser/get_files_name.c	/^void	prepare_lst(t_shell_control_block *sh)$/;"	f	typeref:typename:void
 previous_read_end	include/minishell.h	/^  int previous_read_end;$/;"	m	struct:s_shell_control_block	typeref:typename:int
-print_command	src/parser/execute_command_line.c	/^void	print_command(t_token *tokenized)$/;"	f	typeref:typename:void
+print_command	src/parser/execute_command_line.c	/^void	print_command(t_token *tokenze)$/;"	f	typeref:typename:void
 print_env	src/built_in/env.c	/^void print_env(char **env)$/;"	f	typeref:typename:void
 print_error	src/utils/print_error.c	/^int	print_error(const char *str, ...)$/;"	f	typeref:typename:int
 print_exit_signal_message	src/execution/print_exit_signal_message.c	/^void print_exit_signal_message(int exit_status)$/;"	f	typeref:typename:void
@@ -208,7 +208,7 @@ should_i_expand	src/expansion/should_i_expand.c	/^int	should_i_expand(char *str,
 sigint_child_handler	src/signals/handle_signals.c	/^void	sigint_child_handler(int signo)$/;"	f	typeref:typename:void
 sigint_handler	src/signals/handle_signals.c	/^void	sigint_handler(int signo)$/;"	f	typeref:typename:void
 single_q	include/minishell.h	/^# define single_q /;"	d
-skip_command	src/parser/execute_command_line.c	/^void	skip_command(t_token **tokenized_address)$/;"	f	typeref:typename:void
+skip_command	src/parser/execute_command_line.c	/^void	skip_command(t_token **tokenze_address)$/;"	f	typeref:typename:void
 sort_env	src/built_in/export.c	/^ static void sort_env(char **env)$/;"	f	typeref:typename:void	file:
 split_after_expantion	main.c	/^void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)$/;"	f	typeref:typename:void
 split_helper	src/parser/customized_split.c	/^static void	split_helper(char **splitted, char *s, int i, int k)$/;"	f	typeref:typename:void	file:
@@ -227,7 +227,7 @@ t_token	include/minishell.h	/^}					t_token;$/;"	t	typeref:struct:s_token
 t_type	include/minishell.h	/^}					t_type;$/;"	t	typeref:enum:e_type
 third_range	src/execution/print_exit_signal_message.c	/^static void third_range(int exit_status)$/;"	f	typeref:typename:void	file:
 to_expand	include/minishell.h	/^	char			*to_expand;$/;"	m	struct:s_expand	typeref:typename:char *
-tokenized	include/minishell.h	/^  t_token *tokenized;$/;"	m	struct:s_shell_control_block	typeref:typename:t_token *
+tokenze	include/minishell.h	/^  t_token *tokenze;$/;"	m	struct:s_shell_control_block	typeref:typename:t_token *
 type	include/minishell.h	/^	int				type;$/;"	m	struct:s_token	typeref:typename:int
 unset	src/built_in/unset.c	/^void unset(char ***env, char **vars)$/;"	f	typeref:typename:void
 update_env_dir	src/built_in/cd.c	/^void update_env_dir(char **env, char *old_dir, char *new_dir)$/;"	f	typeref:typename:void

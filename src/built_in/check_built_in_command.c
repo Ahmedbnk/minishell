@@ -24,17 +24,17 @@ static int is_redirection_element(int element)
 }
 
 int  execute_built_in(t_shell_control_block *shell, int state)
-{ 
+{
   if (state == 1)
   {
     int original_stdin = dup(0);
     int original_stdout = dup(1);
-    t_token *original_tokenized = shell->tokenized;
+    t_token *original_tokenze = shell->tokenze;
     shell->in_file_name = NULL;
     shell->file_name = NULL;
-    while (shell->tokenized && shell->tokenized->word != NULL && shell->tokenized->type != PIPE)
+    while (shell->tokenze && shell->tokenze->word != NULL && shell->tokenze->type != PIPE)
     {
-      if(is_redirection_element(shell->tokenized->type))
+      if(is_redirection_element(shell->tokenze->type))
       {
         printf("the file name is  %s\n",shell->file_name_lst->file_name);
         if(shell->file_name_lst->status == AMBIGUOUS)
@@ -45,17 +45,17 @@ int  execute_built_in(t_shell_control_block *shell, int state)
         }
         shell->file_name_lst = shell->file_name_lst->next;
       }
-      if (shell->tokenized->type == HEREDOC)
-        shell->in_file_name = shell->tokenized->heredoc_file_name;
-      else if (shell->tokenized->type == REDIR_IN)
-        handle_redir_in((shell->tokenized + 1)->word, &(shell->in_file_name));
-      else if (shell->tokenized->type == REDIR_OUT)
-        handle_redir_out((shell->tokenized + 1)->word, &(shell->file_name));
-      else if (shell->tokenized->type == REDIR_APPEND)
-        handle_append((shell->tokenized + 1)->word, &(shell->file_name));
-      shell->tokenized++;
+      if (shell->tokenze->type == HEREDOC)
+        shell->in_file_name = shell->tokenze->heredoc_file_name;
+      else if (shell->tokenze->type == REDIR_IN)
+        handle_redir_in((shell->tokenze + 1)->word, &(shell->in_file_name));
+      else if (shell->tokenze->type == REDIR_OUT)
+        handle_redir_out((shell->tokenze + 1)->word, &(shell->file_name));
+      else if (shell->tokenze->type == REDIR_APPEND)
+        handle_append((shell->tokenze + 1)->word, &(shell->file_name));
+      shell->tokenze++;
     }
-    shell->tokenized = original_tokenized;
+    shell->tokenze = original_tokenze;
     if (shell->file_name)
     {
       shell->fd_out = open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);

@@ -1,7 +1,24 @@
 
 #include "minishell.h"
 
-void p(char *str)
+static void	ft_putchar(char c)
 {
-  printf("[%s]\n", str);
+	write(2, &c, 1);
+}
+
+static void	ft_putstr(char *str)
+{
+	if (!str)
+		str = "(null)";
+	while (*str)
+	{
+		ft_putchar(*str);
+		str++;
+	}
+}
+void s(char *str)
+{
+  ft_putstr("[");
+  ft_putstr(str);
+  ft_putstr("]\n");
 }

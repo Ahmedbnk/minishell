@@ -23,39 +23,39 @@
 //   return (ft_itoa(num));
 // }
 
-void	skip_command(t_token **tokenized_address)
+void	skip_command(t_token **tokenze_address)
 {
-  t_token	*tokenized;
+  t_token	*tokenze;
 
-  tokenized = *tokenized_address;
-  while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
-    tokenized ++;
-  *tokenized_address = tokenized;
+  tokenze = *tokenze_address;
+  while (tokenze && tokenze->word != NULL && tokenze->type != PIPE)
+    tokenze ++;
+  *tokenze_address = tokenze;
 }
 
-void	print_command(t_token *tokenized)
+void	print_command(t_token *tokenze)
 {
-  while (tokenized && tokenized->word != NULL && tokenized->type != PIPE)
+  while (tokenze && tokenze->word != NULL && tokenze->type != PIPE)
   {
-    printf("%s ", tokenized->word);
-    tokenized ++;
+    printf("%s ", tokenze->word);
+    tokenze ++;
   }
   printf("\n");
 }
 
 void handle_all_redir(t_shell_control_block *shell)
 {
-  while (shell->tokenized && shell->tokenized->word != NULL && shell->tokenized->type != PIPE)
+  while (shell->tokenze && shell->tokenze->word != NULL && shell->tokenze->type != PIPE)
   {
-    if (shell->tokenized->type == HEREDOC)
-      shell->in_file_name = shell->tokenized->heredoc_file_name;
-    else if (shell->tokenized->type == REDIR_IN)
-      handle_redir_in((shell->tokenized + 1)->word, &(shell->in_file_name));
-    else if (shell->tokenized->type == REDIR_OUT)
-      handle_redir_out((shell->tokenized + 1)->word, &(shell->file_name));
-    else if (shell->tokenized->type == REDIR_APPEND)
-      handle_append((shell->tokenized + 1)->word, &(shell->file_name));
-    shell->tokenized ++;
+    if (shell->tokenze->type == HEREDOC)
+      shell->in_file_name = shell->tokenze->heredoc_file_name;
+    else if (shell->tokenze->type == REDIR_IN)
+      handle_redir_in((shell->tokenze + 1)->word, &(shell->in_file_name));
+    else if (shell->tokenze->type == REDIR_OUT)
+      handle_redir_out((shell->tokenze + 1)->word, &(shell->file_name));
+    else if (shell->tokenze->type == REDIR_APPEND)
+      handle_append((shell->tokenze + 1)->word, &(shell->file_name));
+    shell->tokenze ++;
   }
 
 }
@@ -113,11 +113,11 @@ void execute_command_line(t_shell_control_block *shell)
   int status;
 
   status = 0;
-  shell->line_pointer = shell->tokenized;
+  shell->line_pointer = shell->tokenze;
   shell->previous_read_end = -1;
   while (shell->line_pointer && shell->line_pointer->word)
   {
-    shell->tokenized = shell->line_pointer;
+    shell->tokenze = shell->line_pointer;
     skip_command(&(shell->line_pointer));
     if (shell->line_pointer && shell->line_pointer->type == PIPE)
       pipe(shell->arr);

@@ -19,7 +19,7 @@
 #define PROTECT 14
 #define VALID 0
 #define AMBIGUOUS 1
-#define NEW_START 2 
+#define NEW_START 2
 
 typedef enum e_type
 {
@@ -37,6 +37,7 @@ typedef struct s_token
 	char			*word;
   char      *heredoc_file_name;
   char      *delimiter;
+  struct s_token *next;
 }					t_token;
 
 typedef struct s_list
@@ -55,7 +56,7 @@ typedef struct  s_expand
 
 }t_expand;
 
-typedef struct s_name_lst 
+typedef struct s_name_lst
 {
     char *file_name;
     int status;
@@ -65,13 +66,12 @@ typedef struct s_name_lst
 typedef struct s_shell_control_block
 {
   char **env_cpy;
-  char **  env_of_export;; 
+  char **  env_of_export;;
   char *line;
   char **splitted;
   char *porotect_var;
-  t_list *lst;
   t_name_lst *file_name_lst;
-  t_token *tokenized;
+  t_token *tokenze;
   char **cmd_and_args;
   t_expand *expand_arr;
   int arr[2];
@@ -136,7 +136,7 @@ void	free_memory(t_list **lst);
 t_list	*garbage_collection_lstnew(void *content, int flag);
 // t_list	*garbage_collection_lstnew(void *content);
 char	*get_next_line(int fd);
-void handle_heredoc(t_token *tokenized, char **in_file_name);
+void handle_heredoc(t_token *tokenze, char **in_file_name);
 void print_file(char *str);
 void handle_redir_in(char *str, char **in_file_name);
 char *read_file(char *file_name);
@@ -194,5 +194,9 @@ int is_dollar(char c);
 int	is_redirection(char *str);
 t_name_lst	*new_file_name(void *name_of_file, int status);
 void	add_back_file_name(t_name_lst **lst, t_name_lst *new);
-void p(char *str);
+t_token	*new_token(void *content, int type);
+void	add_token_to_lst(t_token **lst, t_token *new);
+t_type	get_token_type(const char *str);
+void s(char *str);
+int check_syntax_error(t_shell_control_block *sh);
 #endif

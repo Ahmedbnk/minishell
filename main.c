@@ -21,7 +21,7 @@ int is_there_invalid_expantion(t_shell_control_block *sh, char *str, char *old_s
   if(!is_it_valid_dollar(old_str))
   {
     rm_quotes_from_one_str(sh, &str);
-    ft_lstadd_back(&sh->lst, ft_lstnew(str));
+    add_token_to_lst(&sh->tokenze, new_token(str, WORD));
     return 1;
   }
   return 0;
@@ -38,130 +38,141 @@ void split_after_expantion(t_shell_control_block *sh, char *str, char *old_str)
   while (ptr[i])
   {
     rm_quotes_from_one_str(sh, &ptr[i]);
-    ft_lstadd_back(&sh->lst, ft_lstnew(ptr[i]));
+    add_token_to_lst(&sh->tokenze, new_token(ptr[i], WORD));
+    // ft_lstadd_back(&sh->tokenze, ft_lstnew(ptr[i]));
     i++;
   }
 }
 
-void expand_and_split(t_shell_control_block *shell) 
+void expand_and_split_helper(t_shell_control_block *sh, int index)
 {
-  int i;
-  i = 0;
   char *ptr;
-  shell->lst = NULL;
-  while (shell->splitted[i])
-  {
-    if(are_they_equal(shell->splitted[i], "<<"))
-    {
-        ft_lstadd_back(&shell->lst, ft_lstnew(shell->splitted[i++]));
-        ft_lstadd_back(&shell->lst, ft_lstnew(shell->splitted[i]));
-    }
-    else
-    {
-      ptr = expand_if_possible(shell, shell->splitted[i], 0);
-      if (are_they_equal(shell->splitted[i], ptr))
-      {
-        rm_quotes_from_one_str(shell, &ptr);
-        ft_lstadd_back(&shell->lst, ft_lstnew(ptr));
-      }
-      else
-        split_after_expantion(shell, ptr, shell->splitted[i]);
-    }
-    i++;
-  }
+
+  ptr = expand_if_possible(sh, sh->splitted[index], 0);
+  if (are_they_equal(sh->splitted[index], ptr)) {
+	  rm_quotes_from_one_str(sh, &ptr);
+    add_token_to_lst(&sh->tokenze, new_token(ptr, get_token_type(ptr)));
+  } else
+	  split_after_expantion(sh, ptr, sh->splitted[index]);
 }
 
-
-char **update_splitted(t_shell_control_block *shell)
+void expand_and_split(t_shell_control_block *sh)
 {
-  char **the_updated_splitted;
-  t_list *ptr;
-  int len;
   int i;
-  len = ft_lstsize(shell->lst);
-  the_updated_splitted = ft_malloc((len +1) *sizeof(char *), 1);
-  ptr = shell->lst;
   i = 0;
-  while (ptr)
-  {
-    the_updated_splitted[i++] = (char *)ptr->content;
-    ptr = ptr->next;
-  }
-  the_updated_splitted[i] = NULL;
-  return the_updated_splitted;
-}
 
-void parse_line(t_shell_control_block *shell)
-{
-  shell->porotect_var = generate_random_name();
-  shell->splitted = customized_split(shell->line);
-  shell->splitted = split_with_operators(shell->splitted);
-  get_files_name(shell);
-  expand_and_split(shell);
-  shell->splitted = update_splitted(shell);
-  shell->tokenized = make_token(shell);
-}
-
-void execute_line(t_shell_control_block *shell)
-{
-  if (shell->tokenized)
+  sh->tokenze = NULL;
+  while (sh->splitted[i])
   {
-    create_all_heredocs(shell);
-    get_cmd_and_its_args(shell);
-    if(!is_there_a_pipe(shell) && execute_built_in(shell, parent));
+    if(are_they_equal(sh->splitted[i], "<<"))
+    {
+        add_token_to_lst(&sh->tokenze, new_token(sh->splitted[i], get_token_type(sh->splitted[i])));
+		i++;
+        add_token_to_lst(&sh->tokenze, new_token(sh->splitted[i], get_token_type(sh->splitted[i])));
+	}
     else
-      execute_command_line(shell);
+		expand_and_split_helper(sh, i);
+	i++;
   }
 }
 
-char *ft_readline(t_shell_control_block *shell)
-{
-  shell->line = readline("\001\033[1;31m\002 Undefined Behavior :\001\033[0m\002");
-  if (shell->line && *shell->line)
 
-    add_history(shell->line);
-  if (shell->line == NULL)
+// char **update_splitted(t_shell_control_block *sh)
+// {
+//   char **the_updated_splitted;
+//   t_list *ptr;
+//   int len;
+//   int i;
+//   len = ft_lstsize(sh->tokenze);
+//   the_updated_splitted = ft_malloc((len +1) *sizeof(char *), 1);
+//   ptr = sh->tokenze;
+//   i = 0;
+//   while (ptr)
+//   {
+//     the_updated_splitted[i++] = (char *)ptr->content;
+//     ptr = ptr->next;
+//   }
+//   the_updated_splitted[i] = NULL;
+//   return the_updated_splitted;
+// }
+
+void parse_line(t_shell_control_block *sh)
+{
+  sh->porotect_var = generate_random_name();
+  sh->splitted = customized_split(sh->line);
+  sh->splitted = split_with_operators(sh->splitted);
+  get_files_name(sh);
+  expand_and_split(sh);
+  t_token *ptr = sh->tokenze;
+  while(ptr)
   {
-    free(shell->line);
+	  s(ptr->word);
+	  s(ft_itoa(ptr->type));
+	  ptr = ptr->next;
+  }
+  check_syntax_error(sh);
+}
+
+void execute_line(t_shell_control_block *sh)
+{
+  if (sh->tokenze)
+  {
+    create_all_heredocs(sh);
+    get_cmd_and_its_args(sh);
+    if(!is_there_a_pipe(sh) && execute_built_in(sh, parent));
+    else
+      execute_command_line(sh);
+  }
+}
+
+char *ft_readline(t_shell_control_block *sh)
+{
+  sh->line = readline("\001\033[1;31m\002 Undefined Behavior :\001\033[0m\002");
+  if (sh->line && *sh->line)
+
+    add_history(sh->line);
+  if (sh->line == NULL)
+  {
+    free(sh->line);
     free_memory(get_garbage_pointer(1));
     free_memory(get_garbage_pointer(0));
     exit(0);
     return NULL;
   }
-  if (check_error(shell))
+  if (check_error(sh))
     return NULL;
-  return shell->line;
+  return sh->line;
 }
 
-void ft_init_shell_block(t_shell_control_block *shell, int ac, char **av)
+void ft_init_shell_block(t_shell_control_block *sh, int ac, char **av)
 {
   (void) ac;
   (void) av;
-  shell->env_cpy = NULL;
-  shell->line = NULL;
-  shell->splitted = NULL;
-  shell->file_name_lst = NULL;
-  shell->lst = NULL;
-  shell->cmd_and_args= NULL;
-  shell->env_of_export = NULL;
-  shell->exit_status= 0;
+  sh->env_cpy = NULL;
+  sh->line = NULL;
+  sh->splitted = NULL;
+  sh->file_name_lst = NULL;
+  sh->tokenze = NULL;
+  sh->cmd_and_args= NULL;
+  sh->env_of_export = NULL;
+  sh->exit_status= 0;
 }
 
 int main(int ac, char **av, char **env)
-{ 
-  t_shell_control_block shell;
+{
+  t_shell_control_block sh;
 
-  ft_init_shell_block(&shell, ac, av);
-  shell.env_of_export = copy_env(env);
-  shell.env_cpy = copy_env(env);
+  ft_init_shell_block(&sh, ac, av);
+  sh.env_of_export = copy_env(env);
+  sh.env_cpy = copy_env(env);
  while (1) {
    handle_signals(0);
-   if (!ft_readline(&shell))
+   if (!ft_readline(&sh))
      continue;
-    parse_line(&shell);
-    execute_line(&shell);
+    parse_line(&sh);
+    execute_line(&sh);
     free_memory(get_garbage_pointer(1));
-    free(shell.line);
+    free(sh.line);
   }
   return (0);
 }

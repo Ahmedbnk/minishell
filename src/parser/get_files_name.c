@@ -34,7 +34,7 @@ int	is_there_a_space_outside_q(char *str)
 	return (0);
 }
 
-static void	handle_expansion_result(t_shell_control_block *sh, 
+static void	handle_expansion_result(t_shell_control_block *sh,
 t_name_lst *ptr, char *str)
 {
 	(void)sh;
@@ -42,7 +42,7 @@ t_name_lst *ptr, char *str)
 		return ;
 	if (is_there_a_space_outside_q(str))
 	{
-		p(str);
+		s(str);
 		ptr->status = AMBIGUOUS;
 	}
 	ptr->file_name = str;

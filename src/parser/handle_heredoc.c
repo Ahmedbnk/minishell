@@ -26,28 +26,28 @@ char *remake_delimeter(char *str)
   return returned_str;
 }
 
-void create_heredoc(t_shell_control_block *s ,t_token *tokenized)
+void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
 {
   int fd;
-  char *str = NULL; 
-  char *buffer = NULL; 
+  char *str = NULL;
+  char *buffer = NULL;
 
-  tokenized->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
-  tokenized->delimiter = remake_delimeter((tokenized + 1) -> word);
+  tokenze->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
+  tokenze->delimiter = remake_delimeter((tokenze + 1) -> word);
   while(1)
   {
     str = readline(">");
     if(str == NULL)
     {
-      print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenized->delimiter);
+      print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
       break;
     }
     str = expand_if_possible(s, str, 1);
-    if(are_they_equal(str, tokenized->delimiter))
+    if(are_they_equal(str, tokenze->delimiter))
        break;
     buffer = ft_strjoin(buffer, str);
   }
-  fd = open(tokenized->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+  fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
   write(fd,buffer,ft_strlen(buffer));
   write(fd,"\n", 1);
   close(fd);
@@ -57,11 +57,11 @@ void create_all_heredocs(t_shell_control_block *shell)
 {
   t_token *ptr;
 
-  ptr = shell->tokenized;
-  while(ptr && ptr -> word)
+  ptr = shell->tokenze;
+  while(ptr)
   {
     if(ptr -> type == HEREDOC)
       create_heredoc(shell, ptr);
-    ptr ++;
+	ptr = ptr->next;
   }
 }
