@@ -55,7 +55,7 @@ void	process_command(t_shell_control_block *shell)
 {
   shell->in_file_name = NULL;
   shell->file_name = NULL;
-  get_cmd_and_its_args(shell);
+  //get_cmd_and_its_args(shell);
   handle_all_redir(shell);
     if (shell->file_name)
   {
