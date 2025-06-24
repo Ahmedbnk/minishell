@@ -1,4 +1,5 @@
 #include "minishell.h"
+#include  <dirent.h> 
 
 void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 {
@@ -13,6 +14,8 @@ void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 	while(path[i])
 	{
 		cmd_with_its_path = ft_strjoin(path[i] ,cmd_with_slash);
+    if(opendir(cmd) != NULL)
+				exit((print_error("%s: Is a directory\n",cmd), 2));
 		if(access(cmd_with_its_path, F_OK) == 0)
 		{
 			if(access(cmd_with_its_path, X_OK) == 0)
@@ -31,6 +34,8 @@ void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
 
 void  check_the_access(char *cmd, char **av, char **env)
 {
+  if(opendir(cmd) != NULL)
+				exit((print_error("%s: Is a directory\n",cmd), 2));
 	if (access(cmd, F_OK) == 0)
 	{
 		if(access(cmd, X_OK) == 0)
