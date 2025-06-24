@@ -71,7 +71,8 @@ void	process_command(t_shell_control_block *shell)
   }
   if(!execute_built_in(shell, child))
     execute_command(shell);
-  unlink(shell->in_file_name);
+	if(shell->in_file_name)
+  		unlink(shell->in_file_name);
 }
 
 void execute_command_line_helper(t_shell_control_block *shell)

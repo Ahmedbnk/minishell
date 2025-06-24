@@ -203,4 +203,5 @@ t_type	get_token_type(const char *str);
 void s(char *str);
 int check_syntax_error(t_shell_control_block *sh);
 void process_redirection_tokens(t_shell_control_block *shell);
+int			 is_there_a_char(char *str);
 #endif

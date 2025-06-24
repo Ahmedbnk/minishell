@@ -76,34 +76,16 @@ void expand_and_split(t_shell_control_block *sh)
   }
 }
 
-
-// char **update_splitted(t_shell_control_block *sh)
-// {
-//   char **the_updated_splitted;
-//   t_list *ptr;
-//   int len;
-//   int i;
-//   len = ft_lstsize(sh->tokenze);
-//   the_updated_splitted = ft_malloc((len +1) *sizeof(char *), 1);
-//   ptr = sh->tokenze;
-//   i = 0;
-//   while (ptr)
-//   {
-//     the_updated_splitted[i++] = (char *)ptr->content;
-//     ptr = ptr->next;
-//   }
-//   the_updated_splitted[i] = NULL;
-//   return the_updated_splitted;
-// }
-
-void parse_line(t_shell_control_block *sh)
+int parse_line(t_shell_control_block *sh)
 {
   sh->porotect_var = generate_random_name();
   sh->splitted = customized_split(sh->line);
   sh->splitted = split_with_operators(sh->splitted);
   get_files_name(sh);
   expand_and_split(sh);
-  check_syntax_error(sh);
+  if(check_syntax_error(sh))
+	  return 1;
+  return 0;
 }
 
 void execute_line(t_shell_control_block *sh)
@@ -130,10 +112,9 @@ char *ft_readline(t_shell_control_block *sh)
     free_memory(get_garbage_pointer(1));
     free_memory(get_garbage_pointer(0));
     exit(0);
-    return NULL;
   }
   if (check_error(sh))
-    return NULL;
+    return((free(sh->line), NULL));
   return sh->line;
 }
 
@@ -160,9 +141,8 @@ int main(int ac, char **av, char **env)
   sh.env_cpy = copy_env(env);
  while (1) {
    handle_signals(0);
-   if (!ft_readline(&sh))
+   if (!ft_readline(&sh) || parse_line(&sh))
      continue;
-    parse_line(&sh);
     execute_line(&sh);
     free_memory(get_garbage_pointer(1));
     free(sh.line);

@@ -61,29 +61,36 @@ void execute_command(t_shell_control_block *shell)
 	if(!*shell->cmd_and_args)
 		return;
 	char **path = get_path();
-	if(**shell->cmd_and_args == '/')
+	if (**shell->cmd_and_args == '/')
 		check_the_access(*shell->cmd_and_args, shell->cmd_and_args, shell->env_cpy);
 	else
 		check_after_geting_bath(*shell->cmd_and_args ,shell->cmd_and_args , path , shell->env_cpy);
 }
 
-int how_many_strcut_in_the_array(t_token *arr_of_stracts)
+int cmd_size(t_token *tokenz)
 {
-	int number_of_structs;
+	int size;
 
-	number_of_structs = 0;
-	while(arr_of_stracts!= NULL )
+	size = 0;
+	while(tokenz)
 	{
-		number_of_structs++;
-		arr_of_stracts = arr_of_stracts-> next;
+		if(is_redirection(tokenz->word) || tokenz->type == HEREDOC)
+			tokenz = tokenz-> next;
+		else if(tokenz->type == WORD)
+			size++;
+		tokenz = tokenz-> next;
 	}
-	return  number_of_structs;
+	return size;
 }
-
+int is_symbole(int  type)
+{
+	return (type == REDIR_IN || type == HEREDOC || type == REDIR_OUT ||
+			type == REDIR_APPEND);
+}
 char **get_cmd_and_its_args(t_shell_control_block *shell)
 {
     int i;
-    shell->cmd_and_args = ft_malloc( (how_many_strcut_in_the_array(shell->tokenze)+1)* sizeof(t_token ),1);
+    shell->cmd_and_args = ft_malloc( (cmd_size(shell->tokenze)+1)* sizeof(t_token ),1);
     i = 0;
 	t_token *ptr;
 	ptr = shell->tokenze;
@@ -91,10 +98,7 @@ char **get_cmd_and_its_args(t_shell_control_block *shell)
 		if (ptr->word[0] == '\0')
 			ptr = ptr->next;
 		else {
-			if (ptr->type == REDIR_IN ||
-				ptr->type == HEREDOC ||
-				ptr->type == REDIR_OUT ||
-				ptr->type == REDIR_APPEND)
+			if (is_symbole(ptr->type))
 				ptr = ptr->next;
 			else if (ptr->type == WORD)
 				shell->cmd_and_args[i++] = ft_strdup(ptr->word, 1);
