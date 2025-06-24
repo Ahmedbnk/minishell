@@ -1,7 +1,6 @@
 #include "minishell.h"
-#include  <dirent.h> 
 
-void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)
+void  check_after_geting_path( char *cmd, char **av, char **path, char **env)
 {
 	int i;
 	char *cmd_with_slash;
@@ -46,6 +45,8 @@ void  check_the_access(char *cmd, char **av, char **env)
 		else
 				exit((print_error("%s: Permition denied\n", cmd), 126));
 	}
+  else if(*cmd == '/'  || *cmd == '.')
+	  exit((print_error("%s: No such file or directory \n", cmd), 127));
 	else
 	  exit((print_error("%s: command not found\n", cmd), 127));
 }
@@ -66,10 +67,10 @@ void execute_command(t_shell_control_block *shell)
 	if(!*shell->cmd_and_args)
 		return;
 	char **path = get_path();
-	if (**shell->cmd_and_args == '/')
+	if (**shell->cmd_and_args == '/' || **shell->cmd_and_args == '.')
 		check_the_access(*shell->cmd_and_args, shell->cmd_and_args, shell->env_cpy);
 	else
-		check_after_geting_bath(*shell->cmd_and_args ,shell->cmd_and_args , path , shell->env_cpy);
+		check_after_geting_path(*shell->cmd_and_args ,shell->cmd_and_args , path , shell->env_cpy);
 }
 
 int cmd_size(t_token *tokenz)

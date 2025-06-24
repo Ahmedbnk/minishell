@@ -43,7 +43,7 @@ arr	include/minishell.h	/^  int arr[2];$/;"	m	struct:s_shell_control_block	typer
 befor_dollar	include/minishell.h	/^	char			*befor_dollar;$/;"	m	struct:s_expand	typeref:typename:char *
 calculate_all_symboles_operators	src/parser/split_with_operators.c	/^static int	calculate_all_symboles_operators(char **splitted)$/;"	f	typeref:typename:int	file:
 cd	src/built_in/cd.c	/^void cd(char **env, char **path)$/;"	f	typeref:typename:void
-check_after_geting_bath	src/execution/execute_command.c	/^void  check_after_geting_bath( char *cmd, char **av, char **path, char **env)$/;"	f	typeref:typename:void
+check_after_geting_path	src/execution/execute_command.c	/^void  check_after_geting_path( char *cmd, char **av, char **path, char **env)$/;"	f	typeref:typename:void
 check_ambiguous_redirection	src/built_in/check_built_in_command.c	/^int check_ambiguous_redirection(t_shell_control_block *shell)$/;"	f	typeref:typename:int
 check_error	src/parser/check_input_error.c	/^int	check_error(t_shell_control_block *shell)$/;"	f	typeref:typename:int
 check_syntax_error	src/parser/make_token.c	/^int	check_syntax_error(t_shell_control_block *sh)$/;"	f	typeref:typename:int
@@ -53,6 +53,7 @@ child	include/minishell.h	/^#define child /;"	d
 child_signal_handler	src/signals/handle_signals.c	/^void child_signal_handler()$/;"	f	typeref:typename:void
 clean	Makefile	/^clean:$/;"	t
 cmd_and_args	include/minishell.h	/^  char **cmd_and_args;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
+cmd_size	src/execution/execute_command.c	/^int cmd_size(t_token *tokenz)$/;"	f	typeref:typename:int
 compare_env_var	src/built_in/ist_valid_env_var.c	/^int compare_env_var(char *var1, char *var2)$/;"	f	typeref:typename:int
 content	include/minishell.h	/^	void			*content;$/;"	m	struct:s_list	typeref:typename:void *
 copy_env	src/env/copy_env.c	/^char ** copy_env(char **env)$/;"	f	typeref:typename:char **
@@ -144,7 +145,6 @@ handle_signals	src/signals/handle_signals.c	/^void	handle_signals(int flag)$/;"	
 heredoc_file_name	include/minishell.h	/^  char      *heredoc_file_name;$/;"	m	struct:s_token	typeref:typename:char *
 heredoc_flag	include/minishell.h	/^	int				heredoc_flag;$/;"	m	struct:s_expand	typeref:typename:int
 how_many_dallar_to_expand	src/expansion/expand_if_possible.c	/^int	how_many_dallar_to_expand(char *str, int heredoc_flag)$/;"	f	typeref:typename:int
-how_many_strcut_in_the_array	src/execution/execute_command.c	/^int how_many_strcut_in_the_array(t_token *arr_of_stracts)$/;"	f	typeref:typename:int
 in_file_name	include/minishell.h	/^  char	*in_file_name;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 init_arr_of_structs_list	src/env/allocate_and_init_expand_list.c	/^static void	init_arr_of_structs_list(t_expand *expand_list, int how_much_to_expand, int heredoc_/;"	f	typeref:typename:void	file:
 init_redirection_vars	src/built_in/check_built_in_command.c	/^void init_redirection_vars(t_shell_control_block *shell)$/;"	f	typeref:typename:void
@@ -161,6 +161,7 @@ is_protected	src/utils/is_protected.c	/^int is_protected(t_shell_control_block *
 is_quote	src/utils/is_quote.c	/^int is_quote(char c)$/;"	f	typeref:typename:int
 is_redirection	src/utils/is_redirection.c	/^int	is_redirection(char *str)$/;"	f	typeref:typename:int
 is_space	src/utils/is_space.c	/^int	is_space(char c)$/;"	f	typeref:typename:int
+is_symbole	src/execution/execute_command.c	/^int is_symbole(int  type)$/;"	f	typeref:typename:int
 is_the_var_in_env	src/built_in/unset.c	/^int is_the_var_in_env(char **env, char *var)$/;"	f	typeref:typename:int
 is_there_a_char	src/parser/get_files_name.c	/^int is_there_a_char(char *str)$/;"	f	typeref:typename:int
 is_there_a_pipe	src/utils/it_there_a_pipe.c	/^int is_there_a_pipe(t_shell_control_block *shell)$/;"	f	typeref:typename:int
@@ -183,7 +184,7 @@ next	include/minishell.h	/^  struct s_token *next;$/;"	m	struct:s_token	typeref:
 original_stdin	include/minishell.h	/^  int original_stdin;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 original_stdout	include/minishell.h	/^  int original_stdout;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 parent	include/minishell.h	/^#define parent /;"	d
-parse_line	main.c	/^void parse_line(t_shell_control_block *sh)$/;"	f	typeref:typename:void
+parse_line	main.c	/^int parse_line(t_shell_control_block *sh)$/;"	f	typeref:typename:int
 parse_redirections	src/built_in/check_built_in_command.c	/^int parse_redirections(t_shell_control_block *shell)$/;"	f	typeref:typename:int
 parse_tokens	src/parser/get_files_name.c	/^static void	parse_tokens(t_shell_control_block *sh)$/;"	f	typeref:typename:void	file:
 porotect_var	include/minishell.h	/^  char *porotect_var;$/;"	m	struct:s_shell_control_block	typeref:typename:char *

@@ -14,6 +14,8 @@ int execute_built_in_command(t_shell_control_block *shell)
     return((export(shell, shell->cmd_and_args +1),1));
   else if(are_they_equal(*shell->cmd_and_args, "unset"))
     return((unset(&shell->env_cpy, shell->cmd_and_args +1),1));
+  else if(are_they_equal(*shell->cmd_and_args, "exit"))
+    return(exit(0), 1);
   return 0;
 }
 
