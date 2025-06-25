@@ -71,6 +71,7 @@ SRCS = main.c \
 	src/utils/is_redirection.c\
 	src/utils/lst_file_name_func.c\
 	src/tools/printf_for_deb.c\
+	src/utils/is_pipe.c\
 
 
 OBJS = $(SRCS:.c=.o)

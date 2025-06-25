@@ -10,7 +10,7 @@
 # include <unistd.h>
 #include <sys/wait.h>
 #include <errno.h>
-#include  <dirent.h> 
+#include  <dirent.h>
 
 #define parent 1
 #define child 2
@@ -201,8 +201,10 @@ void	add_back_file_name(t_name_lst **lst, t_name_lst *new);
 t_token	*new_token(void *content, int type);
 void	add_token_to_lst(t_token **lst, t_token *new);
 t_type	get_token_type(const char *str);
-void s(char *str);
-int check_syntax_error(t_shell_control_block *sh);
-void process_redirection_tokens(t_shell_control_block *shell);
+void 	s(char *str);
+int			 check_syntax_error(char **splitted);
+void		 process_redirection_tokens(t_shell_control_block *shell);
 int			 is_there_a_char(char *str);
+int			 is_pipe(char *str);
+
 #endif

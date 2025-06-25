@@ -17,57 +17,60 @@ t_type	get_token_type(const char *str)
 		return (WORD);
 }
 
-// void fill_the_list(t_token * list, char **arr)
-// {
-//   int i;
-//   i = 0;
-//   while(arr[i])
-//   {
-//     list[i].type = get_token_type(arr[i]);
-//     list[i].word = ft_strdup(arr[i], 1);
-//     i++;
-//   }
-//     list[i].word = 0;
-//     list[i].type = -1;
-// }
-
-
-// int check_syntax_error(t_shell_control_block *sh)
-// {
-//   int i; i = 0;
-//   while(i < len)
-//   {
-//     if(data[i].type == PIPE && (i == 0 || len - 1 == i))
-//       return((print_error("error near | \n"), 1));
-//     else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type == PIPE)
-//       return((print_error("error near | \n"), 1));
-//     else if (data[i].type != PIPE && data[i].type != WORD && data[i + 1].type != WORD)
-//       return((print_error("error near new line \n"), 1));
-//     else if (data[i].type != PIPE && data[i].type != WORD && len -1 == i)
-//       return((print_error("error near new line \n"), 1));
-//     i++;
-//   }
-//   return 0;
-// }
-
-int	check_syntax_error(t_shell_control_block *sh)
+static int	is_symbole(char *str)
 {
-	t_token	*ptr;
+	if (!str)
+		return (0);
+	if (are_they_equal(str, "<")  || are_they_equal(str, ">") )
+		return (1);
+	if (are_they_equal(str, ">>")  || are_they_equal(str, "<<") )
+		return (1);
+	return (0);
+}
 
-	ptr = sh->tokenze;
-	while (ptr)
+
+static int	validate_pipe_syntax(char **splitted, int i)
+{
+	if (i == 0 || !splitted[i + 1])
+		return (print_error("syntax error near unexpected str `|'\n"), 1);
+	if (is_symbole(splitted[i - 1]) || is_pipe(splitted[i - 1]))
+		return (print_error("syntax error near unexpected str `|'\n"), 1);
+	return (0);
+}
+
+static int	validate_redirection_syntax(char **splitted, int i)
+{
+	if (!splitted[i + 1])
+		return (print_error("syntax error near unexpected str `newline'\n"), 1);
+	if (is_pipe(splitted[i + 1]) || is_symbole(splitted[i + 1]))
+		return (print_error("syntax error near unexpected str `newline'\n"), 1);
+	return (0);
+}
+
+int	check_syntax_error(char **splitted)
+{
+	int	i;
+	int	size;
+
+	if (!splitted || !splitted[0])
+		return (0);
+	size = len_of_two_d_array(splitted);
+	i = 0;
+	while (i < size)
 	{
-		if (ptr->type == PIPE && (!sh->tokenze->next || !ptr->next))
-			return (print_error("error near | \n"), 1);
-		if (ptr->type != PIPE && ptr->type != WORD && ptr->next
-			&& ptr->next->type == PIPE)
-			return (print_error("error near | \n"), 1);
-		if (ptr->type != PIPE && ptr->type != WORD && ptr->next
-			&& ptr->next->type != WORD)
-			return (print_error("error near new line \n"), 1);
-		if (ptr->type != PIPE && ptr->type != WORD && !ptr->next)
-			return (print_error("error near new line \n"), 1);
-		ptr = ptr->next;
+		if (is_pipe(splitted[i]))
+		{
+			if (validate_pipe_syntax(splitted, i))
+				return (1);
+		}
+		else if (is_symbole(splitted[i]))
+		{
+			if (validate_redirection_syntax(splitted, i))
+				return (1);
+		}
+		i++;
 	}
+	if (is_pipe(splitted[size - 1]) || is_symbole(splitted[size - 1]))
+		return (print_error("syntax error near unexpected str `newline'\n"), 1);
 	return (0);
 }
