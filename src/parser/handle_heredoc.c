@@ -37,13 +37,13 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   {
     str = readline(">");
     if(str == NULL)
-      print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
     {
+      print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
       break;
     }
-    str = expand_if_possible(s, str, 1);
     if(are_they_equal(str, tokenze->delimiter))
        break;
+    str = expand_if_possible(s, str, 1);
     buffer = ft_strjoin(buffer, str);
   }
   fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
