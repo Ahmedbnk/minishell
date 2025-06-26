@@ -1,5 +1,25 @@
 #include "minishell.h"
 
+int heredoc_signal_state(int flag)
+{
+  static int value;
+  if(flag == 1)
+  {
+    value = flag;
+    return value;
+  }
+  else if(flag == 2)
+    value = 0;
+  return value;
+}
+
+void heredoc_signal(int signo)
+{
+  if(signo)
+  {
+    heredoc_signal_state(1);
+  }
+}
 
 void	sigint_child_handler(int signo)
 {
@@ -29,6 +49,8 @@ void	handle_signals(int flag)
 		sa.sa_handler = sigint_handler;
 	else if(flag == 1)
 		sa.sa_handler = sigint_child_handler;
+  else if(flag == 2)
+		sa.sa_handler = heredoc_signal;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);

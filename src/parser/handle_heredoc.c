@@ -22,6 +22,7 @@ char *remake_delimeter(char *str)
       returned_str[j++] = str[i++];
   }
   returned_str[j] = '\0';
+  returned_str = ft_strjoin(returned_str, "\n");
   return returned_str;
 }
 
@@ -35,7 +36,10 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   tokenze->delimiter = remake_delimeter((tokenze ->next) -> word);
   while(1)
   {
-    str = readline(">");
+    write(1, ">> ", 3);
+    str = get_next_line(0);
+    if(heredoc_signal_state(0))
+      break;
     if(str == NULL)
     {
       print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
@@ -46,21 +50,28 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
     str = expand_if_possible(s, str, 1);
     buffer = ft_strjoin(buffer, str);
   }
+  if(heredoc_signal_state(0))
+    return;
   fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
   write(fd,buffer,ft_strlen(buffer));
-  write(fd,"\n", 1);
   close(fd);
 }
 
 void create_all_heredocs(t_shell_control_block *shell)
 {
+  heredoc_signal_state(2);
   t_token *ptr;
 
   ptr = shell->tokenze;
   while(ptr)
   {
     if(ptr -> type == HEREDOC)
+    {
+      handle_signals(2);
       create_heredoc(shell, ptr);
+      if(heredoc_signal_state(0))
+        return;
+    }
 	ptr = ptr->next;
   }
 }

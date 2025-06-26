@@ -12,6 +12,8 @@ int main(int ac, char **av, char **env)
    if (!ft_readline(&sh) || parse_line(&sh))
      continue;
     execute_line(&sh);
+      if(heredoc_signal_state(0))
+        continue;
     free_memory(get_garbage_pointer(1));
     free(sh.line);
   }
