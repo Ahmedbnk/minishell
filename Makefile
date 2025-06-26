@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -Iinclude 
+CFLAGS = -Wall -Wextra -Werror -g -Iinclude
 SRCS = main.c \
 	src/env/copy_env.c \
 	src/env/allocate_and_init_expand_list.c \
@@ -72,6 +72,15 @@ SRCS = main.c \
 	src/utils/lst_file_name_func.c\
 	src/tools/printf_for_deb.c\
 	src/utils/is_pipe.c\
+	src/root/is_it_valid_dollar.c \
+	src/root/is_there_invalid_expantion.c \
+	src/root/split_after_expantion.c \
+	src/root/expand_and_split_helper.c \
+	src/root/expand_and_split.c \
+	src/root/parse_line.c \
+	src/root/execute_line.c \
+	src/root/ft_readline.c \
+	src/root/ft_init_shell_block.c \
 
 
 OBJS = $(SRCS:.c=.o)
@@ -87,7 +96,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) 
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
