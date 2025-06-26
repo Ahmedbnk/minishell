@@ -72,15 +72,15 @@ SRCS = main.c \
 	src/utils/lst_file_name_func.c\
 	src/tools/printf_for_deb.c\
 	src/utils/is_pipe.c\
-	src/root/is_it_valid_dollar.c \
-	src/root/is_there_invalid_expantion.c \
-	src/root/split_after_expantion.c \
-	src/root/expand_and_split_helper.c \
-	src/root/expand_and_split.c \
-	src/root/parse_line.c \
-	src/root/execute_line.c \
-	src/root/ft_readline.c \
-	src/root/ft_init_shell_block.c \
+	src/core/is_it_valid_dollar.c \
+	src/core/is_there_invalid_expantion.c \
+	src/core/split_after_expantion.c \
+	src/core/expand_and_split_helper.c \
+	src/core/expand_and_split.c \
+	src/core/parse_line.c \
+	src/core/execute_line.c \
+	src/core/ft_readline.c \
+	src/core/ft_init_shell_block.c \
 
 
 OBJS = $(SRCS:.c=.o)
