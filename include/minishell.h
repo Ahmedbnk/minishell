@@ -192,6 +192,5 @@ void	execute_command_line(t_shell_control_block *shell);
 void	execute_line(t_shell_control_block *sh);
 char	*ft_readline(t_shell_control_block *sh);
 void	ft_init_shell_block(t_shell_control_block *sh, int ac, char **av);
-int heredoc_signal_state(int flag);
 
 #endif

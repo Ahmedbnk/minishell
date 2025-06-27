@@ -1,30 +1,16 @@
 #include "minishell.h"
 
-char *remake_delimeter(t_shell_control_block *shell ,char *str)
+int does_it_has_qoutes(char *str)
 {
-  char *returned_str = ft_malloc(ft_strlen(str) + 1, 1);
-
-  int i;
-  int j;
-
-  i = 0;
-  j = 0;
-  while(str[i])
+  if(!str)
+    return 0;
+  while(*str)
   {
-    if(str[i] == '$' && str[i + 1] == '$')
-    {
-      returned_str[j++] = str[i++];
-      returned_str[j++] = str[i++];
-    }
-    else if(str[i] == '$' && (str[i + 1] == single_q || str[i + 1] == double_q) && !is_between_quotes(str, i))
-      i ++;
-    else
-      returned_str[j++] = str[i++];
+    if(is_quote(*str))
+      return 1;
+    str++;
   }
-  returned_str[j] = '\0';
-  rm_quotes_from_one_str(shell, &returned_str);
-  returned_str = ft_strjoin(returned_str, "\n");
-  return returned_str;
+  return 0;
 }
 
 void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
@@ -32,15 +18,15 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   int fd;
   char *str = NULL;
   char *buffer = NULL;
+  int has_qoutes;
 
   tokenze->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
-  tokenze->delimiter = remake_delimeter(s, (tokenze ->next) -> word);
+  tokenze->delimiter = tokenze->next->word;
+  has_qoutes = does_it_has_qoutes(tokenze->delimiter);
+  rm_quotes_from_one_str(s, &(tokenze->delimiter));
   while(1)
   {
-    write(1, "> ", 3);
-    str = get_next_line(0);
-    if(heredoc_signal_state(0))
-      break;
+    str = readline("> ");
     if(str == NULL)
     {
       print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
@@ -48,13 +34,9 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
     }
     if(are_they_equal(str, tokenze->delimiter))
        break;
-    str = expand_if_possible(s, str, 1);
-    buffer = ft_strjoin(buffer, str);
-  }
-  if(heredoc_signal_state(0))
-  {
-    write(1,"\n", 1);
-    return;
+    if(!has_qoutes)
+      str = expand_if_possible(s, str, 1);
+    buffer = ft_strjoin(buffer, ft_strjoin(str, "\n"));
   }
   fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
   write(fd,buffer,ft_strlen(buffer));
@@ -63,19 +45,13 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
 
 void create_all_heredocs(t_shell_control_block *shell)
 {
-  heredoc_signal_state(2);
   t_token *ptr;
 
   ptr = shell->tokenze;
-  while(ptr)
-  {
-    if(ptr -> type == HEREDOC)
+    while(ptr)
     {
-      handle_signals(2);
-      create_heredoc(shell, ptr);
-      if(heredoc_signal_state(0))
-        return;
+      if(ptr -> type == HEREDOC)
+        create_heredoc(shell, ptr);
+      ptr = ptr->next;
     }
-	ptr = ptr->next;
-  }
 }
