@@ -24,23 +24,31 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   tokenze->delimiter = tokenze->next->word;
   has_qoutes = does_it_has_qoutes(tokenze->delimiter);
   rm_quotes_from_one_str(s, &(tokenze->delimiter));
-  while(1)
+  int rc = fork();
+  if(rc == 0)
   {
-    str = readline("> ");
-    if(str == NULL)
+    handle_signals(2);
+    while(1)
     {
-      print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
-      break;
+      str = readline("> ");
+      if(str == NULL)
+      {
+        print_error("warning: here-document delimited by end-of-file (wanted `%s')\n", tokenze->delimiter);
+        break;
+      }
+      if(are_they_equal(str, tokenze->delimiter))
+        break;
+      if(!has_qoutes)
+        str = expand_if_possible(s, str, 1);
+      buffer = ft_strjoin(buffer, ft_strjoin(str, "\n"));
     }
-    if(are_they_equal(str, tokenze->delimiter))
-       break;
-    if(!has_qoutes)
-      str = expand_if_possible(s, str, 1);
-    buffer = ft_strjoin(buffer, ft_strjoin(str, "\n"));
+    fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+    write(fd,buffer,ft_strlen(buffer));
+    close(fd);
+    exit(1);
   }
-  fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-  write(fd,buffer,ft_strlen(buffer));
-  close(fd);
+  else
+    wait(NULL);
 }
 
 void create_all_heredocs(t_shell_control_block *shell)

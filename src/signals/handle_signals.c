@@ -1,23 +1,11 @@
 #include "minishell.h"
 
-int heredoc_signal_state(int flag)
-{
-  static int value;
-  if(flag == 1)
-  {
-    value = flag;
-    return value;
-  }
-  else if(flag == 2)
-    value = 0;
-  return value;
-}
-
 void heredoc_signal(int signo)
 {
   if(signo)
   {
-    heredoc_signal_state(1);
+	  write(1, "\n", 1);
+    exit(1);
   }
 }
 
@@ -57,8 +45,3 @@ void	handle_signals(int flag)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void child_signal_handler()
-{
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
-}
