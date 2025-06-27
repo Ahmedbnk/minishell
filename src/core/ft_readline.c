@@ -2,7 +2,7 @@
 
 char *ft_readline(t_shell_control_block *sh)
 {
-  sh->line = readline("\001\033[1;31m\002 Undefined Behavior :\001\033[0m\002");
+  sh->line = readline("\001\033[1;31m\002Flash:\001\033[0m\002");
   if (sh->line && *sh->line)
 
     add_history(sh->line);
