@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char *remake_delimeter(char *str)
+char *remake_delimeter(t_shell_control_block *shell ,char *str)
 {
   char *returned_str = ft_malloc(ft_strlen(str) + 1, 1);
 
@@ -22,6 +22,7 @@ char *remake_delimeter(char *str)
       returned_str[j++] = str[i++];
   }
   returned_str[j] = '\0';
+  rm_quotes_from_one_str(shell, &returned_str);
   returned_str = ft_strjoin(returned_str, "\n");
   return returned_str;
 }
@@ -33,10 +34,10 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   char *buffer = NULL;
 
   tokenze->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
-  tokenze->delimiter = remake_delimeter((tokenze ->next) -> word);
+  tokenze->delimiter = remake_delimeter(s, (tokenze ->next) -> word);
   while(1)
   {
-    write(1, ">> ", 3);
+    write(1, "> ", 3);
     str = get_next_line(0);
     if(heredoc_signal_state(0))
       break;
@@ -51,7 +52,10 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
     buffer = ft_strjoin(buffer, str);
   }
   if(heredoc_signal_state(0))
+  {
+    write(1,"\n", 1);
     return;
+  }
   fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
   write(fd,buffer,ft_strlen(buffer));
   close(fd);
