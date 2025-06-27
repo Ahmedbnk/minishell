@@ -24,6 +24,7 @@ void create_heredoc(t_shell_control_block *s ,t_token *tokenze)
   tokenze->delimiter = tokenze->next->word;
   has_qoutes = does_it_has_qoutes(tokenze->delimiter);
   rm_quotes_from_one_str(s, &(tokenze->delimiter));
+signal(SIGINT, SIG_IGN);
   int rc = fork();
   if(rc == 0)
   {
