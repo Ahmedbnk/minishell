@@ -60,7 +60,6 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 		{
 			s->exit_status = WEXITSTATUS(status);
 			s->exit_status_flag = 1;
-			printf("%d\n", s->exit_status);
 		}
 	}
 }
