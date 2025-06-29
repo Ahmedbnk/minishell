@@ -10,7 +10,7 @@ char	*expnad_and_join_node(t_shell_control_block *s, t_expand data)
 		if (are_they_equal(data.to_expand, "$?"))
 		{
 			path = ft_itoa(s->exit_status);
-			s->exit_status = 0;
+			// s->exit_status = 0;
 		}
 		else
 			path = ft_strdup(get_env_var(s, data), 1);

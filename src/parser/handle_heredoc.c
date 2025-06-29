@@ -40,7 +40,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 			{
 				print_error("warning: here-document delimited by end-of-file (wanted `%s')\n",
 					tokenze->delimiter);
-				break ;
+				exit(0);
 			}
 			if (are_they_equal(str, tokenze->delimiter))
 				break ;
@@ -51,13 +51,17 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 		fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		write(fd, buffer, ft_strlen(buffer));
 		close(fd);
-		exit(1);
+		exit(0);
 	}
 	else
 	{
 		waitpid(rc, &status, 0);
 		if (WIFEXITED(status))
+		{
 			s->exit_status = WEXITSTATUS(status);
+			s->exit_status_flag = 1;
+			printf("%d\n", s->exit_status);
+		}
 	}
 }
 
@@ -65,6 +69,8 @@ void	create_all_heredocs(t_shell_control_block *shell)
 {
 	t_token	*ptr;
 
+	shell->exit_status = 0;
+	shell->exit_status_flag = 0;
 	ptr = shell->tokenze;
 	while (ptr)
 	{

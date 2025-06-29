@@ -84,6 +84,7 @@ typedef struct s_shell_control_block
 	int				last_child_pid;
 	int				wait_status;
 	int				exit_status;
+	int exit_status_flag;
 	int				original_stdin;
 	int				original_stdout;
 }					t_shell_control_block;

@@ -12,4 +12,5 @@ void ft_init_shell_block(t_shell_control_block *sh, int ac, char **av)
   sh->cmd_and_args= NULL;
   sh->env_of_export = NULL;
   sh->exit_status= 0;
+  sh->exit_status_flag= 0;
 }
