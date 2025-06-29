@@ -64,12 +64,12 @@ static char **add_var_to_env(char **env , char *var)
         print_env(env);
 }
 
-void export(t_shell_control_block *s, char **to_export)
+int export(t_shell_control_block *s, char **to_export)
 {
     if(!to_export || !*to_export)
     {
         sort_env(s->env_of_export);
-        return ;
+        return 0;
     }
     while(*to_export)
     {
@@ -87,4 +87,5 @@ void export(t_shell_control_block *s, char **to_export)
         }
         to_export++;
     }
+  return 0;
 }

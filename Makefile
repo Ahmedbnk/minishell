@@ -82,6 +82,7 @@ SRCS = main.c \
 	src/core/ft_readline.c \
 	src/core/ft_init_shell_block.c \
 	src/utils/get_shell_pointer.c\
+	src/built_in/is_builtin.c \
 
 
 OBJS = $(SRCS:.c=.o)

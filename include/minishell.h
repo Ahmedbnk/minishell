@@ -137,13 +137,12 @@ t_token		*new_token(void *content, int type);
 void		add_token_to_lst(t_token **lst, t_token *new);
 t_type		get_token_type(const char *str);
 
-void	cd(char **env, char **path);
-void	echo(char **args);
-void	unset(char ***env, char **vars);
-void	export(t_shell_control_block *s, char **to_export);
-int		execute_built_in(t_shell_control_block *shell, int state);
+int	cd(char **env, char **path);
+int	echo(char **args);
+int	unset(char ***env, char **vars);
+int	export(t_shell_control_block *s, char **to_export);
 
-char	*pwd(void);
+char *pwd(int *status);
 char	*get_next_line(int fd);
 char	*generate_random_name(void);
 char	*read_file(char *file_name);
@@ -152,7 +151,7 @@ char	*custom_join(char const *s1, char const *s2);
 char	*new_str_after_expand(t_shell_control_block *s, int num_of_expantion);
 char	*get_env_var(t_shell_control_block *shell, t_expand data);
 
-void	print_env(char **env);
+int	print_env(char **env);
 void	print_file(char *str);
 void	print_exit_signal_message(int exit_status);
 void	print_splitted(char **splitted);
@@ -188,7 +187,6 @@ int		check_syntax_error(char **splitted);
 int		len_of_two_d_array(char **str);
 int		parse_line(t_shell_control_block *sh);
 
-void	execute_command(t_shell_control_block *shell);
 void	execute_command_line(t_shell_control_block *shell);
 void	execute_line(t_shell_control_block *sh);
 char	*ft_readline(t_shell_control_block *sh);
@@ -196,4 +194,7 @@ void	ft_init_shell_block(t_shell_control_block *sh, int ac, char **av);
 int heredoc_signal_state(int flag);
 
 t_shell_control_block	*get_shell_pointer(t_shell_control_block *ptr);
+int is_builtin(char *str);
+void execute_parent_builtin(t_shell_control_block *shell);
+void	execute_command(t_shell_control_block *shell);
 #endif

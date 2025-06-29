@@ -28,7 +28,7 @@ void remove_var_from_env(char ***env , char *var)
   *env = env_after_unset;
 }
 
-void unset(char ***env, char **vars)
+int unset(char ***env, char **vars)
 {
   while(*vars)
   {
@@ -36,6 +36,7 @@ void unset(char ***env, char **vars)
       remove_var_from_env(env, *vars);
     vars++;
   }
+  return 0;
 }
 
 // int main(int argc, char *argv[], char *env[])

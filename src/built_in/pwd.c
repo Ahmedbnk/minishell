@@ -2,7 +2,7 @@
 
 #define  SIZE 4096
 
-char *pwd()
+char *pwd(int *status)
 {
     char *buffer;
 
@@ -12,5 +12,6 @@ char *pwd()
        printf("%s\n", strerror(errno));
        return NULL;
     }
+    *status = 0;
     return buffer;
 }

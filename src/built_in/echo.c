@@ -19,7 +19,7 @@ static int	is_valid_flag(char *str)
 	return (1);
 }
 
-void	echo(char **args)
+int	echo(char **args)
 {
 	int	new_line_flag;
 	// t_shell_control_block *ptr;
@@ -41,4 +41,5 @@ void	echo(char **args)
 	}
 	if (!new_line_flag)
 		printf("\n");
+  return 0;
 }

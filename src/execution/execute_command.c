@@ -31,7 +31,9 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 void	check_the_access(char *cmd, char **av, char **env)
 {
 	if (opendir(cmd) != NULL)
+  {
 		exit((print_error("%s: Is a directory\n", cmd), 2));
+  }
 	if (access(cmd, F_OK) == 0)
 	{
 		if (access(cmd, X_OK) == 0)

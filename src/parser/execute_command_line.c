@@ -52,6 +52,28 @@ void	handle_all_redir(t_shell_control_block *shell)
 	}
 }
 
+void execute_builtin_child(t_shell_control_block *shell)
+{
+  int status;
+  if(are_they_equal(*shell->cmd_and_args, "pwd"))
+  {
+    printf("%s\n", pwd(&status));
+    shell->exit_status = status;
+  }
+  else if(are_they_equal(*shell->cmd_and_args, "env"))
+    exit(print_env(shell->env_cpy));
+  else if(are_they_equal(*shell->cmd_and_args, "echo"))
+    exit(echo(shell->cmd_and_args));
+  else if(are_they_equal(*shell->cmd_and_args, "cd"))
+    exit(cd(shell->env_cpy, shell->cmd_and_args));
+  else if(are_they_equal(*shell->cmd_and_args, "export"))
+    exit(export(shell, shell->cmd_and_args +1));
+  else if(are_they_equal(*shell->cmd_and_args, "unset"))
+    exit(unset(&shell->env_cpy, shell->cmd_and_args +1));
+  else if(are_they_equal(*shell->cmd_and_args, "exit"))
+    exit(0);
+}
+
 void	process_command(t_shell_control_block *shell)
 {
 	shell->in_file_name = NULL;
@@ -70,7 +92,9 @@ void	process_command(t_shell_control_block *shell)
 		dup2(shell->fd_in, 0);
 		close(shell->fd_in);
 	}
-	if (!execute_built_in(shell, child))
+	if (is_builtin(*shell->cmd_and_args))
+    execute_builtin_child(shell);
+  else
 		execute_command(shell);
 	if (shell->in_file_name)
 		unlink(shell->in_file_name);

@@ -1,22 +1,25 @@
 #include "minishell.h"
 
-int execute_built_in_command(t_shell_control_block *shell)
+void execute_builtin(t_shell_control_block *shell)
 {
+  int status;
   if(are_they_equal(*shell->cmd_and_args, "pwd"))
-    return ((printf("%s\n",pwd()), 1));
+  {
+    printf("%s\n", pwd(&status));
+    shell->exit_status = status;
+  }
   else if(are_they_equal(*shell->cmd_and_args, "env"))
-    return ((print_env(shell->env_cpy), 1));
+    shell->exit_status = print_env(shell->env_cpy);
   else if(are_they_equal(*shell->cmd_and_args, "echo"))
-    return ((echo(shell->cmd_and_args), 1));
+    shell->exit_status = echo(shell->cmd_and_args);
   else if(are_they_equal(*shell->cmd_and_args, "cd"))
-    return ((cd(shell->env_cpy, shell->cmd_and_args), 1));
+    shell->exit_status = cd(shell->env_cpy, shell->cmd_and_args);
   else if(are_they_equal(*shell->cmd_and_args, "export"))
-    return((export(shell, shell->cmd_and_args +1),1));
+    shell->exit_status = export(shell, shell->cmd_and_args +1);
   else if(are_they_equal(*shell->cmd_and_args, "unset"))
-    return((unset(&shell->env_cpy, shell->cmd_and_args +1),1));
+    shell->exit_status = unset(&shell->env_cpy, shell->cmd_and_args +1);
   else if(are_they_equal(*shell->cmd_and_args, "exit"))
-    return(exit(0), 1);
-  return 0;
+    exit(0);
 }
 
 void save_original_fds(t_shell_control_block *shell)
@@ -111,24 +114,14 @@ void setup_input_redirection(t_shell_control_block *shell)
   }
 }
 
-int execute_built_in_with_redirections(t_shell_control_block *shell)
+void execute_parent_builtin(t_shell_control_block *shell)
 {
-  int result;
   save_original_fds(shell);
   init_redirection_vars(shell);
   if (parse_redirections(shell))
-    return 1;
+    shell->exit_status = 1;
   setup_output_redirection(shell);
   setup_input_redirection(shell);
-  result = execute_built_in_command(shell);
+  execute_builtin(shell);
   restore_original_fds(shell);
-  return result;
-}
-
-int execute_built_in(t_shell_control_block *shell, int state)
-{
-  if (state == 1)
-    return execute_built_in_with_redirections(shell);
-  else
-    return execute_built_in_command(shell);
 }
