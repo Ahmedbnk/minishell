@@ -194,4 +194,5 @@ char	*ft_readline(t_shell_control_block *sh);
 void	ft_init_shell_block(t_shell_control_block *sh, int ac, char **av);
 int heredoc_signal_state(int flag);
 
+t_shell_control_block	*get_shell_pointer(t_shell_control_block *ptr);
 #endif
