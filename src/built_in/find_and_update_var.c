@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int find_and_update_var(char **env, char *var)
+int find_and_update_var(char **env, char *var)
 {
     int i;
 

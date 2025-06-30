@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static char **add_var_to_env(char **env , char *var)
+char **add_var_to_env(char **env , char *var)
 {
     char **new_env;
     new_env = ft_malloc((len_of_two_d_array(env)+ 2) * sizeof(char *), 0);

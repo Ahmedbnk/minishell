@@ -1,26 +1,27 @@
 #include "minishell.h"
 
-static void sort_env(char **env)
+void	sort_env(char **env)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	*tmp;
+
 	i = 0;
-	char *tmp;
-		while(env[i])
+	while (env[i])
+	{
+		j = i + 1;
+		while (env[j])
 		{
-            j = i+1;
-            while(env[j])
-            {
-                if(ft_strcmp(env[i], env[j]) > 0)
-                {
-                    tmp = env[i];
-                    env[i] = env[j];
-                    env[j] = tmp;
-                }
-                j++;
-            }
-			i++;
+			if (ft_strcmp(env[i], env[j]) > 0)
+			{
+				tmp = env[i];
+				env[i] = env[j];
+				env[j] = tmp;
+			}
+			j++;
 		}
-    remove_var_from_env(&env, "_");
-        print_env(env);
+		i++;
+	}
+	remove_var_from_env(&env, "_");
+	print_env(env);
 }

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	is_valid_flag(char *str)
+int	is_valid_flag(char *str)
 {
 	int	i;
 
