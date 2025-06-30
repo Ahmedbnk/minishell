@@ -1,46 +1,25 @@
 #include "minishell.h"
 
-void	heredoc_signal(int signo)
-{
-	if (signo)
-	{
-		write(1, "\n", 1);
-		exit(130);
-	}
-}
 
-void	sigint_child_handler(int signo)
+void	handler(int signo)
 {
-	(void)signo;
-	while (wait(NULL) > 0)
-		;
-	write(1, "\n", 1);
-	signal(SIGINT, SIG_IGN);
-}
-
-void	sigint_handler(int signo)
-{
-	if (signo == SIGINT)
+  (void)signo;
+	if (g_handler_state == 0)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+  else if(g_handler_state == 1)
+  {
+		write(1, "\n", 1);
+    exit(130);
+  }
 }
 
-void	handle_signals(int flag)
+void	handle_signals(void)
 {
-	struct sigaction	sa;
-
-	if (flag == 0)
-		sa.sa_handler = sigint_handler;
-	else if (flag == 1)
-		sa.sa_handler = sigint_child_handler;
-	else if (flag == 2)
-		sa.sa_handler = heredoc_signal;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
-	signal(SIGQUIT, SIG_IGN);
+  signal(SIGINT, handler);
+  signal(SIGQUIT, SIG_IGN);
 }

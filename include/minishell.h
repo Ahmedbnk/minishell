@@ -21,7 +21,7 @@
 # define VALID 0
 # define AMBIGUOUS 1
 # define NEW_START 2
-
+extern int g_handler_state;
 typedef enum e_type
 {
 	WORD,
@@ -158,7 +158,6 @@ void	print_splitted(char **splitted);
 int		print_error(const char *str, ...);
 void	s(char *str);
 
-void	handle_signals(int flag);
 void	child_signal_handler(void);
 
 void	rm_quotes_from_one_str(t_shell_control_block *sh, char **line);
@@ -197,4 +196,5 @@ t_shell_control_block	*get_shell_pointer(t_shell_control_block *ptr);
 int is_builtin(char *str);
 void execute_parent_builtin(t_shell_control_block *shell);
 void	execute_command(t_shell_control_block *shell);
+void	handle_signals(void);
 #endif

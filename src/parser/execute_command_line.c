@@ -105,7 +105,6 @@ void	execute_command_line_helper(t_shell_control_block *shell)
 	int	p_id;
 
 	get_cmd_and_its_args(shell);
-	handle_signals(1);
 	p_id = fork();
 	if (p_id == 0)
 	{
@@ -137,6 +136,7 @@ void	execute_command_line(t_shell_control_block *shell)
 	status = 0;
 	shell->line_pointer = shell->tokenze;
 	shell->previous_read_end = -1;
+  g_handler_state = 3;
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
 		shell->tokenze = shell->line_pointer;

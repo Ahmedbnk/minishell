@@ -28,11 +28,12 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 	tokenze->delimiter = tokenze->next->word;
 	has_qoutes = does_it_has_qoutes(tokenze->delimiter);
 	rm_quotes_from_one_str(s, &(tokenze->delimiter));
-	signal(SIGINT, SIG_IGN);
+  signal(SIGINT, SIG_IGN);
+  g_handler_state = 1;
 	rc = fork();
 	if (rc == 0)
 	{
-		handle_signals(2);
+    handle_signals();
 		while (1)
 		{
 			str = readline("> ");
@@ -61,6 +62,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 			s->exit_status = WEXITSTATUS(status);
 			s->exit_status_flag = 1;
 		}
+    handle_signals();
 	}
 }
 
@@ -73,6 +75,8 @@ void	create_all_heredocs(t_shell_control_block *shell)
 	ptr = shell->tokenze;
 	while (ptr)
 	{
+    if(g_handler_state == 1)
+      break;
 		if (ptr->type == HEREDOC)
 			create_heredoc(shell, ptr);
 		ptr = ptr->next;
