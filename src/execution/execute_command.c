@@ -67,8 +67,6 @@ void	execute_command(t_shell_control_block *shell)
 	if (!**shell->cmd_and_args)
 		exit((print_error("'%s' command not found\n", *shell->cmd_and_args),
 				127));
-	if (opendir(*shell->cmd_and_args) != NULL)
-		exit((print_error("%s: Is a directory\n", *shell->cmd_and_args), 2));
 	path = get_path();
 	if (**shell->cmd_and_args == '/' || **shell->cmd_and_args == '.')
 		check_the_access(*shell->cmd_and_args, shell->cmd_and_args,

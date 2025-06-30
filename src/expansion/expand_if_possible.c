@@ -115,8 +115,7 @@ char	*expand_if_possible(t_shell_control_block *s, char *str, int heredoc_flag)
 		string_after_dollar(&(s->expand_arr[i]), str, &offset);
 		i++;
 	}
-	// printf("s%s\n", str);
-//	r_q(s, num_of_expantion);
+
 	new_str = new_str_after_expand(s, num_of_expantion);
 	return (new_str);
 }

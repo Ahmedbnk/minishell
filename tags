@@ -71,8 +71,8 @@ e_type	include/minishell.h	/^typedef enum e_type$/;"	g
 echo	src/built_in/echo.c	/^int	echo(char **args)$/;"	f	typeref:typename:int
 env_cpy	include/minishell.h	/^	char			**env_cpy;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
 env_of_export	include/minishell.h	/^	char			**env_of_export;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
-execute_built_in_command	src/built_in/check_built_in_command.c	/^void execute_built_in_command(t_shell_control_block *shell)$/;"	f	typeref:typename:void
-execute_builtin	src/parser/execute_command_line.c	/^void execute_builtin(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+execute_builtin	src/built_in/check_built_in_command.c	/^void execute_builtin(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+execute_builtin_child	src/parser/execute_command_line.c	/^void execute_builtin_child(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 execute_command	src/execution/execute_command.c	/^void	execute_command(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 execute_command_line	src/parser/execute_command_line.c	/^void	execute_command_line(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 execute_command_line_helper	src/parser/execute_command_line.c	/^void	execute_command_line_helper(t_shell_control_block *shell)$/;"	f	typeref:typename:void
@@ -174,7 +174,7 @@ is_there_a_pipe	src/utils/it_there_a_pipe.c	/^int is_there_a_pipe(t_shell_contro
 is_there_a_space_outside_q	src/parser/get_files_name.c	/^int	is_there_a_space_outside_q(char *str)$/;"	f	typeref:typename:int
 is_there_invalid_expantion	src/core/is_there_invalid_expantion.c	/^int is_there_invalid_expantion(t_shell_control_block *sh, char *str, char *old_str)$/;"	f	typeref:typename:int
 is_valid_flag	src/built_in/echo.c	/^static int	is_valid_flag(char *str)$/;"	f	typeref:typename:int	file:
-is_valid_var	src/built_in/ist_valid_env_var.c	/^int is_valid_var(char *str)$/;"	f	typeref:typename:int
+is_valid_var	src/built_in/ist_valid_env_var.c	/^int is_valid_var(t_shell_control_block *s, char *str)$/;"	f	typeref:typename:int
 last_child_pid	include/minishell.h	/^	int				last_child_pid;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 last_one	include/minishell.h	/^	int				last_one;$/;"	m	struct:s_expand	typeref:typename:int
 len_of_two_d_array	src/utils/len_of_two_d_array.c	/^int len_of_two_d_array(char **str)$/;"	f	typeref:typename:int

@@ -66,6 +66,7 @@ static char **add_var_to_env(char **env , char *var)
 
 int export(t_shell_control_block *s, char **to_export)
 {
+  int state = 0;
     if(!to_export || !*to_export)
     {
         sort_env(s->env_of_export);
@@ -73,7 +74,8 @@ int export(t_shell_control_block *s, char **to_export)
     }
     while(*to_export)
     {
-    if(!is_valid_var(s, *to_export));
+    if(!is_valid_var(*to_export))
+      state = 1;
     else
     {
       if (find_and_update_var(s->env_of_export, *to_export));
@@ -87,5 +89,5 @@ int export(t_shell_control_block *s, char **to_export)
     }
     to_export++;
     }
-  return 0;
+  return state;
 }

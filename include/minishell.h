@@ -94,7 +94,7 @@ int		is_quote(char c);
 int		is_dollar(char c);
 int		is_all_spaces(const char *str);
 int		is_it_key_value(char *str);
-int is_valid_var(t_shell_control_block *s, char *str);
+int is_valid_var(char *str);
 int		is_redirection(char *str);
 int		is_pipe(char *str);
 int		is_there_a_char(char *str);

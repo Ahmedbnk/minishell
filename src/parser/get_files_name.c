@@ -1,49 +1,50 @@
 #include "minishell.h"
 
-int is_there_a_char(char *str)
+int	is_there_a_char(char *str)
 {
-	while(*str)
+	while (*str)
 	{
-		if(is_space(*str))
+		if (is_space(*str))
 			str++;
 		else
-			return 1;
+			return (1);
 	}
-	return 0;
+	return (0);
 }
 
 int	is_there_a_space_outside_q(char *str)
 {
+	int	i;
+	int	status;
+
 	if (!str)
 		return (0);
-	int i;
 	i = 0;
-	int status;
 	status = 0;
-	if(!is_there_a_char(str))
-		return 1;
+	if (!is_there_a_char(str))
+		return (1);
 	while (str[i])
 	{
-		if(!is_space(str[i]) && (status ==0 || status==2 ))
+		if (!is_space(str[i]) && (status == 0 || status == 2))
 			status++;
 		else if (is_space(str[i]) && status == 1)
 			status++;
-		if(status == 3)
+		if (status == 3)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-static void	handle_expansion_result(t_shell_control_block *sh,
-t_name_lst *ptr, char *str)
+static void	handle_expansion_result(t_shell_control_block *sh, t_name_lst *ptr,
+		char *str)
 {
 	(void)sh;
 	if (are_they_equal(ptr->file_name, str))
 		return ;
 	if (is_there_a_space_outside_q(str))
 	{
-		s(str);
+		// s(str);
 		ptr->status = AMBIGUOUS;
 	}
 	ptr->file_name = str;
@@ -60,13 +61,14 @@ void	prepare_lst(t_shell_control_block *sh)
 	while (ptr)
 	{
 		str = expand_if_possible(sh, ptr->file_name, 0);
-		if (!str || !*str)
+		if (!*str)
 		{
 			ptr->status = AMBIGUOUS;
 			ptr = ptr->next;
 			continue ;
 		}
-		handle_expansion_result(sh, ptr, str);
+		else
+			handle_expansion_result(sh, ptr, str);
 		ptr = ptr->next;
 	}
 }
@@ -111,27 +113,6 @@ static void	parse_tokens(t_shell_control_block *sh)
 	}
 }
 
-// static void	debug_print_node(t_name_lst *lst)
-// {
-// 		printf("------> file name is %s\n", (char *)lst->file_name);
-// 		printf("------> valid is %d\n", lst->valid);
-// 		printf("------> is new start is %d\n", lst->new_start);
-// 		printf("***********************>\n");
-// }
-
-// static void	debug_print_list(t_shell_control_block *sh)
-// {
-// 	t_name_lst	*lst;
-
-// 	if (!sh || !sh->file_name_lst)
-// 		return ;
-// 	lst = sh->file_name_lst;
-// 	while (lst)
-// 	{
-// 		debug_print_node(lst);
-// 		lst = lst->next;
-// 	}
-// }
 
 void	get_files_name(t_shell_control_block *sh)
 {
