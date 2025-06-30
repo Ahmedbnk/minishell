@@ -18,8 +18,14 @@ int cd(char **env, char **path)
 {
   char *old_dir;
   char *new_dir;
-  int status = 0;
+  int status;
+  int len;
 
+  status = 0;
+
+  len = len_of_two_d_array(path);
+  if(len > 2)
+    return(print_error("too many arguments\n"), 1);
   if(are_they_equal(*path, "cd"))
     path++;
   old_dir = pwd(&status);
@@ -29,9 +35,6 @@ int cd(char **env, char **path)
     update_env_dir(env, old_dir, new_dir);
   }
   else
-  {
-    print_error("%s\n" , strerror(errno));
-    return 1;
-  }
+    return(print_error("%s\n" , strerror(errno)), 1);
   return 0;
 }

@@ -22,10 +22,8 @@ static int	is_valid_flag(char *str)
 int	echo(char **args)
 {
 	int	new_line_flag;
-	// t_shell_control_block *ptr;
-
-	// ptr =
 	args++;
+
 	new_line_flag = 0;
 	if (is_valid_flag(*args))
 	{

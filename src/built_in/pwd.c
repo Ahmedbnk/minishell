@@ -10,6 +10,7 @@ char *pwd(int *status)
     if ((getcwd(buffer, SIZE) == NULL))
     {
        printf("%s\n", strerror(errno));
+       *status = 1;
        return NULL;
     }
     *status = 0;

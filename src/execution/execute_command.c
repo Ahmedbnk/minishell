@@ -32,7 +32,7 @@ void	check_the_access(char *cmd, char **av, char **env)
 {
 	if (opendir(cmd) != NULL)
   {
-		exit((print_error("%s: Is a directory\n", cmd), 2));
+		exit((print_error("%s: Is a directory\n", cmd), 126));
   }
 	if (access(cmd, F_OK) == 0)
 	{
@@ -86,7 +86,9 @@ int	cmd_size(t_token *tokenz)
 	while (tokenz)
 	{
 		if (is_redirection(tokenz->word) || tokenz->type == HEREDOC)
+    {
 			tokenz = tokenz->next;
+    }
 		else if (tokenz->type == WORD)
 			size++;
 		tokenz = tokenz->next;
