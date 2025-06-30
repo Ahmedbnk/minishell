@@ -83,6 +83,34 @@ SRCS = main.c \
 	src/core/ft_init_shell_block.c \
 	src/utils/get_shell_pointer.c\
 	src/built_in/is_builtin.c \
+	src/built_in/is_builtin_function.c \
+	src/built_in/add_var_to_env.c \
+	src/built_in/advance_file_name_list.c \
+	src/built_in/check_ambiguous_redirection.c \
+	src/built_in/compare_env_var.c \
+	src/built_in/cd_function.c \
+	src/built_in/echo_function.c \
+	src/built_in/execute_builtin.c \
+	src/built_in/execute_parent_builtin.c \
+	src/built_in/export_function.c \
+	src/built_in/find_and_update_var.c \
+	src/built_in/init_redirection_vars.c \
+	src/built_in/is_it_key_value.c \
+	src/built_in/is_the_var_in_env.c \
+	src/built_in/is_valid_flag.c \
+	src/built_in/is_valid_var.c \
+	src/built_in/parse_redirections.c \
+	src/built_in/print_env.c \
+	src/built_in/process_redirection_tokens.c \
+	src/built_in/pwd_function.c \
+	src/built_in/remove_var_from_env.c \
+	src/built_in/restore_original_fds.c \
+	src/built_in/save_original_fds.c \
+	src/built_in/setup_input_redirection.c \
+	src/built_in/setup_output_redirection.c \
+	src/built_in/sort_env.c \
+	src/built_in/unset_function.c \
+	src/built_in/update_env_dir.c \
 
 
 OBJS = $(SRCS:.c=.o)
