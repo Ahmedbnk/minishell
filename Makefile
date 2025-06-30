@@ -45,18 +45,10 @@ SRCS = main.c \
 	src/parser/handle_redir_out.c\
 	src/parser/handle_append.c \
 	src/execution/execute_command.c\
-	src/built_in/echo.c\
-	src/built_in/pwd.c\
-	src/built_in/env.c\
 	src/built_in/ft_strncmp.c\
-	src/built_in/check_built_in_command.c\
-	src/built_in/cd.c\
-	src/built_in/export.c\
 	src/built_in/ft_isalpha.c\
 	src/built_in/ft_isdigit.c\
 	src/built_in/ft_strcmp.c\
-	src/built_in/ist_valid_env_var.c\
-	src/built_in/unset.c\
 	src/parser/handle_dollar_with_quotes.c\
 	src/execution/print_exit_signal_message.c\
 	src/expansion/ft_get_env_var.c\
@@ -82,7 +74,6 @@ SRCS = main.c \
 	src/core/ft_readline.c \
 	src/core/ft_init_shell_block.c \
 	src/utils/get_shell_pointer.c\
-	src/built_in/is_builtin.c \
 	src/built_in/is_builtin_function.c \
 	src/built_in/add_var_to_env.c \
 	src/built_in/advance_file_name_list.c \
