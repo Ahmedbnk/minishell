@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void execute_builtin(t_shell_control_block *shell)
+/*void execute_builtin(t_shell_control_block *shell)
 {
   int status;
   if(are_they_equal(*shell->cmd_and_args, "pwd"))
@@ -20,27 +20,27 @@ void execute_builtin(t_shell_control_block *shell)
     shell->exit_status = unset(&shell->env_cpy, shell->cmd_and_args +1);
   else if(are_they_equal(*shell->cmd_and_args, "exit"))
     exit(0);
-}
+}*/
 
-void save_original_fds(t_shell_control_block *shell)
+/*void save_original_fds(t_shell_control_block *shell)
 {
   shell->original_stdin = dup(0);
   shell->original_stdout = dup(1);
-}
+}*/
 
-void restore_original_fds(t_shell_control_block *shell)
+/*void restore_original_fds(t_shell_control_block *shell)
 {
   dup2(shell->original_stdin, 0);
   dup2(shell->original_stdout, 1);
   close(shell->original_stdin);
   close(shell->original_stdout);
-}
+}*/
 
-void init_redirection_vars(t_shell_control_block *shell)
+/*void init_redirection_vars(t_shell_control_block *shell)
 {
   shell->in_file_name = NULL;
   shell->file_name = NULL;
-}
+}*/
 
 int check_ambiguous_redirection(t_shell_control_block *shell)
 {

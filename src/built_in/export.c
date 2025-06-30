@@ -2,7 +2,7 @@
 
 
 
-static int find_and_update_var(char **env, char *var)
+/*static int find_and_update_var(char **env, char *var)
 {
     int i;
 
@@ -18,9 +18,9 @@ static int find_and_update_var(char **env, char *var)
         i++;
     }
     return 0;
-}
+}*/
 
-static char **add_var_to_env(char **env , char *var)
+/*static char **add_var_to_env(char **env , char *var)
 {
     char **new_env;
     new_env = ft_malloc((len_of_two_d_array(env)+ 2) * sizeof(char *), 0);
@@ -35,11 +35,11 @@ static char **add_var_to_env(char **env , char *var)
     new_env[i++] = ft_strdup(var, 0);
     new_env[i] = NULL;
     return new_env;
-}
+}*/
 
 
 
- static void sort_env(char **env)
+/* static void sort_env(char **env)
 {
 	int i;
 	int j;
@@ -62,9 +62,9 @@ static char **add_var_to_env(char **env , char *var)
 		}
     remove_var_from_env(&env, "_");
         print_env(env);
-}
+}*/
 
-int export(t_shell_control_block *s, char **to_export)
+/*int export(t_shell_control_block *s, char **to_export)
 {
     if(!to_export || !*to_export)
     {
@@ -88,4 +88,4 @@ int export(t_shell_control_block *s, char **to_export)
         to_export++;
     }
   return 0;
-}
+}*/

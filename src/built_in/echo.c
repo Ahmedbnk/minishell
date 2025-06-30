@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	is_valid_flag(char *str)
+/*static int	is_valid_flag(char *str)
 {
 	int	i;
 
@@ -17,9 +17,9 @@ static int	is_valid_flag(char *str)
 		i++;
 	}
 	return (1);
-}
+}*/
 
-int	echo(char **args)
+/*int	echo(char **args)
 {
 	int	new_line_flag;
 	// t_shell_control_block *ptr;
@@ -42,4 +42,4 @@ int	echo(char **args)
 	if (!new_line_flag)
 		printf("\n");
   return 0;
-}
+}*/

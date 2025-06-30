@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void update_env_dir(char **env, char *old_dir, char *new_dir)
+/*void update_env_dir(char **env, char *old_dir, char *new_dir)
 {
     int i;
     i = 0;
@@ -12,9 +12,9 @@ void update_env_dir(char **env, char *old_dir, char *new_dir)
             env[i] = ft_strdup(ft_strjoin("PWD=", new_dir), 0);
         i++;
     }
-}
+}*/
 
-int cd(char **env, char **path)
+/*int cd(char **env, char **path)
 {
   char *old_dir;
   char *new_dir;
@@ -34,4 +34,4 @@ int cd(char **env, char **path)
     return 1;
   }
   return 0;
-}
+}*/

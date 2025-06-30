@@ -2,7 +2,7 @@
 
 #define  SIZE 4096
 
-/*char *pwd(int *status)
+char *pwd(int *status)
 {
     char *buffer;
 
@@ -14,4 +14,4 @@
     }
     *status = 0;
     return buffer;
-}*/
+}
