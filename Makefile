@@ -83,6 +83,17 @@ SRCS = main.c \
 	src/core/ft_init_shell_block.c \
 	src/utils/get_shell_pointer.c\
 	src/built_in/is_builtin.c \
+	src/execution/check_after_geting_path.c \
+	src/execution/check_the_access.c \
+	src/execution/get_path.c \
+	src/execution/execute_command_main.c \
+	src/execution/cmd_size.c \
+	src/execution/is_symbole.c \
+	src/execution/get_cmd_and_its_args.c \
+	src/execution/first_range.c \
+	src/execution/second_range.c \
+	src/execution/third_range.c \
+	src/execution/print_exit_signal_message_main.c \
 
 
 OBJS = $(SRCS:.c=.o)
