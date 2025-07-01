@@ -17,7 +17,7 @@ t_type	get_token_type(const char *str)
 		return (WORD);
 }
 
-static int	is_symbole(char *str)
+static int	is_red_symbole(char *str)
 {
 	if (!str)
 		return (0);
@@ -33,7 +33,7 @@ static int	validate_pipe_syntax(char **splitted, int i)
 {
 	if (i == 0 || !splitted[i + 1])
 		return (print_error("syntax error near unexpected str `|'\n"), 1);
-	if (is_symbole(splitted[i - 1]) || is_pipe(splitted[i - 1]))
+	if (is_red_symbole(splitted[i - 1]) || is_pipe(splitted[i - 1]))
 		return (print_error("syntax error near unexpected str `|'\n"), 1);
 	return (0);
 }
@@ -42,7 +42,7 @@ static int	validate_redirection_syntax(char **splitted, int i)
 {
 	if (!splitted[i + 1])
 		return (print_error("syntax error near unexpected str `newline'\n"), 1);
-	if (is_pipe(splitted[i + 1]) || is_symbole(splitted[i + 1]))
+	if (is_pipe(splitted[i + 1]) || is_red_symbole(splitted[i + 1]))
 		return (print_error("syntax error near unexpected str `newline'\n"), 1);
 	return (0);
 }
@@ -63,14 +63,14 @@ int	check_syntax_error(char **splitted)
 			if (validate_pipe_syntax(splitted, i))
 				return (1);
 		}
-		else if (is_symbole(splitted[i]))
+		else if (is_red_symbole(splitted[i]))
 		{
 			if (validate_redirection_syntax(splitted, i))
 				return (1);
 		}
 		i++;
 	}
-	if (is_pipe(splitted[size - 1]) || is_symbole(splitted[size - 1]))
+	if (is_pipe(splitted[size - 1]) || is_red_symbole(splitted[size - 1]))
 		return (print_error("syntax error near unexpected str `newline'\n"), 1);
 	return (0);
 }

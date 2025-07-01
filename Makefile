@@ -44,7 +44,6 @@ SRCS = main.c \
 	src/utils/print_error.c\
 	src/parser/handle_redir_out.c\
 	src/parser/handle_append.c \
-	src/execution/execute_command.c\
 	src/built_in/echo.c\
 	src/built_in/pwd.c\
 	src/built_in/env.c\
@@ -58,7 +57,6 @@ SRCS = main.c \
 	src/built_in/ist_valid_env_var.c\
 	src/built_in/unset.c\
 	src/parser/handle_dollar_with_quotes.c\
-	src/execution/print_exit_signal_message.c\
 	src/expansion/ft_get_env_var.c\
 	src/expansion/expand_outside_dollars.c\
 	src/utils/generate_random_name.c\
@@ -86,7 +84,7 @@ SRCS = main.c \
 	src/execution/check_after_geting_path.c \
 	src/execution/check_the_access.c \
 	src/execution/get_path.c \
-	src/execution/execute_command_main.c \
+	src/execution/execute_command.c \
 	src/execution/cmd_size.c \
 	src/execution/is_symbole.c \
 	src/execution/get_cmd_and_its_args.c \
