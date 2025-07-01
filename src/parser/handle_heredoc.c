@@ -28,20 +28,20 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 	tokenze->delimiter = tokenze->next->word;
 	has_qoutes = does_it_has_qoutes(tokenze->delimiter);
 	rm_quotes_from_one_str(s, &(tokenze->delimiter));
-  signal(SIGINT, SIG_IGN);
-  g_handler_state = 1;
+	signal(SIGINT, SIG_IGN);
+	g_handler_state = 1;
 	rc = fork();
 	if (rc == 0)
 	{
-    handle_signals();
+		handle_signals();
 		while (1)
 		{
 			str = readline("> ");
 			if (str == NULL)
 			{
-				print_error("warning: here-document delimited by end-of-file (wanted `%s')\n",
-					tokenze->delimiter);
-				exit(0);
+				exit((print(2,
+							buffering("warning: here-document delimited by end-of-file wanted: ",
+								tokenze->delimiter, "\n")), 0));
 			}
 			if (are_they_equal(str, tokenze->delimiter))
 				break ;
@@ -58,11 +58,10 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 	{
 		waitpid(rc, &status, 0);
 		if (WIFEXITED(status))
-		{
 			s->exit_status = WEXITSTATUS(status);
+		if (s->exit_status == 130)
 			s->exit_status_flag = 1;
-		}
-    handle_signals();
+		handle_signals();
 	}
 }
 
@@ -75,8 +74,8 @@ void	create_all_heredocs(t_shell_control_block *shell)
 	ptr = shell->tokenze;
 	while (ptr)
 	{
-    if(g_handler_state == 1)
-      break;
+		if (shell->exit_status_flag == 1)
+			break ;
 		if (ptr->type == HEREDOC)
 			create_heredoc(shell, ptr);
 		ptr = ptr->next;

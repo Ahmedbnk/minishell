@@ -3,25 +3,27 @@
 void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 {
 	int		i;
-	char	*cmd_with_slash;
 	char	*cmd_with_its_path;
+	char	*buffer;
 
 	i = 0;
-	cmd_with_slash = ft_strjoin("/", cmd);
 	while (path[i])
 	{
-		cmd_with_its_path = ft_strjoin(path[i], cmd_with_slash);
+		cmd_with_its_path = buffering(path[i], "/", cmd);
 		if (access(cmd_with_its_path, F_OK) == 0)
 		{
 			if (access(cmd_with_its_path, X_OK) == 0)
 			{
 				execve(cmd_with_its_path, av, env);
-				exit((print_error("%s: %s\n", cmd, strerror(errno)), errno));
+				buffer = buffering(buffering(cmd, ": ", 0),
+						buffering(strerror(errno), "\n", 0), 0);
+				exit((print(2, buffer), errno));
 			}
 			else
-				exit((print_error("%s: Permition denied\n", cmd), 126));
+				exit((print(2, buffering(cmd, ": ", "Permition denied\n")),
+						126));
 		}
 		i++;
 	}
-	exit((print_error("%s: command not found\n", cmd), 127));
+	exit((print(2, buffering(cmd, ": ", "command not found\n")), 127));
 }

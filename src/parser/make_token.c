@@ -32,18 +32,18 @@ static int	is_red_symbole(char *str)
 static int	validate_pipe_syntax(char **splitted, int i)
 {
 	if (i == 0 || !splitted[i + 1])
-		return (print_error("syntax error near unexpected str `|'\n"), 1);
+		return (print(2, "syntax error near unexpected str `|'\n"), 1);
 	if (is_red_symbole(splitted[i - 1]) || is_pipe(splitted[i - 1]))
-		return (print_error("syntax error near unexpected str `|'\n"), 1);
+		return (print(2, "syntax error near unexpected str `|'\n"), 1);
 	return (0);
 }
 
 static int	validate_redirection_syntax(char **splitted, int i)
 {
 	if (!splitted[i + 1])
-		return (print_error("syntax error near unexpected str `newline'\n"), 1);
+		return (print(2, "syntax error near unexpected str `newline'\n"), 1);
 	if (is_pipe(splitted[i + 1]) || is_red_symbole(splitted[i + 1]))
-		return (print_error("syntax error near unexpected str `newline'\n"), 1);
+		return (print(2, "syntax error near unexpected str `newline'\n"), 1);
 	return (0);
 }
 
@@ -71,6 +71,6 @@ int	check_syntax_error(char **splitted)
 		i++;
 	}
 	if (is_pipe(splitted[size - 1]) || is_red_symbole(splitted[size - 1]))
-		return (print_error("syntax error near unexpected str `newline'\n"), 1);
+		return (print(2, "syntax error near unexpected str `newline'\n"), 1);
 	return (0);
 }

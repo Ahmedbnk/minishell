@@ -2,20 +2,23 @@
 
 void	check_the_access(char *cmd, char **av, char **env)
 {
+	char	*buffer;
+
 	if (opendir(cmd) != NULL)
-  {
-		exit((print_error("%s: Is a directory\n", cmd), 126));
-  }
+		exit((print(2, buffering(cmd, ": ", "Is a directory\n")), 126));
 	if (access(cmd, F_OK) == 0)
 	{
 		if (access(cmd, X_OK) == 0)
 		{
 			execve(cmd, av, env);
-			exit((print_error("%s: %s\n", cmd, strerror(errno)), errno));
+			buffer = buffering(buffering(cmd, ": ", 0),
+					buffering(strerror(errno), "\n", 0), 0);
+			exit((print(2, buffer), errno));
 		}
 		else
-			exit((print_error("%s: Permition denied\n", cmd), 126));
+			exit((print(2, buffering(cmd, ": ", "Permition denied\n")), 126));
 	}
 	else if (*cmd == '/' || *cmd == '.')
-		exit((print_error("%s: No such file or directory \n", cmd), 127));
+		exit((print(2, buffering(cmd, ": ", "No such file or directory \n")),
+				127));
 }

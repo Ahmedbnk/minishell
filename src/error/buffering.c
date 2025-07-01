@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*join_args(char *s1, char *s2, char *s3)
+char	*buffering(char *s1, char *s2, char *s3)
 {
 	char	*first_join;
 	char	*second_join;

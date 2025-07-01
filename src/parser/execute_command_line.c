@@ -33,7 +33,7 @@ void	handle_all_redir(t_shell_control_block *shell)
 			if (shell->file_name_lst
 				&& shell->file_name_lst->status == AMBIGUOUS)
 			{
-				print_error("AMBIGUOUS\n");
+				print(2, "AMBIGUOUS\n");
 				exit(1);
 			}
 			if (shell->file_name_lst)
@@ -52,26 +52,27 @@ void	handle_all_redir(t_shell_control_block *shell)
 	}
 }
 
-void execute_builtin_child(t_shell_control_block *shell)
+void	execute_builtin_child(t_shell_control_block *shell)
 {
-  int status;
-  if(are_they_equal(*shell->cmd_and_args, "pwd"))
-  {
-    printf("%s\n", pwd(&status));
-    shell->exit_status = status;
-  }
-  else if(are_they_equal(*shell->cmd_and_args, "env"))
-    exit(print_env(shell->env_cpy));
-  else if(are_they_equal(*shell->cmd_and_args, "echo"))
-    exit(echo(shell->cmd_and_args));
-  else if(are_they_equal(*shell->cmd_and_args, "cd"))
-    exit(cd(shell->env_cpy, shell->cmd_and_args));
-  else if(are_they_equal(*shell->cmd_and_args, "export"))
-    exit(export(shell, shell->cmd_and_args +1));
-  else if(are_they_equal(*shell->cmd_and_args, "unset"))
-    exit(unset(&shell->env_cpy, shell->cmd_and_args +1));
-  else if(are_they_equal(*shell->cmd_and_args, "exit"))
-    exit(0);
+	int	status;
+
+	if (are_they_equal(*shell->cmd_and_args, "pwd"))
+	{
+		printf("%s\n", pwd(&status));
+		shell->exit_status = status;
+	}
+	else if (are_they_equal(*shell->cmd_and_args, "env"))
+		exit(print_env(shell->env_cpy));
+	else if (are_they_equal(*shell->cmd_and_args, "echo"))
+		exit(echo(shell->cmd_and_args));
+	else if (are_they_equal(*shell->cmd_and_args, "cd"))
+		exit(cd(shell->env_cpy, shell->cmd_and_args));
+	else if (are_they_equal(*shell->cmd_and_args, "export"))
+		exit(export(shell, shell->cmd_and_args + 1));
+	else if (are_they_equal(*shell->cmd_and_args, "unset"))
+		exit(unset(&shell->env_cpy, shell->cmd_and_args + 1));
+	else if (are_they_equal(*shell->cmd_and_args, "exit"))
+		exit(0);
 }
 
 void	process_command(t_shell_control_block *shell)
@@ -93,8 +94,8 @@ void	process_command(t_shell_control_block *shell)
 		close(shell->fd_in);
 	}
 	if (is_builtin(*shell->cmd_and_args))
-    execute_builtin_child(shell);
-  else
+		execute_builtin_child(shell);
+	else
 		execute_command(shell);
 	if (shell->in_file_name)
 		unlink(shell->in_file_name);
@@ -136,7 +137,7 @@ void	execute_command_line(t_shell_control_block *shell)
 	status = 0;
 	shell->line_pointer = shell->tokenze;
 	shell->previous_read_end = -1;
-  g_handler_state = 3;
+	g_handler_state = 3;
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
 		shell->tokenze = shell->line_pointer;
