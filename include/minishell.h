@@ -212,4 +212,7 @@ void first_range(int exit_status);
 void second_range(int exit_status);
 void third_range(int exit_status);
 void get_start_and_end(char *str, int *start, int *end);
+void	print(int fd, char *str);
+char	*join_args(char *s1, char *s2, char *s3);
+char	*add_new_line(char *str);
 #endif

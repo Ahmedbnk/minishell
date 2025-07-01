@@ -92,6 +92,7 @@ SRCS = main.c \
 	src/execution/second_range.c \
 	src/execution/third_range.c \
 	src/execution/print_exit_signal_message_main.c \
+	src/error/buffering.c \
 
 
 OBJS = $(SRCS:.c=.o)
