@@ -6,12 +6,6 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 	char	*cmd_with_slash;
 	char	*cmd_with_its_path;
 
-	if (!path)
-	{
-		printf("%s\n", cmd);
-		printf("No such file or directory\n");
-		return ;
-	}
 	i = 0;
 	cmd_with_slash = ft_strjoin("/", cmd);
 	while (path[i])
