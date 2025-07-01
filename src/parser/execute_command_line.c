@@ -157,15 +157,13 @@ void	execute_command_line(t_shell_control_block *shell)
 	}
 	if (shell->previous_read_end != -1)
 		close(shell->previous_read_end);
-	waitpid(shell->last_child_pid, &status, 0);
+	waitpid(shell->last_child_pid, &status, 2);
 	if (WIFEXITED(status) && !shell->exit_status_flag)
 		shell->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status) && !shell->exit_status_flag)
 		shell->exit_status = 128 + WTERMSIG(status);
 	else if (WIFSTOPPED(status) && !shell->exit_status_flag)
-		shell->exit_status = WSTOPSIG(status);
-	while (wait(NULL) > 0)
-		;
+		shell->exit_status = 128 + WSTOPSIG(status);
 	if (shell->exit_status > 128 && !shell->exit_status_flag)
 		print_exit_signal_message(shell->exit_status);
 }

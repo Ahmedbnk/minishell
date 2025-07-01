@@ -1,42 +1,29 @@
 
-Flash:cat
-^C
-Flash:echo $?
+
+zsh: command not found: bahs
+➜  minishell_tester git:(main) ✗ bash
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ exit 
+exit
+➜  minishell_tester git:(main) ✗ echo $?
 0
-Flash:ls
-include  main.c  main.o  Makefile  minishell  src  tags  test_to_handle
-Flash:unset PATH
-Flash:KSDHF
-KSDHF: command not found
-Flash:cat mainc
-cat: mainc: No such file or directory
-Flash:cat main.c
-#include "minishell.h"
-
-int	main(int ac, char **av, char **env)
-{
-	t_shell_control_block	sh;
-
-	ft_init_shell_block(&sh, ac, av);
-	sh.env_of_export = copy_env(env);
-	sh.env_cpy = copy_env(env);
-	get_shell_pointer(&sh);
-	while (1)
-	{
-		handle_signals(0);
-		if (!ft_readline(&sh) || parse_line(&sh))
-			continue ;
-		execute_line(&sh);
-		free_memory(get_garbage_pointer(1));
-		free(sh.line);
-	}
-	return (0);
-}
-Flash:ls
-include  main.c  main.o  Makefile  minishell  src  tags  test_to_handle
-Flash:unset PATH
-Flash:ls
-include  main.c  main.o  Makefile  minishell  src  tags  test_to_handle
-Flash:
-
+➜  minishell_tester git:(main) ✗ bash   
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ exit 555 4444 
+exit
+bash: exit: too many arguments
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ echo $?
+1
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ exit sjshwjk 24
+exit
+bash: exit: sjshwjk: numeric argument required
+➜  minishell_tester git:(main) ✗ echo $?
+2
+➜  minishell_tester git:(main) ✗ bash   
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ exit hhh 555
+exit
+bash: exit: hhh: numeric argument required
+➜  minishell_tester git:(main) ✗ bash   
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ exit 555 kjdjddd
+exit
+bash: exit: too many arguments
+abenkrar@c2r9p1:~/Desktop/minishell/minishell_tester$ 
 
