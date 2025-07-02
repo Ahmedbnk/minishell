@@ -1,11 +1,5 @@
 #include "minishell.h"
 
-int is_out_dollar(char *str, int index)
-{
-	if(!str)
-		return 0;
-	return (is_dollar(str[index]) && !is_between_quotes(str, index));
-}
 int is_it_valid_dollar(char *str)
 {
   int i;
@@ -20,4 +14,3 @@ int is_it_valid_dollar(char *str)
   }
   return 1;
 }
-

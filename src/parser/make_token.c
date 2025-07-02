@@ -1,52 +1,6 @@
 
 #include "minishell.h"
 
-t_type	get_token_type(const char *str)
-{
-	if (are_they_equal(str, "|"))
-		return (PIPE);
-	else if (are_they_equal(str, "<"))
-		return (REDIR_IN);
-	else if (are_they_equal(str, ">"))
-		return (REDIR_OUT);
-	else if (are_they_equal(str, ">>"))
-		return (REDIR_APPEND);
-	else if (are_they_equal(str, "<<"))
-		return (HEREDOC);
-	else
-		return (WORD);
-}
-
-static int	is_red_symbole(char *str)
-{
-	if (!str)
-		return (0);
-	if (are_they_equal(str, "<")  || are_they_equal(str, ">") )
-		return (1);
-	if (are_they_equal(str, ">>")  || are_they_equal(str, "<<") )
-		return (1);
-	return (0);
-}
-
-
-static int	validate_pipe_syntax(char **splitted, int i)
-{
-	if (i == 0 || !splitted[i + 1])
-		return (print(2, "syntax error near unexpected str `|'\n"), 1);
-	if (is_red_symbole(splitted[i - 1]) || is_pipe(splitted[i - 1]))
-		return (print(2, "syntax error near unexpected str `|'\n"), 1);
-	return (0);
-}
-
-static int	validate_redirection_syntax(char **splitted, int i)
-{
-	if (!splitted[i + 1])
-		return (print(2, "syntax error near unexpected str `newline'\n"), 1);
-	if (is_pipe(splitted[i + 1]) || is_red_symbole(splitted[i + 1]))
-		return (print(2, "syntax error near unexpected str `newline'\n"), 1);
-	return (0);
-}
-
 int	check_syntax_error(char **splitted)
 {
 	int	i;

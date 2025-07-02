@@ -1,31 +1,5 @@
 #include "minishell.h"
 
-static int	ft_w_counter(char const *s, char c)
-{
-	int	i;
-	int	k;
-	int	counter;
-
-	i = 0;
-	k = 0;
-	counter = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-		{
-			k = 0;
-		}
-		else
-		{
-			if (k == 0)
-				counter++;
-			k = 1;
-		}
-		i++;
-	}
-	return (counter);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	char	**splitted;

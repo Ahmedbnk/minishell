@@ -140,20 +140,16 @@ void	execute_command_line(t_shell_control_block *shell)
 	g_handler_state = 3;
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
-		shell->tokenze = shell->line_pointer;
-		skip_command(&(shell->line_pointer));
-		if (shell->line_pointer && shell->line_pointer->type == PIPE)
-			pipe(shell->arr);
-		execute_command_line_helper(shell);
-		skip_ambig_list(shell);
-		if (shell->previous_read_end != -1)
-			close(shell->previous_read_end);
-		if (shell->line_pointer && shell->line_pointer->type == PIPE)
+		if (is_there_a_pipe(shell) && shell->line_pointer->type != PIPE)
 		{
-			close(shell->arr[1]);
-			shell->previous_read_end = shell->arr[0];
-			shell->line_pointer = shell->line_pointer->next;
+			shell->tokenze = shell->line_pointer;
+			execute_command_line_helper(shell);
+			shell->tokenze = shell->line_pointer;
 		}
+		else if (shell->line_pointer->type == PIPE)
+			shell->line_pointer = shell->line_pointer->next;
+		else
+			execute_command_line_helper(shell);
 	}
 	if (shell->previous_read_end != -1)
 		close(shell->previous_read_end);
@@ -166,4 +162,6 @@ void	execute_command_line(t_shell_control_block *shell)
 		shell->exit_status = 128 + WSTOPSIG(status);
 	if (shell->exit_status > 128 && !shell->exit_status_flag)
 		print_exit_signal_message(shell->exit_status);
+	g_handler_state = 0;
+	handle_signals();
 }

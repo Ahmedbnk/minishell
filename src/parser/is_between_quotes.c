@@ -19,4 +19,3 @@ int	is_between_quotes(char *line, int index)
 	}
 	return (0);
 }
-

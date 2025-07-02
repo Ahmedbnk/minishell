@@ -9,18 +9,3 @@ char	*buffering(char *s1, char *s2, char *s3)
 	second_join = custom_join(first_join, s3);
 	return (second_join);
 }
-
-char	*add_new_line(char *str)
-{
-	char	*str_with_new_line;
-
-	return (str_with_new_line = custom_join(str, "\n"));
-}
-
-void	print(int fd, char *str)
-{
-	size_t	size;
-
-	size = ft_strlen(str);
-	write(fd, str, size);
-}
