@@ -25,7 +25,6 @@ SRCS = main.c \
 	src/execution/print_exit_signal_message.c \
 	src/execution/second_range.c \
 	src/execution/third_range.c \
-	src/execution/print_exit_signal_message_main.c \
 	src/expansion/expand_if_possible.c \
 	src/expansion/expnad_and_join_node.c \
 	src/expansion/ft_get_env_var.c \
@@ -40,7 +39,6 @@ SRCS = main.c \
 	src/expansion/expand_outside_dollars.c \
 	src/parser/calculate_all_symboles_operators.c \
 	src/parser/check_error.c \
-	src/parser/check_input_error.c \
 	src/parser/check_unclosed_quotes.c \
 	src/parser/create_all_heredocs.c \
 	src/parser/customized_split.c \
@@ -125,7 +123,6 @@ SRCS = main.c \
 	src/built_in/advance_file_name_list.c \
 	src/built_in/cd.c \
 	src/built_in/check_ambiguous_redirection.c \
-	src/built_in/check_built_in_command.c \
 	src/built_in/compare_env_var.c \
 	src/built_in/echo.c \
 	src/built_in/env.c \
@@ -154,7 +151,6 @@ SRCS = main.c \
 	src/built_in/sort_env.c \
 	src/built_in/unset.c \
 	src/built_in/update_env_dir.c \
-	src/built_in/ist_valid_env_var.c \
 	src/core/execute_line.c \
 	src/core/expand_and_split_helper.c \
 	src/core/expand_and_split.c \
@@ -169,6 +165,7 @@ SRCS = main.c \
 	src/utils/ft_atol.c \
 	src/utils/check_is_valid_number.c\
 	src/built_in/my_exit.c\
+	src/utils/set_handler_state.c\
 
 OBJS = $(SRCS:.c=.o)
 

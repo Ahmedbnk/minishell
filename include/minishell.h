@@ -31,7 +31,6 @@
 /*******************************************************************************
  *                           GLOBAL VARIABLES                                  *
  *******************************************************************************/
-extern int g_handler_state;
 /*******************************************************************************
  *                         TYPE DEFINITIONS                                   *
  *******************************************************************************/
@@ -328,4 +327,5 @@ void	ft_close(int fd);
 long long ft_atol(const char *str);
 int	check_is_valid_number(const char *str);
 int my_exit(char **args);
+int set_handler_state(int state);
 #endif

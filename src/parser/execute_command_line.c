@@ -158,7 +158,7 @@
 // 		shell->exit_status = WEXITSTATUS(status);
 // 	else if (WIFSIGNALED(status) && !shell->exit_status_flag)
 // 		shell->exit_status = 128 + WTERMSIG(status);
-// 	else if (WIFSTOPPED(status) && !shell->exit_status_flag)
+// 	else if (WIFSTOPPED(status) && !shell-exlin>exit_status_flag)
 // 		shell->exit_status = 128 + WSTOPSIG(status);
 // 	if (shell->exit_status > 128 && !shell->exit_status_flag)
 // 		print_exit_signal_message(shell->exit_status);
@@ -170,11 +170,12 @@
 void	execute_command_line(t_shell_control_block *shell)
 {
 	int	status;
+  int status_2 = 0;
 
 	status = 0;
 	shell->line_pointer = shell->tokenze;
 	shell->previous_read_end = -1;
-	g_handler_state = 3;
+  set_handler_state(2);
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
 		shell->tokenze = shell->line_pointer;
@@ -198,10 +199,11 @@ void	execute_command_line(t_shell_control_block *shell)
 	if (WIFEXITED(status) && !shell->exit_status_flag)
 		shell->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status) && !shell->exit_status_flag)
+  {
+    status_2 = 1;
 		shell->exit_status = 128 + WTERMSIG(status);
-	else if (WIFSTOPPED(status) && !shell->exit_status_flag)
-		shell->exit_status = 128 + WSTOPSIG(status);
-	if (shell->exit_status > 128 && !shell->exit_status_flag)
+  }
+	if (shell->exit_status > 128 && status_2 && !shell->exit_status_flag)
 		print_exit_signal_message(shell->exit_status);
   while(wait(NULL) > 0);
 }

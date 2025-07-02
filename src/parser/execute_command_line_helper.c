@@ -23,6 +23,7 @@ void	execute_command_line_helper(t_shell_control_block *shell)
 			ft_close(shell->arr[1]);
 		}
 		process_command(shell);
+    exit(0);
 	}
 	else
 		shell->last_child_pid = p_id;

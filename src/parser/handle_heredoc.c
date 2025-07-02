@@ -16,7 +16,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 	has_qoutes = does_it_has_qoutes(tokenze->delimiter);
 	rm_quotes_from_one_str(s, &(tokenze->delimiter));
 	signal(SIGINT, SIG_IGN);
-	g_handler_state = 1;
+  set_handler_state(1);
 	rc = fork();
 	if (rc == 0)
 	{
@@ -46,7 +46,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 		waitpid(rc, &status, 0);
 		if (WIFEXITED(status))
 			s->exit_status = WEXITSTATUS(status);
-		if (s->exit_status == 130)
+    if (s->exit_status == 130)
 			s->exit_status_flag = 1;
 		handle_signals();
 	}

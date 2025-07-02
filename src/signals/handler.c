@@ -3,7 +3,7 @@
 void	handler(int signo)
 {
   (void)signo;
-	if (g_handler_state == 0)
+	if (set_handler_state(-1) == 0)
 	{
     t_shell_control_block *ptr;
     ptr = get_shell_pointer(NULL);
@@ -13,7 +13,7 @@ void	handler(int signo)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-  else if(g_handler_state == 1)
+  else if(set_handler_state(-1) == 1)
   {
 		write(1, "\n", 1);
     exit(130);

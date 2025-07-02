@@ -9,7 +9,7 @@ void	create_all_heredocs(t_shell_control_block *shell)
 	ptr = shell->tokenze;
 	while (ptr)
 	{
-		if (shell->exit_status_flag == 1)
+		if (shell->exit_status == 130)
 			break ;
 		if (ptr->type == HEREDOC)
 			create_heredoc(shell, ptr);
