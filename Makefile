@@ -166,6 +166,9 @@ SRCS = main.c \
 	src/core/parse_line.c \
 	src/core/split_after_expantion.c\
 	src/execution/ft_close.c\
+	src/utils/ft_atol.c \
+	src/utils/check_is_valid_number.c\
+	src/built_in/my_exit.c\
 
 OBJS = $(SRCS:.c=.o)
 

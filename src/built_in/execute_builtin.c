@@ -20,5 +20,9 @@ void	execute_builtin(t_shell_control_block *shell)
 	else if (are_they_equal(*shell->cmd_and_args, "unset"))
 		shell->exit_status = unset(&shell->env_cpy, shell->cmd_and_args + 1);
 	else if (are_they_equal(*shell->cmd_and_args, "exit"))
-      exit(0);
+  {
+		shell->exit_status =my_exit(shell->cmd_and_args + 1);
+    if(shell->exit_status != 1)
+      exit(shell->exit_status);
+  }
 }

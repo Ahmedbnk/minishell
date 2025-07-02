@@ -203,4 +203,5 @@ void	execute_command_line(t_shell_control_block *shell)
 		shell->exit_status = 128 + WSTOPSIG(status);
 	if (shell->exit_status > 128 && !shell->exit_status_flag)
 		print_exit_signal_message(shell->exit_status);
+  while(wait(NULL) > 0);
 }

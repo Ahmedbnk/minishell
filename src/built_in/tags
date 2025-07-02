@@ -4,9 +4,42 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/nkasimi/minishell/src/built_in/	//
+!_TAG_PROC_CWD	/home/abenkrar/Desktop/minishell/src/built_in/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
-main	pwd.c	/^int main()$/;"	f	typeref:typename:int
+SIZE	pwd.c	/^#define  SIZE /;"	d	file:
+add_var_to_env	add_var_to_env.c	/^char **add_var_to_env(char **env , char *var)$/;"	f	typeref:typename:char **
+advance_file_name_list	advance_file_name_list.c	/^void	advance_file_name_list(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+cd	cd.c	/^int	cd(char **env, char **path)$/;"	f	typeref:typename:int
+check_ambiguous_redirection	check_ambiguous_redirection.c	/^int	check_ambiguous_redirection(t_shell_control_block *shell)$/;"	f	typeref:typename:int
+compare_env_var	compare_env_var.c	/^int compare_env_var(char *var1, char *var2)$/;"	f	typeref:typename:int
+echo	echo.c	/^int	echo(char **args)$/;"	f	typeref:typename:int
+execute_builtin	execute_builtin.c	/^void	execute_builtin(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+execute_parent_builtin	execute_parent_builtin.c	/^void	execute_parent_builtin(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+export	export.c	/^int	export(t_shell_control_block *s, char **to_export)$/;"	f	typeref:typename:int
+find_and_update_var	find_and_update_var.c	/^int find_and_update_var(char **env, char *var)$/;"	f	typeref:typename:int
+ft_isalpha	ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f	typeref:typename:int
+ft_isdigit	ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f	typeref:typename:int
+ft_strcmp	ft_strcmp.c	/^int	ft_strcmp(char *s1, char *s2)$/;"	f	typeref:typename:int
+ft_strncmp	ft_strncmp.c	/^int	ft_strncmp(const char *big, const char *little, size_t n)$/;"	f	typeref:typename:int
+init_redirection_vars	init_redirection_vars.c	/^void	init_redirection_vars(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+is_builtin	is_builtin.c	/^int is_builtin(char *str)$/;"	f	typeref:typename:int
+is_it_key_value	is_it_key_value.c	/^int is_it_key_value(char *str)$/;"	f	typeref:typename:int
+is_the_var_in_env	is_the_var_in_env.c	/^int is_the_var_in_env(char **env, char *var)$/;"	f	typeref:typename:int
+is_valid_flag	is_valid_flag.c	/^int	is_valid_flag(char *str)$/;"	f	typeref:typename:int
+is_valid_var	is_valid_var.c	/^int	is_valid_var(char *str)$/;"	f	typeref:typename:int
+my_exit	my_exit.c	/^int my_exit(char **args)$/;"	f	typeref:typename:int
+parse_redirections	parse_redirections.c	/^int	parse_redirections(t_shell_control_block *shell)$/;"	f	typeref:typename:int
+print_env	env.c	/^int print_env(char **env)$/;"	f	typeref:typename:int
+process_redirection_tokens	process_redirection_tokens.c	/^void	process_redirection_tokens(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+pwd	pwd.c	/^char *pwd(int *status)$/;"	f	typeref:typename:char *
+remove_var_from_env	remove_var_from_env.c	/^void remove_var_from_env(char ***env , char *var)$/;"	f	typeref:typename:void
+restore_original_fds	restore_original_fds.c	/^void	restore_original_fds(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+save_original_fds	save_original_fds.c	/^void	save_original_fds(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+setup_input_redirection	setup_input_redirection.c	/^void	setup_input_redirection(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+setup_output_redirection	setup_output_redirection.c	/^void	setup_output_redirection(t_shell_control_block *shell)$/;"	f	typeref:typename:void
+sort_env	sort_env.c	/^void sort_env(char **env)$/;"	f	typeref:typename:void
+unset	unset.c	/^int unset(char ***env, char **vars)$/;"	f	typeref:typename:int
+update_env_dir	update_env_dir.c	/^void	update_env_dir(char **env, char *old_dir, char *new_dir)$/;"	f	typeref:typename:void

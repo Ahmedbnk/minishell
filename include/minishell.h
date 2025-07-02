@@ -325,4 +325,7 @@ int		ft_w_counter_split(char const *s, char c);
 
 char	*ft_getenv(void);
 void	ft_close(int fd);
+long long ft_atol(const char *str);
+int	check_is_valid_number(const char *str);
+int my_exit(char **args);
 #endif
