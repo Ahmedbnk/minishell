@@ -6,9 +6,11 @@ void	setup_output_redirection(t_shell_control_block *shell)
 	{
 		shell->original_stdout = dup(1);
 		if (shell->tokenze->type == REDIR_OUT)
-			close(open(shell->file_name, O_TRUNC | O_CREAT | O_WRONLY, 0644));
+			ft_close(open(shell->file_name, O_TRUNC | O_CREAT | O_WRONLY,
+					0644));
 		else if (shell->tokenze->type == REDIR_APPEND)
-			close(open(shell->file_name, O_APPEND | O_CREAT | O_WRONLY, 0644));
+			ft_close(open(shell->file_name, O_APPEND | O_CREAT | O_WRONLY,
+					0644));
 		dup2(open(shell->file_name, O_WRONLY), 1);
 	}
 }

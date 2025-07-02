@@ -13,17 +13,16 @@ void	execute_command_line_helper(t_shell_control_block *shell)
 		if (shell->previous_read_end != -1)
 		{
 			dup2(shell->previous_read_end, 0);
-			close(shell->previous_read_end);
+			ft_close(shell->previous_read_end);
 		}
 		if (shell->line_pointer && shell->line_pointer->type == PIPE)
 		{
-			close(shell->previous_read_end);
-			close(shell->arr[0]);
+			ft_close(shell->previous_read_end);
+			ft_close(shell->arr[0]);
 			dup2(shell->arr[1], 1);
-			close(shell->arr[1]);
+			ft_close(shell->arr[1]);
 		}
 		process_command(shell);
-		exit(0);
 	}
 	else
 		shell->last_child_pid = p_id;

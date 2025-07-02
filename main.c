@@ -1,6 +1,7 @@
 #include "minishell.h"
 
 int	g_handler_state;
+
 int	main(int ac, char **av, char **env)
 {
 	t_shell_control_block	sh;

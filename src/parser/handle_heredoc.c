@@ -38,7 +38,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 		}
 		fd = open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		write(fd, buffer, ft_strlen(buffer));
-		close(fd);
+		ft_close(fd);
 		exit(0);
 	}
 	else
@@ -51,4 +51,3 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 		handle_signals();
 	}
 }
-

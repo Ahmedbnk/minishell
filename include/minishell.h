@@ -324,4 +324,5 @@ void	ft_init_shell_block(t_shell_control_block *sh, int ac, char **av);
 int		ft_w_counter_split(char const *s, char c);
 
 char	*ft_getenv(void);
+void	ft_close(int fd);
 #endif

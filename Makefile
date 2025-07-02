@@ -164,7 +164,9 @@ SRCS = main.c \
 	src/core/is_out_dollar.c \
 	src/core/is_there_invalid_expantion.c \
 	src/core/parse_line.c \
-	src/core/split_after_expantion.c
+	src/core/split_after_expantion.c\
+	src/execution/ft_close.c\
+
 OBJS = $(SRCS:.c=.o)
 
 READLINE =-lreadline

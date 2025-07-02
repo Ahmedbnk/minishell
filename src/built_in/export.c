@@ -29,5 +29,6 @@ int	export(t_shell_control_block *s, char **to_export)
 		}
 		to_export++;
 	}
+	printf("%d", state);
 	return (state);
 }

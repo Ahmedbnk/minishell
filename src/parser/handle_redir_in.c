@@ -13,5 +13,5 @@ void handle_redir_in(char *str, char **in_file_name)
     return;
   fd = open(*in_file_name, O_CREAT| O_RDWR | O_TRUNC, 0766);
   write(fd,buffer, ft_strlen(buffer));
-  close(fd);
+  ft_close(fd);
 }
