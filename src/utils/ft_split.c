@@ -1,13 +1,14 @@
 #include "minishell.h"
 
+
 char	**ft_split(char const *s, char c)
 {
 	char	**splitted;
 
-	int (i), (k), (start);
+	int(i), (k), (start);
 	if (!s)
 		return (NULL);
-	splitted = ft_malloc((ft_w_counter(s, c) + 1) * sizeof(char *),1);
+	splitted = ft_malloc((ft_w_counter(s, c) + 1) * sizeof(char *), 1);
 	i = 0;
 	k = 0;
 	while (s[i])
@@ -23,15 +24,3 @@ char	**ft_split(char const *s, char c)
 	splitted[k] = NULL;
 	return (splitted);
 }
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	char s[] = "hello world";
-// 	// char *str = NULL;
-// 	char **splitted = ft_split(NULL, ' ');
-// 	if (splitted == NULL)
-// 		printf("nadi");
-// 	else
-// 		printf("%s\n", splitted[0]);
-// 	return (0);
-// }

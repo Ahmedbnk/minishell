@@ -1,5 +1,28 @@
 #include "minishell.h"
 
+static int	counter(char const *s)
+{
+	int	i;
+	int	k;
+	int	counter;
+
+	i = 0;
+	k = 0;
+	counter = 0;
+	while (s[i])
+	{
+		if (is_space(s[i]))
+			k = 0;
+		else
+		{
+			if (k == 0)
+				counter++;
+			k = 1;
+		}
+		i++;
+	}
+	return (counter);
+}
 char	**customized_split(char const *s)
 {
 	char	**splitted;
@@ -16,7 +39,7 @@ char	**customized_split(char const *s)
 
 	if (!s)
 		return (NULL);
-	splitted = ft_malloc((ft_w_counter(s) + 1) * sizeof(char *), 1);
+	splitted = ft_malloc((counter(s) + 1) * sizeof(char *), 1);
 	i = 0;
 	k = 0;
 	split_helper(splitted, (char *)s, i, k);

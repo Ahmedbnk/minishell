@@ -7,7 +7,8 @@ void	process_command(t_shell_control_block *shell)
 	handle_all_redir(shell);
 	if (shell->file_name)
 	{
-		shell->fd_out = open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		shell->fd_out = open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC,
+				0644);
 		dup2(shell->fd_out, 1);
 	}
 	if (shell->in_file_name)

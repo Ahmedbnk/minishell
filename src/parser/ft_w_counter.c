@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	ft_w_counter(char const *s)
+int	ft_w_counter(char const *s, char c)
 {
 	int	i;
 	int	k;
@@ -11,7 +11,7 @@ int	ft_w_counter(char const *s)
 	counter = 0;
 	while (s[i])
 	{
-		if (is_space(s[i]))
+		if (s[i] == c)
 			k = 0;
 		else
 		{

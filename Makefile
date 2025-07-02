@@ -25,6 +25,7 @@ SRCS = main.c \
 	src/execution/print_exit_signal_message.c \
 	src/execution/second_range.c \
 	src/execution/third_range.c \
+	src/execution/print_exit_signal_message_main.c \
 	src/expansion/expand_if_possible.c \
 	src/expansion/expnad_and_join_node.c \
 	src/expansion/ft_get_env_var.c \
@@ -36,6 +37,7 @@ SRCS = main.c \
 	src/expansion/string_after_dollar.c \
 	src/expansion/string_before_dollar.c \
 	src/expansion/string_to_expand.c \
+	src/expansion/expand_outside_dollars.c \
 	src/parser/calculate_all_symboles_operators.c \
 	src/parser/check_error.c \
 	src/parser/check_input_error.c \
@@ -152,6 +154,7 @@ SRCS = main.c \
 	src/built_in/sort_env.c \
 	src/built_in/unset.c \
 	src/built_in/update_env_dir.c \
+	src/built_in/ist_valid_env_var.c \
 	src/core/execute_line.c \
 	src/core/expand_and_split_helper.c \
 	src/core/expand_and_split.c \
@@ -161,48 +164,7 @@ SRCS = main.c \
 	src/core/is_out_dollar.c \
 	src/core/is_there_invalid_expantion.c \
 	src/core/parse_line.c \
-	src/core/split_after_expantion.c \
-	src/built_in/ist_valid_env_var.c\
-	src/built_in/unset.c\
-	src/parser/handle_dollar_with_quotes.c\
-	src/expansion/ft_get_env_var.c\
-	src/expansion/expand_outside_dollars.c\
-	src/utils/generate_random_name.c\
-	src/utils/is_quote.c\
-	src/utils/is_protected.c\
-	src/utils/is_all_spaces.c\
-	src/utils/ft_lstsize.c\
-	src/utils/it_there_a_pipe.c\
-	src/utils/is_dollar.c\
-	src/utils/is_redirection.c\
-	src/utils/lst_file_name_func.c\
-	src/tools/printf_for_deb.c\
-	src/utils/is_pipe.c\
-	src/core/is_it_valid_dollar.c \
-	src/core/is_there_invalid_expantion.c \
-	src/core/split_after_expantion.c \
-	src/core/expand_and_split_helper.c \
-	src/core/expand_and_split.c \
-	src/core/parse_line.c \
-	src/core/execute_line.c \
-	src/core/ft_readline.c \
-	src/core/ft_init_shell_block.c \
-	src/utils/get_shell_pointer.c\
-	src/built_in/is_builtin.c \
-	src/execution/check_after_geting_path.c \
-	src/execution/check_the_access.c \
-	src/execution/get_path.c \
-	src/execution/execute_command.c \
-	src/execution/cmd_size.c \
-	src/execution/is_symbole.c \
-	src/execution/get_cmd_and_its_args.c \
-	src/execution/first_range.c \
-	src/execution/second_range.c \
-	src/execution/third_range.c \
-	src/execution/print_exit_signal_message_main.c \
-	src/error/buffering.c \
-
-
+	src/core/split_after_expantion.c
 OBJS = $(SRCS:.c=.o)
 
 READLINE =-lreadline

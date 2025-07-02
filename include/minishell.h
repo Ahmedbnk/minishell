@@ -305,7 +305,7 @@ void	skip_ambig_list(t_shell_control_block *shell);
 void	skip_command(t_token **tokenized_address);
 void	split_helper(char **splitted, char *s, int i, int k);
 void	split_string_with_operators(char **container, char *str, int *j_ptr);
-int		ft_w_counter(char const *s);
+int		ft_w_counter(char const *s, char c);
 int		calculate_all_symboles_operators(char **splitted);
 int		does_it_has_qoutes(char *str);
 int		does_string_has_operators(char *str);
@@ -323,5 +323,5 @@ char	*ft_readline(t_shell_control_block *sh);
 void	ft_init_shell_block(t_shell_control_block *sh, int ac, char **av);
 int		ft_w_counter_split(char const *s, char c);
 
+char	*ft_getenv(void);
 #endif
-
