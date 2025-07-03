@@ -1,6 +1,5 @@
 #include "minishell.h"
 
-int	g_handler_state;
 
 int	main(int ac, char **av, char **env)
 {
@@ -13,6 +12,7 @@ int	main(int ac, char **av, char **env)
 	handle_signals();
 	while (1)
 	{
+		make_fd_lst();
 		set_handler_state(0);
 		if (!ft_readline(&sh) || parse_line(&sh))
 			continue ;

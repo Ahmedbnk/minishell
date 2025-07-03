@@ -330,4 +330,5 @@ int my_exit(char **args);
 int set_handler_state(int state);
 void	make_fd_lst(void);
 int	**get_fd_pointer(void);
+int	ft_open(const char *pathname, int flags, mode_t mode);
 #endif
