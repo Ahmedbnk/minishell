@@ -167,6 +167,7 @@ SRCS = main.c \
 	src/built_in/my_exit.c\
 	src/utils/set_handler_state.c\
 	src/utils/get_fd_pointer.c\
+	src/utils/ft_open.c\
 
 OBJS = $(SRCS:.c=.o)
 

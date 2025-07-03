@@ -25,6 +25,5 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 		}
 		i++;
 	}
-  free_memory(get_garbage_pointer(1));
 	exit((print(2, buffering(cmd, ": ", "command not found\n")), 127));
 }

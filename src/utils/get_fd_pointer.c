@@ -3,7 +3,6 @@
 int	**get_fd_pointer(void)
 {
 	static int	*ptr;
-
 	return (&ptr);
 }
 void	init_fd_lst(int *ptr)
@@ -22,4 +21,3 @@ void	make_fd_lst(void)
 	*ptr = ft_malloc(1025 * sizeof(int), 1);
 	init_fd_lst(*ptr);
 }
-
