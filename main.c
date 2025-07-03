@@ -13,7 +13,8 @@ int	main(int ac, char **av, char **env)
 	handle_signals();
 	while (1)
 	{
-    set_handler_state(0);
+		// make_fd_lst();
+		set_handler_state(0);
 		if (!ft_readline(&sh) || parse_line(&sh))
 			continue ;
 		execute_line(&sh);

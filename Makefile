@@ -166,6 +166,7 @@ SRCS = main.c \
 	src/utils/check_is_valid_number.c\
 	src/built_in/my_exit.c\
 	src/utils/set_handler_state.c\
+	src/utils/get_fd_pointer.c\
 
 OBJS = $(SRCS:.c=.o)
 

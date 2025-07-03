@@ -12,7 +12,7 @@ void	execute_command(t_shell_control_block *shell)
 	buffer = buffering(buffering("'", *cmds, "'"), " command not found\n", 0);
 	if (!**cmds)
 		exit((print(2, buffer), 127));
-	path = get_path();
+  path = get_path();
 	if (**cmds == '/' || **cmds == '.')
 		check_the_access(*cmds, cmds, shell->env_cpy);
 	else

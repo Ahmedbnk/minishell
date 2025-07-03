@@ -328,4 +328,6 @@ long long ft_atol(const char *str);
 int	check_is_valid_number(const char *str);
 int my_exit(char **args);
 int set_handler_state(int state);
+void	make_fd_lst(void);
+int	**get_fd_pointer(void);
 #endif
