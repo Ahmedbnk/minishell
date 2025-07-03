@@ -15,6 +15,8 @@ void	handle_all_redir(t_shell_control_block *shell)
 				handle_redir_out((shell->tokenze->next)->word, &(shell->file_name), shell);
 			else if (shell->tokenze->type == REDIR_APPEND)
 				handle_append((shell->tokenze->next)->word, &(shell->file_name), shell);
+      if(shell->exit_status)
+        return;
 		}
 		shell->tokenze = shell->tokenze->next;
 	}

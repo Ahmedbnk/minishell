@@ -9,7 +9,7 @@ char *pwd(int *status)
     buffer = ft_malloc(SIZE, 1);
     if ((getcwd(buffer, SIZE) == NULL))
     {
-       printf("%s\n", strerror(errno));
+       printf(" %s\n", strerror(errno));
        *status = 1;
        return NULL;
     }

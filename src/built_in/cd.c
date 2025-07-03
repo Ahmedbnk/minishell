@@ -10,7 +10,7 @@ int	cd(char **env, char **path)
 	status = 0;
 	len = len_of_two_d_array(path);
 	if (len > 2)
-		return (print(2, "too many arguments\n"), 1);
+		return (print(2, " too many arguments\n"), 1);
 	if (are_they_equal(*path, "cd"))
 		path++;
 	old_dir = pwd(&status);
@@ -20,6 +20,6 @@ int	cd(char **env, char **path)
 		update_env_dir(env, old_dir, new_dir);
 	}
 	else
-		return (print(2, buffering(NULL, strerror(errno), "\n")), 1);
+		return (print(2, buffering(" ", strerror(errno), "\n")), 1);
 	return (0);
 }
