@@ -16,9 +16,9 @@ void	check_the_access(char *cmd, char **av, char **env)
 			exit((print(2, buffer), errno));
 		}
 		else
-			exit((print(2, buffering(cmd, ": ", "Permition denied\n")), 126));
+			exit((print(2, buffering(cmd, ": ", "Permission denied\n")), 126));
 	}
 	else if (*cmd == '/' || *cmd == '.')
-		exit((print(2, buffering(cmd, ": ", "No such file or directory \n")),
+		exit((print(2, buffering(cmd, ": ", "No such file or directory\n")),
 				127));
 }

@@ -20,7 +20,7 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 				exit((print(2, buffer), errno));
 			}
 			else
-				exit((print(2, buffering(cmd, ": ", "Permition denied\n")),
+				exit((print(2, buffering(cmd, ": ", "Permission denied\n")),
 						126));
 		}
 		i++;
