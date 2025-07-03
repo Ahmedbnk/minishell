@@ -9,7 +9,10 @@ char	*read_file(char *file_name)
 	big_buffer = NULL;
 	fd = open(file_name, O_RDWR, 0777);
 	if (fd < 0)
-		return ((print(2, "No such file or directory \n"), NULL));
+  {
+    perror(file_name);
+    return NULL;
+  }
 	small_buffer = get_next_line(fd);
 	while (small_buffer)
 	{

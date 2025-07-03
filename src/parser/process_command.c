@@ -5,6 +5,8 @@ void	process_command(t_shell_control_block *shell)
 	shell->in_file_name = NULL;
 	shell->file_name = NULL;
 	handle_all_redir(shell);
+  if(shell ->exit_status)
+    exit(1);
 	if (shell->file_name)
 	{
 		shell->fd_out = open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC,
