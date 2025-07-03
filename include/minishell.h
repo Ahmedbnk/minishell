@@ -253,12 +253,12 @@ int		how_many_dallar_to_expand(char *str, int heredoc_flag);
 /*******************************************************************************
  *                     REDIRECTION HANDLING PROTOTYPES                        *
  *******************************************************************************/
-void	handle_redir_in(char *str, char **in_file_name);
-void	handle_redir_out(char *str, char **file_name);
-void	handle_append(char *str, char **file_name);
+void	handle_redir_in(char *str, char **in_file_name, t_shell_control_block *shell);
+void	handle_redir_out(char *str, char **file_name, t_shell_control_block *shell);
+void	handle_append(char *str, char **file_name, t_shell_control_block *shell);
 void	create_all_heredocs(t_shell_control_block *shell);
 void	create_heredoc(t_shell_control_block *s, t_token *tokenze);
-void	process_redirection_tokens(t_shell_control_block *shell);
+int process_redirection_tokens(t_shell_control_block *shell);
 int		parse_redirections(t_shell_control_block *shell);
 void	init_redirection_vars(t_shell_control_block *shell);
 void	setup_input_redirection(t_shell_control_block *shell);

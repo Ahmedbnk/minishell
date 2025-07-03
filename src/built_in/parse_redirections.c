@@ -10,8 +10,8 @@ int	parse_redirections(t_shell_control_block *shell)
 	{
 		if (is_symbole(shell->tokenze->type))
 		{
-			process_redirection_tokens(shell);
-			if (check_ambiguous_redirection(shell))
+			if (check_ambiguous_redirection(shell) 
+        || process_redirection_tokens(shell))
 				return (1);
 			shell->tokenze = shell->tokenze->next;
 		}
