@@ -6,8 +6,7 @@
 //   char *big_buffer;
 //   int fd;
 
-
-//   fd = open(file_name, O_RDWR , 0777);
+//   fd = ft_open(file_name, O_RDWR , 0777);
 
 //   small_buffer = get_next_line(fd);
 //   while(buffer)
@@ -16,5 +15,5 @@
 //     small_buffer = get_next_line(fd);
 //   }
 //   close(fd);
-//   return big_buffer;
+//   return (big_buffer);
 // }

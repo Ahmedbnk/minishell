@@ -7,12 +7,9 @@ char	*read_file(char *file_name)
 	int		fd;
 
 	big_buffer = NULL;
-	fd = open(file_name, O_RDWR, 0777);
+	fd = ft_open(file_name, O_RDWR, 0777);
 	if (fd < 0)
-  {
-    perror(file_name);
-    return NULL;
-  }
+		return (NULL);
 	small_buffer = get_next_line(fd);
 	while (small_buffer)
 	{

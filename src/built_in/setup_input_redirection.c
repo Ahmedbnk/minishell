@@ -6,8 +6,8 @@ void	setup_input_redirection(t_shell_control_block *shell)
 
 	if (shell->in_file_name)
 	{
-		shell->original_stdin = dup(0);
-		fd = open(shell->in_file_name, O_RDONLY);
-		dup2(fd, 0);
+		shell->original_stdin = ft_dup(0);
+		fd = ft_open(shell->in_file_name, O_RDONLY, 0);
+		ft_dup2(fd, 0);
 	}
 }

@@ -5,7 +5,7 @@ int	generate_random_number(void)
 	int	fd;
 	int	random_number;
 
-	fd = open("/dev/random", O_RDONLY);
+	fd = ft_open("/dev/random", O_RDONLY, 0);
 	read(fd, &random_number, 4);
 	ft_close(fd);
 	if (random_number < 0)

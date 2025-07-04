@@ -360,4 +360,9 @@ void					make_fd_lst(void);
 int						**get_fd_pointer(void);
 int						ft_open(const char *pathname, int flags, mode_t mode);
 int						find_fd_in_lst(int fd);
+int						ft_dup(int oldfd);
+int						ft_dup2(int oldfd, int newfd);
+void					add_fd_to_lst(int fd);
+int						find_fd_in_lst(int fd);
+void	free_fd_lst(void);
 #endif

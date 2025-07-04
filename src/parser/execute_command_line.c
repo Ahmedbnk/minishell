@@ -84,13 +84,13 @@
 // 	{
 // 		shell->fd_out = open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC,
 // 				0644);
-// 		dup2(shell->fd_out, 1);
+// 		ft_dup2(shell->fd_out, 1);
 // 		close(shell->fd_out);
 // 	}
 // 	if (shell->in_file_name)
 // 	{
 // 		shell->fd_in = open(shell->in_file_name, O_CREAT | O_RDONLY, 0644);
-// 		dup2(shell->fd_in, 0);
+// 		ft_dup2(shell->fd_in, 0);
 // 		close(shell->fd_in);
 // 	}
 // 	if (is_builtin(*shell->cmd_and_args))
@@ -113,14 +113,14 @@
 // 		signal(SIGQUIT, SIG_DFL);
 // 		if (shell->previous_read_end != -1)
 // 		{
-// 			dup2(shell->previous_read_end, 0);
+// 			ft_dup2(shell->previous_read_end, 0);
 // 			close(shell->previous_read_end);
 // 		}
 // 		if (shell->line_pointer && shell->line_pointer->type == PIPE)
 // 		{
 // 			close(shell->previous_read_end);
 // 			close(shell->arr[0]);
-// 			dup2(shell->arr[1], 1);
+// 			ft_dup2(shell->arr[1], 1);
 // 			close(shell->arr[1]);
 // 		}
 // 		process_command(shell);
@@ -166,16 +166,16 @@
 // 	handle_signals();
 // }
 
-
 void	execute_command_line(t_shell_control_block *shell)
 {
 	int	status;
-  int status_2 = 0;
+	int	status_2;
 
+	status_2 = 0;
 	status = 0;
 	shell->line_pointer = shell->tokenze;
 	shell->previous_read_end = -1;
-  set_handler_state(2);
+	set_handler_state(2);
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
 		shell->tokenze = shell->line_pointer;
@@ -199,11 +199,12 @@ void	execute_command_line(t_shell_control_block *shell)
 	if (WIFEXITED(status) && !shell->exit_status_flag)
 		shell->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status) && !shell->exit_status_flag)
-  {
-    status_2 = 1;
+	{
+		status_2 = 1;
 		shell->exit_status = 128 + WTERMSIG(status);
-  }
+	}
 	if (shell->exit_status > 128 && status_2 && !shell->exit_status_flag)
 		print_exit_signal_message(shell->exit_status);
-  while(wait(NULL) > 0);
+	while (wait(NULL) > 0)
+		;
 }
