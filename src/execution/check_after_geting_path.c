@@ -17,11 +17,11 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 				execve(cmd_with_its_path, av, env);
 				buffer = buffering(buffering(cmd, ": ", 0),
 						buffering(strerror(errno), "\n", 0), 0);
-				exit((print(2, buffer), errno));
+				exit((print(2, buffer), free_all(), errno));
 			}
 			else
 				exit((print(2, buffering(cmd, ": ", "Permission denied\n")),
-						126));
+						free_all(), 126));
 		}
 		i++;
 	}

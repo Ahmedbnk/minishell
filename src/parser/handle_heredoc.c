@@ -28,7 +28,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 			{
 				exit((print(2,
 							buffering("warning: here-document delimited by end-of-file wanted: ",
-								tokenze->delimiter, "\n")), 0));
+								tokenze->delimiter, "\n")), free_all(), 0));
 			}
 			if (are_they_equal(str, tokenze->delimiter))
 				break ;
@@ -40,7 +40,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 				0644);
 		write(fd, buffer, ft_strlen(buffer));
 		ft_close(fd);
-		exit(0);
+		exit((free_all(), 0));
 	}
 	else
 	{

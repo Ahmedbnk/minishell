@@ -14,7 +14,7 @@ void	free_fd_lst(void)
 	while (i < 1025)
 	{
 		if (ptr[i] == 1 && !is_std(i))
-			close(i);
+			ft_close(i);
 		i++;
 	}
 }
