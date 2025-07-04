@@ -1,17 +1,13 @@
 #include "minishell.h"
 
-// static int	find_fd_in_lst(fd)
-// {
-// 	int	*ptr;
-
-// 	ptr = *(get_fd_pointer());
-// 	return (ptr[fd] == 1);
-// }
-
 void	ft_close(int fd)
 {
+	int	*ptr;
+
+	ptr = *(get_fd_pointer());
 	if (fd < 0)
 		return ;
-	// if (find_fd_in_lst(fd))
-	close(fd);
+	if (ptr[fd] == 1)
+		close(fd);
+	ptr[fd] = -1;
 }

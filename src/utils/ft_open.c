@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	add_fd_to_lst(fd)
+void	add_fd_to_lst(int fd)
 {
 	int	*ptr;
 
