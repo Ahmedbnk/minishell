@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_fd_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:29:07 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	is_std(int fd)
 {
 	return (fd == 0 || fd == 1 || fd == 2);
 }
+
 void	free_fd_lst(void)
 {
 	int	*ptr;

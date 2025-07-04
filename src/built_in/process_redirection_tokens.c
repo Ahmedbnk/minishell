@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   process_redirection_tokens.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	process_redirection_tokens(t_shell_control_block *shell)
+int	process_redirection_tokens(t_shell *shell)
 {
 	if (shell->tokenze->type == HEREDOC)
 		shell->in_file_name = shell->tokenze->heredoc_file_name;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   customized_split.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:59 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:44:41 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static int	counter(char const *s)
 	}
 	return (counter);
 }
+
 char	**customized_split(char const *s)
 {
 	char	**splitted;
 	int		i;
 	int		k;
 
-	// lmouchkil kan hna
 	if (*s == '\0' || is_all_spaces(s))
 	{
 		splitted = ft_malloc(2 * sizeof(char *), 1);

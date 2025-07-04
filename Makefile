@@ -26,7 +26,7 @@ SRCS = main.c \
 	src/execution/second_range.c \
 	src/execution/third_range.c \
 	src/expansion/expand_if_possible.c \
-	src/expansion/expnad_and_join_node.c \
+	src/expansion/expand_and_join_node.c \
 	src/expansion/ft_get_env_var.c \
 	src/expansion/how_many_dallar_to_expand.c \
 	src/expansion/is_expand_separator_fix.c \
@@ -36,7 +36,6 @@ SRCS = main.c \
 	src/expansion/string_after_dollar.c \
 	src/expansion/string_before_dollar.c \
 	src/expansion/string_to_expand.c \
-	src/expansion/expand_outside_dollars.c \
 	src/parser/calculate_all_symboles_operators.c \
 	src/parser/check_error.c \
 	src/parser/check_unclosed_quotes.c \

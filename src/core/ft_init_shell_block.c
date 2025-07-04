@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_shell_block.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_init_shell_block(t_shell_control_block *sh, int ac, char **av)
+void	ft_init_shell_block(t_shell *sh, int ac, char **av)
 {
 	(void)ac;
 	(void)av;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_quote.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:02 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:02 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:03:37 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	is_quote(char c)
 {
-	return (c == single_q || c == double_q);
+	return (c == SINGLE_Q || c == DOUBLE_Q);
 }

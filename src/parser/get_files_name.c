@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_files_name.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:59 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:43:57 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	get_files_name(t_shell_control_block *sh)
+void	get_files_name(t_shell *sh)
 {
 	if (!sh)
 		return ;
 	sh->file_name_lst = NULL;
 	parse_tokens(sh);
 	prepare_lst(sh);
-	// debug_print_list(sh);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_fd_pointer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:02 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:02 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:25:01 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	**get_fd_pointer(void)
 
 	return (&ptr);
 }
+
 void	init_fd_lst(int *ptr)
 {
 	int	i;
@@ -26,6 +27,7 @@ void	init_fd_lst(int *ptr)
 	while (i < 1025)
 		ptr[i++] = -1;
 }
+
 void	make_fd_lst(void)
 {
 	int	**ptr;

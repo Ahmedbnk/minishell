@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_and_split_helper.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	expand_and_split_helper(t_shell_control_block *sh, int index)
+void	expand_and_split_helper(t_shell *sh, int index)
 {
 	char	*ptr;
 

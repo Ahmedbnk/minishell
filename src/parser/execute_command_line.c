@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command_line.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	iteration(t_shell_control_block *shell)
+void	iteration(t_shell *shell)
 {
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
@@ -33,7 +33,7 @@ void	iteration(t_shell_control_block *shell)
 	}
 }
 
-void	execute_command_line(t_shell_control_block *shell)
+void	execute_command_line(t_shell *shell)
 {
 	int	status;
 	int	var_print_signal;

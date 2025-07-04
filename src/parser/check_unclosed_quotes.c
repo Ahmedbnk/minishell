@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_unclosed_quotes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:59 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:03:02 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	check_unclosed_quotes(char *str)
 	double_quote = 0;
 	while (str[i])
 	{
-		if (str[i] == single_q && double_quote == 0)
+		if (str[i] == SINGLE_Q && double_quote == 0)
 			single_quote = !single_quote;
-		else if (str[i] == double_q && single_quote == 0)
+		else if (str[i] == DOUBLE_Q && single_quote == 0)
 			double_quote = !double_quote;
 		i++;
 	}

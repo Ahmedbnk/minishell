@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_dollar_if_quotes_after_it.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:00 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:03:37 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ char	*remove_dollar_if_quotes_after_it(char *str)
 	while (str[i])
 	{
 		if (str[i] == '$' && !is_between_quotes(str, i) && (str[i
-				+ 1] == single_q || str[i + 1] == double_q))
+				+ 1] == SINGLE_Q || str[i + 1] == DOUBLE_Q))
 			i++;
 		else
 			returned_string[j++] = str[i++];
 	}
 	returned_string[j] = '\0';
-	// remove_quotes(&returned_string);
 	return (returned_string);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   skip_ambig_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:00 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:28 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	skip_ambig_list(t_shell_control_block *shell)
+void	skip_ambig_list(t_shell *shell)
 {
 	t_name_lst	*name_lst;
 

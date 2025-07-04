@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:50:42 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:28 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_all(void)
 
 int	main(int ac, char **av, char **env)
 {
-	t_shell_control_block	sh;
+	t_shell	sh;
 
 	ft_init_shell_block(&sh, ac, av);
 	sh.env_of_export = copy_env(env);

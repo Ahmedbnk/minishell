@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:56:08 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 char	*ft_getenv(void)
 {
-	char					**ptr;
-	char					*value;
-	int						start;
-	int						end;
-	int						i;
-	t_shell_control_block	*shell_ptr;
+	char	**ptr;
+	int		start;
+	int		end;
+	int		i;
+	t_shell	*shell_ptr;
 
 	shell_ptr = get_shell_pointer(NULL);
 	ptr = shell_ptr->env_cpy;
@@ -29,8 +28,7 @@ char	*ft_getenv(void)
 		if (compare_env_var(ptr[i], "PATH"))
 		{
 			get_start_and_end(ptr[i], &start, &end);
-			value = ft_substr(ptr[i], start, (end - start));
-			return (value);
+			return (ft_substr(ptr[i], start, (end - start)));
 		}
 		i++;
 	}

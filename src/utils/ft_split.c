@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:02 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:02 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:27:53 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 char	**ft_split(char const *s, char c)
 {
 	char	**splitted;
+	int		i;
+	int		k;
+	int		start;
 
-	int(i), (k), (start);
 	if (!s)
 		return (NULL);
 	splitted = ft_malloc((ft_w_counter(s, c) + 1) * sizeof(char *), 1);

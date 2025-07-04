@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf_for_deb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:29:46 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	ft_putstr(char *str)
 		str++;
 	}
 }
+
 void	s(char *str)
 {
 	ft_putstr("[");

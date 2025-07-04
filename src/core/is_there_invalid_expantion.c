@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   is_there_invalid_expantion.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_there_invalid_expantion(t_shell_control_block *sh, char *str,
+int	is_there_invalid_expantion(t_shell *sh, char *str,
 		char *old_str)
 {
 	if (!is_it_valid_dollar(old_str))

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes_from_args.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:00 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:23:28 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	rm_quotes_from_one_str(t_shell_control_block *sh, char **line)
+void	rm_quotes_from_one_str(t_shell *sh, char **line)
 {
 	char	*line_without_quotes;
 
