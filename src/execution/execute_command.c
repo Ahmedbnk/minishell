@@ -11,7 +11,7 @@ void	execute_command(t_shell_control_block *shell)
 		return ;
 	buffer = buffering(buffering("'", *cmds, "'"), " command not found\n", 0);
 	if (!**cmds)
-		exit((print(2, buffer), 127));
+		exit((print(2, buffer), free_all(), 127));
 	path = get_path();
 	if (**cmds == '/' || **cmds == '.')
 		check_the_access(*cmds, cmds, shell->env_cpy);
@@ -19,7 +19,7 @@ void	execute_command(t_shell_control_block *shell)
 	{
 		if (path == NULL)
 			exit((print(2, buffering(*shell->cmd_and_args, ": ",
-							"No such file or directory\n")), 127));
+							"No such file or directory\n")), free_all(), 127));
 		check_after_geting_path(*cmds, cmds, path, shell->env_cpy);
 	}
 }

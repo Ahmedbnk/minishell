@@ -1,5 +1,11 @@
 #include "minishell.h"
 
+void	free_all(void)
+{
+	free_fd_lst();
+	free_memory(get_garbage_pointer(1));
+	free_memory(get_garbage_pointer(0));
+}
 int	main(int ac, char **av, char **env)
 {
 	t_shell_control_block	sh;

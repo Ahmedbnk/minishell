@@ -364,5 +364,7 @@ int						ft_dup(int oldfd);
 int						ft_dup2(int oldfd, int newfd);
 void					add_fd_to_lst(int fd);
 int						find_fd_in_lst(int fd);
-void	free_fd_lst(void);
+void					free_fd_lst(void);
+void					free_all(void);
+int						ft_pipe(int pipefd[2]);
 #endif

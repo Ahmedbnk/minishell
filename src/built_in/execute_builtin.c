@@ -23,6 +23,6 @@ void	execute_builtin(t_shell_control_block *shell)
   {
 		shell->exit_status =my_exit(shell->cmd_and_args + 1);
     if(shell->exit_status != 1)
-      exit(shell->exit_status);
+      exit((free_all(), shell->exit_status));
   }
 }

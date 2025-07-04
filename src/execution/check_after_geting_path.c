@@ -25,5 +25,6 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 		}
 		i++;
 	}
-	exit((print(2, buffering(cmd, ": ", "command not found\n")), 127));
+	exit((print(2, buffering(cmd, ": ", "command not found\n")), free_all(),
+			127));
 }

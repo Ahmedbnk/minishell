@@ -5,7 +5,7 @@ t_list	**get_garbage_pointer(int flag)
 	static t_list	*garbage_list = NULL;
 	static t_list	*env_colloctor = NULL;
 
-	if(flag)
+	if (flag)
 		return (&garbage_list);
 	return (&env_colloctor);
 }
@@ -15,9 +15,9 @@ void	free_memory(t_list **list_pointer)
 	t_list	*lst;
 	t_list	*next_node;
 
-  lst = *list_pointer;
+	lst = *list_pointer;
 	if (!lst)
-    return;
+		return ;
 	while (lst != NULL)
 	{
 		next_node = ((t_list *)lst)->next;
@@ -25,7 +25,7 @@ void	free_memory(t_list **list_pointer)
 		free(lst);
 		lst = next_node;
 	}
-  *list_pointer = NULL;
+	*list_pointer = NULL;
 }
 
 void	*ft_malloc(size_t size, int falg)
