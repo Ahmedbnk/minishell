@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_if_possible.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-char	*expand_if_possible(t_shell_control_block *s, char *str, int heredoc_flag)
+char	*expand_if_possible(t_shell_control_block *s, char *str,
+		int heredoc_flag)
 {
-	int i;
-	int offset;
-	int num_of_expantion;
-	char *new_str;
+	int		i;
+	int		offset;
+	int		num_of_expantion;
+	char	*new_str;
 
 	s->expand_arr = NULL;
-
 	i = 0;
 	offset = 0;
 	num_of_expantion = how_many_dallar_to_expand(str, heredoc_flag);
@@ -22,7 +34,6 @@ char	*expand_if_possible(t_shell_control_block *s, char *str, int heredoc_flag)
 		string_after_dollar(&(s->expand_arr[i]), str, &offset);
 		i++;
 	}
-
 	new_str = new_str_after_expand(s, num_of_expantion);
 	return (new_str);
 }

@@ -1,16 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_heredoc.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
+void	write_heredoc_file(char *file_name, char *buffer)
 {
-	int		fd;
+	int	fd;
+
+	fd = ft_open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	write(fd, buffer, ft_strlen(buffer));
+	ft_close(fd);
+}
+
+void	wait_heredoc_child(t_shell_control_block *s, int pid)
+{
+	int	status;
+
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		s->exit_status = WEXITSTATUS(status);
+	if (s->exit_status == 130)
+		s->exit_status_flag = 1;
+	handle_signals();
+}
+
+void	handle_heredoc_child(t_shell_control_block *s, t_token *tokenze,
+		int has_qoutes)
+{
 	char	*str;
 	char	*buffer;
-	int		has_qoutes;
-	int		rc;
-	int		status;
+	char	*str;
+	char	*buffer;
 
 	str = NULL;
 	buffer = NULL;
+	handle_signals();
+	while (1)
+	{
+		str = readline("> ");
+		if (str == NULL)
+			exit((print(2,
+						buffering("warning: here-document delimited by end-of-file wanted: ",
+							tokenze->delimiter, "\n")), free_all(), 0));
+		if (are_they_equal(str, tokenze->delimiter))
+			break ;
+		if (!has_qoutes)
+			str = expand_if_possible(s, str, 1);
+		buffer = ft_strjoin(buffer, ft_strjoin(str, "\n"));
+	}
+	write_heredoc_file(tokenze->heredoc_file_name, buffer);
+	exit((free_all(), 0));
+}
+
+void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
+{
+	int	rc;
+	int	has_qoutes;
+
 	tokenze->heredoc_file_name = ft_strjoin("/tmp/", generate_random_name());
 	tokenze->delimiter = tokenze->next->word;
 	has_qoutes = does_it_has_qoutes(tokenze->delimiter);
@@ -19,36 +74,7 @@ void	create_heredoc(t_shell_control_block *s, t_token *tokenze)
 	set_handler_state(1);
 	rc = fork();
 	if (rc == 0)
-	{
-		handle_signals();
-		while (1)
-		{
-			str = readline("> ");
-			if (str == NULL)
-			{
-				exit((print(2,
-							buffering("warning: here-document delimited by end-of-file wanted: ",
-								tokenze->delimiter, "\n")), free_all(), 0));
-			}
-			if (are_they_equal(str, tokenze->delimiter))
-				break ;
-			if (!has_qoutes)
-				str = expand_if_possible(s, str, 1);
-			buffer = ft_strjoin(buffer, ft_strjoin(str, "\n"));
-		}
-		fd = ft_open(tokenze->heredoc_file_name, O_CREAT | O_RDWR | O_TRUNC,
-				0644);
-		write(fd, buffer, ft_strlen(buffer));
-		ft_close(fd);
-		exit((free_all(), 0));
-	}
+		handle_heredoc_child(s, tokenze, has_qoutes);
 	else
-	{
-		waitpid(rc, &status, 0);
-		if (WIFEXITED(status))
-			s->exit_status = WEXITSTATUS(status);
-		if (s->exit_status == 130)
-			s->exit_status_flag = 1;
-		handle_signals();
-	}
+		wait_heredoc_child(s, rc);
 }

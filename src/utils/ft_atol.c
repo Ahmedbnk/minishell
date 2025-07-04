@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-long long ft_atol(const char *str)
+long long	ft_atol(const char *str)
 {
 	long long	result;
-	int		sign;
-	int		i;
+	int			sign;
+	int			i;
 
 	result = 0;
 	sign = 1;

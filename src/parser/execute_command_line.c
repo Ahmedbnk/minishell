@@ -1,15 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_command_line.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	execute_command_line(t_shell_control_block *shell)
+void	iteration(t_shell_control_block *shell)
 {
-	int	status;
-	int	status_2;
-
-	status_2 = 0;
-	status = 0;
-	shell->line_pointer = shell->tokenze;
-	shell->previous_read_end = -1;
-	set_handler_state(2);
 	while (shell->line_pointer && shell->line_pointer->word)
 	{
 		shell->tokenze = shell->line_pointer;
@@ -27,6 +31,19 @@ void	execute_command_line(t_shell_control_block *shell)
 			shell->line_pointer = shell->line_pointer->next;
 		}
 	}
+}
+
+void	execute_command_line(t_shell_control_block *shell)
+{
+	int	status;
+	int	var_print_signal;
+
+	var_print_signal = 0;
+	status = 0;
+	shell->line_pointer = shell->tokenze;
+	shell->previous_read_end = -1;
+	set_handler_state(2);
+	iteration(shell);
 	if (shell->previous_read_end != -1)
 		close(shell->previous_read_end);
 	waitpid(shell->last_child_pid, &status, 2);
@@ -34,10 +51,11 @@ void	execute_command_line(t_shell_control_block *shell)
 		shell->exit_status = WEXITSTATUS(status);
 	else if (WIFSIGNALED(status) && !shell->exit_status_flag)
 	{
-		status_2 = 1;
+		var_print_signal = 1;
 		shell->exit_status = 128 + WTERMSIG(status);
 	}
-	if (shell->exit_status > 128 && status_2 && !shell->exit_status_flag)
+	if (shell->exit_status > 128 && var_print_signal
+		&& !shell->exit_status_flag)
 		print_exit_signal_message(shell->exit_status);
 	while (wait(NULL) > 0)
 		;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_string_with_operators.c                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:53:00 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	split_string_with_operators(char **container, char *str, int *j_ptr)
@@ -24,7 +36,7 @@ void	split_string_with_operators(char **container, char *str, int *j_ptr)
 		else
 			i++;
 	}
-  if(start != i)
-    container[j++] = ft_substr(str, start, i - start);
+	if (start != i)
+		container[j++] = ft_substr(str, start, i - start);
 	*j_ptr = j;
 }

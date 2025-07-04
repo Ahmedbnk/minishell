@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   are_they_equal.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:53:01 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	are_they_equal(const char *str1, const char *str2)
@@ -5,8 +17,8 @@ int	are_they_equal(const char *str1, const char *str2)
 	int	i;
 
 	i = 0;
-	if(!str1 || !str2)
-		return 0;
+	if (!str1 || !str2)
+		return (0);
 	while (str1[i] || str2[i])
 	{
 		if (str1[i] != str2[i])

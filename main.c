@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:50:42 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	free_all(void)
@@ -6,6 +18,7 @@ void	free_all(void)
 	free_memory(get_garbage_pointer(1));
 	free_memory(get_garbage_pointer(0));
 }
+
 int	main(int ac, char **av, char **env)
 {
 	t_shell_control_block	sh;

@@ -1,14 +1,25 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   expand_outside_dollar.c                            :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: kaisen1337 <kaisen1337@student.42.fr>      +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2025/06/21 07:39:27 by kaisen1337         #+#    #+#             */
-// /*   Updated: 2025/06/21 07:39:27 by kaisen1337        ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+//
+	/* ************************************************************************** */
+//
+	/*                                                                            */
+//
+	/*                                                        :::      ::::::::   */
+//
+	/*   expand_outside_dollar.c                            :+:      :+:    :+:   */
+// /*                                                    +:+ +:+        
+	+:+     */
+// /*   By: kaisen1337 <kaisen1337@student.42.fr>      +#+  +:+      
+	+#+        */
+// /*                                                +#+#+#+#+#+  
+	+#+           */
+//
+	/*   Created: 2025/06/21 07:39:27 by kaisen1337         #+#    #+#             */
+//
+	/*   Updated: 2025/06/21 07:39:27 by kaisen1337        ###   ########.fr       */
+//
+	/*                                                                            */
+//
+	/* ************************************************************************** */
 
 // #include "minishell.h"
 
@@ -36,8 +47,8 @@
 // 	i = 0;
 // 	while (str[i])
 // 	{
-// 		if (str[i] == '$' && str[i + 1] && (heredoc_flag || 
-// 			(!is_between_quotes(str, i) && 
+// 		if (str[i] == '$' && str[i + 1] && (heredoc_flag ||
+// 			(!is_between_quotes(str, i) &&
 // 			(ft_isalnum(str[i + 1]) || str[i + 1] == '?'))))
 // 			counter++;
 // 		i++;
@@ -54,7 +65,7 @@
 // 	flag = *offset;
 // 	while (str[*offset])
 // 	{
-// 		if (str[*offset] == '$' && (data->heredoc_flag || 
+// 		if (str[*offset] == '$' && (data->heredoc_flag ||
 // 			is_outside_expand_dollar(str, *offset)))
 // 			break ;
 // 		(*offset)++;
@@ -101,9 +112,9 @@
 // 	next_dollar = *offset;
 // 	while (str[next_dollar])
 // 	{
-// 		if (str[next_dollar] == '$' && (data->heredoc_flag || 
+// 		if (str[next_dollar] == '$' && (data->heredoc_flag ||
 // 			is_outside_expand_dollar(str, next_dollar)))
-// 			break;
+// 			break ;
 // 		next_dollar++;
 // 	}
 // 	if (next_dollar > start)
@@ -132,7 +143,8 @@
 // 		the_joined_node = custom_join(data.befor_dollar, path);
 // 	}
 // 	else
-// 		the_joined_node = ft_strdup(data.befor_dollar ? data.befor_dollar : "", 1);
+// 		the_joined_node = ft_strdup(data.befor_dollar ? data.befor_dollar : "",
+				1);
 // 	if (data.last_one)
 // 	{
 // 		rest = custom_join(the_joined_node, data.after_dollar);
@@ -165,17 +177,28 @@
 // 			return (NULL);
 // 		i++;
 // 	}
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   dollar_expansion.c                                 :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: kaisen1337 <kaisen1337@student.42.fr>      +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2025/06/21 07:36:07 by kaisen1337         #+#    #+#             */
-// /*   Updated: 2025/06/21 07:36:07 by kaisen1337        ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+//
+	/* ************************************************************************** */
+//
+	/*                                                                            */
+//
+	/*                                                        :::      ::::::::   */
+//
+	/*   dollar_expansion.c                                 :+:      :+:    :+:   */
+// /*                                                    +:+ +:+        
+	+:+     */
+// /*   By: kaisen1337 <kaisen1337@student.42.fr>      +#+  +:+      
+	+#+        */
+// /*                                                +#+#+#+#+#+  
+	+#+           */
+//
+	/*   Created: 2025/06/21 07:36:07 by kaisen1337         #+#    #+#             */
+//
+	/*   Updated: 2025/06/21 07:36:07 by kaisen1337        ###   ########.fr       */
+//
+	/*                                                                            */
+//
+	/* ************************************************************************** */
 
 // #include "minishell.h"
 
@@ -343,11 +366,12 @@
 // 	}
 // 	else
 // 		value = ft_strdup("", 1);
-// 	joined1 = ft_strjoin(data.before_dollar ? data.before_dollar : "", 
+// 	joined1 = ft_strjoin(data.before_dollar ? data.before_dollar : "",
 // 			value ? value : "");
 // 	if (data.last_one)
 // 	{
-// 		joined2 = ft_strjoin(joined1, data.after_dollar ? data.after_dollar : "");
+// 		joined2 = ft_strjoin(joined1,
+				data.after_dollar ? data.after_dollar : "");
 // 		free(joined1);
 // 		return (joined2);
 // 	}
@@ -355,7 +379,7 @@
 // }
 
 // /* Create new string after expanding all variables */
-// static char	*create_expanded_string(t_shell_control_block *scb, 
+// static char	*create_expanded_string(t_shell_control_block *scb,
 // 									t_expand *expand_arr, int count)
 // {
 // 	char	*result;

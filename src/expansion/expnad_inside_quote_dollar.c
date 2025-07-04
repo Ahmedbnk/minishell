@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expnad_inside_quote_dollar.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // #include "minishell.h"
 
 // int	is_in_double_quotes(char *line, int index)
@@ -43,8 +55,8 @@
 // 	i = 0;
 // 	while (str[i])
 // 	{
-// 		if (str[i] == '$' && str[i + 1] && (heredoc_flag || 
-// 			(is_in_double_quotes(str, i) && 
+// 		if (str[i] == '$' && str[i + 1] && (heredoc_flag ||
+// 			(is_in_double_quotes(str, i) &&
 // 			(ft_isalnum(str[i + 1]) || str[i + 1] == '?'))))
 // 			counter++;
 // 		i++;
@@ -52,7 +64,8 @@
 // 	return (counter);
 // }
 
-// static void	string_before_dollar_inside(t_expand *data, char *str, int *offset)
+// static void	string_before_dollar_inside(t_expand *data, char *str,
+		int *offset)
 // {
 // 	int	flag;
 
@@ -61,7 +74,7 @@
 // 	flag = *offset;
 // 	while (str[*offset])
 // 	{
-// 		if (str[*offset] == '$' && (data->heredoc_flag || 
+// 		if (str[*offset] == '$' && (data->heredoc_flag ||
 // 				is_inside_expand_dollar(str, *offset)))
 // 			break ;
 // 		(*offset)++;
@@ -89,7 +102,8 @@
 // 	data->to_expand = ft_substr(str, start, *offset - start);
 // }
 
-// static void	string_after_dollar_inside(t_expand *data, char *str, int *offset)
+// static void	string_after_dollar_inside(t_expand *data, char *str,
+		int *offset)
 // {
 // 	int	start;
 // 	int	end;
@@ -104,7 +118,7 @@
 // 		data->after_dollar = ft_substr(str, start, end - start);
 // }
 
-// char	*expand_inside_quote_dollar(t_shell_control_block *s, char *str, 
+// char	*expand_inside_quote_dollar(t_shell_control_block *s, char *str,
 // 									int heredoc_flag)
 // {
 // 	int		i;

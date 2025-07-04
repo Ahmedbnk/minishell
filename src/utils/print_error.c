@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:53:03 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:53:03 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 // void	ft_putchar(char c, int *counter)
@@ -16,7 +28,6 @@
 // 		str++;
 // 	}
 // }
-
 
 // void	format_specifier(va_list arguements, char specifier, int *counter)
 // {

@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int unset(char ***env, char **vars)
+int	unset(char ***env, char **vars)
 {
-  while(*vars)
-  {
-    if(is_the_var_in_env(*env, *vars))
-      remove_var_from_env(env, *vars);
-    vars++;
-  }
-  return 0;
+	while (*vars)
+	{
+		if (is_the_var_in_env(*env, *vars))
+			remove_var_from_env(env, *vars);
+		vars++;
+	}
+	return (0);
 }
 
 // int main(int argc, char *argv[], char *env[])
@@ -25,6 +37,6 @@ int unset(char ***env, char **vars)
 //   unset(&env_cpy,  av1);
 //   print_env(env_cpy);
 //      free_memory(*get_garbage_pointer());
-//   return 0;
+//   return (0);
 // }
 //

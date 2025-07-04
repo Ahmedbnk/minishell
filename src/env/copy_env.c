@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   copy_env.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-char ** copy_env(char **env);
+char	**copy_env(char **env);
 //
 // int main(int argc, char *argv[], char **env)
 // {
 //   int i = 0;
 //   (void)  argv;
-//   (void) argc; 
+//   (void) argc;
 //   char **my_env;
 //   my_env = NULL;
 //
@@ -19,17 +31,18 @@ char ** copy_env(char **env);
 // }
 //
 
-char ** copy_env(char **env)
+char	**copy_env(char **env)
 {
-  int i;
-  char **my_env;
-  my_env = ft_malloc((len_of_two_d_array(env) + 1) * sizeof(char *), 0);
-  i = 0;
-  while(env[i])
-  {
-    my_env[i] = ft_strdup((const char *)env[i], 0);
-    i++;
-  }
-  my_env[i] = NULL;
-  return my_env;
+	int		i;
+	char	**my_env;
+
+	my_env = ft_malloc((len_of_two_d_array(env) + 1) * sizeof(char *), 0);
+	i = 0;
+	while (env[i])
+	{
+		my_env[i] = ft_strdup((const char *)env[i], 0);
+		i++;
+	}
+	my_env[i] = NULL;
+	return (my_env);
 }

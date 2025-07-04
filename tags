@@ -154,6 +154,8 @@ handle_append	src/parser/handle_append.c	/^void	handle_append(char *str, char **
 handle_dollar_with_quotes	src/parser/handle_dollar_with_quotes.c	/^char **handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
 handle_expansion_result	src/parser/handle_expansion_result.c	/^void	handle_expansion_result(t_shell_control_block *sh, t_name_lst *ptr,$/;"	f	typeref:typename:void
 handle_failure_and_eof	src/utils/get_next_line.c	/^static char	*handle_failure_and_eof(char *rest, ssize_t readed_bytes)$/;"	f	typeref:typename:char *	file:
+handle_heredoc_child	src/parser/handle_heredoc.c	/^void	handle_heredoc_child(t_shell_control_block *s, t_token *tokenze, int has_qoutes)$/;"	f	typeref:typename:void
+handle_heredoc_parent	src/parser/handle_heredoc.c	/^void	handle_heredoc_parent(t_shell_control_block *s, int pid)$/;"	f	typeref:typename:void
 handle_redir_in	src/parser/handle_redir_in.c	/^void	handle_redir_in(char *str, char **in_file_name,$/;"	f	typeref:typename:void
 handle_redir_out	src/parser/handle_redir_out.c	/^void	handle_redir_out(char *str, char **file_name,$/;"	f	typeref:typename:void
 handle_signals	src/signals/handle_signals.c	/^void	handle_signals(void)$/;"	f	typeref:typename:void
@@ -190,6 +192,7 @@ is_there_a_space_outside_q	src/parser/is_there_a_space_outside_q.c	/^int	is_ther
 is_there_invalid_expantion	src/core/is_there_invalid_expantion.c	/^int is_there_invalid_expantion(t_shell_control_block *sh, char *str, char *old_str)$/;"	f	typeref:typename:int
 is_valid_flag	src/built_in/is_valid_flag.c	/^int	is_valid_flag(char *str)$/;"	f	typeref:typename:int
 is_valid_var	src/built_in/is_valid_var.c	/^int	is_valid_var(char *str)$/;"	f	typeref:typename:int
+iteration	src/parser/execute_command_line.c	/^void iteration(t_shell_control_block *shell)$/;"	f	typeref:typename:void
 last_child_pid	include/minishell.h	/^	int					last_child_pid;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 last_one	include/minishell.h	/^	int					last_one;$/;"	m	struct:s_expand	typeref:typename:int
 len_of_two_d_array	src/utils/len_of_two_d_array.c	/^int len_of_two_d_array(char **str)$/;"	f	typeref:typename:int
@@ -205,8 +208,8 @@ new_token	src/utils/ft_lstnew.c	/^t_token	*new_token(void *content, int type)$/;
 next	include/minishell.h	/^	struct s_list		*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 next	include/minishell.h	/^	struct s_name_lst	*next;$/;"	m	struct:s_name_lst	typeref:struct:s_name_lst *
 next	include/minishell.h	/^	struct s_token		*next;$/;"	m	struct:s_token	typeref:struct:s_token *
-old_sigint_ptr	include/minishell.h	/^  void *old_sigint_ptr;$/;"	m	struct:s_shell_control_block	typeref:typename:void *
-old_sigquit_ptr	include/minishell.h	/^  void *old_sigquit_ptr;$/;"	m	struct:s_shell_control_block	typeref:typename:void *
+old_sigint_handler	include/minishell.h	/^  void *old_sigint_handler;$/;"	m	struct:s_shell_control_block	typeref:typename:void *
+old_sigquit_handler	include/minishell.h	/^  void *old_sigquit_handler;$/;"	m	struct:s_shell_control_block	typeref:typename:void *
 original_stdin	include/minishell.h	/^	int					original_stdin;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 original_stdout	include/minishell.h	/^	int					original_stdout;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 parent	include/minishell.h	/^# define parent /;"	d
@@ -277,3 +280,4 @@ validate_pipe_syntax	src/parser/validate_pipe_syntax.c	/^int	validate_pipe_synta
 validate_redirection_syntax	src/parser/validate_redirection_syntax.c	/^int	validate_redirection_syntax(char **splitted, int i)$/;"	f	typeref:typename:int
 wait_status	include/minishell.h	/^	int					wait_status;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 word	include/minishell.h	/^	char				*word;$/;"	m	struct:s_token	typeref:typename:char *
+write_heredoc_file	src/parser/handle_heredoc.c	/^void	write_heredoc_file(char *file_name, char *buffer)$/;"	f	typeref:typename:void

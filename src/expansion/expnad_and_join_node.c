@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expnad_and_join_node.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
+/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*expnad_and_join_node(t_shell_control_block *s, t_expand data)
@@ -5,6 +17,7 @@ char	*expnad_and_join_node(t_shell_control_block *s, t_expand data)
 	char	*path;
 	char	*the_joined_node;
 	char	*rest;
+
 	if (data.to_expand != NULL)
 	{
 		if (are_they_equal(data.to_expand, "$?"))
