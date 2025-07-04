@@ -77,6 +77,8 @@ typedef struct s_name_lst
 
 typedef struct s_shell_control_block
 {
+  void *old_sigint_handler;
+  void *old_sigquit_handler;
 	char				**env_cpy;
 	char				**env_of_export;
 	char				*line;

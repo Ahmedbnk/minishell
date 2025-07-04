@@ -8,8 +8,8 @@ void	execute_command_line_helper(t_shell_control_block *shell)
 	p_id = fork();
 	if (p_id == 0)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, shell->old_sigint_handler);
+		signal(SIGQUIT, shell->old_sigquit_handler);
 		if (shell->previous_read_end != -1)
 		{
 			ft_dup2(shell->previous_read_end, 0);

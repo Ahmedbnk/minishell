@@ -2,6 +2,9 @@
 
 void	handle_signals(void)
 {
-  signal(SIGINT, handler);
-  signal(SIGQUIT, SIG_IGN);
+  t_shell_control_block *shell;
+
+  shell = get_shell_pointer(NULL);
+  shell ->old_sigint_handler = signal(SIGINT, handler);
+  shell ->old_sigquit_handler = signal(SIGQUIT, SIG_IGN);
 }
