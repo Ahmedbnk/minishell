@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/04 19:03:02 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/05 14:14:12 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int						is_there_invalid_expantion(t_shell *sh, char *str,
 int						is_expand_separator(char c);
 int						is_expend_seperator(char c);
 int						should_i_expand(char *str, int index);
-int						are_they_equal(const char *str1, const char *str2);
+int						are_eq(const char *str1, const char *str2);
 int						compare_env_var(char *var1, char *var2);
 int						is_it_valid_dollar(char *str);
 int						is_out_dollar(char *str, int index);
@@ -197,7 +197,7 @@ void					rm_quotes_from_one_str_helper(t_shell *sh, char *line,
 							char **parsed_quote_line);
 
 char					**customized_split(char const *s);
-char					**copy_env(char **env);
+char					**copy_2d(char **env, int mode);
 char					**handle_dollar_with_quotes(char **splitted);
 char					**split_with_operators(char **splitted);
 char					**get_cmd_and_its_args(t_shell *shell);

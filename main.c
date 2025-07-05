@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:23:28 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/05 14:15:51 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int ac, char **av, char **env)
 	t_shell	sh;
 
 	ft_init_shell_block(&sh, ac, av);
-	sh.env_of_export = copy_env(env);
-	sh.env_cpy = copy_env(env);
+	sh.env_of_export = copy_2d(env , 0);
+	sh.env_cpy = copy_2d(env, 0);
 	get_shell_pointer(&sh);
 	handle_signals();
 	while (1)

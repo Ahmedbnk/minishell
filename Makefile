@@ -3,7 +3,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -Iinclude
 SRCS = main.c \
-	src/env/copy_env.c \
+	src/env/copy_2d.c \
 	src/env/allocate_and_init_expand_list.c \
 	src/env/allocat_arr_of_structs_list.c \
 	src/env/count_number_of_qute.c \
@@ -81,7 +81,7 @@ SRCS = main.c \
 	src/signals/handle_signals.c \
 	src/signals/handler.c \
 	src/tools/printf_for_deb.c \
-	src/utils/are_they_equal.c \
+	src/utils/are_eq.c \
 	src/utils/custom_join.c \
 	src/utils/fill_n_str.c \
 	src/utils/ft_isalnum.c \

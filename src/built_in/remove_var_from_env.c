@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_var_from_env.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/05 14:19:50 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	remove_var_from_env(char ***env, char *var)
 	int		i;
 
 	i = 0;
-	env_after_unset = ft_malloc(len_of_two_d_array(*env) * sizeof(char *), 0);
+	env_after_unset = ft_malloc((len_of_two_d_array(*env)+1) * sizeof(char *), 0);
 	while (**env)
 	{
 		if (!compare_env_var(**env, var))

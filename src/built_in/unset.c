@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/05 14:11:43 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	unset(char ***env, char **vars)
 //   (void ) argv;
 //   (void ) argc;
 //
-//   char **env_cpy = copy_env(env);
+//   char **env_cpy = copy_2d(env);
 //   char *av[] = {"b=1337", "jlj", "z=1337!","13=","a=45", NULL};
 //   char *av1[] = {"b=1337", "a", "z=1337!","13=", NULL};
 //   printf("%d\n", len_of_two_d_array(env_cpy));

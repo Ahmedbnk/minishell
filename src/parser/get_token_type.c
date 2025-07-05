@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_token_type.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:59 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/05 14:10:11 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 t_type	get_token_type(const char *str)
 {
-	if (are_they_equal(str, "|"))
+	if (are_eq(str, "|"))
 		return (PIPE);
-	else if (are_they_equal(str, "<"))
+	else if (are_eq(str, "<"))
 		return (REDIR_IN);
-	else if (are_they_equal(str, ">"))
+	else if (are_eq(str, ">"))
 		return (REDIR_OUT);
-	else if (are_they_equal(str, ">>"))
+	else if (are_eq(str, ">>"))
 		return (REDIR_APPEND);
-	else if (are_they_equal(str, "<<"))
+	else if (are_eq(str, "<<"))
 		return (HEREDOC);
 	else
 		return (WORD);

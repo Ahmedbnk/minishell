@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/05 14:10:11 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	expand_and_split_helper(t_shell *sh, int index)
 		add_token_to_lst(&sh->tokenze, new_token(ptr, -1));
 		return ;
 	}
-	if (are_they_equal(sh->splitted[index], ptr))
+	if (are_eq(sh->splitted[index], ptr))
 	{
 		rm_quotes_from_one_str(sh, &ptr);
 		add_token_to_lst(&sh->tokenze, new_token(ptr, get_token_type(ptr)));

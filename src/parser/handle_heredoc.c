@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:43:30 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/05 14:10:11 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	handle_heredoc_child(t_shell *s, t_token *tokenze, int has_qoutes)
 		if (str == NULL)
 			exit((print(2, buffering(ctrl_d_msg, tokenze->delimiter, "\n")),
 					free_all(), 0));
-		if (are_they_equal(str, tokenze->delimiter))
+		if (are_eq(str, tokenze->delimiter))
 			break ;
 		if (!has_qoutes)
 			str = expand_if_possible(s, str, 1);

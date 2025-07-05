@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:51:18 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:51:18 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/05 14:10:11 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	cd(char **env, char **path)
 	len = len_of_two_d_array(path);
 	if (len > 2)
 		return (print(2, " too many arguments\n"), 1);
-	if (are_they_equal(*path, "cd"))
+	if (are_eq(*path, "cd"))
 		path++;
 	old_dir = pwd(&status);
 	if (chdir(*path) == 0)

@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/05 14:44:38 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ int	export(t_shell *s, char **to_export)
 		}
 		to_export++;
 	}
-	printf("%d", state);
 	return (state);
 }
