@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/05 14:44:38 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/05 16:35:50 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	export(t_shell *s, char **to_export)
 
 	state = 0;
 	if (!to_export || !*to_export)
-	{
-		sort_env(s->env_of_export);
-		return (0);
-	}
+		return ((sort_env(s->env_of_export), 0));
 	while (*to_export)
 	{
 		if (!is_valid_var(*to_export))
