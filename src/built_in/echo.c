@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:51 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/06 18:09:24 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	echo(char **args)
 
 	args++;
 	new_line_flag = 0;
-	if (is_valid_flag(*args))
+	while (is_valid_flag(*args))
 	{
 		new_line_flag = 1;
 		args++;
