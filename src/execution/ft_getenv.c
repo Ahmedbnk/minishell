@@ -6,13 +6,13 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:56:08 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:06:21 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_getenv(void)
+char	*ft_getenv(char *str)
 {
 	char	**ptr;
 	int		start;
@@ -25,7 +25,7 @@ char	*ft_getenv(void)
 	i = 0;
 	while (ptr[i])
 	{
-		if (compare_env_var(ptr[i], "PATH"))
+		if (compare_env_var(ptr[i], str))
 		{
 			get_start_and_end(ptr[i], &start, &end);
 			return (ft_substr(ptr[i], start, (end - start)));

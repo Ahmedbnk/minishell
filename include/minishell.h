@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/05 14:14:12 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:05:45 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,7 @@ t_shell					*get_shell_pointer(t_shell *ptr);
 char					*ft_readline(t_shell *sh);
 void					ft_init_shell_block(t_shell *sh, int ac, char **av);
 int						ft_w_counter_split(char const *s, char c);
-char					*ft_getenv(void);
+char					*ft_getenv(char *str);
 void					ft_close(int fd);
 long long				ft_atol(const char *str);
 int						check_is_valid_number(const char *str);
