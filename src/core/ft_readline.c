@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/07 22:06:08 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_readline(t_shell *sh)
 	if (sh->line == NULL)
 	{
 		free(sh->line);
-		exit((free_all(), 0));
+		exit((free_all(), sh->exit_status));
 	}
 	if (check_error(sh))
 		return ((free(sh->line), NULL));

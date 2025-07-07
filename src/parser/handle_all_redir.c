@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/05 16:49:21 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/08 00:09:57 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_all_redir(t_shell *shell)
 	while (shell->tokenze && shell->tokenze->word != NULL
 		&& shell->tokenze->type != PIPE)
 	{
-		if (is_redirection(shell->tokenze->word))
+		if (is_redirection(shell->tokenze->word) || are_eq(shell->tokenze->word, "<<"))
 		{
 			if (shell->tokenze->type == HEREDOC)
 				shell->in_file_name = shell->tokenze->heredoc_file_name;

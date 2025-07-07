@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/05 14:15:51 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/07 22:25:34 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int ac, char **av, char **env)
 		set_handler_state(0);
 		if (!ft_readline(&sh) || parse_line(&sh))
 			continue ;
+		expand_and_split(&sh);
 		execute_line(&sh);
 		free_fd_lst();
 		free_memory(get_garbage_pointer(1));
