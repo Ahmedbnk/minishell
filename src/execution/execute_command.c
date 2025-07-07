@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/07 08:54:26 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	execute_command(t_shell *shell)
 	if (!**cmds)
 		exit((print(2, buffer), free_all(), 127));
 	path = get_path();
+	free_fd_lst();
 	if (**cmds == '/' || **cmds == '.')
 		check_the_access(*cmds, cmds, shell->env_cpy);
 	else

@@ -15,6 +15,7 @@
 void	ft_init_shell_block(t_shell *sh, int ac, char **av)
 {
 	(void)ac;
+
 	(void)av;
 	sh->env_cpy = NULL;
 	sh->line = NULL;

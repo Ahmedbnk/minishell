@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_close.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/07 08:59:34 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_close(int fd)
 	if (fd < 0)
 		return ;
 	if (ptr[fd] == 1)
+	{
 		close(fd);
-	ptr[fd] = -1;
+		ptr[fd] = -1;
+	}
 }
