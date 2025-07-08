@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_after_geting_path.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:38:46 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 	int		i;
 	char	*cmd_with_its_path;
 	char	*buffer;
+	int		flag;
 
+	flag = 0;
 	i = 0;
 	while (path[i])
 	{
@@ -32,11 +34,13 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 				exit((print(2, buffer), free_all(), errno));
 			}
 			else
-				exit((print(2, buffering(cmd, ": ", "Permission denied\n")),
-						free_all(), 126));
+				flag = 1;
 		}
 		i++;
 	}
+	if (flag)
+		exit((print(2, buffering(cmd, ": ", "Permission denied\n")), free_all(),
+				126));
 	exit((print(2, buffering(cmd, ": ", "command not found\n")), free_all(),
 			127));
 }
