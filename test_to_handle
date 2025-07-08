@@ -1,2 +1,45 @@
 <a    & dff | <a
 ####################################
+#
+Flash:export PWD=dsda
+Flash:cd /
+Flash:echo $OLDPWD
+/home/abenkrar/Desktop/minishell
+
+
+Flash:ls
+d1  d2	file  include  main.c  main.o  Makefile  minishell  readline.supp  src	tags  test.c  test_to_handle
+Flash:export PATH=d1:d2:$PATH
+Flash:a.out
+a.out: Permission denied
+Flash:echo $?
+126
+Flash:bash
+abenkrar@c2r9p1:~/Desktop/minishell$ a.out
+test
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $?
+0
+abenkrar@c2r9p1:~/Desktop/minishell$ 
+exit
+Flash:
+
+abenkrar@c2r9p1:~/Desktop/minishell$ export a=test
+abenkrar@c2r9p1:~/Desktop/minishell$ export $a="something"
+abenkrar@c2r9p1:~/Desktop/minishell$ env | grep test
+a=test
+test=something
+abenkrar@c2r9p1:~/Desktop/minishell$ 
+
+
+Flash:export a="1      2           3"
+Flash:export b="$a"
+Flash:echo $b
+"1      2           3"
+Flash:^C
+Flash:
+➜  minishell git:(main) ✗ bash
+abenkrar@c2r9p1:~/Desktop/minishell$ export a="1      2           3"
+abenkrar@c2r9p1:~/Desktop/minishell$ export b="$a"
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $b
+1 2 3
+abenkrar@c2r9p1:~/Desktop/minishell$ 

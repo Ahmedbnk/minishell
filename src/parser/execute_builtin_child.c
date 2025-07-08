@@ -17,7 +17,11 @@ void	execute_builtin_child(t_shell *shell)
 	int	status;
 
 	if (are_eq(*shell->cmd_and_args, "pwd"))
-		exit((printf("%s\n", pwd(&status)), free_all(), status));
+  {
+    if(pwd(&status) != NULL)
+		  exit((printf("%s\n", pwd(&status)), free_all(), status));
+    exit(1);
+  }
 	else if (are_eq(*shell->cmd_and_args, "env"))
 		exit((status = print_env(shell->env_cpy), free_all(), status));
 	else if (are_eq(*shell->cmd_and_args, "echo"))

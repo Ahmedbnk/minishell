@@ -30,6 +30,9 @@
 # define VALID 0
 # define AMBIGUOUS 1
 # define NEW_START 2
+#define SIZE 4096
+#define CD_ERROR "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+#define PWD_ERROR "pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
 
 typedef enum e_type
 {
@@ -309,4 +312,5 @@ void					add_fd_to_lst(int fd);
 void					free_fd_lst(void);
 void					free_all(void);
 int						ft_pipe(int pipefd[2]);
+int removed_file_flag(int state);
 #endif

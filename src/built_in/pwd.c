@@ -16,15 +16,20 @@
 
 char	*pwd(int *status)
 {
-	char	*buffer;
+  char *str = ft_getenv("PWD");
+  *status = 0;
+  char	*buffer;
 
-	buffer = ft_malloc(SIZE, 1);
-	if ((getcwd(buffer, SIZE) == NULL))
-	{
-		printf(" %s\n", strerror(errno));
-		*status = 1;
-		return (NULL);
-	}
-	*status = 0;
-	return (buffer);
+  if(removed_file_flag(-1))
+  {
+    print(2, PWD_ERROR);
+    *status = 1;
+    return NULL;
+  }
+  buffer = ft_malloc(SIZE, 1);
+  if (getcwd(buffer, SIZE) != NULL)
+    return buffer;
+  else if(str)
+    return str;
+  return NULL;
 }

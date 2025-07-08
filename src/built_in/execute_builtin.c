@@ -18,8 +18,13 @@ void	execute_builtin(t_shell *shell)
 
 	if (are_eq(*shell->cmd_and_args, "pwd"))
 	{
-		printf("%s\n", pwd(&status));
-		shell->exit_status = status;
+    if(pwd(&status) != NULL)
+    {
+      printf("%s\n", pwd(&status));
+      shell->exit_status = status;
+    }
+    else
+      shell->exit_status = 1;
 	}
 	else if (are_eq(*shell->cmd_and_args, "env"))
 		shell->exit_status = print_env(shell->env_cpy);

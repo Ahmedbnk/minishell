@@ -22,7 +22,10 @@ void	free_all(void)
 int	main(int ac, char **av, char **env)
 {
 	t_shell	sh;
+  char *buffer;
 
+  buffer = malloc(SIZE);
+  removed_file_flag(getcwd(buffer, SIZE) == NULL);
 	ft_init_shell_block(&sh, ac, av);
 	sh.env_of_export = copy_2d(env , 0);
 	sh.env_cpy = copy_2d(env, 0);
