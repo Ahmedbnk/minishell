@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/nkasimi/minishell/	//
+!_TAG_PROC_CWD	/home/abenkrar/Desktop/minishell/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -14,6 +14,7 @@ $(NAME)	Makefile	/^$(NAME): $(OBJS)$/;"	t
 AMBIGUOUS	include/minishell.h	/^# define AMBIGUOUS /;"	d
 BUFFER_SIZE	include/minishell.h	/^# define BUFFER_SIZE /;"	d
 CC	Makefile	/^CC = cc$/;"	m
+CD_ERROR	include/minishell.h	/^#define CD_ERROR /;"	d
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -g -Iinclude$/;"	m
 DOUBLE_Q	include/minishell.h	/^# define DOUBLE_Q /;"	d
 HEREDOC	include/minishell.h	/^	HEREDOC,$/;"	e	enum:e_type
@@ -22,11 +23,13 @@ NAME	Makefile	/^NAME = minishell$/;"	m
 NEW_START	include/minishell.h	/^# define NEW_START /;"	d
 OBJS	Makefile	/^OBJS = $(SRCS:.c=.o)$/;"	m
 PIPE	include/minishell.h	/^	PIPE,$/;"	e	enum:e_type
+PWD_ERROR	include/minishell.h	/^#define PWD_ERROR /;"	d
 READLINE	Makefile	/^READLINE =-lreadline$/;"	m
 REDIR_APPEND	include/minishell.h	/^	REDIR_APPEND,$/;"	e	enum:e_type
 REDIR_IN	include/minishell.h	/^	REDIR_IN,$/;"	e	enum:e_type
 REDIR_OUT	include/minishell.h	/^	REDIR_OUT,$/;"	e	enum:e_type
 SINGLE_Q	include/minishell.h	/^# define SINGLE_Q /;"	d
+SIZE	include/minishell.h	/^#define SIZE /;"	d
 SIZE	src/built_in/pwd.c	/^#define SIZE /;"	d	file:
 SRCS	Makefile	/^SRCS = main.c \\$/;"	m
 VALID	include/minishell.h	/^# define VALID /;"	d
@@ -200,6 +203,7 @@ len_of_two_d_array	src/utils/len_of_two_d_array.c	/^int	len_of_two_d_array(char 
 line	include/minishell.h	/^	char				*line;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 line_pointer	include/minishell.h	/^	t_token				*line_pointer;$/;"	m	struct:s_shell_control_block	typeref:typename:t_token *
 main	main.c	/^int	main(int ac, char **av, char **env)$/;"	f	typeref:typename:int
+main	test.c	/^int main()$/;"	f	typeref:typename:int
 make_fd_lst	src/utils/get_fd_pointer.c	/^void	make_fd_lst(void)$/;"	f	typeref:typename:void
 my_exit	src/built_in/my_exit.c	/^int	my_exit(char **args)$/;"	f	typeref:typename:int
 n_counter	src/utils/n_counter.c	/^int	n_counter(int n)$/;"	f	typeref:typename:int
@@ -216,7 +220,7 @@ original_stdout	include/minishell.h	/^	int					original_stdout;$/;"	m	struct:s_s
 parse_digits	src/utils/check_is_valid_number.c	/^static int	parse_digits(const char *str, int sign, long long max)$/;"	f	typeref:typename:int	file:
 parse_line	src/core/parse_line.c	/^int	parse_line(t_shell *sh)$/;"	f	typeref:typename:int
 parse_redirections	src/built_in/parse_redirections.c	/^int	parse_redirections(t_shell *shell)$/;"	f	typeref:typename:int
-parse_tokens	src/parser/parse_tokens.c	/^void	parse_tokens(t_shell *sh) {$/;"	f	typeref:typename:void
+parse_tokens	src/parser/parse_tokens.c	/^void	parse_tokens(t_shell *sh)$/;"	f	typeref:typename:void
 porotect_var	include/minishell.h	/^	char				*porotect_var;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 prepare_lst	src/parser/prepare_lst.c	/^void	prepare_lst(t_shell *sh)$/;"	f	typeref:typename:void
 previous_read_end	include/minishell.h	/^	int					previous_read_end;$/;"	m	struct:s_shell_control_block	typeref:typename:int
@@ -235,6 +239,7 @@ re	Makefile	/^re: fclean all$/;"	t
 read_file	src/utils/read_file.c	/^char	*read_file(char *file_name)$/;"	f	typeref:typename:char *
 remove_dollar_if_quotes_after_it	src/parser/remove_dollar_if_quotes_after_it.c	/^char	*remove_dollar_if_quotes_after_it(char *str)$/;"	f	typeref:typename:char *
 remove_var_from_env	src/built_in/remove_var_from_env.c	/^void	remove_var_from_env(char ***env, char *var)$/;"	f	typeref:typename:void
+removed_file_flag	src/built_in/removed_file_flag.c	/^int removed_file_flag(int state)$/;"	f	typeref:typename:int
 restore_original_fds	src/built_in/restore_original_fds.c	/^void	restore_original_fds(t_shell *shell)$/;"	f	typeref:typename:void
 rm_quotes_from_one_str	src/parser/remove_quotes_from_args.c	/^void	rm_quotes_from_one_str(t_shell *sh, char **line)$/;"	f	typeref:typename:void
 rm_quotes_from_one_str_helper	src/parser/rm_quotes_from_one_str_helper.c	/^void	rm_quotes_from_one_str_helper(t_shell *sh, char *line,$/;"	f	typeref:typename:void
