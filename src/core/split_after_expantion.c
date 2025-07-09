@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 22:40:56 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:46:35 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void	split_after_expantion(t_shell *sh, char *str, char *old_str)
 	i = 0;
 	if (!*str || is_there_invalid_expantion(sh, str, old_str))
 		return ;
-	if (is_export_before(sh, str) && is_it_key_value(str))
+	if (is_export_before(sh, str) && is_it_key_value(old_str))
 	{
+		rm_quotes_from_one_str(sh, &str);
 		add_token_to_lst(&sh->tokenze, new_token(str, WORD));
 		return ;
 	}
