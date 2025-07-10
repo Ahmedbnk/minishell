@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/05 14:10:11 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 12:09:13 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,12 @@ void	execute_builtin(t_shell *shell)
 		shell->exit_status = unset(&shell->env_cpy, shell->cmd_and_args + 1);
 	else if (are_eq(*shell->cmd_and_args, "exit"))
 	{
-		shell->exit_status = my_exit(shell->cmd_and_args + 1);
-		if (shell->exit_status != 1)
+		shell->exit_status = my_exit(shell->cmd_and_args + 1, shell);
+		printf("the exit status is %d\n", shell->exit_status);
+		if (shell->exit_status != -1)
 			exit((status = shell->exit_status, free_all(), status));
+		else
+			shell->exit_status = 1;
+			
 	}
 }

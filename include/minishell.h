@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/10 08:36:54 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 12:05:02 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ char					*ft_getenv(char *str);
 void					ft_close(int fd);
 long long				ft_atol(const char *str);
 int						check_is_valid_number(const char *str);
-int						my_exit(char **args);
+int						my_exit(char **args, t_shell *shell);
 int						set_handler_state(int state);
 void					make_fd_lst(void);
 int						**get_fd_pointer(void);

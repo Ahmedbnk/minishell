@@ -47,8 +47,11 @@ void	handle_heredoc_child(t_shell *s, t_token *tokenze, int has_qoutes)
 	{
 		str = readline("> ");
 		if (str == NULL)
-			exit((p_err(buf(ctrl_d_msg, tokenze->delimiter, "\n")),
-					free_all(), 0));
+		{
+			write_heredoc_file(tokenze->heredoc_file_name, buffer);
+			exit((p_err(buf(ctrl_d_msg, tokenze->delimiter, "\n")), free_all(),
+					0));
+		}
 		if (are_eq(str, tokenze->delimiter))
 			break ;
 		if (!has_qoutes)
