@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/10 18:31:39 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 18:49:22 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,7 +271,7 @@ void					check_the_access(char *cmd, char **av, char **env);
 int						cmd_size(t_token *tokenz);
 void					process_pipe_token(t_shell *sh);
 void					process_redirection_token(t_shell *sh, char **ptr);
-void					handle_all_redir(t_shell *shell);
+int 					handle_all_redir(t_shell *shell);
 void					parse_tokens(t_shell *sh);
 void					prepare_lst(t_shell *sh);
 void					handle_expansion_result(t_shell *sh, t_name_lst *ptr,

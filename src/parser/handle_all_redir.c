@@ -6,19 +6,19 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 17:36:52 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 18:48:55 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_all_redir(t_shell *shell)
+int	handle_all_redir(t_shell *shell)
 {
-
 	while (shell->tokenze && shell->tokenze->word != NULL
 		&& shell->tokenze->type != PIPE)
 	{
-		if (is_redirection(shell->tokenze->word) || are_eq(shell->tokenze->word, "<<"))
+		if (is_redirection(shell->tokenze->word) || are_eq(shell->tokenze->word,
+				"<<"))
 		{
 			if (shell->tokenze->type == HEREDOC)
 				shell->in_file_name = shell->tokenze->heredoc_file_name;
@@ -32,9 +32,9 @@ void	handle_all_redir(t_shell *shell)
 				handle_append((shell->tokenze->next)->word, &(shell->file_name),
 					shell);
 			if (exstat(-1))
-				return ;
+				return (1);
 		}
 		shell->tokenze = shell->tokenze->next;
 	}
-
+	return (0);
 }

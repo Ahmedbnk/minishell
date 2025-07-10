@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 17:24:03 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 18:49:26 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	process_command(t_shell *shell)
 {
 	shell->in_file_name = NULL;
 	shell->file_name = NULL;
-	handle_all_redir(shell);
+	if (handle_all_redir(shell))
+		return ;
 	// if (exstat(-1))
 	// 	exit((free_all(), 1));
 	if (shell->file_name)
