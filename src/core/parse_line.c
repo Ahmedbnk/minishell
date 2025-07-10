@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 22:25:21 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:30:07 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_line(t_shell *sh)
 	sh->splitted = split_with_operators(sh->splitted);
 	if (check_syntax_error(sh->splitted))
 	{
-		sh->exit_status = 2;
+		exstat(2);
 		free(sh->line);
 		return (1);
 	}

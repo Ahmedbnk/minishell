@@ -31,3 +31,10 @@ void	free_fd_lst(void)
 		i++;
 	}
 }
+
+void	free_all(void)
+{
+	free_fd_lst();
+	free_memory(get_garbage_pointer(1));
+	free_memory(get_garbage_pointer(0));
+}

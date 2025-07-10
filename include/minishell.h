@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/10 12:05:02 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:15:43 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_shell_control_block
 	int					fd_in;
 	int					last_child_pid;
 	int					wait_status;
-	int					exit_status;
+	// int					exit_status;
 	int					exit_status_flag;
 	int					original_stdin;
 	int					original_stdout;
@@ -314,4 +314,5 @@ void					free_all(void);
 int						ft_pipe(int pipefd[2]);
 int						removed_file_flag(int state);
 int						is_dir(char *cmd);
+int						exstat(int n);
 #endif

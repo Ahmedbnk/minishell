@@ -25,11 +25,12 @@ void	wait_heredoc_child(t_shell *s, int pid)
 {
 	int	status;
 
+	(void)s;
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		s->exit_status = WEXITSTATUS(status);
-	if (s->exit_status == 130)
-		s->exit_status_flag = 1;
+		WEXITSTATUS(status);
+	if (exstat(-1) == 130)
+		exstat(1);
 	handle_signals();
 }
 

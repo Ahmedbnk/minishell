@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 09:08:10 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 13:57:57 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	try_single_path(char *path, char *cmd, char **av, char **env)
 	}
 	return (0);
 }
+
 
 void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 {

@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 08:40:37 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 17:19:07 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,14 @@ void	execute_command_line(t_shell *shell)
 		close(shell->previous_read_end);
 	waitpid(shell->last_child_pid, &status, 2);
 	if (WIFEXITED(status) && !shell->exit_status_flag)
-		shell->exit_status = WEXITSTATUS(status);
+		exstat(WEXITSTATUS(status));
 	else if (WIFSIGNALED(status) && !shell->exit_status_flag)
 	{
 		var_print_signal = 1;
-		shell->exit_status = 128 + WTERMSIG(status);
+		exstat(128 + WTERMSIG(status));
 	}
-	if (shell->exit_status > 128 && var_print_signal
-		&& !shell->exit_status_flag)
-		print_exit_signal_message(shell->exit_status);
+	if (exstat(-1) > 128 && var_print_signal && !shell->exit_status_flag)
+		print_exit_signal_message(exstat(-1));
 	while (wait(NULL) > 0)
 		;
 }

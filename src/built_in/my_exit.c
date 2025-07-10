@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 12:05:49 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:52:09 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	my_exit(char **args, t_shell *shell)
 {
 	long long	result;
 
+	(void)shell;
 	if (len_of_two_d_array(args) == 0)
-		return (shell->exit_status);
+		return (exstat(-1));
 	result = 0;
 	if (!check_is_valid_number(*args))
 	{

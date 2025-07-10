@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 21:19:42 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:29:01 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	ft_init_shell_block(t_shell *sh, int ac, char **av)
 	sh->tokenze = NULL;
 	sh->cmd_and_args = NULL;
 	sh->env_of_export = NULL;
-	sh->exit_status = 0;
 	sh->exit_status_flag = 0;
 }

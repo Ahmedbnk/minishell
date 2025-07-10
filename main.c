@@ -6,18 +6,11 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 06:32:28 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 17:14:17 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	free_all(void)
-{
-	free_fd_lst();
-	free_memory(get_garbage_pointer(1));
-	free_memory(get_garbage_pointer(0));
-}
 
 int	is_std_fd_closed(void)
 {
@@ -30,6 +23,15 @@ int	is_std_fd_closed(void)
 		return ((p_err("Please open standard FDs before runing minishell\n"),
 				1));
 	return (0);
+}
+
+int	exstat(int n)
+{
+	static int	exit_status;
+
+	if (n != -1)
+		exit_status = n;
+	return (exit_status);
 }
 
 int	main(int ac, char **av, char **env)

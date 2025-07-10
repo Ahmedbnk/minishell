@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 12:09:13 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:25:38 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,31 @@ void	execute_builtin(t_shell *shell)
 
 	if (are_eq(*shell->cmd_and_args, "pwd"))
 	{
-    if(pwd(&status) != NULL)
-    {
-      printf("%s\n", pwd(&status));
-      shell->exit_status = status;
-    }
-    else
-      shell->exit_status = 1;
+		if (pwd(&status) != NULL)
+		{
+			printf("%s\n", pwd(&status));
+			exstat(status);
+		}
+		else
+			exstat(1);
 	}
 	else if (are_eq(*shell->cmd_and_args, "env"))
-		shell->exit_status = print_env(shell->env_cpy);
+		exstat(print_env(shell->env_cpy));
 	else if (are_eq(*shell->cmd_and_args, "echo"))
-		shell->exit_status = echo(shell->cmd_and_args);
+		exstat(echo(shell->cmd_and_args));
 	else if (are_eq(*shell->cmd_and_args, "cd"))
-		shell->exit_status = cd(shell->env_cpy, shell->cmd_and_args);
+		exstat(cd(shell->env_cpy, shell->cmd_and_args));
 	else if (are_eq(*shell->cmd_and_args, "export"))
-		shell->exit_status = export(shell, shell->cmd_and_args + 1);
+		exstat(export(shell, shell->cmd_and_args + 1));
 	else if (are_eq(*shell->cmd_and_args, "unset"))
-		shell->exit_status = unset(&shell->env_cpy, shell->cmd_and_args + 1);
+		exstat(unset(&shell->env_cpy, shell->cmd_and_args + 1));
 	else if (are_eq(*shell->cmd_and_args, "exit"))
 	{
-		shell->exit_status = my_exit(shell->cmd_and_args + 1, shell);
-		printf("the exit status is %d\n", shell->exit_status);
-		if (shell->exit_status != -1)
-			exit((status = shell->exit_status, free_all(), status));
+		exstat(my_exit(shell->cmd_and_args + 1, shell));
+		printf("the exit status is %d\n", exstat(-1));
+		if (exstat(-1) != -1)
+			exit((status = exstat(-1), free_all(), status));
 		else
-			shell->exit_status = 1;
-			
+			exstat(1);
 	}
 }

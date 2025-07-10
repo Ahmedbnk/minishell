@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 21:14:34 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 16:28:04 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	process_redirection_tokens(t_shell *shell)
 			shell);
 	else if (shell->tokenze->type == REDIR_APPEND)
 		handle_append((shell->tokenze->next)->word, &(shell->file_name), shell);
-	if (shell->exit_status)
+	if (exstat(-1))
 		return (1);
 	return (0);
 }
