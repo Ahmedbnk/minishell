@@ -21,15 +21,14 @@ void	check_the_access(char *cmd, char **av, char **env)
 		if (access(cmd, X_OK) == 0)
 		{
 			execve(cmd, av, env);
-			buffer = buffering(buffering(cmd, ": ", 0),
-					buffering(strerror(errno), "\n", 0), 0);
+			buffer = buf(buf(cmd, ": ", 0), buf(strerror(errno), "\n", 0), 0);
 			exit((p_err(buffer), free_all(), errno));
 		}
 		else
-			exit((p_err(buffering(cmd, ": ", "Permission denied\n")),
-					free_all(), 126));
+			exit((p_err(buf(cmd, ": ", "Permission denied\n")), free_all(),
+					126));
 	}
 	else if (*cmd == '/' || *cmd == '.')
-		exit((p_err(buffering(cmd, ": ", "No such file or directory\n")),
-				free_all(), 127));
+		exit((p_err(buf(cmd, ": ", "No such file or directory\n")), free_all(),
+				127));
 }

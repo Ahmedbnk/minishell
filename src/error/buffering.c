@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buffering.c                                        :+:      :+:    :+:   */
+/*   buf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-char	*buffering(char *s1, char *s2, char *s3)
+char	*buf(char *s1, char *s2, char *s3)
 {
 	char	*first_join;
 	char	*second_join;

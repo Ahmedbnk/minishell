@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/10 06:01:41 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 08:36:54 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ char					*expand_if_possible(t_shell *s, char *str,
 char					*custom_join(char const *s1, char const *s2);
 char					*new_str_after_expand(t_shell *s, int num_of_expantion);
 char					*get_env_var(t_shell *shell, t_expand data);
-char					*buffering(char *s1, char *s2, char *s3);
+char					*buf(char *s1, char *s2, char *s3);
 char					*add_new_line(char *str);
 char					*expand_and_join_node(t_shell *s, t_expand data);
 char					*protect_str(t_shell *sh, char *str);
@@ -313,4 +313,5 @@ void					free_fd_lst(void);
 void					free_all(void);
 int						ft_pipe(int pipefd[2]);
 int						removed_file_flag(int state);
+int						is_dir(char *cmd);
 #endif

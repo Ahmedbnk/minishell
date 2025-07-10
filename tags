@@ -47,7 +47,7 @@ allocat_arr_of_structs_list	src/env/allocat_arr_of_structs_list.c	/^void	allocat
 are_eq	src/utils/are_eq.c	/^int	are_eq(const char *str1, const char *str2)$/;"	f	typeref:typename:int
 arr	include/minishell.h	/^	int					arr[2];$/;"	m	struct:s_shell_control_block	typeref:typename:int[2]
 befor_dollar	include/minishell.h	/^	char				*befor_dollar;$/;"	m	struct:s_expand	typeref:typename:char *
-buffering	src/error/buffering.c	/^char	*buffering(char *s1, char *s2, char *s3)$/;"	f	typeref:typename:char *
+buf	src/error/buf.c	/^char	*buf(char *s1, char *s2, char *s3)$/;"	f	typeref:typename:char *
 calculate_all_symboles_operators	src/parser/calculate_all_symboles_operators.c	/^int	calculate_all_symboles_operators(char **splitted)$/;"	f	typeref:typename:int
 cd	src/built_in/cd.c	/^int	cd(char **env, char **path)$/;"	f	typeref:typename:int
 check_after_geting_path	src/execution/check_after_geting_path.c	/^void	check_after_geting_path(char *cmd, char **av, char **path, char **env)$/;"	f	typeref:typename:void
