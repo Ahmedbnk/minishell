@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 17:38:50 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 18:23:19 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	execute_line(t_shell *sh)
 			execute_parent_builtin(sh);
 		else
 		{
-			parse_redirections(sh);
-			if (sh->exit_status_flag)
+			if (parse_redirections(sh) || sh->exit_status_flag)
 				return ;
 			execute_command_line(sh);
 		}

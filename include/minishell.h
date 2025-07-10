@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/10 16:15:43 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 18:31:39 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,4 +315,5 @@ int						ft_pipe(int pipefd[2]);
 int						removed_file_flag(int state);
 int						is_dir(char *cmd);
 int						exstat(int n);
+int						is_std(int fd);
 #endif

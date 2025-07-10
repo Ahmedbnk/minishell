@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 08:59:34 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 18:32:00 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_close(int fd)
 	ptr = *(get_fd_pointer());
 	if (fd < 0)
 		return ;
-	if (ptr[fd] == 1)
+	if (ptr[fd] == 1 || !is_std(fd))
 	{
 		close(fd);
 		ptr[fd] = -1;
