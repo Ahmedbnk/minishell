@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:51 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/10 06:02:14 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	my_exit(char **args)
 	result = 0;
 	if (!check_is_valid_number(*args))
 	{
-		print(2, buffering("exit: ", *args, ": numeric argument required\n"));
+		p_err( buffering("exit: ", *args, ": numeric argument required\n"));
 		return (2);
 	}
 	else if (*(args + 1))
 	{
-		print(2, "exit: too many arguments\n");
+		p_err( "exit: too many arguments\n");
 		return (1);
 	}
 	result = ft_atol(*args);

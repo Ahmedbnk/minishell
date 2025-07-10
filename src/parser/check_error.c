@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:58 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 18:23:29 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 06:02:14 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_error(t_shell *shell)
 		return (1);
 	if (check_unclosed_quotes(str))
 	{
-		print(2, "unclosed quote\n");
+		p_err("unclosed quote\n");
 		shell->exit_status = 2;
 		return (1);
 	}

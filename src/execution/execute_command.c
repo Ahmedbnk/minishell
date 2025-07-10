@@ -6,11 +6,23 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 09:42:52 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 06:25:45 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	is_dir(char *cmd)
+{
+	DIR	*ptr;
+
+	if (!cmd)
+		return (0);
+	if ((ptr = opendir(cmd)) != NULL)
+		exit((closedir(ptr), p_err(buffering(cmd, ": ", "Is a directory\n")),
+				free_all(), 126));
+	return (0);
+}
 
 void	execute_command(t_shell *shell)
 {
@@ -23,7 +35,8 @@ void	execute_command(t_shell *shell)
 		return ;
 	buffer = buffering(buffering("'", *cmds, "'"), " command not found\n", 0);
 	if (!**cmds)
-		exit((print(2, buffer), free_all(), 127));
+		exit((p_err(buffer), free_all(), 127));
+	is_dir(*cmds);
 	path = get_path();
 	free_fd_lst();
 	if (**cmds == '/' || **cmds == '.')
@@ -31,7 +44,7 @@ void	execute_command(t_shell *shell)
 	else
 	{
 		if (path == NULL)
-			exit((print(2, buffering(*shell->cmd_and_args, ": ",
+			exit((p_err(buffering(*shell->cmd_and_args, ": ",
 							"No such file or directory\n")), free_all(), 127));
 		check_after_geting_path(*cmds, cmds, path, shell->env_cpy);
 	}

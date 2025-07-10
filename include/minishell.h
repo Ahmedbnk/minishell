@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/07 11:05:45 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 06:01:41 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@
 # define VALID 0
 # define AMBIGUOUS 1
 # define NEW_START 2
-#define SIZE 4096
-#define CD_ERROR "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
-#define PWD_ERROR "pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+# define SIZE 4096
+# define CD_ERROR "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+# define PWD_ERROR "pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
 
 typedef enum e_type
 {
@@ -183,7 +183,7 @@ char					*expand_and_join_node(t_shell *s, t_expand data);
 char					*protect_str(t_shell *sh, char *str);
 char					*remove_dollar_if_quotes_after_it(char *str);
 
-void					print(int fd, char *str);
+void					p_err(char *str);
 void					print_file(char *str);
 void					print_exit_signal_message(int exit_status);
 void					print_splitted(char **splitted);
@@ -312,5 +312,5 @@ void					add_fd_to_lst(int fd);
 void					free_fd_lst(void);
 void					free_all(void);
 int						ft_pipe(int pipefd[2]);
-int removed_file_flag(int state);
+int						removed_file_flag(int state);
 #endif

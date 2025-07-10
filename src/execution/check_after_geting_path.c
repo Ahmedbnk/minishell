@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/08 15:38:46 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 06:25:00 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 				execve(cmd_with_its_path, av, env);
 				buffer = buffering(buffering(cmd, ": ", 0),
 						buffering(strerror(errno), "\n", 0), 0);
-				exit((print(2, buffer), free_all(), errno));
+				exit((p_err(buffer), free_all(), errno));
 			}
 			else
 				flag = 1;
@@ -39,8 +39,7 @@ void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 		i++;
 	}
 	if (flag)
-		exit((print(2, buffering(cmd, ": ", "Permission denied\n")), free_all(),
+		exit((p_err(buffering(cmd, ": ", "Permission denied\n")), free_all(),
 				126));
-	exit((print(2, buffering(cmd, ": ", "command not found\n")), free_all(),
-			127));
+	exit((p_err(buffering(cmd, ": ", "command not found\n")), free_all(), 127));
 }

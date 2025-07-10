@@ -224,7 +224,7 @@ parse_tokens	src/parser/parse_tokens.c	/^void	parse_tokens(t_shell *sh)$/;"	f	ty
 porotect_var	include/minishell.h	/^	char				*porotect_var;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 prepare_lst	src/parser/prepare_lst.c	/^void	prepare_lst(t_shell *sh)$/;"	f	typeref:typename:void
 previous_read_end	include/minishell.h	/^	int					previous_read_end;$/;"	m	struct:s_shell_control_block	typeref:typename:int
-print	src/error/print.c	/^void	print(int fd, char *str)$/;"	f	typeref:typename:void
+print	src/error/print.c	/^void	p_err(int fd, char *str)$/;"	f	typeref:typename:void
 print_env	src/built_in/env.c	/^int	print_env(char **env)$/;"	f	typeref:typename:int
 print_exit_signal_message	src/execution/print_exit_signal_message.c	/^void	print_exit_signal_message(int exit_status)$/;"	f	typeref:typename:void
 print_file	src/utils/print_file.c	/^void	print_file(char *str)$/;"	f	typeref:typename:void

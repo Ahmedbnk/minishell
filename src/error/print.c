@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:52:53 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/10 06:03:50 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print(int fd, char *str)
+void	p_err(char *str)
 {
 	size_t	size;
 
 	size = ft_strlen(str);
-	write(fd, str, size);
+	write(2, str, size);
 }

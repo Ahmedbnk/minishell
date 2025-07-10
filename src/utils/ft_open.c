@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/09 11:00:01 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/10 05:46:56 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_open(const char *pathname, int flags, mode_t mode)
 	if (!pathname)
 		return ((errno = EFAULT, -1));
 	fd = open(pathname, flags, mode);
-	if (fd < 0 && )
+	if (fd < 0 )
 		perror(pathname);
 	else
 		add_fd_to_lst(fd);

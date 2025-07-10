@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:00 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/10 06:02:14 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	check_syntax_error(char **splitted)
 		i++;
 	}
 	if (is_pipe(splitted[size - 1]) || is_red_symbole(splitted[size - 1]))
-		return (print(2, "syntax error near unexpected str `newline'\n"), 1);
+		return (p_err("syntax error near unexpected str `newline'\n"), 1);
 	return (0);
 }

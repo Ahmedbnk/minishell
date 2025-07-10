@@ -12,23 +12,10 @@
 
 #include "minishell.h"
 
-int	is_dir(char *cmd)
-{
-	DIR	*ptr;
-
-	if (!cmd)
-		return (0);
-	if ((ptr = opendir(cmd)) != NULL)
-		exit((closedir(ptr), print(2, buffering(cmd, ": ", "Is a directory\n")),
-				free_all(), 126));
-	return (0);
-}
-
 void	check_the_access(char *cmd, char **av, char **env)
 {
 	char	*buffer;
 
-	is_dir(cmd);
 	if (access(cmd, F_OK) == 0)
 	{
 		if (access(cmd, X_OK) == 0)
@@ -36,13 +23,13 @@ void	check_the_access(char *cmd, char **av, char **env)
 			execve(cmd, av, env);
 			buffer = buffering(buffering(cmd, ": ", 0),
 					buffering(strerror(errno), "\n", 0), 0);
-			exit((print(2, buffer), free_all(), errno));
+			exit((p_err(buffer), free_all(), errno));
 		}
 		else
-			exit((print(2, buffering(cmd, ": ", "Permission denied\n")),
+			exit((p_err(buffering(cmd, ": ", "Permission denied\n")),
 					free_all(), 126));
 	}
 	else if (*cmd == '/' || *cmd == '.')
-		exit((print(2, buffering(cmd, ": ", "No such file or directory\n")),
+		exit((p_err(buffering(cmd, ": ", "No such file or directory\n")),
 				free_all(), 127));
 }
