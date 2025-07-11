@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 11:44:59 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 21:14:38 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,4 @@ void	process_command(t_shell *shell)
 		execute_builtin_child(shell);
 	else
 		execute_command(shell);
-	if (shell->in_file_name)
-		unlink(shell->in_file_name);
 }

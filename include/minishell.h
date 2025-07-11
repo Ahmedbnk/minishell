@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/11 11:21:43 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 21:37:52 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_shell_control_block
 	int					exit_status_flag;
 	int					original_stdin;
 	int					original_stdout;
+  int is_there_a_pipe;
 }						t_shell;
 
 int						is_space(char c);
