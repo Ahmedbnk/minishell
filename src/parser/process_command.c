@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 07:27:32 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:44:59 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	process_command(t_shell *shell)
 	shell->file_name = NULL;
 	if (handle_all_redir(shell))
 		return ;
-	// if (exstat(-1))
-	// 	exit((free_all(), 1));
 	if (shell->file_name)
 	{
 		shell->fd_out = ft_open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC,
