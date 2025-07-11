@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 16:37:06 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:16:10 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	execute_builtin_child(t_shell *shell)
 		exit(1);
 	}
 	else if (are_eq(*shell->cmd_and_args, "env"))
-		exit((status = print_env(shell->env_cpy), free_all(), status));
+		exit((status = print_env(*shell), free_all(), status));
 	else if (are_eq(*shell->cmd_and_args, "echo"))
 		exit((status = echo(shell->cmd_and_args), free_all(), status));
 	else if (are_eq(*shell->cmd_and_args, "cd"))

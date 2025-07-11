@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 16:25:38 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:16:16 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	execute_builtin(t_shell *shell)
 			exstat(1);
 	}
 	else if (are_eq(*shell->cmd_and_args, "env"))
-		exstat(print_env(shell->env_cpy));
+		exstat(print_env(*shell));
 	else if (are_eq(*shell->cmd_and_args, "echo"))
 		exstat(echo(shell->cmd_and_args));
 	else if (are_eq(*shell->cmd_and_args, "cd"))
@@ -39,9 +39,8 @@ void	execute_builtin(t_shell *shell)
 	else if (are_eq(*shell->cmd_and_args, "exit"))
 	{
 		exstat(my_exit(shell->cmd_and_args + 1, shell));
-		printf("the exit status is %d\n", exstat(-1));
 		if (exstat(-1) != -1)
-			exit((status = exstat(-1), free_all(), status));
+			exit((status = exstat(-1), printf("exit\n"), free_all(), status));
 		else
 			exstat(1);
 	}

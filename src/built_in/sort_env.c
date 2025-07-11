@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/05 14:42:36 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:22:05 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	sort_env(char **env)
 		i++;
 	}
 	remove_var_from_env(&env, "_");
-	print_env(env);
+	print_splitted(env);
 }

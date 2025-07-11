@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/10 18:49:22 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:21:43 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,9 @@ int						echo(char **args);
 int						unset(char ***env, char **vars);
 int						export(t_shell *s, char **to_export);
 char					*pwd(int *status);
-int						print_env(char **env);
+int						print_env(t_shell sh);
 
+void					print_splitted(char **splitted);
 char					*get_next_line(int fd);
 char					*generate_random_name(void);
 char					*read_file(char *file_name);
@@ -271,7 +272,7 @@ void					check_the_access(char *cmd, char **av, char **env);
 int						cmd_size(t_token *tokenz);
 void					process_pipe_token(t_shell *sh);
 void					process_redirection_token(t_shell *sh, char **ptr);
-int 					handle_all_redir(t_shell *shell);
+int						handle_all_redir(t_shell *shell);
 void					parse_tokens(t_shell *sh);
 void					prepare_lst(t_shell *sh);
 void					handle_expansion_result(t_shell *sh, t_name_lst *ptr,
