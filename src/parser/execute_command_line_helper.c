@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 17:19:51 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/11 07:28:39 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	execute_command_line_helper(t_shell *shell)
 			ft_close(shell->arr[1]);
 		}
 		process_command(shell);
-		exit((free_all(), 0));
+		exit((free_all(), exstat(-1)));
 	}
 	else
 		shell->last_child_pid = p_id;
