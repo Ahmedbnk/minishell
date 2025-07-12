@@ -1,0 +1,34 @@
+
+  minishell git:(main) ✗ bash
+abenkrar@c2r9p1:~/Desktop/minishell$ hshss
+hshss: command not found
+abenkrar@c2r9p1:~/Desktop/minishell$ ls | hdhd
+hdhd: command not found
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $?
+127
+abenkrar@c2r9p1:~/Desktop/minishell$ <include
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $?
+0
+abenkrar@c2r9p1:~/Desktop/minishell$ echo <include
+
+abenkrar@c2r9p1:~/Desktop/minishell$ cat <include/
+cat: -: Is a directory
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $?
+1
+abenkrar@c2r9p1:~/Desktop/minishell$ ls | <include/
+abenkrar@c2r9p1:~/Desktop/minishell$ ls | cat <include/
+cat: -: Is a directory
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $?
+1
+abenkrar@c2r9p1:~/Desktop/minishell$ >include/
+bash: include/: Is a directory
+abenkrar@c2r9p1:~/Desktop/minishell$ cat $?
+cat: 1: No such file or directory
+abenkrar@c2r9p1:~/Desktop/minishell$ ls | >include/
+bash: include/: Is a directory
+abenkrar@c2r9p1:~/Desktop/minishell$ echo $?
+1
+abenkrar@c2r9p1:~/Desktop/minishell$ >include | ls
+bash: include: Is a directory
+file  include  main.c  main.o  Makefile  minishell  src  test_to_handle
+abenkrar@c2r9p1:~/Desktop/minishell$ 

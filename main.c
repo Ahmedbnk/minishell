@@ -6,11 +6,12 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/12 05:48:40 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/12 09:59:20 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 int	is_std_fd_closed(void)
 {
