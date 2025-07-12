@@ -6,7 +6,7 @@
 /*   By: abenkrar <abenkrar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:02 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 17:53:02 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/12 10:13:49 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*ft_malloc(size_t size, int falg)
 	garbage_list = get_garbage_pointer(falg);
 	pointer = malloc(size);
 	if (!pointer)
-		free_memory(garbage_list);
+    exit((write(2, "Memory allocation failed\n", 25),free_all(), 1));
 	new_node = garbage_collection_lstnew(pointer, falg);
 	if (!new_node)
 	{
