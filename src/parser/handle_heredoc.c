@@ -28,9 +28,7 @@ void	wait_heredoc_child(t_shell *s, int pid)
 	(void)s;
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		WEXITSTATUS(status);
-	if (exstat(-1) == 130)
-		exstat(1);
+	exstat(WEXITSTATUS(status));
 	handle_signals();
 }
 
