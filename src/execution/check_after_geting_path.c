@@ -49,9 +49,6 @@
 // 	exit((p_err(buf(cmd, ": ", "command not found\n")), free_all(), 127));
 // }
 
-#define NOT_FOUND 3
-#define NO_PM 2
-#define IS_DIR 1
 
 int	try_single_path(char *path, char *cmd, char **av, char **env)
 {
@@ -67,7 +64,8 @@ int	try_single_path(char *path, char *cmd, char **av, char **env)
 			buffer = buf(buf(cmd, ": ", 0), buf(strerror(errno), "\n", 0), 0);
 			exit((p_err(buffer), free_all(), errno));
 		}
-		exe_flag(2);
+		else if(exe_flag(-1) != IS_DIR)
+			exe_flag(NO_PM);
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/12 13:00:29 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/12 14:56:10 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 # define SIZE 4096
 # define CD_ERROR "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
 # define PWD_ERROR "pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+
+# define NOT_FOUND 3
+# define NO_PM 2
+# define IS_DIR 1
 
 typedef enum e_type
 {
