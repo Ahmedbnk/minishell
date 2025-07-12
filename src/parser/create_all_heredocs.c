@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 08:55:11 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/12 18:07:03 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ void	create_all_heredocs(t_shell *shell)
 	ptr = shell->tokenze;
 	while (ptr)
 	{
-		if (exstat(-1) == 130)
+		if (shell->exit_status_flag)
 			break ;
 		if (ptr->type == HEREDOC)
+    {
+      exstat(0);
 			create_heredoc(shell, ptr);
+    }
 		ptr = ptr->next;
 	}
 }

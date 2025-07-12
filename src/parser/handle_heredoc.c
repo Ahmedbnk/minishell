@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/05 14:10:11kasimi          ###   ########.fr       */
+/*   Updated: 2025/07/12 18:07:01 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	wait_heredoc_child(t_shell *s, int pid)
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 	exstat(WEXITSTATUS(status));
+  if(exstat(-1) == 130)
+      s->exit_status_flag = 1;
 	handle_signals();
 }
 
