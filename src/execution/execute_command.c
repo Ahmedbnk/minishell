@@ -6,23 +6,11 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 06:54:03 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/12 10:21:26 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// int	is_dir(char *cmd)
-// {
-// 	DIR	*ptr;
-
-// 	if (!cmd)
-// 		return (0);
-// 	if ((ptr = opendir(cmd)) != NULL)
-// 		exit((closedir(ptr), p_err(buf(cmd, ": ", "Is a directory\n")),
-// 				free_all(), 126));
-// 	return (0);
-// }
 
 int	has_slash(char *cmd)
 {

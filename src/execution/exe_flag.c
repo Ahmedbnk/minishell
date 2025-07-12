@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_the_access.c                                 :+:      :+:    :+:   */
+/*   exe_flag.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/04 17:52:53 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 10:07:21y nkasimi          ###   ########.fr       */
+/*   Created: 2025/07/12 12:57:48 by nkasimi           #+#    #+#             */
+/*   Updated: 2025/07/12 12:59:40 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_the_access(char *cmd, char **av, char **env)
+int	exe_flag(int n)
 {
-	char	*buffer;
+	static int	flag;
 
-	if (access(cmd, X_OK) == 0)
-	{
-		execve(cmd, av, env);
-		buffer = buf(buf(cmd, ": ", 0), buf(strerror(errno), "\n", 0), 0);
-		exit((p_err(buffer), free_all(), errno));
-	}
-	exit(( perror(cmd), free_all(), errno));
+	if (n != -1)
+		flag = n;
+	return (flag);
 }

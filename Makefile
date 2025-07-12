@@ -173,6 +173,7 @@ SRCS = main.c \
 	src/utils/ft_pipe.c\
 	src/built_in/removed_file_flag.c\
 	src/execution/is_dir.c\
+	src/execution/exe_flag.c\
 
 OBJS = $(SRCS:.c=.o)
 

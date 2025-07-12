@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/12 06:15:44 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/12 13:00:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,4 +318,5 @@ int						removed_file_flag(int state);
 int						is_dir(char *cmd);
 int						exstat(int n);
 int						is_std(int fd);
+int						exe_flag(int n);
 #endif

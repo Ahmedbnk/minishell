@@ -10,7 +10,8 @@ int	is_dir(char *cmd)
 	if ((ptr = opendir(cmd)) != NULL)
 	{
 		closedir(ptr);
-		exit((p_err(buf(cmd, ": ", "Is a directory\n")), free_all(), 126));
+		exe_flag(3);
+		// exit((p_err(buf(cmd, ": ", "Is a directory\n")), free_all(), 126));
 	}
 	return (0);
 }
