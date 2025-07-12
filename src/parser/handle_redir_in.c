@@ -6,13 +6,13 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 21:44:56 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/12 06:05:07 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_redir_in(char *str, char **in_file_name, t_shell *shell)
+int	handle_redir_in(char *str, char **in_file_name, t_shell *shell)
 {
 	char	*buffer;
 	int		fd;
@@ -23,15 +23,17 @@ void	handle_redir_in(char *str, char **in_file_name, t_shell *shell)
 	fd = ft_open(*in_file_name, O_RDONLY, 0);
 	if (fd < 0)
 	{
-		if (shell->cmd_and_args && !shell->cmd_and_args[0] && shell->is_there_a_pipe)
+		if (shell->cmd_and_args && !shell->cmd_and_args[0]
+			&& shell->is_there_a_pipe)
 			exstat(0);
 		else
 			exstat(1);
-		return ;
+		return (1);
 	}
 	buffer = read_file(str);
 	if (!buffer)
-		return ;
+		return (0);
 	write(fd, buffer, ft_strlen(buffer));
 	ft_close(fd);
+	return (0);
 }

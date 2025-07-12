@@ -1,9 +1,7 @@
 file
 include
 main.c
-main.o
 Makefile
 minishell
-readline.supp
 src
 test_to_handle

@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/11 21:37:52 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/12 06:15:44 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_shell_control_block
 	int					exit_status_flag;
 	int					original_stdin;
 	int					original_stdout;
-  int is_there_a_pipe;
+	int					is_there_a_pipe;
 }						t_shell;
 
 int						is_space(char c);
@@ -232,11 +232,11 @@ void					string_to_expand(t_expand *data, char *str,
 							int *offset);
 int						how_many_dallar_to_expand(char *str, int heredoc_flag);
 
-void					handle_redir_in(char *str, char **in_file_name,
+int						handle_redir_in(char *str, char **in_file_name,
 							t_shell *shell);
-void					handle_redir_out(char *str, char **file_name,
+int						handle_redir_out(char *str, char **file_name,
 							t_shell *shell);
-void					handle_append(char *str, char **file_name,
+int						handle_append(char *str, char **file_name,
 							t_shell *shell);
 void					create_all_heredocs(t_shell *shell);
 void					create_heredoc(t_shell *s, t_token *tokenze);
