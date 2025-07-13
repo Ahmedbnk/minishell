@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/13 10:58:34 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/13 17:22:20 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	process_command(t_shell *shell)
 {
+	p_err("testing process_command\n");
 	shell->in_file_name = NULL;
 	shell->file_name = NULL;
 	if (handle_all_redir(shell))
