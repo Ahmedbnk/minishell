@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/13 10:56:30 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/13 13:04:31 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	ft_init_shell_block(t_shell *sh, int ac, char **av)
 	sh->exit_status_flag = 0;
 	sh->is_there_a_pipe = 0;
 	sh->red_mode = 0;
+  sh->out_or_append = 0;
 }

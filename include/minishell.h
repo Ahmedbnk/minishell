@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/13 10:56:15 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/13 13:03:43 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_shell_control_block
 	int					original_stdout;
 	int					is_there_a_pipe;
 	int					red_mode;
+  int out_or_append;
 }						t_shell;
 
 int						is_space(char c);

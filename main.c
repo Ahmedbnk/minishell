@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/12 17:58:22 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/13 13:10:06 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		sh.is_there_a_pipe = 0;
+    sh.out_or_append = 0;
 		make_fd_lst();
 		set_handler_state(0);
 		if (!ft_readline(&sh) || parse_line(&sh) || !is_there_a_char(sh.line))

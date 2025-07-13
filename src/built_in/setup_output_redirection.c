@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:52 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/13 11:33:17 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/13 13:17:00 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	setup_output_redirection(t_shell *shell)
 {
+  int fd;
+  fd = 0;
 	if (shell->file_name)
 	{
 		shell->original_stdout = ft_dup(1);
-		if (shell->tokenze->type == REDIR_OUT)
-			ft_close(ft_open(shell->file_name, O_TRUNC | O_CREAT | O_WRONLY,
-					0644));
-		else if (shell->tokenze->type == REDIR_APPEND)
-			ft_close(ft_open(shell->file_name, O_APPEND | O_CREAT | O_WRONLY,
-					0644));
-		ft_dup2(ft_open(shell->file_name, O_WRONLY, 0), 1);
+		if (shell->out_or_append == REDIR_OUT)
+      fd = ft_open(shell->file_name, O_TRUNC | O_CREAT | O_WRONLY,0644);
+    else
+      fd = ft_open(shell->file_name, O_APPEND | O_CREAT | O_WRONLY, 0644);
+    ft_dup2(fd, 1);
 	}
 }
