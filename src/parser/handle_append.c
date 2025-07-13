@@ -18,6 +18,7 @@ int	handle_append(char *str, char **file_name, t_shell *shell)
 
 	(void)shell;
 	*file_name = str;
+  shell->out_or_append = REDIR_APPEND;
 	fd = ft_open(str, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (fd < 0)
 		return ((exstat(1), 1));
