@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 21:14:38 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/13 10:58:34 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	process_command(t_shell *shell)
 		return ;
 	if (shell->file_name)
 	{
-		shell->fd_out = ft_open(shell->file_name, O_CREAT | O_WRONLY | O_TRUNC,
-				0644);
+		shell->fd_out = ft_open(shell->file_name,
+				O_CREAT | O_WRONLY | shell->red_mode, 0644);
 		ft_dup2(shell->fd_out, 1);
 	}
 	if (shell->in_file_name)
