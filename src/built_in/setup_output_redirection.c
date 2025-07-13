@@ -19,10 +19,10 @@ void	setup_output_redirection(t_shell *shell)
 	if (shell->file_name)
 	{
 		shell->original_stdout = ft_dup(1);
-     if (shell->out_or_append ==REDIR_APPEND)
+     if (shell->red_mode == O_APPEND)
       fd = ft_open(shell->file_name, O_APPEND | O_CREAT | O_WRONLY, 0644);
 
-    else if (shell->out_or_append == REDIR_OUT)
+    else if (shell->red_mode == O_TRUNC)
       fd = ft_open(shell->file_name, O_TRUNC | O_CREAT | O_WRONLY,0644);
     ft_dup2(fd, 1);
 	}

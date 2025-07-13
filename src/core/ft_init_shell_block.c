@@ -26,5 +26,4 @@ void	ft_init_shell_block(t_shell *sh, int ac, char **av)
 	sh->exit_status_flag = 0;
 	sh->is_there_a_pipe = 0;
 	sh->red_mode = 0;
-  sh->out_or_append = 0;
 }

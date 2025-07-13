@@ -52,7 +52,6 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		sh.is_there_a_pipe = 0;
-    sh.out_or_append = 0;
 		make_fd_lst();
 		set_handler_state(0);
 		if (!ft_readline(&sh) || parse_line(&sh) || !is_there_a_char(sh.line))

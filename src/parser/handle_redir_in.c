@@ -38,10 +38,6 @@ int	handle_redir_in(char *str, char **in_file_name, t_shell *shell)
 			exstat(1);
 		return (1);
 	}
-	buffer = read_file(str);
-	if (!buffer)
-		return (0);
-	write(fd, buffer, ft_strlen(buffer));
 	ft_close(fd);
 	return (0);
 }

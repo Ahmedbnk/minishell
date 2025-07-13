@@ -16,9 +16,7 @@ int	handle_redir_out(char *str, char **file_name, t_shell *shell)
 {
 	int	fd;
 
-	(void)shell;
 	*file_name = str;
-  shell->out_or_append = REDIR_OUT;
 	fd = ft_open(str, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (fd < 0)
 		return ((exstat(1), 1));

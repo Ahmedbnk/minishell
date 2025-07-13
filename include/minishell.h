@@ -107,7 +107,6 @@ typedef struct s_shell_control_block
 	int					original_stdout;
 	int					is_there_a_pipe;
 	int					red_mode;
-  int out_or_append;
 }						t_shell;
 
 int						is_space(char c);
