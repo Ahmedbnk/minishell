@@ -28,6 +28,8 @@ int	parse_redirections(t_shell *shell)
 			shell->tokenze = shell->tokenze->next;
 		}
 		shell->tokenze = shell->tokenze->next;
+    if(shell->file_name_lst)
+      shell->file_name_lst = shell->file_name_lst->next;
 	}
 	shell->tokenze = original_tokenized;
 	return (0);

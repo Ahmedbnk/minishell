@@ -16,9 +16,18 @@ int	check_ambiguous_redirection(t_shell *shell)
 {
 	if (shell->file_name_lst && shell->file_name_lst->status == AMBIGUOUS)
 	{
-		p_err("ambig\n");
-		exstat(1);
+    if(shell->cmd_and_args && !shell->cmd_and_args[0]&& shell->is_there_a_pipe)
+    {
+      p_err("ambiguous redirect\n");
+      exstat(0);
+      return (1);
+    }
+    else
+  {
+      p_err("ambiguous redirect\n");
+      exstat(1);
 		return (1);
+    }
 	}
 	return (0);
 }

@@ -22,7 +22,7 @@ void	execute_line(t_shell *sh)
 			execute_parent_builtin(sh);
 		else
 		{
-			// if (parse_redirections(sh) || sh->exit_status_flag)
+  		// if (parse_redirections(sh) || sh->exit_status_flag)
 			// 	return ;
 
 			if(!is_there_a_pipe(sh) && parse_redirections(sh))

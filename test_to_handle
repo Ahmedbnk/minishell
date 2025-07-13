@@ -32,3 +32,29 @@ abenkrar@c2r9p1:~/Desktop/minishell$ >include | ls
 bash: include: Is a directory
 file  include  main.c  main.o  Makefile  minishell  src  test_to_handle
 abenkrar@c2r9p1:~/Desktop/minishell$ 
+
+		     philo				  test3.c
+init_vars.c	     scripting				  test.c
+abenkrar@c1r9p2:~/Desktop$ nvim mofaja2at
+abenkrar@c1r9p2:~/Desktop$  >$dsfsdf >2 | >$fsdf >4
+bash: $fsdf: ambiguous redirect
+bash: $dsfsdf: ambiguous redirect
+abenkrar@c1r9p2:~/Desktop$ $?
+1: command not found
+abenkrar@c1r9p2:~/Desktop$  >$dsfsdf  | >$fsdf 
+bash: $fsdf: ambiguous redirect
+bash: $dsfsdf: ambiguous redirect
+abenkrar@c1r9p2:~/Desktop$ $?
+1: command not found
+abenkrar@c1r9p2:~/Desktop$  <$dsfsdf  | <$fsdf 
+bash: $dsfsdf: ambiguous redirect
+bash: $fsdf: ambiguous redirect
+abenkrar@c1r9p2:~/Desktop$ $?
+0: command not found
+abenkrar@c1r9p2:~/Desktop$ <./test
+abenkrar@c1r9p2:~/Desktop$ >./test
+bash: ./test: Is a directory
+abenkrar@c1r9p2:~/Desktop$ 
+
+
+

@@ -14,9 +14,11 @@
 
 void	process_command(t_shell *shell)
 {
-	p_err("testing process_command\n");
 	shell->in_file_name = NULL;
 	shell->file_name = NULL;
+
+  if(parse_redirections(shell))
+    exit((free_all(),exstat(-1)));
 	if (handle_all_redir(shell))
 		return ;
 	if (shell->file_name)
