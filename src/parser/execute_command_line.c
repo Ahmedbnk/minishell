@@ -20,11 +20,10 @@ void	iteration(t_shell *shell)
 			ft_pipe(shell->arr);
 		execute_command_line_helper(shell);
 		skip_ambig_list(shell);
-		if (shell->previous_read_end != -1)
-			close(shell->previous_read_end);
+			ft_close(shell->previous_read_end);
 		if (shell->line_pointer && shell->line_pointer->type == PIPE)
 		{
-			close(shell->arr[1]);
+			ft_close(shell->arr[1]);
 			shell->previous_read_end = shell->arr[0];
 			shell->line_pointer = shell->line_pointer->next;
 		}
@@ -42,8 +41,7 @@ void	execute_command_line(t_shell *shell)
 	shell->previous_read_end = -1;
 	set_handler_state(2);
 	iteration(shell);
-	if (shell->previous_read_end != -1)
-		close(shell->previous_read_end);
+	ft_close(shell->previous_read_end);
 	waitpid(shell->last_child_pid, &status, 2);
 	if (WIFEXITED(status) && !shell->exit_status_flag)
 		exstat(WEXITSTATUS(status));

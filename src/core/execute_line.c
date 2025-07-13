@@ -22,7 +22,6 @@ void	execute_line(t_shell *sh)
 			execute_parent_builtin(sh);
 		else
 		{
-
 			if(!is_there_a_pipe(sh) && parse_redirections(sh))
 				return ;
 			if (sh->exit_status_flag)
