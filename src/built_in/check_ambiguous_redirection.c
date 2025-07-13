@@ -16,7 +16,8 @@ int	check_ambiguous_redirection(t_shell *shell)
 {
 	if (shell->file_name_lst && shell->file_name_lst->status == AMBIGUOUS)
 	{
-    if(shell->cmd_and_args && !shell->cmd_and_args[0]&& shell->is_there_a_pipe)
+    if(shell->cmd_and_args && !shell->cmd_and_args[0]&& shell->is_there_a_pipe 
+      && are_eq(shell->tokenze->word, "<"))
     {
       p_err("ambiguous redirect\n");
       exstat(0);
@@ -26,7 +27,7 @@ int	check_ambiguous_redirection(t_shell *shell)
   {
       p_err("ambiguous redirect\n");
       exstat(1);
-		return (1);
+      return (1);
     }
 	}
 	return (0);
