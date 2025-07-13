@@ -6,12 +6,16 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:51:18 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/12 17:24:23 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/13 05:32:00 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// char *correct_path(char *str)
+// {
+// 	if()
+// }
 int	cd(char **env, char **path)
 {
 	char	*new_dir;

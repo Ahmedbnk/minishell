@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-
-
 int	try_single_path(char *path, char *cmd, char **av, char **env)
 {
 	char	*cmd_with_its_path;
@@ -22,7 +20,7 @@ int	try_single_path(char *path, char *cmd, char **av, char **env)
 	cmd_with_its_path = buf(path, "/", cmd);
 	if (access(cmd_with_its_path, F_OK) == 0)
 	{
-		if (access(cmd_with_its_path, X_OK) == 0)
+		if (access(cmd_with_its_path, X_OK) == 0 && !is_dir(cmd_with_its_path))
 		{
 			execve(cmd_with_its_path, av, env);
 			buffer = buf(buf(cmd, ": ", 0), buf(strerror(errno), "\n", 0), 0);
