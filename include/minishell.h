@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/13 13:03:43 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/13 13:03:43 nkaabesirar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define AMBIGUOUS 1
 # define NEW_START 2
 # define SIZE 4096
-# define CD_ERROR "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+# define CD_ERROR "cd: error retrieving current directory: getcwd: cannot" access parent directories: No such file or directory\n"
 # define PWD_ERROR "pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
 
 # define NOT_FOUND 3

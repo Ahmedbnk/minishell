@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:00 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/04 19:03:37 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 09:09:29 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	*remove_dollar_if_quotes_after_it(char *str)
 	j = 0;
 	while (str[i])
 	{
-		if (str[i] == '$' && !is_between_quotes(str, i) && (str[i
-				+ 1] == SINGLE_Q || str[i + 1] == DOUBLE_Q))
+		if (str[i] == '$' && !is_between_quotes(str, i) && is_quote(str[i + 1]))
 			i++;
 		else
 			returned_string[j++] = str[i++];

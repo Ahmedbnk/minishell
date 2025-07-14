@@ -1,10 +1,12 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   execute_command_line.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/10 17:19:07 by nkasimi          ###   ########.fr       */
+/*   Created: 2025/07/14 09:14:16 by nkasimi           #+#    #+#             */
+/*   Updated: 2025/07/14 09:14:20 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +22,7 @@ void	iteration(t_shell *shell)
 			ft_pipe(shell->arr);
 		execute_command_line_helper(shell);
 		skip_ambig_list(shell);
-			ft_close(shell->previous_read_end);
+		ft_close(shell->previous_read_end);
 		if (shell->line_pointer && shell->line_pointer->type == PIPE)
 		{
 			ft_close(shell->arr[1]);

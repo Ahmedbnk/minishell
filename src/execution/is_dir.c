@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_dir.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/14 09:28:17 by nkasimi           #+#    #+#             */
+/*   Updated: 2025/07/14 09:30:35 by nkasimi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -7,11 +18,12 @@ int	is_dir(char *cmd)
 
 	if (!cmd)
 		return (0);
-	if ((ptr = opendir(cmd)) != NULL)
+	ptr = opendir(cmd);
+	if (ptr != NULL)
 	{
 		closedir(ptr);
 		exe_flag(IS_DIR);
-		return 1;
+		return (1);
 	}
 	return (0);
 }

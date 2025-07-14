@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:51 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/12 06:08:45 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 09:32:47 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_redirections(t_shell *shell)
 				|| process_redirection_tokens(shell))
 				return (1);
 			shell->tokenze = shell->tokenze->next;
-      advance_file_name_list(shell);
+			advance_file_name_list(shell);
 		}
 		shell->tokenze = shell->tokenze->next;
 	}

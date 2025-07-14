@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/11 11:16:10 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 09:14:35 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	execute_builtin_child(t_shell *shell)
 {
-	int status;
+	int	status;
 
 	if (are_eq(*shell->cmd_and_args, "pwd"))
 	{

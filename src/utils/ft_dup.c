@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:53:01 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/07 09:58:32 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 09:04:40 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	ft_dup2(int oldfd, int newfd)
 		add_fd_to_lst(newfd);
 	return (result);
 }
-

@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:52:59 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/12 10:06:10 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/14 09:10:48 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 int	handle_redir_in(char *str, char **in_file_name, t_shell *shell)
 {
-	char	*buffer;
-	int		fd;
-  DIR		*dir;
+	int	fd;
+	DIR	*dir;
 
 	shell = get_shell_pointer(NULL);
-	buffer = NULL;
 	*in_file_name = str;
-  dir = opendir(*in_file_name);
-  if(dir != NULL)
-  {
-    closedir(dir);
-    exstat(0);
-    return (0);
-  }
+	dir = opendir(*in_file_name);
+	if (dir != NULL)
+	{
+		closedir(dir);
+		exstat(0);
+		return (0);
+	}
 	fd = ft_open(*in_file_name, O_RDONLY, 0);
 	if (fd < 0)
 	{
