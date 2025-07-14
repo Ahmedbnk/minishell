@@ -74,7 +74,7 @@ void	create_heredoc(t_shell *s, t_token *tokenze)
 	rm_quotes_from_one_str(s, &(tokenze->delimiter));
 	signal(SIGINT, SIG_IGN);
 	set_handler_state(1);
-	rc = fork();
+	rc = ft_fork();
 	if (rc == 0)
 		handle_heredoc_child(s, tokenze, has_qoutes);
 	else

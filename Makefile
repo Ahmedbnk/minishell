@@ -174,6 +174,7 @@ SRCS = main.c \
 	src/built_in/removed_file_flag.c\
 	src/execution/is_dir.c\
 	src/execution/exe_flag.c\
+	src/execution/ft_fork.c
 
 OBJS = $(SRCS:.c=.o)
 
