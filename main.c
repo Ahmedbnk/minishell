@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/14 11:11:38 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:01:11 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	shell_loop(t_shell *sh)
 		sh->is_there_a_pipe = 0;
 		make_fd_lst();
 		set_handler_state(0);
+		get_array_of_pids(-1);
 		if (!ft_readline(sh) || parse_line(sh) || !is_there_a_char(sh->line))
 			continue ;
 		expand_and_split(sh);

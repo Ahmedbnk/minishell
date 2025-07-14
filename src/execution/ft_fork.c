@@ -6,17 +6,22 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 14:32:00 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:32:01 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:02:57 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	*get_array_of_pids(void)
+int	*get_array_of_pids(int flag)
 {
 	static int	*arr;
 	int			i;
 
+	if (flag == -1)
+	{
+		arr = NULL;
+		return (NULL);
+	}
 	if (!arr)
 	{
 		i = 0;
@@ -35,7 +40,7 @@ void	add_pid_to_array(int p_id)
 	int	*arr;
 	int	i;
 
-	arr = get_array_of_pids();
+	arr = get_array_of_pids(0);
 	i = 0;
 	while (i < MAX_NUM_OF_PROC && arr[i] != 0)
 		i++;
@@ -48,7 +53,7 @@ void	kill_all(void)
 	int	*arr;
 	int	i;
 
-	arr = get_array_of_pids();
+	arr = get_array_of_pids(0);
 	i = 0;
 	while (i < MAX_NUM_OF_PROC && arr[i] != 0)
 	{

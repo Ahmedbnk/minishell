@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/14 14:33:20 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:02:46 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 # define NEW_START 2
 # define SIZE 4096
 # define CD_ERROR "cd: error retrieving current directory: getcwd: \
-  cannot access parent directories: No such file or directory\n"
+cannot access parent directories: No such file or directory\n"
 # define PWD_ERROR "pwd: error retrieving current directory: getcwd: \
-  cannot access parent directories: No such file or directory\n"
+cannot access parent directories: No such file or directory\n"
 # define SIZE 4096
 
 # define NOT_FOUND 3
@@ -328,4 +328,5 @@ int						exstat(int n);
 int						is_std(int fd);
 int						exe_flag(int n);
 int						ft_fork(void);
+int						*get_array_of_pids(int flag);
 #endif
