@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:51:18 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/13 05:32:00 by nkasimi          ###   ########.fr       */
+/*   Updated: 2025/07/14 15:19:18 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	cd(char **env, char **path)
 		path++;
 	if (!*path)
 		chdir(ft_getenv("HOME"));
+	if (*path && !**path)
+		return (0);
 	else if (chdir(*path) != 0)
 		return ((exstat(1), perror(*path), 1));
 	removed_file_flag(0);
