@@ -22,6 +22,6 @@ void	execute_parent_builtin(t_shell *shell)
 	setup_input_redirection(shell);
 	execute_builtin(shell);
 	restore_original_fds(shell);
-	if(exstat(-1))
+	if (exstat(-1))
 		shell->exit_status_flag = 1;
 }

@@ -83,7 +83,7 @@ env_cpy	include/minishell.h	/^	char				**env_cpy;$/;"	m	struct:s_shell_control_b
 env_of_export	include/minishell.h	/^	char				**env_of_export;$/;"	m	struct:s_shell_control_block	typeref:typename:char **
 exe_flag	src/execution/exe_flag.c	/^int	exe_flag(int n)$/;"	f	typeref:typename:int
 execute_builtin	src/built_in/execute_builtin.c	/^void	execute_builtin(t_shell *shell)$/;"	f	typeref:typename:void
-execute_builtin_child	src/parser/execute_builtin_child.c	/^void	execute_builtin_child(t_shell *shell)$/;"	f	typeref:typename:void
+execute_builtin	src/parser/execute_builtin_child.c	/^void	execute_builtin(t_shell *shell)$/;"	f	typeref:typename:void
 execute_command	src/execution/execute_command.c	/^void	execute_command(t_shell *shell)$/;"	f	typeref:typename:void
 execute_command_line	src/parser/execute_command_line.c	/^void	execute_command_line(t_shell *shell)$/;"	f	typeref:typename:void
 execute_command_line_helper	src/parser/execute_command_line_helper.c	/^void	execute_command_line_helper(t_shell *shell)$/;"	f	typeref:typename:void
@@ -159,9 +159,13 @@ get_token_type	src/parser/get_token_type.c	/^t_type	get_token_type(const char *s
 handle_all_redir	src/parser/handle_all_redir.c	/^int	handle_all_redir(t_shell *sh)$/;"	f	typeref:typename:int
 handle_append	src/parser/handle_append.c	/^int	handle_append(char *str, char **file_name, t_shell *shell)$/;"	f	typeref:typename:int
 handle_dollar_with_quotes	src/parser/handle_dollar_with_quotes.c	/^char	**handle_dollar_with_quotes(char **splitted)$/;"	f	typeref:typename:char **
+handle_exit	src/built_in/execute_builtin.c	/^void	handle_exit(t_shell *shell)$/;"	f	typeref:typename:void
+handle_exit	src/parser/execute_builtin_child.c	/^void	handle_exit(t_shell *shell)$/;"	f	typeref:typename:void
 handle_expansion_result	src/parser/handle_expansion_result.c	/^void	handle_expansion_result(t_shell *sh, t_name_lst *ptr,$/;"	f	typeref:typename:void
 handle_failure_and_eof	src/utils/get_next_line.c	/^static char	*handle_failure_and_eof(char *rest, ssize_t readed_bytes)$/;"	f	typeref:typename:char *	file:
 handle_heredoc_child	src/parser/handle_heredoc.c	/^void	handle_heredoc_child(t_shell *s, t_token *tokenze, int has_qoutes)$/;"	f	typeref:typename:void
+handle_pwd	src/built_in/execute_builtin.c	/^void	handle_pwd(void)$/;"	f	typeref:typename:void
+handle_pwd	src/parser/execute_builtin_child.c	/^void	handle_pwd(void)$/;"	f	typeref:typename:void
 handle_redir_in	src/parser/handle_redir_in.c	/^int	handle_redir_in(char *str, char **in_file_name, t_shell *shell)$/;"	f	typeref:typename:int
 handle_redir_out	src/parser/handle_redir_out.c	/^int	handle_redir_out(char *str, char **file_name, t_shell *shell)$/;"	f	typeref:typename:int
 handle_signals	src/signals/handle_signals.c	/^void	handle_signals(void)$/;"	f	typeref:typename:void
@@ -174,6 +178,7 @@ in_file_name	include/minishell.h	/^	char				*in_file_name;$/;"	m	struct:s_shell_
 init_arr_of_structs_list	src/env/init_arr_of_structs_list.c	/^void	init_arr_of_structs_list(t_expand *expand_list, int how_much_to_expand,$/;"	f	typeref:typename:void
 init_fd_lst	src/utils/get_fd_pointer.c	/^void	init_fd_lst(int *ptr)$/;"	f	typeref:typename:void
 init_redirection_vars	src/built_in/init_redirection_vars.c	/^void	init_redirection_vars(t_shell *shell)$/;"	f	typeref:typename:void
+initialize_shell	main.c	/^static int initialize_shell(t_shell *sh, int ac, char **av, char **env, char **buffer)$/;"	f	typeref:typename:int	file:
 is_all_spaces	src/utils/is_all_spaces.c	/^int	is_all_spaces(const char *str)$/;"	f	typeref:typename:int
 is_between_quotes	src/parser/is_between_quotes.c	/^int	is_between_quotes(char *line, int index)$/;"	f	typeref:typename:int
 is_builtin	src/built_in/is_builtin.c	/^int	is_builtin(char *str)$/;"	f	typeref:typename:int
@@ -209,7 +214,7 @@ last_one	include/minishell.h	/^	int					last_one;$/;"	m	struct:s_expand	typeref:
 len_of_two_d_array	src/utils/len_of_two_d_array.c	/^int	len_of_two_d_array(char **str)$/;"	f	typeref:typename:int
 line	include/minishell.h	/^	char				*line;$/;"	m	struct:s_shell_control_block	typeref:typename:char *
 line_pointer	include/minishell.h	/^	t_token				*line_pointer;$/;"	m	struct:s_shell_control_block	typeref:typename:t_token *
-main	main.c	/^int	main(int ac, char **av, char **env)$/;"	f	typeref:typename:int
+main	main.c	/^int main(int ac, char **av, char **env)$/;"	f	typeref:typename:int
 make_fd_lst	src/utils/get_fd_pointer.c	/^void	make_fd_lst(void)$/;"	f	typeref:typename:void
 my_exit	src/built_in/my_exit.c	/^int	my_exit(char **args, t_shell *shell)$/;"	f	typeref:typename:int
 n_counter	src/utils/n_counter.c	/^int	n_counter(int n)$/;"	f	typeref:typename:int
@@ -223,7 +228,6 @@ old_sigint_handler	include/minishell.h	/^	void				*old_sigint_handler;$/;"	m	str
 old_sigquit_handler	include/minishell.h	/^	void				*old_sigquit_handler;$/;"	m	struct:s_shell_control_block	typeref:typename:void *
 original_stdin	include/minishell.h	/^	int					original_stdin;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 original_stdout	include/minishell.h	/^	int					original_stdout;$/;"	m	struct:s_shell_control_block	typeref:typename:int
-out_or_append	include/minishell.h	/^  int out_or_append;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 p_err	src/error/print.c	/^void	p_err(char *str)$/;"	f	typeref:typename:void
 parse_digits	src/utils/check_is_valid_number.c	/^static int	parse_digits(const char *str, int sign, long long max)$/;"	f	typeref:typename:int	file:
 parse_line	src/core/parse_line.c	/^int	parse_line(t_shell *sh)$/;"	f	typeref:typename:int
@@ -237,6 +241,7 @@ print_exit_signal_message	src/execution/print_exit_signal_message.c	/^void	print
 print_file	src/utils/print_file.c	/^void	print_file(char *str)$/;"	f	typeref:typename:void
 print_splitted	src/utils/print_splitted.c	/^void	print_splitted(char **splitted)$/;"	f	typeref:typename:void
 process_command	src/parser/process_command.c	/^void	process_command(t_shell *shell)$/;"	f	typeref:typename:void
+process_input	main.c	/^static int process_input(t_shell *sh)$/;"	f	typeref:typename:int	file:
 process_pipe_token	src/parser/process_pipe_token.c	/^void	process_pipe_token(t_shell *sh)$/;"	f	typeref:typename:void
 process_redirection_token	src/parser/process_redirection_token.c	/^void	process_redirection_token(t_shell *sh, char **ptr)$/;"	f	typeref:typename:void
 process_redirection_tokens	src/built_in/process_redirection_tokens.c	/^int	process_redirection_tokens(t_shell *shell)$/;"	f	typeref:typename:int
@@ -247,7 +252,7 @@ read_file	src/utils/read_file.c	/^char	*read_file(char *file_name)$/;"	f	typeref
 red_mode	include/minishell.h	/^	int					red_mode;$/;"	m	struct:s_shell_control_block	typeref:typename:int
 remove_dollar_if_quotes_after_it	src/parser/remove_dollar_if_quotes_after_it.c	/^char	*remove_dollar_if_quotes_after_it(char *str)$/;"	f	typeref:typename:char *
 remove_var_from_env	src/built_in/remove_var_from_env.c	/^void	remove_var_from_env(char ***env, char *var)$/;"	f	typeref:typename:void
-removed_file_flag	src/built_in/removed_file_flag.c	/^int removed_file_flag(int state)$/;"	f	typeref:typename:int
+removed_file_flag	src/built_in/removed_file_flag.c	/^int	removed_file_flag(int state)$/;"	f	typeref:typename:int
 restore_original_fds	src/built_in/restore_original_fds.c	/^void	restore_original_fds(t_shell *shell)$/;"	f	typeref:typename:void
 rm_quotes_from_one_str	src/parser/remove_quotes_from_args.c	/^void	rm_quotes_from_one_str(t_shell *sh, char **line)$/;"	f	typeref:typename:void
 rm_quotes_from_one_str_helper	src/parser/rm_quotes_from_one_str_helper.c	/^void	rm_quotes_from_one_str_helper(t_shell *sh, char *line,$/;"	f	typeref:typename:void
@@ -262,6 +267,7 @@ second_range	src/execution/second_range.c	/^void	second_range(int exit_status)$/
 set_handler_state	src/utils/set_handler_state.c	/^int	set_handler_state(int state)$/;"	f	typeref:typename:int
 setup_input_redirection	src/built_in/setup_input_redirection.c	/^void	setup_input_redirection(t_shell *shell)$/;"	f	typeref:typename:void
 setup_output_redirection	src/built_in/setup_output_redirection.c	/^void	setup_output_redirection(t_shell *shell)$/;"	f	typeref:typename:void
+shell_loop	main.c	/^static void shell_loop(t_shell *sh)$/;"	f	typeref:typename:void	file:
 should_i_expand	src/expansion/should_i_expand.c	/^int	should_i_expand(char *str, int index)$/;"	f	typeref:typename:int
 skip_ambig_list	src/parser/skip_ambig_list.c	/^void	skip_ambig_list(t_shell *shell)$/;"	f	typeref:typename:void
 skip_command	src/parser/skip_command.c	/^void	skip_command(t_token **tokenized_address)$/;"	f	typeref:typename:void

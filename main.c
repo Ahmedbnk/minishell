@@ -6,12 +6,11 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:50:42 by abenkrar          #+#    #+#             */
-/*   Updated: 2025/07/12 17:58:22 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:11:38 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	is_std_fd_closed(void)
 {
@@ -35,6 +34,24 @@ int	exstat(int n)
 	return (exit_status);
 }
 
+void	shell_loop(t_shell *sh)
+{
+	while (1)
+	{
+		sh->is_there_a_pipe = 0;
+		make_fd_lst();
+		set_handler_state(0);
+		if (!ft_readline(sh) || parse_line(sh) || !is_there_a_char(sh->line))
+			continue ;
+		expand_and_split(sh);
+		sh->is_there_a_pipe = is_there_a_pipe(sh);
+		execute_line(sh);
+		free_fd_lst();
+		free_memory(get_garbage_pointer(1));
+		free(sh->line);
+	}
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_shell	sh;
@@ -49,19 +66,6 @@ int	main(int ac, char **av, char **env)
 	sh.env_cpy = copy_2d(env, 0);
 	get_shell_pointer(&sh);
 	handle_signals();
-	while (1)
-	{
-		sh.is_there_a_pipe = 0;
-		make_fd_lst();
-		set_handler_state(0);
-		if (!ft_readline(&sh) || parse_line(&sh) || !is_there_a_char(sh.line))
-			continue ;
-		expand_and_split(&sh);
-		sh.is_there_a_pipe = is_there_a_pipe(&sh);
-		execute_line(&sh);
-		free_fd_lst();
-		free_memory(get_garbage_pointer(1));
-		free(sh.line);
-	}
+	shell_loop(&sh);
 	return (0);
 }

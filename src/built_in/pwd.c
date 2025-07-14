@@ -12,8 +12,6 @@
 
 #include "minishell.h"
 
-#define SIZE 4096
-
 char	*pwd(int *status)
 {
 	char	*str;

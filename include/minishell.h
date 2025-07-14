@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/13 13:03:43 nkaabesirar      ###   ########.fr       */
+/*   Updated: 2025/07/14 11:12:16 by abenkrar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@
 # define AMBIGUOUS 1
 # define NEW_START 2
 # define SIZE 4096
-# define CD_ERROR "cd: error retrieving current directory: getcwd: cannot" access parent directories: No such file or directory\n"
-# define PWD_ERROR "pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n"
+# define CD_ERROR "cd: error retrieving current directory: getcwd: \
+  cannot access parent directories: No such file or directory\n"
+# define PWD_ERROR "pwd: error retrieving current directory: getcwd: \
+  cannot access parent directories: No such file or directory\n"
+# define SIZE 4096
 
 # define NOT_FOUND 3
 # define NO_PM 2
@@ -101,7 +104,6 @@ typedef struct s_shell_control_block
 	int					fd_in;
 	int					last_child_pid;
 	int					wait_status;
-	// int					exit_status;
 	int					exit_status_flag;
 	int					original_stdin;
 	int					original_stdout;
