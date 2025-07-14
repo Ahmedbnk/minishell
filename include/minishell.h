@@ -24,6 +24,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
+#define MAX_NUM_OF_PROC 62006
 # define SINGLE_Q 39
 # define DOUBLE_Q 34
 # define BUFFER_SIZE 40
@@ -326,4 +327,5 @@ int						is_dir(char *cmd);
 int						exstat(int n);
 int						is_std(int fd);
 int						exe_flag(int n);
+int ft_fork(void);
 #endif
