@@ -6,7 +6,7 @@
 /*   By: nkasimi <nkasimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:59 by nkasimi           #+#    #+#             */
-/*   Updated: 2025/07/14 11:12:16 by abenkrar         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:33:20 by nkasimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-#define MAX_NUM_OF_PROC 62006
+# define MAX_NUM_OF_PROC 62006
 # define SINGLE_Q 39
 # define DOUBLE_Q 34
 # define BUFFER_SIZE 40
@@ -327,5 +327,5 @@ int						is_dir(char *cmd);
 int						exstat(int n);
 int						is_std(int fd);
 int						exe_flag(int n);
-int ft_fork(void);
+int						ft_fork(void);
 #endif
