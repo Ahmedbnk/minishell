@@ -1,3 +1,0 @@
-Another test file for second commit.
-Some additional functionality.
-Final changes for the third commit.

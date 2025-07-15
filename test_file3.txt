@@ -1,2 +1,0 @@
-Third test file to complete the set.
-All changes combined for squashing demonstration.

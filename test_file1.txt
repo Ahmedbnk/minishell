@@ -1,3 +1,0 @@
-This is a test file for the first commit.
-Added some basic content.
-Second change for the next commit.
