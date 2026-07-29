@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "./include/minishell.h"
 
 int	is_std_fd_closed(void)
 {

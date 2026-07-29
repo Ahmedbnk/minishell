@@ -44,6 +44,23 @@ make
   `echo $HOME`
 - Builtin commands can be run without spawning extra processes
 
+## Docker
+
+### Build the image
+
+From the project root directory:
+
+```bash
+docker build -t minishell:1.0 .
+```
+
+### Run Minishell
+
+Because Minishell uses `readline()`, it needs an interactive terminal:
+
+```bash
+docker run -it minishell:1.0
+```
 ## 🛠️ Main Source Structure
 
 - `main.c` - Entry point and core loop

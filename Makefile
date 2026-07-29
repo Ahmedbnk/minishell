@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -Iinclude
+CFLAGS = -g -Iinclude
 SRCS = main.c \
 	src/env/copy_2d.c \
 	src/env/allocate_and_init_expand_list.c \

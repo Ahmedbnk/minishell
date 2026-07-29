@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../include/minishell.h"
 
 int	try_single_path(char *path, char *cmd, char **av, char **env)
 {
@@ -35,9 +35,6 @@ int	try_single_path(char *path, char *cmd, char **av, char **env)
 void	check_after_geting_path(char *cmd, char **av, char **path, char **env)
 {
 	int	i;
-	int	flag;
-
-	flag = 0;
 	i = 0;
 	while (path[i])
 	{
